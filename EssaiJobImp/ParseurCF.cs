@@ -493,7 +493,7 @@ namespace EssaiJobImp
                 cartouche.AddCell(cellFoot3);
                
                 nouveauDocument.Add(cartouche);
-                Phrase phraseFin = new Phrase("\nHORAIRE RECEPTION ABCR                     8H - 12H / 13H30 - 16h30                              EXPLOITATION 02 35 95 88 22", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD));
+                Phrase phraseFin = new Phrase("\nHORAIRES RECEPTION ABCR                     8H - 12H / 13H30 - 16h30                              EXPLOITATION 02 35 95 88 22", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD));
                 nouveauDocument.Add(phraseFin);
                 //--------------------------------------------------------------------------------------------------------------
                 nouveauDocument.Close();
