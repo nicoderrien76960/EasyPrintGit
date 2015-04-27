@@ -1,0 +1,281 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Printing;
+using System.IO;
+using System.Threading;
+
+namespace EssaiJobImp
+{
+    public partial class Form1 : Form
+    {
+        static System.Windows.Forms.Timer s_myTimer = new System.Windows.Forms.Timer();
+        static System.Windows.Forms.Timer s_myTimer2 = new System.Windows.Forms.Timer();
+        static System.Windows.Forms.Timer s_myTimer3 = new System.Windows.Forms.Timer();
+        static System.Windows.Forms.Timer s_myTimer4 = new System.Windows.Forms.Timer();
+        static int s_myCounter = 0;
+        static int s_myCounter2 = 0;
+        static int s_myCounter3 = 0;
+        static int s_myCounter4 = 0;
+        string nomIMP; int timer = 500; int AiIMP; string[] tabIMP = new string[5];
+        public delegate void montrerSpool(string valeur);
+        public delegate void vider();
+        private static Object _lock = new Object();
+        public void ajoutTB(string valeur)
+        {
+            lock (_lock)
+            {
+                int i;
+                for (i = 0; i < 5; i++)
+                {
+                    if (tabIMP[i] == "iram0101") { textBox1.Text += (valeur) + Environment.NewLine; }
+                    if (tabIMP[i] == "iram0102") { textBox2.Text += (valeur) + Environment.NewLine; }
+                    if (nomIMP == "iram0103") { textBox3.Text += (valeur) + Environment.NewLine; }
+                    if (nomIMP == "iram0104") { textBox4.Text += (valeur) + Environment.NewLine; }
+                }
+            }
+        }
+        public void ajoutTB2(string valeur)
+        {
+            textBox2.Text += (valeur) + Environment.NewLine;
+        }
+        public void viderTB()
+        {
+            lock (_lock)
+            {
+                int i;
+                for (i = 0; i < 5; i++)
+                {
+                    if (tabIMP[i] == "iram0101") { textBox1.Clear(); }
+                    if (tabIMP[i] == "iram0102") { textBox2.Clear(); }
+                    if (nomIMP == "iram0103") { textBox3.Clear(); }
+                    if (nomIMP == "iram0104") { textBox4.Clear(); }
+                }
+            }
+        }
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        /*public void s_myTimer_Tick2(object sender, EventArgs e)
+        {
+            s_myCounter2++;
+            textBox2.Clear();
+            textBox2.Text += ("Timer vaut " + s_myCounter2 + ".") + Environment.NewLine;
+            lectureSpooler(nomIMP);
+            if (s_myCounter2 == 10000)
+            {
+                s_myCounter2 = 0;
+            }
+        }*/
+        public void s_myTimer_Tick3(object sender, EventArgs e)
+        {
+            s_myCounter3++;
+            textBox3.Clear();
+            textBox3.Text += ("Timer vaut " + s_myCounter3 + ".") + Environment.NewLine;
+            lectureSpooler(nomIMP);
+            if (s_myCounter3 == 10000)
+            {
+                s_myCounter3 = 0;
+            }
+        }
+        public void s_myTimer_Tick4(object sender, EventArgs e)
+        {
+            s_myCounter4++;
+            textBox4.Clear();
+            textBox4.Text += ("Timer vaut " + s_myCounter4 + ".") + Environment.NewLine;
+            lectureSpooler(nomIMP);
+            if (s_myCounter4 == 10000)
+            {
+                s_myCounter4 = 0;
+            }
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+        }
+        public void lectureJobs()
+        {
+            PrintServer myPrintServer = new PrintServer();
+            PrintQueueCollection myPrintQueues = myPrintServer.GetPrintQueues();
+            foreach (PrintQueue pq in myPrintQueues)
+            {
+                if (pq.FullName == "iram0101")
+                {
+                    pq.Refresh();
+                    PrintJobInfoCollection jobs = pq.GetPrintJobInfoCollection();
+                    foreach (PrintSystemJobInfo job in jobs)
+                    {
+                        textBox1.Text+=(job.Name.ToString())+Environment.NewLine;
+                    }
+                }
+            }
+        }
+        
+        private void boutonLectureJobs_Click(object sender, EventArgs e)
+        {
+            textBox1.Clear();
+            lectureJobs();
+        }
+        private void boutonLectureSpooler_Click(object sender, EventArgs e)
+        {
+            lectureSpooler(nomIMP);
+        }
+        public void lectureSpooler(string nomIMP)
+        {
+            lock (_lock)
+            {
+                string[] files;
+                // pour avoir les noms des fichiers et sous-répertoires
+                files = Directory.GetFiles("C:\\Windows\\System32\\spool\\PRINTERS", "*.SPL");
+                PrintServer myPrintServer = new PrintServer();
+                PrintQueueCollection myPrintQueues = myPrintServer.GetPrintQueues();
+                bool supOk = false;
+
+
+                foreach (PrintQueue pq in myPrintQueues)//Analyse du spool
+                {
+                    if (pq.FullName == nomIMP)//Condition sur imprimante iram0101
+                    {
+                        int filecount = files.GetUpperBound(0) + 1;
+                        for (int i = 0; i < filecount; i++)//Nombre de fichier dans dossier spool
+                        {
+                            DateTime temp = Directory.GetLastWriteTime(files[i]).AddMilliseconds(-Directory.GetLastWriteTime(files[i]).Millisecond);
+                            DateTime actuelle = DateTime.Now;
+                            actuelle = DateTime.Now.AddMilliseconds(-actuelle.Millisecond);
+                            string nom_spool = "";
+                            string nomFichier = System.IO.Path.GetFileName(files[i]);
+                            string sourceFile = System.IO.Path.Combine(@"C:\Windows\System32\spool\PRINTERS", nomFichier);
+                            string destFile = System.IO.Path.Combine(@"E:\EssaieServeurImpression\Copie spool", nomFichier);
+                            string[] files2 = Directory.GetFiles(@"E:\EssaieServeurImpression\Copie spool", "*SPL");
+                            int file2count = files2.GetUpperBound(0) + 1;
+                            if (temp.Second != actuelle.Second)//Condition tempo de temps d'analyse des docs
+                            {
+                                try
+                                {
+                                    for (int j = 0; j < filecount; j++)//Analyse existant dans fichier de destination
+                                    {
+                                        if (System.IO.File.Exists(@"E:\EssaieServeurImpression\Copie spool\" + nomFichier))//Condition d'existance
+                                        { }
+                                        else
+                                        {
+                                            System.IO.File.Copy(sourceFile, destFile, true);
+                                            supOk = true;
+                                        }
+                                    }
+                                    string[] text = System.IO.File.ReadAllLines(files[i]);
+                                    string sPattern = "<Spool>";
+                                    foreach (string s in text)//Analyse ligne du document actuel
+                                    {
+                                        //Regex balise <spool>
+                                        if (System.Text.RegularExpressions.Regex.IsMatch(s, sPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase))
+                                        {
+                                            nom_spool = s.Substring(16, 10);
+                                            //textBox1.Text += (nom_spool + " ------> ");
+                                            if (supOk == true)//Condition si copie ok donc suppression
+                                            {
+                                                pq.Refresh();
+                                                PrintJobInfoCollection jobs = pq.GetPrintJobInfoCollection();
+                                                foreach (PrintSystemJobInfo job in jobs)//Lecture des docs dans file d'attente
+                                                {
+                                                    if (job.Name == nom_spool)//Condition nom du doc de la file
+                                                    {
+                                                        job.Cancel();
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if (nomIMP == "iram0101") { Invoke((montrerSpool)ajoutTB, System.IO.Path.GetFileName(files[i])); }
+                                    if (nomIMP == "iram0102") { Invoke((montrerSpool)ajoutTB, System.IO.Path.GetFileName(files[i])); }
+                                    if (nomIMP == "iram0103") { textBox3.Text += (System.IO.Path.GetFileName(files[i])) + Environment.NewLine; }
+                                    if (nomIMP == "iram0104") { textBox4.Text += (System.IO.Path.GetFileName(files[i])) + Environment.NewLine; }
+                                }
+                                catch (Exception ex)
+                                { MessageBox.Show(ex.ToString()); }
+                            }
+                            else
+                            {
+                                break;
+                            }
+                            supOk = false;
+                        }
+                    }
+                }
+            }
+        }
+        private void boutonSupJob_Click(object sender, EventArgs e)
+        {
+        }
+        int id = 0;
+        public void lancementTimer(EventArgs e)
+        {
+            int i = 0; int idthread = ++id; AiIMP++;
+            tabIMP[AiIMP] = "iram010" + AiIMP;
+            while (true)
+            {
+                    i++;
+                    Invoke((vider)viderTB);
+                    Invoke((montrerSpool)ajoutTB, "Timer vaut " + i + ". Thread N° " + idthread);
+                    //lectureSpooler(nomIMP);
+                    if (i == 10000)
+                    {
+                        i = 0;
+                    }
+                    Thread.Sleep(500);
+            }
+        }
+        public void lancementTimer2(EventArgs e)
+        {
+            int i = 0; int idthread = ++id;
+            AiIMP++;
+            tabIMP[AiIMP] = "iram010" + AiIMP;
+            while (true)
+            {
+                i++;
+                Invoke((vider)viderTB);
+                Invoke((montrerSpool)ajoutTB2, "Timer vaut " + i + ". Thread N° " + idthread);
+                lectureSpooler(nomIMP);
+                if (i == 10000)
+                {
+                    i = 0;
+                }
+                Thread.Sleep(500);
+            }
+        }
+        private void Timer1_Click(object sender, EventArgs e)
+        {
+                //Thread t1 = new Thread(new ParameterizedThreadStart(obj => { lectureSpooler((string)obj); }));
+                //t1.Start(nomIMP);
+                Thread t1 = new Thread(new ParameterizedThreadStart(obj => { lancementTimer(e); }));
+                t1.Start();
+        }
+        private void Timer2_Click(object sender, EventArgs e)
+        {   
+                Thread t2 = new Thread(new ParameterizedThreadStart(obj => { lancementTimer2(e); }));
+                t2.Start();
+        }
+        private void Timer3_Click(object sender, EventArgs e)
+        {
+            nomIMP = "iram0103";
+            s_myTimer3.Tick += new EventHandler(s_myTimer_Tick3);
+            s_myTimer3.Interval = timer;
+            s_myTimer3.Start();
+            MessageBox.Show("Timer lancé.");
+        }
+
+        private void Timer4_Click(object sender, EventArgs e)
+        {
+            nomIMP = "iram0104";
+            s_myTimer4.Tick += new EventHandler(s_myTimer_Tick4);
+            s_myTimer4.Interval = timer;
+            s_myTimer4.Start();
+            MessageBox.Show("Timer lancé.");
+        }
+    }
+}
