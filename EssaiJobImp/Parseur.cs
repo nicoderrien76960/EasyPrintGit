@@ -394,8 +394,8 @@ namespace EssaiJobImp
                 }
                 catch
                 {
-                    printer[nbImp] = ConfigurationManager.AppSettings["ImpDef"]
-                        ;                 //Imprimante par defaut (essai)
+                    printer[nbImp] = ConfigurationManager.AppSettings["ImpDef"];                 //Imprimante par defaut (essai)
+                    nbImp++;
                 }
                 nbImp = nbImp - 1;
                 while (nbImpOK <= nbImp)                        // boucle tant que le nombre d'impression fait n'à pas atteint le nombre d'impression demander

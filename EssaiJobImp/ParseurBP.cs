@@ -36,6 +36,7 @@ namespace EssaiJobImp
             int nbCopie = int.Parse(donneEntete["Nombre_copies"]);
             while (incCopie < nbCopie)
             {
+                bool drapReliquat = false;
                 string chemin = "E:\\DocFinaux\\BP\\BP_" + nomDoc + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf";
                 Document nouveauDocument = new Document(PageSize.A4, 20, 20, 12, 20);
                 PdfWriter.GetInstance(nouveauDocument, new FileStream(chemin, FileMode.Create));     //Stockage du document
@@ -236,8 +237,15 @@ namespace EssaiJobImp
                         PdfPCell cell5 = new PdfPCell(new Phrase(donneeBody["Art_qte" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell5.Border = PdfPCell.NO_BORDER; cell5.Border += PdfPCell.RIGHT_BORDER; cell5.Border += PdfPCell.LEFT_BORDER;
                         table.AddCell(cell5);
                         bool drapLoc = false;
+                        string reliquat = "";
                         foreach (KeyValuePair<string, string> entry in donneeBody)
-                        {
+                        {  
+                            //string patternReliquat = "Art_reliquat";
+                            if (donneeBody.ContainsKey("Art_reliquat"+i))
+                            {
+                                reliquat = "Reliquat";
+                                drapReliquat = true;
+                            }
                             //Condition si l'article à une loca secondaire
                             if (drapLoc == false && locPrecedent.Contains(entry.Key) == false && System.Text.RegularExpressions.Regex.IsMatch(entry.Value, "Localisations secondaires", System.Text.RegularExpressions.RegexOptions.IgnoreCase))
                             {
@@ -245,45 +253,49 @@ namespace EssaiJobImp
                                 rackSub = rackSub.Substring(27, 2); 
                                 string etagereSub = donneeBody[entry.Key];
                                 etagereSub = etagereSub.Substring(29, 2);
-                                PdfPCell cell6 = new PdfPCell(new Phrase("Zone : " + donneeBody["Art_localisation" + i] + "    Rack : " + rackSub + "    Etagère : " + etagereSub, FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD)));
+                                PdfPCell cell6 = new PdfPCell(new Phrase("Zone : " + donneeBody["Art_localisation" + i] + "    Rack : " + rackSub + "    Etagère : " + etagereSub+"            /n"+reliquat, FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD)));
                                 cell6.Border = PdfPCell.NO_BORDER;
                                 cell6.Border += PdfPCell.LEFT_BORDER;
                                 cell6.Border += PdfPCell.RIGHT_BORDER;
                                 table.AddCell(cell6);
                                 okStart = true; drapLoc = true;
+                                reliquat = "";
                                 locPrecedent.Add(entry.Key);
                             }
                             //Si il n'en a pas, afficher uniquement la zone
                             if (drapLoc == false && locPrecedent.Contains(entry.Key) == false && donneeBody["Art_type_cde" + i] != "S" && donneeBody["Art_type_cde" + i] != "D")
                             {
-                                PdfPCell cell6 = new PdfPCell(new Phrase("Zone : " + donneeBody["Art_localisation" + i], FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD)));
+                                PdfPCell cell6 = new PdfPCell(new Phrase("Zone : " + donneeBody["Art_localisation" + i] + "    " + reliquat, FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD)));
                                 cell6.Border = PdfPCell.NO_BORDER;
                                 cell6.Border += PdfPCell.LEFT_BORDER;
                                 cell6.Border += PdfPCell.RIGHT_BORDER;
                                 table.AddCell(cell6);
                                 okStart = true; drapLoc = true;
+                                reliquat = "";
                                 locPrecedent.Add(entry.Key);
                             }
                             //Condition si article est spécial, pas de localisation
                             if (drapLoc == false && locPrecedent.Contains(entry.Key) == false && donneeBody["Art_type_cde" + i] == "S")
                             {
-                                PdfPCell cell6 = new PdfPCell(new Phrase("Spécial", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD)));
+                                PdfPCell cell6 = new PdfPCell(new Phrase("Spécial" + "    " + reliquat, FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD)));
                                 cell6.Border = PdfPCell.NO_BORDER;
                                 cell6.Border += PdfPCell.LEFT_BORDER;
                                 cell6.Border += PdfPCell.RIGHT_BORDER;
                                 table.AddCell(cell6);
                                 okStart = true; drapLoc = true;
+                                reliquat = "";
                                 locPrecedent.Add(entry.Key);
                             }
                             //Condition si article est direct, pas de localisation
                             if (drapLoc == false && locPrecedent.Contains(entry.Key) == false && donneeBody["Art_type_cde" + i] == "D")
                             {
-                                PdfPCell cell6 = new PdfPCell(new Phrase("Direct", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD)));
+                                PdfPCell cell6 = new PdfPCell(new Phrase("Direct" + "    " + reliquat, FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD)));
                                 cell6.Border = PdfPCell.NO_BORDER;
                                 cell6.Border += PdfPCell.LEFT_BORDER;
                                 cell6.Border += PdfPCell.RIGHT_BORDER;
                                 table.AddCell(cell6);
                                 okStart = true; drapLoc = true;
+                                reliquat = "";
                                 locPrecedent.Add(entry.Key);
                             }
                         }
@@ -408,6 +420,9 @@ namespace EssaiJobImp
 
                 nouveauDocument.Close();
                 incCopie++;
+
+                //----------------------------------------Recherche document reliquat------------------------------------------------------------------------
+                //--------------------------------------------------------------------------------------------------------------------------------------------
                 #region ImpressionOld
                 /*myPrinters.SetDefaultPrinter("Imp204");
                 Process proc = new Process();
@@ -446,15 +461,24 @@ namespace EssaiJobImp
                 var listeProfil = profil.getDonneeProfil();
                 try
                 {
-                    foreach (string v in listeProfil[vendeur])      //lecture des imprimantes liée à un profil
+                    if (drapReliquat)
                     {
-                        printer[nbImp] = v.ToString();
-                        nbImp++;                                    //on incrémente le nombre d'impression à executer
+                        printer[nbImp] = ConfigurationManager.AppSettings["ImpDefBL"];
+                        nbImp++;
+                    }
+                    else
+                    {
+                        foreach (string v in listeProfil[vendeur])      //lecture des imprimantes liée à un profil
+                        {
+                            printer[nbImp] = v.ToString();
+                            nbImp++;                                    //on incrémente le nombre d'impression à executer
+                        }
                     }
                 }
                 catch
                 {
                     printer[nbImp] = ConfigurationManager.AppSettings["ImpDef"];                 //Imprimante par defaut (essai)
+                    nbImp++;
                 }
                 nbImp = nbImp - 1;
                 while (nbImpOK <= nbImp)                        // boucle tant que le nombre d'impression fait n'à pas atteint le nombre d'impression demander
