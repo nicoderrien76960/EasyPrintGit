@@ -153,7 +153,7 @@ namespace EssaiJobImp
                 //Recap dessus tableau
                 Chunk c = new Chunk("Vous avez été servi par : " + donneEntete["Bon_vendeur_lib"] + "                              Livrée le " + donneEntete["Ent_datliv"] + "               " + donneEntete["Tiers_tel"] + " \n\n", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.ITALIC));
                 nouveauDocument.Add(c);
-                Phrase pPage1 = new Phrase("                       " + "                 BON DE LIVRAISON   " + "                                " + donneEntete["Duplicata"] + "                                                                      Page n° 1                  \n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD));
+                Phrase pPage1 = new Phrase("                       " + "                 BON DE LIVRAISON   " + "                                " + donneEntete["Duplicata"] + "                                                     Page n° 1                  \n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD));
                 pPage1.Leading = 10;
                 nouveauDocument.Add(pPage1);
                 //--------------------------------------------------------------------------------------------------------
@@ -375,7 +375,7 @@ namespace EssaiJobImp
                         table.AddCell(cellFin);
                         nouveauDocument.Add(table);//----------------------------------------------------------------------------Repère ligne en dessous--------------------------------------------------
                         Phrase pReport = new Phrase("                                                                                                                                                             A REPORTER\n\n\n\n\n\n", FontFactory.GetFont(FontFactory.HELVETICA, 11, Font.BOLD));
-                        Phrase pPage = new Phrase("                                                 " + "                 BON DE LIVRAISON   " + "                 " + donneEntete["Duplicata"] + "                                                                      Page n°          " + (numPage + 1) + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD));
+                        Phrase pPage = new Phrase("                                                 " + "                 BON DE LIVRAISON   " + "                 " + donneEntete["Duplicata"] + "                                                     Page n°          " + (numPage + 1) + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD));
                         nouveauDocument.Add(pReport);
                         table.DeleteBodyRows();
                         nouveauDocument.Add(Chunk.NEXTPAGE);
