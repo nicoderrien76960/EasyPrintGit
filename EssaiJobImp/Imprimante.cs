@@ -127,6 +127,9 @@ namespace EssaiJobImp
                                         case "BON DE COMMANDE FOURNISSEUR":
                                             CommandeFournisseur CF = new CommandeFournisseur(); CF.lectureCF(cheminDoc);
                                             break;
+                                        case "RETOUR FOURNISSEUR":
+                                            CommandeFournisseur rCF = new CommandeFournisseur(); rCF.lectureCF(cheminDoc);
+                                            break;
                                         case null:
                                             break;
                                     }
