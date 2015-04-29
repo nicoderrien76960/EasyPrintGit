@@ -143,6 +143,7 @@
     <Content Include="baliseConfCF.config">
       <SubType>Designer</SubType>
     </Content>
+    <None Include="ClassDiagram1.cd" />
     <None Include="EssaiJobImp_CléTemporaire.pfx" />
     <Content Include="profilImpAR.config" />
     <Content Include="profilImpBL.config">
