@@ -31,7 +31,7 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>true</Optimize>
@@ -67,6 +67,12 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="acPDFCreator.Net">
+      <HintPath>..\..\pdfcreanet500\PDF Creator .NET\SDK\Net\Win32\acPDFCreator.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="acPDFCreatorLib.Net">
+      <HintPath>..\..\pdfcreanet500\PDF Creator .NET\SDK\Net\Win32\acPDFCreatorLib.Net.dll</HintPath>
+    </Reference>
     <Reference Include="AxInterop.AcroPDFLib">
       <HintPath>..\..\AxInterop.AcroPDFLib.dll</HintPath>
     </Reference>
@@ -185,6 +191,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\image.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

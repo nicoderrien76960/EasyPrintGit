@@ -12,6 +12,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using PrinterForce;
 using System.Threading;
+using Amyuni.PDFCreator;
 
 namespace EssaiJobImp
 {
@@ -147,7 +148,7 @@ namespace EssaiJobImp
                 Chunk c;
                 if (donneEntete.ContainsKey("Commentaire_texteentete"))
                 {
-                    c = new Chunk("Vous avez été servi par : " + donneEntete["Bon_vendeur_lib"] + "                            Livrée le " + donneeBody["Bon_datliv1"] + "              " + donneEntete["Commentaire_texteentete"] + "\n\n", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.ITALIC));
+                    c = new Chunk("Vous avez été servi par : " + donneEntete["Bon_vendeur_lib"] + "            Livrée le " + donneeBody["Bon_datliv1"] + "              " + donneEntete["Commentaire_texteentete"] + "\n\n", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.ITALIC));
                     nouveauDocument.Add(c);
                     Phrase pPage1;
                     if (donneEntete.ContainsKey("Commentaire_texteentete0"))
@@ -157,7 +158,7 @@ namespace EssaiJobImp
                 }
                 else
                 {
-                    c = new Chunk("Vous avez été servi par : " + donneEntete["Bon_vendeur_lib"] + "                            Livrée le " + donneeBody["Bon_datliv1"] + "              \n\n", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.ITALIC));
+                    c = new Chunk("Vous avez été servi par : " + donneEntete["Bon_vendeur_lib"] + "            Livrée le " + donneeBody["Bon_datliv1"] + "\n\n", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.ITALIC));
                     nouveauDocument.Add(c);
                     Phrase pPage1;
                     pPage1 = new Phrase("                       " + donneEntete["Document_type"] + "                 " + donneEntete["Duplicata"] +"                                           Page n° 1           \n\n", FontFactory.GetFont(FontFactory.HELVETICA, 11, Font.BOLD));
@@ -416,13 +417,11 @@ namespace EssaiJobImp
                     Paragraph pComBon = new Paragraph(new Phrase("                                       " + donneEntete["Commentaire_texte"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD)));
                     nouveauDocument.Add(pComBon);
                 }
-                
+       
 
                 nouveauDocument.Close();
                 incCopie++;
 
-                //----------------------------------------Recherche document reliquat------------------------------------------------------------------------
-                //--------------------------------------------------------------------------------------------------------------------------------------------
                 #region ImpressionOld
                 /*myPrinters.SetDefaultPrinter("Imp204");
                 Process proc = new Process();
@@ -453,6 +452,24 @@ namespace EssaiJobImp
                     clsProcess.Kill();
                 }*/
                 #endregion
+                //Solution d'impression fonctionnel, API payante----------------------------------------------------------------------------------------------
+               /* acPDFCreatorLib.Initialize();
+                acPDFCreatorLib.SetLicenseKey("Amyuni PDF Creator .NET Evaluation", "07EFCDAB0100010025C3B7B3A2579FF94C49112EAF736861254446237C2F6A215A53E83AF4CCFFE54C52063CB05334BDE555773D7B1B"); 
+                IacDocument doc = new IacDocument();
+                System.IO.FileStream file1 = new System.IO.FileStream(chemin, FileMode.Open, FileAccess.Read, FileShare.Read);
+                doc.Open(file1, "");
+
+                doc.StartPrint("Imp204", false);
+                for (int index = 1; index <= doc.PageCount; index++)
+                {
+
+                    doc.PrintPage(doc.GetPage(index));
+
+                }
+                
+                doc.EndPrint();*/
+                //--------------------------------------------------------------------------------------------------------------------------------------------------
+                
                 int nbImp = 0; int nbImpOK = 0;
                 string[] printer = new string[20]; // tableau qui contient les imprimantes du profil d'impression
                 ProfilImprimante profil = new ProfilImprimante();
