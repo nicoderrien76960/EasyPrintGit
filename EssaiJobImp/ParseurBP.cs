@@ -471,7 +471,8 @@ namespace EssaiJobImp
 
                 }
                 
-                doc.EndPrint();*/
+                doc.EndPrint();
+                acPDFCreatorLib.Terminate();*/
                 //--------------------------------------------------------------------------------------------------------------------------------------------------
                 
                 int nbImp = 0; int nbImpOK = 0;
