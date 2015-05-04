@@ -20,8 +20,8 @@ namespace EssaiJobImp
         private Dictionary<string, string> donneEntete;
         private Dictionary<string, string> donneeBody;
         private Dictionary<string, string> donneeFoot;
-        int iBody; int iFoot; string nomDoc;
-        public ParseurAR(Dictionary<string, string>donneeEntete, Dictionary<string, string>donneeBody, Dictionary<string,string>donneeFoot, int iBody, int iFoot, string nomDoc)
+        int iBody; int iFoot; string nomDoc; string unProfil;
+        public ParseurAR(Dictionary<string, string>donneeEntete, Dictionary<string, string>donneeBody, Dictionary<string,string>donneeFoot, int iBody, int iFoot, string nomDoc, string profil)
         {
             this.donneEntete = donneeEntete;
             this.donneeBody = donneeBody;           //Constructeur qui récupère les données de l'objet qui l'appel
@@ -29,6 +29,7 @@ namespace EssaiJobImp
             this.iBody = iBody;
             this.iFoot = iFoot;
             this.nomDoc = nomDoc;
+            this.unProfil = profil;
         }
         public void miseEnForm(string typeDoc)
         {
@@ -225,9 +226,19 @@ namespace EssaiJobImp
                         table.AddCell(cell6);
                         PdfPCell cell7 = new PdfPCell(new Phrase(donneeBody["Art_remise2" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell7.Border = PdfPCell.NO_BORDER; cell7.Border += PdfPCell.RIGHT_BORDER; cell7.Border += PdfPCell.LEFT_BORDER;
                         table.AddCell(cell7);
-                        double prixnet = double.Parse(donneeBody["Art_prinet" + i]);
-                        PdfPCell cell8 = new PdfPCell(new Phrase(prixnet.ToString("N2") + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell8.Border = PdfPCell.NO_BORDER; cell8.Border += PdfPCell.RIGHT_BORDER; cell8.Border += PdfPCell.LEFT_BORDER;
-                        table.AddCell(cell8);
+                        double prixnet = -99999;
+                        if (donneeBody["Art_prinet" +i]!="")
+                        { prixnet = double.Parse(donneeBody["Art_prinet" + i]); }  
+                        if (prixnet!=-99999)
+                        {
+                            PdfPCell cell8 = new PdfPCell(new Phrase(prixnet.ToString("N2") + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell8.Border = PdfPCell.NO_BORDER; cell8.Border += PdfPCell.RIGHT_BORDER; cell8.Border += PdfPCell.LEFT_BORDER;
+                            table.AddCell(cell8);
+                        }
+                        else
+                        {
+                            PdfPCell cell8 = new PdfPCell(new Phrase("" + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell8.Border = PdfPCell.NO_BORDER; cell8.Border += PdfPCell.RIGHT_BORDER; cell8.Border += PdfPCell.LEFT_BORDER;
+                            table.AddCell(cell8);
+                        }    
                         PdfPCell cell9 = new PdfPCell(new Phrase(donneeBody["Art_monht" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell9.Border = PdfPCell.NO_BORDER; cell9.Border += PdfPCell.RIGHT_BORDER; cell9.Border += PdfPCell.LEFT_BORDER;
                         table.AddCell(cell9);
                         okDési = false; okStart = false;
@@ -384,7 +395,7 @@ namespace EssaiJobImp
                         table.AddCell(cellFin);
                         nouveauDocument.Add(table);//----------------------------------------------------------------------------Repère ligne en dessous--------------------------------------------------
                         Phrase pReport = new Phrase("                                                                                                                                                             A REPORTER\n\n\n\n\n\n", FontFactory.GetFont(FontFactory.HELVETICA, 11, Font.BOLD));
-                        Phrase pPage = new Phrase("                                                                                                                                                                    Page n° " + (numPage + 1) + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD));
+                        Phrase pPage = new Phrase("                       " + donneEntete["Document_type"] + "                 " + donneEntete["Duplicata"] + "                                                                            Page n° " + (numPage + 1) +"            \n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD));
                         nouveauDocument.Add(pReport);
                         table.DeleteBodyRows();
                         nouveauDocument.Add(Chunk.NEXTPAGE);
@@ -397,6 +408,7 @@ namespace EssaiJobImp
                         image5.Alignment = Image.UNDERLYING;
                         image5.SetAbsolutePosition(200, 250);
                         nouveauDocument.Add(image5);
+                        image3.SetAbsolutePosition(20, 578);
                         nouveauDocument.Add(image2); nouveauDocument.Add(image3);
                         table.AddCell(cellET1); table.AddCell(cellET2); table.AddCell(cellET3); table.AddCell(cellET4); table.AddCell(cellET5); table.AddCell(cellET6); table.AddCell(cellET7); table.AddCell(cellET8);
                         dimTab = 0;
@@ -506,6 +518,7 @@ namespace EssaiJobImp
                 string[] printer = new string[20]; // tableau qui contient les imprimantes du profil d'impression
                 ProfilImprimante profil = new ProfilImprimante();
                 profil.chargementXML("AR");     // chargement selon le type de doc
+                string test = unProfil.Substring(0, 5);
                 string vendeur = donneEntete["Bon_vendeur_code"];  // récupération du nom du vendeur/profil
                 var listeProfil = profil.getDonneeProfil();
                 try
