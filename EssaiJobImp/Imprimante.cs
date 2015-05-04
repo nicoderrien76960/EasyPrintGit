@@ -28,7 +28,7 @@ namespace EssaiJobImp
                 files = Directory.GetFiles("C:\\Windows\\System32\\spool\\PRINTERS", "*.SPL");//Repertoire du spool Windows
                 PrintServer myPrintServer = new PrintServer();
                 PrintQueueCollection myPrintQueues = myPrintServer.GetPrintQueues();
-                bool supOk = false;
+                bool supOk = false; string nomDoc="";
                 foreach (PrintQueue pq in myPrintQueues)//Analyse du spool du pc (Dossier Windows\System32\spool\PRINTERS)
                 {
                     if (pq.FullName == nomIMP)//Condition sur imprimante qui a crée l'objet Imprimante
@@ -105,6 +105,7 @@ namespace EssaiJobImp
                                         }
                                         else
                                         { patternOK = false; typeDoc = null; }
+                                        nomDoc = nomFichier;
                                     }
                                     cheminDoc = destFile;
                                     switch (typeDoc.TrimStart())
@@ -145,7 +146,7 @@ namespace EssaiJobImp
                         }
                         catch (Exception e) {
                             //Inscrit dans un fichier les differente erreur
-                            LogHelper.WriteToFile(e.Message, "Imprimante");
+                            LogHelper.WriteToFile(e.Message, "Imprimante "+nomDoc);
                         }
                     }
                 }
