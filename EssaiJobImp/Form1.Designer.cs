@@ -52,6 +52,7 @@
             // 
             // Timer1
             // 
+            this.Timer1.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Timer1.Location = new System.Drawing.Point(12, 20);
             this.Timer1.Name = "Timer1";
             this.Timer1.Size = new System.Drawing.Size(185, 76);
@@ -110,9 +111,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(673, 12);
+            this.label1.BackColor = System.Drawing.Color.DarkRed;
+            this.label1.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(652, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(135, 13);
+            this.label1.Size = new System.Drawing.Size(156, 14);
             this.label1.TabIndex = 17;
             this.label1.Text = "Nombre de fichier travaillé :";
             // 
@@ -127,6 +130,7 @@
             // 
             // btnReglage
             // 
+            this.btnReglage.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReglage.Location = new System.Drawing.Point(13, 103);
             this.btnReglage.Name = "btnReglage";
             this.btnReglage.Size = new System.Drawing.Size(184, 80);
