@@ -204,6 +204,7 @@ namespace EssaiJobImp
                         table.AddCell(cell1);
                         Paragraph pCell2 = new Paragraph();
                         PdfPCell cell2 = new PdfPCell(pCell2); cell2.Border = PdfPCell.NO_BORDER; cell2.Border += PdfPCell.RIGHT_BORDER; cell2.Border += PdfPCell.LEFT_BORDER;
+                        if (donneeBody["Art_lot" + i] != " ") { pCell2.Add(new Phrase("Numéro de lot : " + donneeBody["Art_lot" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); }
                         foreach (KeyValuePair<string, string> entry in donneeBody)
                         {
                             if (System.Text.RegularExpressions.Regex.IsMatch(entry.Key, sPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase))
@@ -216,7 +217,8 @@ namespace EssaiJobImp
                                     {
                                         pCell2.Add(new Phrase(donneeBody["Libelle" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD)));
                                         string clé = entry.Key;
-                                        pCell2.Add(new Phrase(donneeBody[clé] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD)));
+                                        if (donneeBody["Art_lot" + i] != " ") { pCell2.Add(new Phrase("Numéro de lot : "+donneeBody["Art_lot" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); }
+                                        pCell2.Add(new Phrase(donneeBody[clé] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD)));                             
                                         okStart = true;
                                     }
                                     else
@@ -333,6 +335,7 @@ namespace EssaiJobImp
                         table.AddCell(cellVide);
                         table.AddCell(cellFin);
                     }
+                    //
                     PdfPCell cellEcartDroite = new PdfPCell(new Phrase(" " + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 2, Font.BOLD)));
 
                     PdfPCell cellEcart = new PdfPCell(new Phrase(" " + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 2, Font.BOLD)));
@@ -454,7 +457,7 @@ namespace EssaiJobImp
                 }*/
                 #endregion
                 //Solution d'impression fonctionnel, API payante----------------------------------------------------------------------------------------------
-                acPDFCreatorLib.Initialize();
+                /*acPDFCreatorLib.Initialize();
                 acPDFCreatorLib.SetLicenseKey("Amyuni PDF Creator .NET Evaluation", "07EFCDAB0100010025C3B7B3A2579FF94C49112EAF736861254446237C2F6A215A53E83AF4CCFFE54C52063CB05334BDE555773D7B1B"); 
                 IacDocument doc = new IacDocument();
                 System.IO.FileStream file1 = new System.IO.FileStream(chemin, FileMode.Open, FileAccess.Read, FileShare.Read);
@@ -468,7 +471,7 @@ namespace EssaiJobImp
 
                 }
                 
-                doc.EndPrint();
+                doc.EndPrint();*/
                 //--------------------------------------------------------------------------------------------------------------------------------------------------
                 
                 int nbImp = 0; int nbImpOK = 0;
