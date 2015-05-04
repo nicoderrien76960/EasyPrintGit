@@ -22,8 +22,8 @@ namespace EssaiJobImp
         private Dictionary<string, string> donneEntete;
         private Dictionary<string, string> donneeBody;
         private Dictionary<string, string> donneeFoot;
-        int iBody; int iFoot; string nomDoc;
-        public ParseurCF(Dictionary<string, string>donneeEntete, Dictionary<string, string>donneeBody, Dictionary<string,string>donneeFoot, int iBody, int iFoot, string nomDoc)
+        int iBody; int iFoot; string nomDoc; string unProfil;
+        public ParseurCF(Dictionary<string, string>donneeEntete, Dictionary<string, string>donneeBody, Dictionary<string,string>donneeFoot, int iBody, int iFoot, string nomDoc, string profil)
         {
             this.donneEntete = donneeEntete;
             this.donneeBody = donneeBody;           //Constructeur qui récupère les données de l'objet qui l'appel
@@ -31,6 +31,7 @@ namespace EssaiJobImp
             this.iBody = iBody;
             this.iFoot = iFoot;
             this.nomDoc = nomDoc;
+            this.unProfil = profil;
         }
         public void miseEnForm(string typeDoc)
         {
@@ -503,7 +504,8 @@ namespace EssaiJobImp
                 string[] printer = new string[20]; // tableau qui contient les imprimantes du profil d'impression
                 ProfilImprimante profil = new ProfilImprimante();
                 profil.chargementXML("CF");     // chargement selon le type de doc
-                string vendeur = donneEntete["Service_libelle"];  // récupération du nom du vendeur/profil
+                string vendeur = unProfil.Substring(2, 3);
+                vendeur = vendeur.TrimEnd();
                 var listeProfil = profil.getDonneeProfil();
                 try
                 {

@@ -50,7 +50,7 @@ namespace EssaiJobImp
                 baliseFoot.Add(bal);
             }
         }
-        public void lectureAR(string cheminDoc)//<<----CheminDoc contient en paramètre le fichier spool actuellement lu pour le traiter
+        public void lectureAR(string cheminDoc, string profil)//<<----CheminDoc contient en paramètre le fichier spool actuellement lu pour le traiter
         {
             chargementXML();
             string fileText = File.ReadAllText(cheminDoc,System.Text.Encoding.Default);
@@ -176,7 +176,7 @@ namespace EssaiJobImp
                 }                                                                               //              Parseur Pied                                                                          //------------------------------------
             }
             string nomDoc = donneeEntete["Document_numero"];
-            ParseurAR p = new ParseurAR(donneeEntete, donneeBody, donneeFoot, iBody, iFoot,nomDoc);
+            ParseurAR p = new ParseurAR(donneeEntete, donneeBody, donneeFoot, iBody, iFoot,nomDoc, profil);
             //------------------------------------------------------------------------------------------------
             p.miseEnForm("BL");                               //Mise en forme pdf des données reçu
             //------------------------------------------------------------------------------------------------

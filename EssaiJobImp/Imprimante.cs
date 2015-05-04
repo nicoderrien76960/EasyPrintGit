@@ -28,7 +28,7 @@ namespace EssaiJobImp
                 files = Directory.GetFiles("C:\\Windows\\System32\\spool\\PRINTERS", "*.SPL");//Repertoire du spool Windows
                 PrintServer myPrintServer = new PrintServer();
                 PrintQueueCollection myPrintQueues = myPrintServer.GetPrintQueues();
-                bool supOk = false; string nomDoc="";
+                bool supOk = false; string nomDoc = ""; string profil="";
                 foreach (PrintQueue pq in myPrintQueues)//Analyse du spool du pc (Dossier Windows\System32\spool\PRINTERS)
                 {
                     if (pq.FullName == nomIMP)//Condition sur imprimante qui a crée l'objet Imprimante
@@ -94,8 +94,8 @@ namespace EssaiJobImp
                                                         {
                                                             if (job.Name == nom_spool)//Condition nom du doc de la file
                                                             {
-
                                                                 job.Cancel();
+                                                                profil=job.Submitter;
                                                                 break;
                                                             }
                                                         }
@@ -111,25 +111,25 @@ namespace EssaiJobImp
                                     switch (typeDoc.TrimStart())
                                     {
                                         case "DEVIS":
-                                            Devis dev = new Devis(); dev.lectureDevis(cheminDoc); 
+                                            Devis dev = new Devis(); dev.lectureDevis(cheminDoc, profil); 
                                             break;
                                         case "BORDEREAU DE LIVRAISON":
-                                            BonLivraison BL = new BonLivraison(); BL.lectureBL(cheminDoc);
+                                            BonLivraison BL = new BonLivraison(); BL.lectureBL(cheminDoc, profil);
                                             break;
                                         case "BON D'ENLEVEMENT":
-                                            BonLivraison BL2 = new BonLivraison(); BL2.lectureBL(cheminDoc);
+                                            BonLivraison BL2 = new BonLivraison(); BL2.lectureBL(cheminDoc, profil);
                                             break;
                                         case "BON DE PREPARATION":
-                                            BonPréparation BP = new BonPréparation(); BP.lectureBP(cheminDoc);
+                                            BonPréparation BP = new BonPréparation(); BP.lectureBP(cheminDoc, profil);
                                             break;
                                         case "COMMANDE ADHERENT":
-                                            AccuseReception AR = new AccuseReception(); AR.lectureAR(cheminDoc);
+                                            AccuseReception AR = new AccuseReception(); AR.lectureAR(cheminDoc, profil);
                                             break;
                                         case "BON DE COMMANDE FOURNISSEUR":
-                                            CommandeFournisseur CF = new CommandeFournisseur(); CF.lectureCF(cheminDoc);
+                                            CommandeFournisseur CF = new CommandeFournisseur(); CF.lectureCF(cheminDoc, profil);
                                             break;
                                         case "RETOUR FOURNISSEUR":
-                                            CommandeFournisseur rCF = new CommandeFournisseur(); rCF.lectureCF(cheminDoc);
+                                            CommandeFournisseur rCF = new CommandeFournisseur(); rCF.lectureCF(cheminDoc, profil);
                                             break;
                                         case null:
                                             break;

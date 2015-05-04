@@ -50,7 +50,7 @@ namespace EssaiJobImp
                 baliseFoot.Add(bal);
             } 
         }
-        public void lectureCF(string cheminDoc)
+        public void lectureCF(string cheminDoc, string profil)
         {
             chargementXML();
             string fileText = File.ReadAllText(cheminDoc,System.Text.Encoding.Default);
@@ -199,7 +199,7 @@ namespace EssaiJobImp
                 }                                                                               //              Parseur Pied                                                                          //------------------------------------
             }
             string nomDoc = donneeEntete["Document_numero"];
-            ParseurCF p = new ParseurCF(donneeEntete, donneeBody, donneeFoot, iBody, iFoot, nomDoc);
+            ParseurCF p = new ParseurCF(donneeEntete, donneeBody, donneeFoot, iBody, iFoot, nomDoc, profil);
             //------------------------------------------------------------------------------------------------
             p.miseEnForm("CF");                               //Mise en forme pdf des données reçu
             //------------------------------------------------------------------------------------------------

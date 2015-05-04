@@ -51,7 +51,7 @@ namespace EssaiJobImp
                 baliseFoot.Add(bal);
             }
         }
-        public void lectureDevis(string cheminDoc)  //<<----CheminDoc contient en paramètre le fichier spool actuellement lu pour le traiter
+        public void lectureDevis(string cheminDoc, string profil)  //<<----CheminDoc contient en paramètre le fichier spool actuellement lu pour le traiter
         {
             chargementXML();
             string fileText = File.ReadAllText(cheminDoc,System.Text.Encoding.Default);
@@ -183,7 +183,7 @@ namespace EssaiJobImp
                 }                                                                               //------------------------------------
             }
             string nomDoc = donneeEntete["Document_numero"];
-            Parseur p = new Parseur(donneeEntete, donneeBody, donneeFoot, iBody, iFoot, nomDoc);
+            Parseur p = new Parseur(donneeEntete, donneeBody, donneeFoot, iBody, iFoot, nomDoc, profil);
             //------------------------------------------------------------------------------------------------
             p.miseEnForm("Devis");                               //Mise en forme pdf des données reçu
             //------------------------------------------------------------------------------------------------

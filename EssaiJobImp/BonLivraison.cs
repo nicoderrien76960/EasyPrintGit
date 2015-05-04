@@ -50,7 +50,7 @@ namespace EssaiJobImp
                 baliseFoot.Add(bal);
             }
         }
-        public void lectureBL(string cheminDoc)//<<----CheminDoc contient en paramètre le fichier spool actuellement lu pour le traiter
+        public void lectureBL(string cheminDoc, string profil)//<<----CheminDoc contient en paramètre le fichier spool actuellement lu pour le traiter
         {
             chargementXML();
             string fileText = File.ReadAllText(cheminDoc,System.Text.Encoding.Default);
@@ -196,7 +196,7 @@ namespace EssaiJobImp
                 }                                                                               //------------------------------------
             }
             string nomDoc = donneeEntete["Document_numero"];
-            ParseurBL p = new ParseurBL(donneeEntete, donneeBody, donneeFoot, iBody, iFoot,nomDoc);
+            ParseurBL p = new ParseurBL(donneeEntete, donneeBody, donneeFoot, iBody, iFoot,nomDoc, profil);
             //------------------------------------------------------------------------------------------------
             p.miseEnForm("BL");                               //Mise en forme pdf des données reçu
             //------------------------------------------------------------------------------------------------

@@ -518,8 +518,8 @@ namespace EssaiJobImp
                 string[] printer = new string[20]; // tableau qui contient les imprimantes du profil d'impression
                 ProfilImprimante profil = new ProfilImprimante();
                 profil.chargementXML("AR");     // chargement selon le type de doc
-                string test = unProfil.Substring(0, 5);
-                string vendeur = donneEntete["Bon_vendeur_code"];  // récupération du nom du vendeur/profil
+                string vendeur = unProfil.Substring(2, 3);
+                vendeur = vendeur.TrimEnd();
                 var listeProfil = profil.getDonneeProfil();
                 try
                 {

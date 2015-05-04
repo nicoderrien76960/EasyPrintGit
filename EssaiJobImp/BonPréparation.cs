@@ -50,7 +50,7 @@ namespace EssaiJobImp
                 baliseFoot.Add(bal);
             } 
         }
-        public void lectureBP(string cheminDoc)
+        public void lectureBP(string cheminDoc, string profil)
         {
             chargementXML();
             string fileText = File.ReadAllText(cheminDoc,System.Text.Encoding.Default);
@@ -218,7 +218,7 @@ namespace EssaiJobImp
                 }                                                                               //------------------------------------
             }
             string nomDoc = donneeEntete["Document_numero"];
-            ParseurBP p = new ParseurBP(donneeEntete, donneeBody, donneeFoot, iBody, iFoot,nomDoc);
+            ParseurBP p = new ParseurBP(donneeEntete, donneeBody, donneeFoot, iBody, iFoot,nomDoc, profil);
             //------------------------------------------------------------------------------------------------
             p.miseEnForm("BP");                               //Mise en forme pdf des données reçu
             //------------------------------------------------------------------------------------------------
