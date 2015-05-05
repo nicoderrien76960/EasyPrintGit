@@ -33,7 +33,7 @@ namespace EssaiJobImp
                 {
                     if (pq.FullName == nomIMP)//Condition sur imprimante qui a crée l'objet Imprimante
                     {
-                        try     
+                        try
                         {
                             int filecount = files.GetUpperBound(0) + 1;  //Nombre de fichier contenu dans le spool
                             for (int i = 0; i < filecount; i++)//Nombre de fichier dans dossier spool
@@ -65,11 +65,11 @@ namespace EssaiJobImp
                                     string[] text = System.IO.File.ReadAllLines(files[i]);
                                     string patternLectFalse = "(%-12345X@PJL JOB NAME|\\210-SERVIMP)";//Premier caractère qui apparait sur les documents en cours d'impression
                                     string sPattern = "<Spool>";
-                                    string sPatternTypeDoc = "<Document_type>"; bool patternOK=true;
+                                    string sPatternTypeDoc = "<Document_type>"; bool patternOK = true;
                                     foreach (string s in text)//Analyse ligne du document actuel
                                     {
                                         //Premier tri si le document lu est en fait l'impression final d'un doc déjà traité, ne pas le lire et passer au suivant
-                                        if ((System.Text.RegularExpressions.Regex.IsMatch(s, patternLectFalse, System.Text.RegularExpressions.RegexOptions.IgnoreCase) == false) && patternOK==true)
+                                        if ((System.Text.RegularExpressions.Regex.IsMatch(s, patternLectFalse, System.Text.RegularExpressions.RegexOptions.IgnoreCase) == false) && patternOK == true)
                                         {
                                             //Regex type de document
                                             if (System.Text.RegularExpressions.Regex.IsMatch(s, sPatternTypeDoc, System.Text.RegularExpressions.RegexOptions.IgnoreCase))
@@ -95,7 +95,7 @@ namespace EssaiJobImp
                                                             if (job.Name == nom_spool)//Condition nom du doc de la file
                                                             {
                                                                 job.Cancel();
-                                                                profil=job.Submitter;
+                                                                profil = job.Submitter;
                                                                 break;
                                                             }
                                                         }
@@ -111,7 +111,7 @@ namespace EssaiJobImp
                                     switch (typeDoc.TrimStart())
                                     {
                                         case "DEVIS":
-                                            Devis dev = new Devis(); dev.lectureDevis(cheminDoc, profil); 
+                                            Devis dev = new Devis(); dev.lectureDevis(cheminDoc, profil);
                                             break;
                                         case "BORDEREAU DE LIVRAISON":
                                             BonLivraison BL = new BonLivraison(); BL.lectureBL(cheminDoc, profil);
@@ -144,9 +144,10 @@ namespace EssaiJobImp
                                 supOk = false;
                             }
                         }
-                        catch (Exception e) {
+                        catch (Exception e)
+                        {
                             //Inscrit dans un fichier les differente erreur
-                            LogHelper.WriteToFile(e.Message, "Imprimante "+nomDoc);
+                            LogHelper.WriteToFile(e.Message, "Imprimante " + nomDoc);
                         }
                     }
                 }
