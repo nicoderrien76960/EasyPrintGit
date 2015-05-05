@@ -111,7 +111,7 @@ namespace EssaiJobImp
             pRécap.Add(ligneEspace);
             nouveauDocument.Add(pRécap);
 
-            float[] largeurs = { 15, 51 ,5 ,8 ,8 ,10 ,9 , 4 };                              // Dimension tableau body
+            float[] largeurs = { 15, 42, 5, 8, 8, 9, 10, 9, 4 };                              // Dimension tableau body
 
             PdfPTable table = new PdfPTable(largeurs);
             table.TotalWidth = 555;                                                                                         //Chaque colonne crée ci dessus doit être rempli
@@ -126,6 +126,8 @@ namespace EssaiJobImp
             table.AddCell(cellET4);
             PdfPCell cellET5 = new PdfPCell(new Phrase("Prix remisé", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cellET5.Border = PdfPCell.NO_BORDER; //cellET5.Border += PdfPCell.BOTTOM_BORDER;
             table.AddCell(cellET5);
+            PdfPCell cellET6 = new PdfPCell(new Phrase("Remise", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cellET6.Border = PdfPCell.NO_BORDER; //cellET6.Border += PdfPCell.BOTTOM_BORDER;
+            table.AddCell(cellET6);
             PdfPCell cellET7 = new PdfPCell(new Phrase("Prix net", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cellET7.Border = PdfPCell.NO_BORDER; //cellET7.Border += PdfPCell.BOTTOM_BORDER;
             table.AddCell(cellET7);
             PdfPCell cellET8 = new PdfPCell(new Phrase("Montant HT", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cellET8.Border = PdfPCell.NO_BORDER; //cellET8.Border += PdfPCell.BOTTOM_BORDER;
@@ -178,7 +180,9 @@ namespace EssaiJobImp
                     PdfPCell cell4 = new PdfPCell(new Phrase(donneeBody["Art_unite" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell4.Border = PdfPCell.NO_BORDER; cell4.Border += PdfPCell.RIGHT_BORDER; cell4.Border += PdfPCell.LEFT_BORDER;
                     table.AddCell(cell4);
                     PdfPCell cell5 = new PdfPCell(new Phrase(donneeBody["Art_qte" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell5.Border = PdfPCell.NO_BORDER; cell5.Border += PdfPCell.RIGHT_BORDER; cell5.Border += PdfPCell.LEFT_BORDER;
-                    table.AddCell(cell5);    
+                    table.AddCell(cell5);
+                    PdfPCell cell6 = new PdfPCell(new Phrase(donneeBody["Art_remise1" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell6.Border = PdfPCell.NO_BORDER; cell6.Border += PdfPCell.RIGHT_BORDER; cell6.Border += PdfPCell.LEFT_BORDER;
+                    table.AddCell(cell6);
                     PdfPCell cell7 = new PdfPCell(new Phrase(donneeBody["Art_remise2" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell7.Border = PdfPCell.NO_BORDER; cell7.Border += PdfPCell.RIGHT_BORDER; cell7.Border += PdfPCell.LEFT_BORDER;
                     table.AddCell(cell7);
                     PdfPCell cell8 = new PdfPCell(new Phrase(donneeBody["Art_prinet" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell8.Border = PdfPCell.NO_BORDER; cell8.Border += PdfPCell.RIGHT_BORDER; cell8.Border += PdfPCell.LEFT_BORDER;
@@ -217,6 +221,7 @@ namespace EssaiJobImp
                     PdfPCell cell6 = new PdfPCell(new Phrase("" + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell6.Border = PdfPCell.NO_BORDER; cell6.Border += PdfPCell.RIGHT_BORDER; cell6.Border += PdfPCell.LEFT_BORDER;
                     table.AddCell(cell6);
                     table.AddCell(cell6);
+                    table.AddCell(cell6);
                     PdfPCell cell7 = new PdfPCell((new Phrase(donneeBody["Lib_rempl_mt" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD)))); cell7.Border = PdfPCell.NO_BORDER; cell7.Border += PdfPCell.RIGHT_BORDER; cell7.Border += PdfPCell.LEFT_BORDER;
                     table.AddCell(cell7);
                     PdfPCell cell8 = new PdfPCell(new Phrase("" + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell8.Border = PdfPCell.NO_BORDER; cell8.Border += PdfPCell.LEFT_BORDER; cell8.Border += PdfPCell.RIGHT_BORDER;
@@ -245,6 +250,7 @@ namespace EssaiJobImp
                     table.AddCell(cellVide);
                     table.AddCell(cellVide);
                     table.AddCell(cellVide);
+                    table.AddCell(cellVide);
                     table.AddCell(cellFin);    
                 }
                 PdfPCell cellEcartDroite = new PdfPCell(new Phrase(" " + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 2, Font.BOLD)));
@@ -256,7 +262,7 @@ namespace EssaiJobImp
                 cellEcartDroite.Border = PdfPCell.NO_BORDER;
                 cellEcartDroite.Border += PdfPCell.RIGHT_BORDER;
                 cellEcartDroite.Border += PdfPCell.LEFT_BORDER;
-                table.AddCell(cellEcartDroite); table.AddCell(cellEcart); table.AddCell(cellEcart); table.AddCell(cellEcart); table.AddCell(cellEcart); table.AddCell(cellEcart); table.AddCell(cellEcart); table.AddCell(cellEcart);
+                table.AddCell(cellEcartDroite); table.AddCell(cellEcart); table.AddCell(cellEcart); table.AddCell(cellEcart); table.AddCell(cellEcart); table.AddCell(cellEcart); table.AddCell(cellEcart); table.AddCell(cellEcart); table.AddCell(cellEcart);
                 //--------------------------------------------GESTION DU SAUT DE PAGE-------------------------------------------------------------------------------------------
 
                 //float temp = table.GetRowHeight(i-1-décrement);
@@ -280,7 +286,7 @@ namespace EssaiJobImp
                     cellBlancheD.Border += PdfPCell.RIGHT_BORDER;
                     cellFin.Border = PdfPCell.NO_BORDER;
                     cellFin.Border += PdfPCell.TOP_BORDER;
-                    table.AddCell(cellBlanche); table.AddCell(cellBlanche); table.AddCell(cellBlanche); table.AddCell(cellBlanche); table.AddCell(cellBlanche); table.AddCell(cellBlanche); table.AddCell(cellBlanche); table.AddCell(cellBlancheD);
+                    table.AddCell(cellBlanche); table.AddCell(cellBlanche); table.AddCell(cellBlanche); table.AddCell(cellBlanche); table.AddCell(cellBlanche); table.AddCell(cellBlanche); table.AddCell(cellBlanche); table.AddCell(cellBlanche); table.AddCell(cellBlancheD);
                     table.AddCell(cellFin);
                     nouveauDocument.Add(table);//----------------------------------------------------------------------------Repère ligne en dessous--------------------------------------------------
                     Phrase pReport = new Phrase("                                                                                                                                                             A REPORTER\n\n\n\n\n                                                                                                                                                                    Page n° " + numPage, FontFactory.GetFont(FontFactory.HELVETICA, 11, Font.BOLD));
@@ -290,7 +296,7 @@ namespace EssaiJobImp
                     nouveauDocument.Add(tableau); 
                     nouveauDocument.Add(pRécap);
                     nouveauDocument.Add(image2); nouveauDocument.Add(image3); nouveauDocument.Add(image5);
-                    table.AddCell(cellET1); table.AddCell(cellET2); table.AddCell(cellET3); table.AddCell(cellET4); table.AddCell(cellET5);  table.AddCell(cellET7); table.AddCell(cellET8); table.AddCell(cellET9);
+                    table.AddCell(cellET1); table.AddCell(cellET2); table.AddCell(cellET3); table.AddCell(cellET4); table.AddCell(cellET5); table.AddCell(cellET6); table.AddCell(cellET7); table.AddCell(cellET8); table.AddCell(cellET9);
                     dimTab = 0;
                     décrement = (i-1);
                 }
@@ -320,7 +326,7 @@ namespace EssaiJobImp
                 cellBlancheD.Border += PdfPCell.RIGHT_BORDER;
                 cellFin.Border = PdfPCell.NO_BORDER;
                 cellFin.Border += PdfPCell.TOP_BORDER;
-                table.AddCell(cellBlanche); table.AddCell(cellBlanche); table.AddCell(cellBlanche);  table.AddCell(cellBlanche); table.AddCell(cellBlanche); table.AddCell(cellBlanche); table.AddCell(cellBlanche); table.AddCell(cellBlancheD);
+                table.AddCell(cellBlanche); table.AddCell(cellBlanche); table.AddCell(cellBlanche); table.AddCell(cellBlanche); table.AddCell(cellBlanche); table.AddCell(cellBlanche); table.AddCell(cellBlanche); table.AddCell(cellBlanche); table.AddCell(cellBlancheD);
                 table.AddCell(cellFin);
             }
             nouveauDocument.Add(table);	
