@@ -111,7 +111,7 @@ namespace EssaiJobImp
             pRécap.Add(ligneEspace);
             nouveauDocument.Add(pRécap);
 
-            float[] largeurs = { 15, 42, 5, 8, 8, 9, 10, 9, 4 };                              // Dimension tableau body
+            float[] largeurs = { 16, 42, 5, 8, 8, 8, 10, 9, 4 };                              // Dimension tableau body
 
             PdfPTable table = new PdfPTable(largeurs);
             table.TotalWidth = 555;                                                                                         //Chaque colonne crée ci dessus doit être rempli
