@@ -473,7 +473,7 @@ namespace EssaiJobImp
                 tableauPied.AddCell(cellulePied);
 
                 string euro = "€";
-                if (donneeFoot["Montant_bon"] == " ") { euro = " "; }
+                if (donneeFoot["Montant_bon"] == "") { euro = " "; }
                 PdfPTable tableauTot = new PdfPTable(1);
                 PdfPCell cellTTot = new PdfPCell(new Phrase("Montant HT : " + donneeFoot["Montant_bon"] + " " + euro, FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cellTTot.Border = PdfPCell.NO_BORDER; 
                 tableauTot.AddCell(cellTTot);
