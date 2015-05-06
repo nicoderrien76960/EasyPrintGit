@@ -204,7 +204,7 @@ namespace EssaiJobImp
                         table.AddCell(cell1);
                         Paragraph pCell2 = new Paragraph();
                         PdfPCell cell2 = new PdfPCell(pCell2); cell2.Border = PdfPCell.NO_BORDER; cell2.Border += PdfPCell.RIGHT_BORDER; cell2.Border += PdfPCell.LEFT_BORDER;
-                        if (donneeBody.ContainsKey("Art_lot"+i)) { pCell2.Add(new Phrase("Numéro de lot : " + donneeBody["Art_lot" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); }
+                        //if (donneeBody.ContainsKey("Art_lot"+i)) { pCell2.Add(new Phrase("Numéro de lot : " + donneeBody["Art_lot" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); }
                         foreach (KeyValuePair<string, string> entry in donneeBody)
                         {
                             if (System.Text.RegularExpressions.Regex.IsMatch(entry.Key, sPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase))
