@@ -32,7 +32,7 @@ namespace EssaiJobImp
             catch
             { 
             }
-            XmlNode node = unxml.SelectSingleNode("//configuration/BaliseEntete");                  //On lis les noeuds contenu dans le document de conf
+            XmlNode node = unxml.SelectSingleNode("//configuration/BaliseEntete");                  //On lit les noeuds contenu dans le document de conf
             XmlNode nodeBody = unxmlBody.SelectSingleNode("//configuration/BaliseBody");
             XmlNode nodeFoot = unxmlFoot.SelectSingleNode("//configuration/BaliseFoot");
             foreach (XmlNode unNode in node)
