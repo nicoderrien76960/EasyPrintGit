@@ -36,7 +36,7 @@ namespace EssaiJobImp
             while (incCopie < nbCopie)
             {
                 string chemin = "E:\\DocFinaux\\BL\\BL_" + nomDoc + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf";
-                Document nouveauDocument = new Document(PageSize.A4, 20, 20, 12, 15);
+                Document nouveauDocument = new Document(PageSize.A4, 20, 20, 12, 13);
                 PdfWriter.GetInstance(nouveauDocument, new FileStream(chemin, FileMode.Create));     //Stockage du document
                 //----------------------------------------
                 //Constitution document PDF
@@ -378,7 +378,7 @@ namespace EssaiJobImp
                         table.AddCell(cellFin);
                         nouveauDocument.Add(table);//----------------------------------------------------------------------------Repère ligne en dessous--------------------------------------------------
                         Phrase pReport = new Phrase("                                                                                                                                                             A REPORTER\n\n\n\n\n\n", FontFactory.GetFont(FontFactory.HELVETICA, 11, Font.BOLD));
-                        Phrase pPage = new Phrase("                                                 " + "                 BON DE LIVRAISON   " + "                 " + donneEntete["Duplicata"] + "                                                     Page n°          " + (numPage + 1) + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD));
+                        Phrase pPage = new Phrase("                                    " + "                 BON DE LIVRAISON   " + "                 " + donneEntete["Duplicata"] + "                                                       Page n° " + (numPage + 1) + " \n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD));
                         nouveauDocument.Add(pReport);
                         table.DeleteBodyRows();
                         nouveauDocument.Add(Chunk.NEXTPAGE);
@@ -401,6 +401,7 @@ namespace EssaiJobImp
                             image5.SetAbsolutePosition(155, 240);
                             nouveauDocument.Add(image5);
                         }
+                        image3.SetAbsolutePosition(20, 580);
                         nouveauDocument.Add(image2); nouveauDocument.Add(image3);
                         table.AddCell(cellET1); table.AddCell(cellET2); table.AddCell(cellET3); table.AddCell(cellET4); table.AddCell(cellET5); table.AddCell(cellET6); table.AddCell(cellET7); table.AddCell(cellET8);
                         dimTab = 0;
