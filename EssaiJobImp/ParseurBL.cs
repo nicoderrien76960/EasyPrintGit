@@ -292,13 +292,26 @@ namespace EssaiJobImp
                         string sPattern = "libelle" + i + "bis";
                         PdfPCell cell1 = new PdfPCell(new Phrase(donneeBody["Art_code" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell1.Border = PdfPCell.NO_BORDER; cell1.Border += PdfPCell.RIGHT_BORDER; cell1.Border += PdfPCell.LEFT_BORDER;
                         table.AddCell(cell1);
+                        Paragraph pCell2 = new Paragraph();
+                        PdfPCell cell2 = new PdfPCell(pCell2); cell2.Border = PdfPCell.NO_BORDER; cell2.Border += PdfPCell.RIGHT_BORDER; cell2.Border += PdfPCell.LEFT_BORDER;                 
                         foreach (KeyValuePair<string, string> entry in donneeBody)
                         {
                             if (System.Text.RegularExpressions.Regex.IsMatch(entry.Key, sPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase))
                             {
-                                PdfPCell cell2 = new PdfPCell(new Phrase(donneeBody["Libelle" + i] + "\n" + donneeBody["Libelle" + i + "bis"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell2.Border = PdfPCell.NO_BORDER; cell2.Border += PdfPCell.RIGHT_BORDER; cell2.Border += PdfPCell.LEFT_BORDER;
+                                 if (okStart == false)
+                                {
+                                    pCell2.Add(new Phrase(donneeBody["Libelle" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD)));
+                                    string clé = entry.Key;
+                                    if (donneeBody.ContainsKey("Art_lot" + i)) { pCell2.Add(new Phrase("Numéro de lot : " + donneeBody["Art_lot" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); }
+                                    pCell2.Add(new Phrase(donneeBody[clé] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD)));
+                                    okStart = true;
+                                }
+                                else
+                                {
+                                    string clé = entry.Key;
+                                    pCell2.Add(new Phrase(donneeBody[clé] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD)));
+                                }
                                 okDési = true;
-                                table.AddCell(cell2);
                             }
                         }
                         if (okDési == false)
@@ -306,6 +319,7 @@ namespace EssaiJobImp
                             PdfPCell cell3 = new PdfPCell(new Phrase(donneeBody["Libelle" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell3.Border = PdfPCell.NO_BORDER; cell3.Border += PdfPCell.RIGHT_BORDER; cell3.Border += PdfPCell.LEFT_BORDER;
                             table.AddCell(cell3);
                         }
+                        else { table.AddCell(cell2); }
                         PdfPCell cell4 = new PdfPCell(new Phrase(donneeBody["Art_unite" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell4.Border = PdfPCell.NO_BORDER; cell4.Border += PdfPCell.RIGHT_BORDER; cell4.Border += PdfPCell.LEFT_BORDER;
                         table.AddCell(cell4);
                         PdfPCell cell5 = new PdfPCell(new Phrase(donneeBody["Art_qte" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell5.Border = PdfPCell.NO_BORDER; cell5.Border += PdfPCell.RIGHT_BORDER; cell5.Border += PdfPCell.LEFT_BORDER;
@@ -317,6 +331,7 @@ namespace EssaiJobImp
                         table.AddCell(cell7);
                         PdfPCell cell8 = new PdfPCell(new Phrase("" + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell8.Border = PdfPCell.NO_BORDER; cell8.Border += PdfPCell.LEFT_BORDER; cell8.Border += PdfPCell.RIGHT_BORDER;
                         table.AddCell(cell8);
+                        okDési = false; okStart = false;
                     }
                     //Condition COMMENTAIRE--------------------------------------------------------------------------------------------------------------------------------
                     if (donneeBody["Ligne_type" + i] == "COM")
