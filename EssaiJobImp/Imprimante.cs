@@ -53,7 +53,11 @@ namespace EssaiJobImp
                                     for (int j = 0; j < filecount; j++)//Analyse existant dans fichier de destination
                                     {
                                         if (System.IO.File.Exists(@"E:\Copie spool\" + nomFichier))//Condition d'existance
-                                        { emplacementDoc = j; }
+                                        {   
+                                            System.IO.File.Copy(sourceFile, destFile, true);
+                                            supOk = true;
+                                            emplacementDoc = j;
+                                        }
                                         else
                                         {
                                             System.IO.File.Copy(sourceFile, destFile, true);//Si le fichier n'existe pas, je le copie afin de pouvoir le traiter par la suite
