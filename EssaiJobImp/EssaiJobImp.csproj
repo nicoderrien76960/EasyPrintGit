@@ -79,6 +79,9 @@
     <Reference Include="AxInterop.AcroPDFLib">
       <HintPath>..\..\AxInterop.AcroPDFLib.dll</HintPath>
     </Reference>
+    <Reference Include="Ghostscript.NET">
+      <HintPath>..\..\..\Sources Dev\Librairie\Ghostscript.NET.dll</HintPath>
+    </Reference>
     <Reference Include="itextsharp">
       <HintPath>..\..\..\Logiciels\itextsharp.dll</HintPath>
     </Reference>

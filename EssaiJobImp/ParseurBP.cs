@@ -13,6 +13,7 @@ using System.Runtime.InteropServices;
 using PrinterForce;
 using System.Threading;
 using Amyuni.PDFCreator;
+using Ghostscript.NET.Processor;
 
 namespace EssaiJobImp
 {
@@ -491,36 +492,28 @@ namespace EssaiJobImp
                 }
                 nbImp = nbImp - 1;
                 while (nbImpOK <= nbImp)                        // boucle tant que le nombre d'impression fait n'à pas atteint le nombre d'impression demander
-                { 
-                    myPrinters.SetDefaultPrinter(printer[nbImpOK]);
-                    Process proc = new Process();
-                    proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                    proc.StartInfo.Verb = "print";
-
-                    proc.StartInfo.FileName =
-                      ConfigurationManager.AppSettings["AdrAdobe"];
-                    proc.StartInfo.Arguments = String.Format(@"/p /h {0}", chemin);
-                    proc.StartInfo.UseShellExecute = false;
-                    proc.StartInfo.CreateNoWindow = true;
-
-                    proc.Start();
-                    proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                    if (proc.HasExited == false)
-                    {
-                        proc.WaitForExit(12000);
-                    }
-
-                    proc.EnableRaisingEvents = true;
-                    nbImpOK++;  
-                    proc.Close();
+                {
+                    string printerName = printer[nbImpOK];
+                    string inputFile = String.Format(@"{0}", chemin);
                     try
                     {
-                        foreach (Process clsProcess in Process.GetProcesses().Where(
-                                 clsProcess => clsProcess.ProcessName.StartsWith("AcroRd32")))
+                        using (GhostscriptProcessor processor = new GhostscriptProcessor())
                         {
-                            clsProcess.Kill();
+                            List<string> switches = new List<string>();
+                            switches.Add("-empty");
+                            switches.Add("-dPrinted");
+                            switches.Add("-dBATCH");
+                            switches.Add("-dNOPAUSE");
+                            switches.Add("-dNOSAFER");
+                            switches.Add("-dNumCopies=1");
+                            switches.Add("-sDEVICE=ljet4");
+                            switches.Add("-sOutputFile=%printer%" + printerName);
+                            switches.Add("-f");
+                            switches.Add(inputFile);
+
+                            processor.StartProcessing(switches.ToArray(), null);
                         }
-                           
+                        nbImpOK++;
                     }
                     catch (Exception e)
                     { LogHelper.WriteToFile(e.Message, "ParseurBP" + donneEntete["Document_numero"].Trim()); }
