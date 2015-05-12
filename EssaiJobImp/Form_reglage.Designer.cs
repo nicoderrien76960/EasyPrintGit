@@ -29,11 +29,15 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cBProfil = new System.Windows.Forms.ComboBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.lBProfil = new System.Windows.Forms.ListBox();
+            this.lBImprimante = new System.Windows.Forms.ListBox();
+            this.btn_AjoutImp = new System.Windows.Forms.Button();
+            this.btn_ModifImp = new System.Windows.Forms.Button();
+            this.btn_SupImp = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -46,26 +50,28 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.LightSalmon;
-            this.label1.Font = new System.Drawing.Font("Lucida Sans", 21.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.BackColor = System.Drawing.Color.Brown;
+            this.label1.Font = new System.Drawing.Font("Lucida Sans", 21.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(231, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(392, 33);
+            this.label1.Size = new System.Drawing.Size(402, 33);
             this.label1.TabIndex = 0;
             this.label1.Text = "Paramètre de l\'application ";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // comboBox1
+            // cBProfil
             // 
-            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.cBProfil.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox1.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(13, 14);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(264, 22);
-            this.comboBox1.TabIndex = 1;
+            this.cBProfil.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cBProfil.FormattingEnabled = true;
+            this.cBProfil.Location = new System.Drawing.Point(13, 14);
+            this.cBProfil.Name = "cBProfil";
+            this.cBProfil.Size = new System.Drawing.Size(264, 22);
+            this.cBProfil.TabIndex = 1;
+            this.cBProfil.SelectedIndexChanged += new System.EventHandler(this.cBProfil_SelectedIndexChanged);
+            this.cBProfil.SelectedValueChanged += new System.EventHandler(this.cBProfil_SelectedIndexChanged);
             // 
             // splitContainer1
             // 
@@ -85,7 +91,11 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.Brown;
-            this.splitContainer1.Panel2.Controls.Add(this.comboBox1);
+            this.splitContainer1.Panel2.Controls.Add(this.btn_SupImp);
+            this.splitContainer1.Panel2.Controls.Add(this.btn_ModifImp);
+            this.splitContainer1.Panel2.Controls.Add(this.btn_AjoutImp);
+            this.splitContainer1.Panel2.Controls.Add(this.lBImprimante);
+            this.splitContainer1.Panel2.Controls.Add(this.cBProfil);
             this.splitContainer1.Size = new System.Drawing.Size(811, 310);
             this.splitContainer1.SplitterDistance = 354;
             this.splitContainer1.TabIndex = 2;
@@ -123,6 +133,46 @@
             this.lBProfil.TabIndex = 0;
             this.lBProfil.SelectedIndexChanged += new System.EventHandler(this.lBProfil_SelectedIndexChanged);
             // 
+            // lBImprimante
+            // 
+            this.lBImprimante.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lBImprimante.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lBImprimante.FormattingEnabled = true;
+            this.lBImprimante.ItemHeight = 14;
+            this.lBImprimante.Location = new System.Drawing.Point(13, 56);
+            this.lBImprimante.Name = "lBImprimante";
+            this.lBImprimante.Size = new System.Drawing.Size(264, 74);
+            this.lBImprimante.TabIndex = 2;
+            // 
+            // btn_AjoutImp
+            // 
+            this.btn_AjoutImp.Location = new System.Drawing.Point(13, 146);
+            this.btn_AjoutImp.Name = "btn_AjoutImp";
+            this.btn_AjoutImp.Size = new System.Drawing.Size(137, 40);
+            this.btn_AjoutImp.TabIndex = 3;
+            this.btn_AjoutImp.Text = "Ajouter";
+            this.btn_AjoutImp.UseVisualStyleBackColor = true;
+            // 
+            // btn_ModifImp
+            // 
+            this.btn_ModifImp.Location = new System.Drawing.Point(156, 146);
+            this.btn_ModifImp.Name = "btn_ModifImp";
+            this.btn_ModifImp.Size = new System.Drawing.Size(137, 40);
+            this.btn_ModifImp.TabIndex = 4;
+            this.btn_ModifImp.Text = "Modifier";
+            this.btn_ModifImp.UseVisualStyleBackColor = true;
+            // 
+            // btn_SupImp
+            // 
+            this.btn_SupImp.Location = new System.Drawing.Point(13, 192);
+            this.btn_SupImp.Name = "btn_SupImp";
+            this.btn_SupImp.Size = new System.Drawing.Size(137, 40);
+            this.btn_SupImp.TabIndex = 5;
+            this.btn_SupImp.Text = "Supprimer";
+            this.btn_SupImp.UseVisualStyleBackColor = true;
+            // 
             // Form_reglage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -147,10 +197,14 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cBProfil;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.ListBox lBProfil;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ListBox lBImprimante;
+        private System.Windows.Forms.Button btn_SupImp;
+        private System.Windows.Forms.Button btn_ModifImp;
+        private System.Windows.Forms.Button btn_AjoutImp;
     }
 }

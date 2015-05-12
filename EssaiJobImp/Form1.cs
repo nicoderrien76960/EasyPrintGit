@@ -253,5 +253,10 @@ namespace EssaiJobImp
             Form_reglage frmreglage = new Form_reglage();
             frmreglage.Show();
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

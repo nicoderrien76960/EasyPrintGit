@@ -12,11 +12,12 @@ namespace EssaiJobImp
     public partial class Form_reglage : Form
     {
         GestionListeDoc list = new GestionListeDoc();
-        Dictionary<String,List<String>> listeProfil = new Dictionary<string,List<string>>();
+        Dictionary<String,List<String>> dicoProfil = new Dictionary<string,List<string>>();
+        Dictionary<String, List<String>> dicoProfilImp = new Dictionary<string, List<string>>();
         public Form_reglage()
         {
             InitializeComponent();
-            remplirLB();
+            dicoProfil=remplirLB();
         }
         public Dictionary<String,List<String>> remplirLB()
         {
@@ -28,20 +29,47 @@ namespace EssaiJobImp
             }
             return listeProfil;
         }
-        public void remplirCB(string value)
+        public Dictionary<String, List<string>> remplirCB(string value)
         {
-            foreach (KeyValuePair<String,List<string>> s in listeProfil)
+            cBProfil.Items.Clear();
+            Dictionary<String, List<string>> listeProfil = new Dictionary<string,List<string>>();
+            foreach (KeyValuePair<String,List<string>> s in dicoProfil)
             {
-                if (s.Value.ToString()== value)
+                if (System.Text.RegularExpressions.Regex.IsMatch(s.Value[0].ToString(), value, System.Text.RegularExpressions.RegexOptions.IgnoreCase))
                 {
-                    MessageBox.Show("Woupi");
+                    ProfilImprimante profil = new ProfilImprimante();
+                    profil.chargementXML(s.Key);
+                    listeProfil = profil.getDonneeProfil();
+                    foreach(var v in listeProfil)
+                    {
+                        cBProfil.Items.Add(v.Key.ToString());
+                    }
+                    cBProfil.SelectedIndex=1;
                 }
             }
-
+            return listeProfil;
+        }
+        public void remplirLBImprimante(string value)
+        {
+            lBImprimante.Items.Clear();
+            foreach (KeyValuePair<String, List<string>> s in dicoProfilImp)
+            {
+                if (System.Text.RegularExpressions.Regex.IsMatch(s.Key.ToString(), value, System.Text.RegularExpressions.RegexOptions.IgnoreCase))
+                {
+                    foreach (var v in s.Value)
+                    { lBImprimante.Items.Add(v.ToString()); }
+                }
+            }
         }
         private void lBProfil_SelectedIndexChanged(object sender, EventArgs e)
         {
-            remplirCB(lBProfil.SelectedItem.ToString().TrimEnd());
+            dicoProfilImp=remplirCB(lBProfil.SelectedItem.ToString().TrimEnd());
+            cBProfil.SelectedIndex = 0;
+        }
+
+        private void cBProfil_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            remplirLBImprimante(cBProfil.SelectedItem.ToString());
         }
     }
 }
