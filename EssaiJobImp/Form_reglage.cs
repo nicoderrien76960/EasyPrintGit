@@ -11,18 +11,37 @@ namespace EssaiJobImp
 {
     public partial class Form_reglage : Form
     {
+        GestionListeDoc list = new GestionListeDoc();
+        Dictionary<String,List<String>> listeProfil = new Dictionary<string,List<string>>();
         public Form_reglage()
         {
             InitializeComponent();
-            remplirCB();
+            remplirLB();
         }
-        public void remplirCB()
+        public Dictionary<String,List<String>> remplirLB()
         {
-            ProfilImprimante profil = new ProfilImprimante();
-            profil.chargementXML("Document");
-            var listeProfil = profil.getDonneeProfil();
-            int test = 0;
-            //lBProfil
+            list.chargementXML();
+            var listeProfil = list.getDonneeProfil();
+            foreach (var v in listeProfil)
+            {
+                lBProfil.Items.Add(v.Value[0].TrimStart().ToString());
+            }
+            return listeProfil;
+        }
+        public void remplirCB(string value)
+        {
+            foreach (KeyValuePair<String,List<string>> s in listeProfil)
+            {
+                if (s.Value.ToString()== value)
+                {
+                    MessageBox.Show("Woupi");
+                }
+            }
+
+        }
+        private void lBProfil_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            remplirCB(lBProfil.SelectedItem.ToString().TrimEnd());
         }
     }
 }

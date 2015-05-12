@@ -48,7 +48,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.LightSalmon;
             this.label1.Font = new System.Drawing.Font("Lucida Sans", 21.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(237, 23);
+            this.label1.Location = new System.Drawing.Point(231, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(392, 33);
             this.label1.TabIndex = 0;
@@ -60,10 +60,11 @@
             this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox1.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(13, 14);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(190, 21);
+            this.comboBox1.Size = new System.Drawing.Size(264, 22);
             this.comboBox1.TabIndex = 1;
             // 
             // splitContainer1
@@ -71,7 +72,7 @@
             this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(12, 74);
+            this.splitContainer1.Location = new System.Drawing.Point(11, 62);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -91,6 +92,7 @@
             // 
             // button3
             // 
+            this.button3.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.Location = new System.Drawing.Point(165, 181);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(183, 39);
@@ -100,6 +102,7 @@
             // 
             // button1
             // 
+            this.button1.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(3, 181);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(156, 39);
@@ -109,14 +112,16 @@
             // 
             // lBProfil
             // 
-            this.lBProfil.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.lBProfil.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.lBProfil.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lBProfil.FormattingEnabled = true;
+            this.lBProfil.ItemHeight = 14;
             this.lBProfil.Location = new System.Drawing.Point(15, 14);
             this.lBProfil.Name = "lBProfil";
-            this.lBProfil.Size = new System.Drawing.Size(323, 147);
+            this.lBProfil.Size = new System.Drawing.Size(323, 144);
             this.lBProfil.TabIndex = 0;
+            this.lBProfil.SelectedIndexChanged += new System.EventHandler(this.lBProfil_SelectedIndexChanged);
             // 
             // Form_reglage
             // 
@@ -126,6 +131,7 @@
             this.ClientSize = new System.Drawing.Size(834, 384);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.label1);
+            this.MaximumSize = new System.Drawing.Size(1500, 423);
             this.MinimumSize = new System.Drawing.Size(850, 423);
             this.Name = "Form_reglage";
             this.Text = "Form_reglafge";
