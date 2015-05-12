@@ -31,7 +31,7 @@ namespace EssaiJobImp
                 bool supOk = false; string nomDoc = ""; string profil="";
                 foreach (PrintQueue pq in myPrintQueues)//Analyse du spool du pc (Dossier Windows\System32\spool\PRINTERS)
                 {
-                    if (pq.FullName == nomIMP)//Condition sur imprimante qui a crée l'objet Imprimante
+                    if (pq.FullName == nomIMP)//Condition sur imprimante qui a créer l'objet Imprimante
                     {
                         try
                         {
@@ -67,7 +67,7 @@ namespace EssaiJobImp
                                     }
                                     nbDoc = 1;
                                     string[] text = System.IO.File.ReadAllLines(files[i]);
-                                    string patternLectFalse = "(%-12345X@PJL JOB NAME|\\210-SERVIMP)";//Premier caractère qui apparait sur les documents en cours d'impression
+                                    string patternLectFalse = "(%-12345X@PJL JOB NAME|\\210-SERVIMP|"+(char)0x0c+")";//Premier caractère qui apparait sur les documents en cours d'impression
                                     string sPattern = "<Spool>";
                                     string sPatternTypeDoc = "<Document_type>"; bool patternOK = true;
                                     foreach (string s in text)//Analyse ligne du document actuel
