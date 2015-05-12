@@ -71,5 +71,32 @@ namespace EssaiJobImp
         {
             remplirLBImprimante(cBProfil.SelectedItem.ToString());
         }
+        private void btn_Valider_Click(object sender, EventArgs e)
+        {
+
+
+            tBModifImp.Visible = false;
+            btn_Valider.Visible = false;
+            label2.Visible = false;
+        }
+
+        private void btn_AjoutImp_Click(object sender, EventArgs e)
+        {
+            label2.Visible = true;
+            btn_Valider.Visible = true;
+            tBModifImp.Visible = true;
+        }
+
+        private void btn_ModifImp_Click(object sender, EventArgs e)
+        {
+            if (lBImprimante.SelectedItem!=null)
+            {
+                tBModifImp.Text = lBImprimante.SelectedItem.ToString();
+                label2.Visible = true;
+                btn_Valider.Visible = true;
+                tBModifImp.Visible = true;
+            }
+        }
+
     }
 }
