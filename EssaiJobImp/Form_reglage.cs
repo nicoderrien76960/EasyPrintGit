@@ -18,7 +18,11 @@ namespace EssaiJobImp
         }
         public void remplirCB()
         {
-            lBProfil
+            ProfilImprimante profil = new ProfilImprimante();
+            profil.chargementXML("Document");
+            var listeProfil = profil.getDonneeProfil();
+            int test = 0;
+            //lBProfil
         }
     }
 }

@@ -125,6 +125,7 @@
     <Compile Include="Form_reglage.Designer.cs">
       <DependentUpon>Form_reglage.cs</DependentUpon>
     </Compile>
+    <Compile Include="GestionListeDoc.cs" />
     <Compile Include="Imprimante.cs" />
     <Compile Include="LogHelper.cs" />
     <Compile Include="Parseur.cs" />
