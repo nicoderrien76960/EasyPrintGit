@@ -247,5 +247,11 @@ namespace EssaiJobImp
         {
 
         }
+
+        private void btnReglage_Click(object sender, EventArgs e)
+        {
+            Form_reglage frmreglage = new Form_reglage();
+            frmreglage.Show();
+        }
     }
 }

@@ -14,6 +14,11 @@ namespace EssaiJobImp
         public Form_reglage()
         {
             InitializeComponent();
+            remplirCB();
+        }
+        public void remplirCB()
+        {
+            lBProfil
         }
     }
 }

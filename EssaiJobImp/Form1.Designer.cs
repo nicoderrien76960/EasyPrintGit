@@ -137,6 +137,7 @@
             this.btnReglage.TabIndex = 19;
             this.btnReglage.Text = "Accès réglage";
             this.btnReglage.UseVisualStyleBackColor = true;
+            this.btnReglage.Click += new System.EventHandler(this.btnReglage_Click);
             // 
             // Form1
             // 

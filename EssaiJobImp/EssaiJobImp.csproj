@@ -184,6 +184,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="profilImpDev.config" />
+    <None Include="ListeDocument.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
