@@ -134,6 +134,7 @@
             this.lBProfil.FormattingEnabled = true;
             this.lBProfil.ItemHeight = 14;
             this.lBProfil.Location = new System.Drawing.Point(15, 14);
+            this.lBProfil.MultiColumn = true;
             this.lBProfil.Name = "lBProfil";
             this.lBProfil.Size = new System.Drawing.Size(341, 144);
             this.lBProfil.TabIndex = 0;

@@ -5,9 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
+using System.Xml.XPath;
 
 namespace EssaiJobImp
 {
+    struct Imp
+    {
+        string nomProfil;
+        string imp;
+    }
     class GestionListeDoc
     {
         string bal;
@@ -42,6 +48,31 @@ namespace EssaiJobImp
         public Dictionary<string, List<string>> getDonneeProfil()//Getteur d'accès au dictionnaire
         {
             return donneeListDoc;
+        }
+        public bool Ajouter()
+        {
+            XPathDocument XPathDocu = new XPathDocument("ListeDocument.config");
+
+            return true;
+        }
+        public void ChercherProfilImp(string doc,string profil)
+        {
+            string[] imprimante = new string[5];
+            XPathDocument XPathDocu = new XPathDocument("profilImp"+doc+".config");
+            XPathNavigator Navigator;
+            XPathNodeIterator Nodes;
+            Navigator = XPathDocu.CreateNavigator();
+            string ExpXPath = "//Profil[@nom='"+profil +"']";
+            Nodes = Navigator.Select(Navigator.Compile(ExpXPath));
+            if (Nodes.Count != 0)
+            {
+                Nodes.MoveNext();
+                imprimante[Nodes.CurrentPosition] = Nodes.Current.Value;
+            }
+            else
+            {
+                
+            }
         }
     }
 }

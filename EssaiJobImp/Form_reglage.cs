@@ -82,6 +82,9 @@ namespace EssaiJobImp
 
         private void btn_AjoutImp_Click(object sender, EventArgs e)
         {
+            string document = dicoProfil.Keys.ElementAt(lBProfil.SelectedIndex).ToString();
+            list.ChercherProfilImp(document, cBProfil.SelectedItem.ToString());
+
             label2.Visible = true;
             btn_Valider.Visible = true;
             tBModifImp.Visible = true;
