@@ -31,8 +31,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cBProfil = new System.Windows.Forms.ComboBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnSupProfil = new System.Windows.Forms.Button();
+            this.btnAjoutProfil = new System.Windows.Forms.Button();
             this.lBProfil = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btn_Valider = new System.Windows.Forms.Button();
@@ -41,6 +41,12 @@
             this.btn_ModifImp = new System.Windows.Forms.Button();
             this.btn_AjoutImp = new System.Windows.Forms.Button();
             this.lBImprimante = new System.Windows.Forms.ListBox();
+            this.btnValidAjout = new System.Windows.Forms.Button();
+            this.tbAjoutProfil = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnValiderAjoutPro = new System.Windows.Forms.Button();
+            this.tbAjoutImprimante = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -87,13 +93,19 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.Color.Brown;
-            this.splitContainer1.Panel1.Controls.Add(this.button3);
-            this.splitContainer1.Panel1.Controls.Add(this.button1);
+            this.splitContainer1.Panel1.Controls.Add(this.label4);
+            this.splitContainer1.Panel1.Controls.Add(this.tbAjoutImprimante);
+            this.splitContainer1.Panel1.Controls.Add(this.btnValiderAjoutPro);
+            this.splitContainer1.Panel1.Controls.Add(this.label3);
+            this.splitContainer1.Panel1.Controls.Add(this.tbAjoutProfil);
+            this.splitContainer1.Panel1.Controls.Add(this.btnSupProfil);
+            this.splitContainer1.Panel1.Controls.Add(this.btnAjoutProfil);
             this.splitContainer1.Panel1.Controls.Add(this.lBProfil);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.Brown;
+            this.splitContainer1.Panel2.Controls.Add(this.btnValidAjout);
             this.splitContainer1.Panel2.Controls.Add(this.label2);
             this.splitContainer1.Panel2.Controls.Add(this.btn_Valider);
             this.splitContainer1.Panel2.Controls.Add(this.tBModifImp);
@@ -106,25 +118,27 @@
             this.splitContainer1.SplitterDistance = 364;
             this.splitContainer1.TabIndex = 2;
             // 
-            // button3
+            // btnSupProfil
             // 
-            this.button3.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(165, 181);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(183, 39);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Supprimer";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnSupProfil.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSupProfil.Location = new System.Drawing.Point(165, 181);
+            this.btnSupProfil.Name = "btnSupProfil";
+            this.btnSupProfil.Size = new System.Drawing.Size(183, 39);
+            this.btnSupProfil.TabIndex = 3;
+            this.btnSupProfil.Text = "Supprimer";
+            this.btnSupProfil.UseVisualStyleBackColor = true;
+            this.btnSupProfil.Click += new System.EventHandler(this.btnSupProfil_Click);
             // 
-            // button1
+            // btnAjoutProfil
             // 
-            this.button1.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(3, 181);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(156, 39);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Ajouter";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnAjoutProfil.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAjoutProfil.Location = new System.Drawing.Point(3, 181);
+            this.btnAjoutProfil.Name = "btnAjoutProfil";
+            this.btnAjoutProfil.Size = new System.Drawing.Size(156, 39);
+            this.btnAjoutProfil.TabIndex = 1;
+            this.btnAjoutProfil.Text = "Ajouter Profil";
+            this.btnAjoutProfil.UseVisualStyleBackColor = true;
+            this.btnAjoutProfil.Click += new System.EventHandler(this.btnAjoutProfil_Click);
             // 
             // lBProfil
             // 
@@ -178,6 +192,7 @@
             this.btn_SupImp.TabIndex = 5;
             this.btn_SupImp.Text = "Supprimer";
             this.btn_SupImp.UseVisualStyleBackColor = true;
+            this.btn_SupImp.Click += new System.EventHandler(this.btn_SupImp_Click);
             // 
             // btn_ModifImp
             // 
@@ -212,6 +227,66 @@
             this.lBImprimante.Size = new System.Drawing.Size(305, 74);
             this.lBImprimante.TabIndex = 2;
             // 
+            // btnValidAjout
+            // 
+            this.btnValidAjout.Location = new System.Drawing.Point(156, 263);
+            this.btnValidAjout.Name = "btnValidAjout";
+            this.btnValidAjout.Size = new System.Drawing.Size(137, 40);
+            this.btnValidAjout.TabIndex = 9;
+            this.btnValidAjout.Text = "Valider";
+            this.btnValidAjout.UseVisualStyleBackColor = true;
+            this.btnValidAjout.Visible = false;
+            this.btnValidAjout.Click += new System.EventHandler(this.btnValidAjout_Click);
+            // 
+            // tbAjoutProfil
+            // 
+            this.tbAjoutProfil.Location = new System.Drawing.Point(3, 263);
+            this.tbAjoutProfil.Multiline = true;
+            this.tbAjoutProfil.Name = "tbAjoutProfil";
+            this.tbAjoutProfil.Size = new System.Drawing.Size(106, 40);
+            this.tbAjoutProfil.TabIndex = 7;
+            this.tbAjoutProfil.Visible = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(0, 247);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(109, 13);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Nom du profil (Code) :";
+            this.label3.Visible = false;
+            // 
+            // btnValiderAjoutPro
+            // 
+            this.btnValiderAjoutPro.Location = new System.Drawing.Point(272, 263);
+            this.btnValiderAjoutPro.Name = "btnValiderAjoutPro";
+            this.btnValiderAjoutPro.Size = new System.Drawing.Size(84, 40);
+            this.btnValiderAjoutPro.TabIndex = 10;
+            this.btnValiderAjoutPro.Text = "Valider";
+            this.btnValiderAjoutPro.UseVisualStyleBackColor = true;
+            this.btnValiderAjoutPro.Visible = false;
+            this.btnValiderAjoutPro.Click += new System.EventHandler(this.btnValiderAjoutPro_Click);
+            // 
+            // tbAjoutImprimante
+            // 
+            this.tbAjoutImprimante.Location = new System.Drawing.Point(115, 263);
+            this.tbAjoutImprimante.Multiline = true;
+            this.tbAjoutImprimante.Name = "tbAjoutImprimante";
+            this.tbAjoutImprimante.Size = new System.Drawing.Size(131, 40);
+            this.tbAjoutImprimante.TabIndex = 11;
+            this.tbAjoutImprimante.Visible = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(115, 247);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(89, 13);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "Nom Imprimante :";
+            this.label4.Visible = false;
+            // 
             // Form_reglage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -225,6 +300,7 @@
             this.Name = "Form_reglage";
             this.Text = "Form_reglafge";
             this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -240,8 +316,8 @@
         private System.Windows.Forms.ComboBox cBProfil;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.ListBox lBProfil;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnSupProfil;
+        private System.Windows.Forms.Button btnAjoutProfil;
         private System.Windows.Forms.ListBox lBImprimante;
         private System.Windows.Forms.Button btn_SupImp;
         private System.Windows.Forms.Button btn_ModifImp;
@@ -249,5 +325,11 @@
         private System.Windows.Forms.TextBox tBModifImp;
         private System.Windows.Forms.Button btn_Valider;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnValidAjout;
+        private System.Windows.Forms.Button btnValiderAjoutPro;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox tbAjoutProfil;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox tbAjoutImprimante;
     }
 }

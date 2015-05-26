@@ -93,11 +93,22 @@ namespace EssaiJobImp
             tableau.AddCell(celluleBasGauche);
                                                                                         //Encadré client
             Paragraph pClient = new Paragraph();
-            pClient.Add(new Phrase("\n"/*+"\n"*/+donneEntete["Tiers_adf1"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA , 10, Font.BOLD)));
-            pClient.Add(new Phrase(donneEntete["Tiers_adf2"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD)));
-            pClient.Add(new Phrase(donneEntete["Tiers_adf3"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD)));
-            pClient.Add(new Phrase(donneEntete["Tiers_adf4"] + "\n" + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD)));
-            pClient.Add(new Phrase(donneEntete["Tiers_adfcp"] + "  " + donneEntete["Tiers_adf6"], FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD)));
+            if (donneEntete["Tiers_adl1"] == "")
+            {
+                pClient.Add(new Phrase("\n"/*+"\n"*/+ donneEntete["Tiers_adf1"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD)));
+                pClient.Add(new Phrase(donneEntete["Tiers_adf2"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD)));
+                pClient.Add(new Phrase(donneEntete["Tiers_adf3"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD)));
+                pClient.Add(new Phrase(donneEntete["Tiers_adf4"] + "\n" + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD)));
+                pClient.Add(new Phrase(donneEntete["Tiers_adfcp"] + "  " + donneEntete["Tiers_adf6"], FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD)));
+            }
+            else
+            {
+                pClient.Add(new Phrase("\n"/*+"\n"*/+ donneEntete["Tiers_adl1"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD)));
+                pClient.Add(new Phrase(donneEntete["Tiers_adl2"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD)));
+                pClient.Add(new Phrase(donneEntete["Tiers_adl3"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD)));
+                pClient.Add(new Phrase(donneEntete["Tiers_adl4"] + "\n" + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD)));
+                pClient.Add(new Phrase(donneEntete["Tiers_adlcp"] + "  " + donneEntete["Tiers_adl6"], FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD)));
+            }
             PdfPCell celluleBasDroite = new PdfPCell(pClient);
             celluleBasDroite.Border = PdfPCell.NO_BORDER;
             tableau.AddCell(celluleBasDroite);

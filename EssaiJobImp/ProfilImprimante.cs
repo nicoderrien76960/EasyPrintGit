@@ -23,7 +23,7 @@ namespace EssaiJobImp
             {
                 throw;
             }
-            XmlNodeList node = unxml.SelectNodes("//configuration/Profil");//Création d'une liste de noeud contenant la valeur "Profil" en balise
+            XmlNodeList node = unxml.SelectNodes("Profils/Profil");//Création d'une liste de noeud contenant la valeur "Profil" en balise
             foreach (XmlNode unNode in node)
             {
                 XmlNodeList nodeEnfant = unNode.ChildNodes;//Récupération du contenu du noeud enfant de chaque profil (balise parent)

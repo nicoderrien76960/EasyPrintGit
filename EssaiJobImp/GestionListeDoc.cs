@@ -20,6 +20,7 @@ namespace EssaiJobImp
         private Dictionary<string,List<string>> donneeListDoc = new Dictionary<string,List<string>>();   //Dictionnaire de clé chaine, valeur Imprimante (object)
         public void chargementXML()
         {
+            donneeListDoc.Clear();
             XmlDocument unxml = new XmlDocument();
             try
             {
@@ -49,30 +50,107 @@ namespace EssaiJobImp
         {
             return donneeListDoc;
         }
-        public bool Ajouter()
+        public bool Ajouter(string doc, string profil, string newValue)
         {
-            XPathDocument XPathDocu = new XPathDocument("ListeDocument.config");
-
-            return true;
-        }
-        public void ChercherProfilImp(string doc,string profil)
-        {
-            string[] imprimante = new string[5];
-            XPathDocument XPathDocu = new XPathDocument("profilImp"+doc+".config");
+            XmlDocument XmlDoc = new XmlDocument();
             XPathNavigator Navigator;
             XPathNodeIterator Nodes;
-            Navigator = XPathDocu.CreateNavigator();
+            XmlDoc.Load("profilImp" + doc + ".config");
+            Navigator = XmlDoc.CreateNavigator();
             string ExpXPath = "//Profil[@nom='" + profil + "']";
             Nodes = Navigator.Select(Navigator.Compile(ExpXPath));
             if (Nodes.Count != 0)
             {
                 Nodes.MoveNext();
-                imprimante[Nodes.CurrentPosition] = Nodes.Current.Value;
+                Nodes.Current.AppendChildElement("", "Imprimante", "", newValue);
+                XmlDoc.Save("profilImp" + doc + ".config");
+                return true;
             }
-            else
+            return true;
+        }
+        public bool AjouteUser(string doc, string profil, string imp)
+        {
+            XmlDocument XmlDoc = new XmlDocument();
+            XPathNavigator Navigator;
+            XPathNodeIterator Nodes;
+            XmlDoc.Load("profilImp" + doc + ".config");
+            Navigator = XmlDoc.CreateNavigator();
+            string ExpXPath = "//Profil";
+            Nodes = Navigator.Select(Navigator.Compile(ExpXPath));
+            if (Nodes.Count != 0)
             {
-                
+                Nodes.MoveNext();
+                Nodes.Current.InsertElementAfter("", "Profil", "", "");
+                Nodes.Current.MoveToNext(XPathNodeType.Element);
+                Nodes.Current.CreateAttribute("", "nom", "", profil);
+                Nodes.Current.AppendChildElement("", "Code", "", profil);
+                Nodes.Current.AppendChildElement("", "Imprimante", "", imp);
+                XmlDoc.Save("profilImp" + doc + ".config");
+                return true;
             }
+            return true;
+        }
+        public bool Modifier(string doc, string profil, string newValue, int selectedIndex)
+        {
+            XmlDocument XmlDoc = new XmlDocument();
+            XPathNavigator Navigator;
+            XPathNodeIterator Nodes;
+            XmlDoc.Load("profilImp" + doc + ".config");
+            Navigator = XmlDoc.CreateNavigator();
+            string ExpXPath = "//Profil[@nom='" + profil + "']";
+            Nodes = Navigator.Select(Navigator.Compile(ExpXPath));
+            if (Nodes.Count != 0)
+            {
+                Nodes.MoveNext();
+                Nodes.Current.MoveToFirstChild();
+                for (int i = 0; i <= selectedIndex; i++)
+                {
+                    Nodes.Current.MoveToNext();
+                }
+                Nodes.Current.SetValue(newValue);
+                XmlDoc.Save("profilImp" + doc + ".config");
+                return true;
+            }
+            return true;
+        }
+        public bool Supprimer(string doc, string profil)
+        {
+            XmlDocument XmlDoc = new XmlDocument();
+            XPathNavigator Navigator;
+            XPathNodeIterator Nodes;
+            XmlDoc.Load("profilImp" + doc + ".config");
+            Navigator = XmlDoc.CreateNavigator();
+            string ExpXPath = "//Profil[@nom='" + profil + "']";
+            Nodes = Navigator.Select(Navigator.Compile(ExpXPath));
+            if (Nodes.Count != 0)
+            {
+                Nodes.MoveNext();
+                Nodes.Current.DeleteSelf();
+                XmlDoc.Save("profilImp" + doc + ".config");
+            }
+            return true;
+        }
+        public bool SupprimerImp(string doc, string profil, int selectedIndex)
+        {
+            XmlDocument XmlDoc = new XmlDocument();
+            XPathNavigator Navigator;
+            XPathNodeIterator Nodes;
+            XmlDoc.Load("profilImp" + doc + ".config");
+            Navigator = XmlDoc.CreateNavigator();
+            string ExpXPath = "//Profil[@nom='" + profil + "']";
+            Nodes = Navigator.Select(Navigator.Compile(ExpXPath));
+            if (Nodes.Count != 0)
+            {
+                Nodes.MoveNext();
+                Nodes.Current.MoveToFirstChild();
+                for (int i = 0; i <= selectedIndex; i++)
+                {
+                    Nodes.Current.MoveToNext();
+                }
+                Nodes.Current.DeleteSelf();
+                XmlDoc.Save("profilImp" + doc + ".config");
+            }
+            return true;
         }
     }
 }
