@@ -67,7 +67,7 @@ namespace EssaiJobImp
                                     }
                                     nbDoc = 1;
                                     string[] text = System.IO.File.ReadAllLines(files[i]);
-                                    string patternLectFalse = "(%-12345X@PJL JOB NAME|\\210-SERVIMP|1b26)";//Premier caractère qui apparait sur les documents en cours d'impression
+                                    string patternLectFalse = "(%-12345X@PJL JOB NAME|\\210-SERVIMP|&l26A)";//Premier caractère qui apparait sur les documents en cours d'impression
                                     string sPattern = "<Spool>";
                                     string sPatternTypeDoc = "<Document_type>"; bool patternOK = true;
                                     foreach (string s in text)//Analyse ligne du document actuel
@@ -108,7 +108,7 @@ namespace EssaiJobImp
                                             }
                                         }
                                         else
-                                        { patternOK = false; typeDoc = null; }
+                                        { patternOK = false; typeDoc = null; System.IO.File.Delete(sourceFile); }
                                         nomDoc = nomFichier;
                                     }
                                     cheminDoc = destFile;

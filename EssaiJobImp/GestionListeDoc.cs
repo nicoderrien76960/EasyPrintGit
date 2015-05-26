@@ -62,7 +62,7 @@ namespace EssaiJobImp
             XPathNavigator Navigator;
             XPathNodeIterator Nodes;
             Navigator = XPathDocu.CreateNavigator();
-            string ExpXPath = "//Profil[@nom='"+profil +"']";
+            string ExpXPath = "//Profil[@nom='" + profil + "']";
             Nodes = Navigator.Select(Navigator.Compile(ExpXPath));
             if (Nodes.Count != 0)
             {
