@@ -42,6 +42,9 @@
             this.btnReglage = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnPause = new System.Windows.Forms.Button();
+            this.btnStop = new System.Windows.Forms.Button();
+            this.btnReprise = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -193,12 +196,46 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
+            // btnPause
+            // 
+            this.btnPause.Location = new System.Drawing.Point(213, 113);
+            this.btnPause.Name = "btnPause";
+            this.btnPause.Size = new System.Drawing.Size(75, 23);
+            this.btnPause.TabIndex = 22;
+            this.btnPause.Text = "Pause";
+            this.btnPause.UseVisualStyleBackColor = true;
+            this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
+            // 
+            // btnStop
+            // 
+            this.btnStop.Location = new System.Drawing.Point(294, 113);
+            this.btnStop.Name = "btnStop";
+            this.btnStop.Size = new System.Drawing.Size(75, 23);
+            this.btnStop.TabIndex = 23;
+            this.btnStop.Text = "Stop";
+            this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
+            // 
+            // btnReprise
+            // 
+            this.btnReprise.Location = new System.Drawing.Point(376, 112);
+            this.btnReprise.Name = "btnReprise";
+            this.btnReprise.Size = new System.Drawing.Size(75, 23);
+            this.btnReprise.TabIndex = 24;
+            this.btnReprise.Text = "Reprise";
+            this.btnReprise.UseVisualStyleBackColor = true;
+            this.btnReprise.Visible = false;
+            this.btnReprise.Click += new System.EventHandler(this.btnReprise_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkRed;
             this.ClientSize = new System.Drawing.Size(1004, 332);
+            this.Controls.Add(this.btnReprise);
+            this.Controls.Add(this.btnStop);
+            this.Controls.Add(this.btnPause);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnReglage);
@@ -238,6 +275,9 @@
         private System.Windows.Forms.Button btnReglage;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btnPause;
+        private System.Windows.Forms.Button btnStop;
+        private System.Windows.Forms.Button btnReprise;
     }
 }
 

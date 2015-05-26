@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Printing;
 using System.IO;
 using System.Xml;
+using System.Configuration;
 using System.Threading;
 
 namespace EssaiJobImp
@@ -30,10 +31,15 @@ namespace EssaiJobImp
         static int s_myCounter6 = 0;
         int timer = 250; DateTime dureeF;
         Imprimante imprimante = new Imprimante();
+        object sender; EventArgs e;
         public Form1()
         {
             InitializeComponent();
             chargementXML();
+            if ("true"== ConfigurationManager.AppSettings["AutoLoad"])
+            {
+                Timer1_Click(sender, e);
+            }
         }
         List<string> listeImp = new List<string>();
         public void chargementXML()
@@ -257,6 +263,32 @@ namespace EssaiJobImp
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnPause_Click(object sender, EventArgs e)
+        {
+            s_myTimer.Stop();
+            s_myTimer2.Stop();
+            s_myTimer3.Stop();
+            s_myTimer4.Stop();
+            s_myTimer5.Stop();
+            s_myTimer6.Stop();
+            btnReprise.Visible = true;
+        }
+
+        private void btnReprise_Click(object sender, EventArgs e)
+        {
+            s_myTimer.Start();
+            s_myTimer2.Start();
+            s_myTimer3.Start();
+            s_myTimer4.Start();
+            s_myTimer5.Start();
+            s_myTimer6.Start();
+            btnReprise.Visible = false;
+        }
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+          
         }
     }
 }
