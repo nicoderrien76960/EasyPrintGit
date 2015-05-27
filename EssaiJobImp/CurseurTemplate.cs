@@ -36,5 +36,25 @@ namespace EssaiJobImp
             }
             return valeurTemplate;
         }
+        public bool modifier(string typeDoc,string code, string valeur)
+        {
+            XmlDocument XmlDoc = new XmlDocument();
+            XPathNavigator Navigator;
+            XPathNodeIterator Nodes;
+            XmlDoc.Load("TemplateSetting.config");
+            Navigator = XmlDoc.CreateNavigator();
+            string ExpXPath = "//P[@nom='" + typeDoc + "' and Code ='"+valeur+"']";
+            Nodes = Navigator.Select(Navigator.Compile(ExpXPath));
+            if (Nodes.Count != 0)
+            {
+                Nodes.MoveNext();
+                Nodes.Current.MoveToFirstChild();
+                Nodes.Current.MoveToNext();
+                Nodes.Current.SetValue(valeur);
+                XmlDoc.Save("TemplateSetting.config");
+                return true;
+            }
+            return true;
+        }
     }
 }

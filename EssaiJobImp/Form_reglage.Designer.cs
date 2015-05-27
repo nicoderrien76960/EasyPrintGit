@@ -31,9 +31,15 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cBProfil = new System.Windows.Forms.ComboBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tbAjoutImprimante = new System.Windows.Forms.TextBox();
+            this.btnValiderAjoutPro = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tbAjoutProfil = new System.Windows.Forms.TextBox();
             this.btnSupProfil = new System.Windows.Forms.Button();
             this.btnAjoutProfil = new System.Windows.Forms.Button();
             this.lBProfil = new System.Windows.Forms.ListBox();
+            this.btnValidAjout = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.btn_Valider = new System.Windows.Forms.Button();
             this.tBModifImp = new System.Windows.Forms.TextBox();
@@ -41,16 +47,18 @@
             this.btn_ModifImp = new System.Windows.Forms.Button();
             this.btn_AjoutImp = new System.Windows.Forms.Button();
             this.lBImprimante = new System.Windows.Forms.ListBox();
-            this.btnValidAjout = new System.Windows.Forms.Button();
-            this.tbAjoutProfil = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btnValiderAjoutPro = new System.Windows.Forms.Button();
-            this.tbAjoutImprimante = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.paramètreDocumentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.devisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -61,7 +69,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Brown;
             this.label1.Font = new System.Drawing.Font("Lucida Sans", 21.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(231, 9);
+            this.label1.Location = new System.Drawing.Point(226, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(402, 33);
             this.label1.TabIndex = 0;
@@ -118,6 +126,55 @@
             this.splitContainer1.SplitterDistance = 364;
             this.splitContainer1.TabIndex = 2;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(115, 247);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(89, 13);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "Nom Imprimante :";
+            this.label4.Visible = false;
+            // 
+            // tbAjoutImprimante
+            // 
+            this.tbAjoutImprimante.Location = new System.Drawing.Point(115, 263);
+            this.tbAjoutImprimante.Multiline = true;
+            this.tbAjoutImprimante.Name = "tbAjoutImprimante";
+            this.tbAjoutImprimante.Size = new System.Drawing.Size(131, 40);
+            this.tbAjoutImprimante.TabIndex = 11;
+            this.tbAjoutImprimante.Visible = false;
+            // 
+            // btnValiderAjoutPro
+            // 
+            this.btnValiderAjoutPro.Location = new System.Drawing.Point(272, 263);
+            this.btnValiderAjoutPro.Name = "btnValiderAjoutPro";
+            this.btnValiderAjoutPro.Size = new System.Drawing.Size(84, 40);
+            this.btnValiderAjoutPro.TabIndex = 10;
+            this.btnValiderAjoutPro.Text = "Valider";
+            this.btnValiderAjoutPro.UseVisualStyleBackColor = true;
+            this.btnValiderAjoutPro.Visible = false;
+            this.btnValiderAjoutPro.Click += new System.EventHandler(this.btnValiderAjoutPro_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(0, 247);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(109, 13);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Nom du profil (Code) :";
+            this.label3.Visible = false;
+            // 
+            // tbAjoutProfil
+            // 
+            this.tbAjoutProfil.Location = new System.Drawing.Point(3, 263);
+            this.tbAjoutProfil.Multiline = true;
+            this.tbAjoutProfil.Name = "tbAjoutProfil";
+            this.tbAjoutProfil.Size = new System.Drawing.Size(106, 40);
+            this.tbAjoutProfil.TabIndex = 7;
+            this.tbAjoutProfil.Visible = false;
+            // 
             // btnSupProfil
             // 
             this.btnSupProfil.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -153,6 +210,17 @@
             this.lBProfil.Size = new System.Drawing.Size(341, 144);
             this.lBProfil.TabIndex = 0;
             this.lBProfil.SelectedIndexChanged += new System.EventHandler(this.lBProfil_SelectedIndexChanged);
+            // 
+            // btnValidAjout
+            // 
+            this.btnValidAjout.Location = new System.Drawing.Point(156, 263);
+            this.btnValidAjout.Name = "btnValidAjout";
+            this.btnValidAjout.Size = new System.Drawing.Size(137, 40);
+            this.btnValidAjout.TabIndex = 9;
+            this.btnValidAjout.Text = "Valider";
+            this.btnValidAjout.UseVisualStyleBackColor = true;
+            this.btnValidAjout.Visible = false;
+            this.btnValidAjout.Click += new System.EventHandler(this.btnValidAjout_Click);
             // 
             // label2
             // 
@@ -227,65 +295,58 @@
             this.lBImprimante.Size = new System.Drawing.Size(305, 74);
             this.lBImprimante.TabIndex = 2;
             // 
-            // btnValidAjout
+            // menuStrip1
             // 
-            this.btnValidAjout.Location = new System.Drawing.Point(156, 263);
-            this.btnValidAjout.Name = "btnValidAjout";
-            this.btnValidAjout.Size = new System.Drawing.Size(137, 40);
-            this.btnValidAjout.TabIndex = 9;
-            this.btnValidAjout.Text = "Valider";
-            this.btnValidAjout.UseVisualStyleBackColor = true;
-            this.btnValidAjout.Visible = false;
-            this.btnValidAjout.Click += new System.EventHandler(this.btnValidAjout_Click);
+            this.menuStrip1.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.paramètreDocumentToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(852, 24);
+            this.menuStrip1.TabIndex = 3;
+            this.menuStrip1.Text = "menuStrip1";
             // 
-            // tbAjoutProfil
+            // paramètreDocumentToolStripMenuItem
             // 
-            this.tbAjoutProfil.Location = new System.Drawing.Point(3, 263);
-            this.tbAjoutProfil.Multiline = true;
-            this.tbAjoutProfil.Name = "tbAjoutProfil";
-            this.tbAjoutProfil.Size = new System.Drawing.Size(106, 40);
-            this.tbAjoutProfil.TabIndex = 7;
-            this.tbAjoutProfil.Visible = false;
+            this.paramètreDocumentToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.devisToolStripMenuItem,
+            this.cFToolStripMenuItem,
+            this.aRToolStripMenuItem,
+            this.bPToolStripMenuItem,
+            this.bLToolStripMenuItem});
+            this.paramètreDocumentToolStripMenuItem.Name = "paramètreDocumentToolStripMenuItem";
+            this.paramètreDocumentToolStripMenuItem.Size = new System.Drawing.Size(130, 20);
+            this.paramètreDocumentToolStripMenuItem.Text = "Paramètre document";
             // 
-            // label3
+            // devisToolStripMenuItem
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(0, 247);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(109, 13);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Nom du profil (Code) :";
-            this.label3.Visible = false;
+            this.devisToolStripMenuItem.Name = "devisToolStripMenuItem";
+            this.devisToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.devisToolStripMenuItem.Text = "Devis";
             // 
-            // btnValiderAjoutPro
+            // cFToolStripMenuItem
             // 
-            this.btnValiderAjoutPro.Location = new System.Drawing.Point(272, 263);
-            this.btnValiderAjoutPro.Name = "btnValiderAjoutPro";
-            this.btnValiderAjoutPro.Size = new System.Drawing.Size(84, 40);
-            this.btnValiderAjoutPro.TabIndex = 10;
-            this.btnValiderAjoutPro.Text = "Valider";
-            this.btnValiderAjoutPro.UseVisualStyleBackColor = true;
-            this.btnValiderAjoutPro.Visible = false;
-            this.btnValiderAjoutPro.Click += new System.EventHandler(this.btnValiderAjoutPro_Click);
+            this.cFToolStripMenuItem.Name = "cFToolStripMenuItem";
+            this.cFToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cFToolStripMenuItem.Text = "CF";
             // 
-            // tbAjoutImprimante
+            // aRToolStripMenuItem
             // 
-            this.tbAjoutImprimante.Location = new System.Drawing.Point(115, 263);
-            this.tbAjoutImprimante.Multiline = true;
-            this.tbAjoutImprimante.Name = "tbAjoutImprimante";
-            this.tbAjoutImprimante.Size = new System.Drawing.Size(131, 40);
-            this.tbAjoutImprimante.TabIndex = 11;
-            this.tbAjoutImprimante.Visible = false;
+            this.aRToolStripMenuItem.Name = "aRToolStripMenuItem";
+            this.aRToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aRToolStripMenuItem.Text = "AR";
             // 
-            // label4
+            // bPToolStripMenuItem
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(115, 247);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(89, 13);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "Nom Imprimante :";
-            this.label4.Visible = false;
+            this.bPToolStripMenuItem.Name = "bPToolStripMenuItem";
+            this.bPToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.bPToolStripMenuItem.Text = "BP";
+            // 
+            // bLToolStripMenuItem
+            // 
+            this.bLToolStripMenuItem.Name = "bLToolStripMenuItem";
+            this.bLToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.bLToolStripMenuItem.Text = "BL";
             // 
             // Form_reglage
             // 
@@ -295,6 +356,8 @@
             this.ClientSize = new System.Drawing.Size(852, 384);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.MaximumSize = new System.Drawing.Size(1500, 423);
             this.MinimumSize = new System.Drawing.Size(863, 423);
             this.Name = "Form_reglage";
@@ -305,6 +368,8 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -331,5 +396,12 @@
         private System.Windows.Forms.TextBox tbAjoutProfil;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tbAjoutImprimante;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem paramètreDocumentToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem devisToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cFToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aRToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bPToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bLToolStripMenuItem;
     }
 }
