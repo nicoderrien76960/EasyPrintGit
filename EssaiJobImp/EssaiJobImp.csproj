@@ -112,6 +112,7 @@
     <Compile Include="BonLivraison.cs" />
     <Compile Include="BonPréparation.cs" />
     <Compile Include="CommandeFournisseur.cs" />
+    <Compile Include="CurseurTemplate.cs" />
     <Compile Include="Devis.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -183,7 +184,9 @@
     <Content Include="profilImpCF.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="profilImpDev.config" />
+    <Content Include="profilImpDev.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="ListeDocument.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -194,6 +197,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="TemplateSetting.config" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

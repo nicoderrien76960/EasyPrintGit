@@ -19,6 +19,7 @@ namespace EssaiJobImp
         private Dictionary<string, string> donneEntete;
         private Dictionary<string, string> donneeBody;
         private Dictionary<string, string> donneeFoot;
+        private Dictionary<string, string> valeurTemplate;
         int iBody; int iFoot; string nomDoc; string unProfil;
         public ParseurBL(Dictionary<string, string>donneeEntete, Dictionary<string, string>donneeBody, Dictionary<string,string>donneeFoot, int iBody, int iFoot, string nomDoc, string profil)
         {
@@ -161,8 +162,19 @@ namespace EssaiJobImp
                 //--------------------------------------------------------------------------------------------------------
                 //                                      TABLEAU
                 //----------------------------------------------------------------------------------------------------
+                CurseurTemplate ct = new CurseurTemplate();
+                valeurTemplate = ct.chercher("BL");
 
-                float[] largeurs = { 15, 42, 6, 9, 8, 9, 10, 11 };
+                float[] largeurs = { 
+                                   int.Parse(valeurTemplate["Dimension1"]),
+                                   int.Parse(valeurTemplate["Dimension2"]),
+                                   int.Parse(valeurTemplate["Dimension3"]),
+                                   int.Parse(valeurTemplate["Dimension4"]),
+                                   int.Parse(valeurTemplate["Dimension5"]),
+                                   int.Parse(valeurTemplate["Dimension6"]),
+                                   int.Parse(valeurTemplate["Dimension7"]),
+                                   int.Parse(valeurTemplate["Dimension8"])
+                               };  
                 PdfPTable table = new PdfPTable(largeurs);
                 table.TotalWidth = 545;                                                                                         //Chaque colonne crée ci dessus doit être rempli
                 table.LockedWidth = true;

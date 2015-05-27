@@ -22,6 +22,7 @@ namespace EssaiJobImp
         private Dictionary<string, string> donneEntete;
         private Dictionary<string, string> donneeBody;
         private Dictionary<string, string> donneeFoot;
+        private Dictionary<string, string> valeurTemplate;
         int iBody; int iFoot; string nomDoc; string unProfil;
         public Parseur(Dictionary<string, string>donneeEntete, Dictionary<string, string>donneeBody, Dictionary<string,string>donneeFoot, int iBody, int iFoot, string nomDoc, string profil)
         {
@@ -123,7 +124,20 @@ namespace EssaiJobImp
             pRécap.Add(ligneEspace);
             nouveauDocument.Add(pRécap);
 
-            float[] largeurs = { 16, 42, 5, 8, 8, 8, 10, 9, 4 };                              // Dimension tableau body
+            CurseurTemplate ct = new CurseurTemplate();
+            valeurTemplate = ct.chercher("Devis");
+
+            float[] largeurs = { 
+                                   int.Parse(valeurTemplate["Dimension1"]),
+                                   int.Parse(valeurTemplate["Dimension2"]),
+                                   int.Parse(valeurTemplate["Dimension3"]),
+                                   int.Parse(valeurTemplate["Dimension4"]),
+                                   int.Parse(valeurTemplate["Dimension5"]),
+                                   int.Parse(valeurTemplate["Dimension6"]),
+                                   int.Parse(valeurTemplate["Dimension7"]),
+                                   int.Parse(valeurTemplate["Dimension8"]),
+                                   int.Parse(valeurTemplate["Dimension9"]) 
+                               };                              // Dimension tableau body
 
             PdfPTable table = new PdfPTable(largeurs);
             table.TotalWidth = 555;                                                                                         //Chaque colonne crée ci dessus doit être rempli
@@ -197,7 +211,7 @@ namespace EssaiJobImp
                     table.AddCell(cell6);
                     PdfPCell cell7 = new PdfPCell(new Phrase(donneeBody["Art_remise1" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell7.Border = PdfPCell.NO_BORDER; cell7.Border += PdfPCell.RIGHT_BORDER; cell7.Border += PdfPCell.LEFT_BORDER;
                     table.AddCell(cell7);
-                    PdfPCell cell8 = new PdfPCell(new Phrase(donneeBody["Art_prinet" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell8.Border = PdfPCell.NO_BORDER; cell8.Border += PdfPCell.RIGHT_BORDER; cell8.Border += PdfPCell.LEFT_BORDER;
+                    PdfPCell cell8 = new PdfPCell(new Phrase(double.Parse(donneeBody["Art_prinet" + i]).ToString("N2") + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell8.Border = PdfPCell.NO_BORDER; cell8.Border += PdfPCell.RIGHT_BORDER; cell8.Border += PdfPCell.LEFT_BORDER;
                     table.AddCell(cell8);
                     PdfPCell cell9 = new PdfPCell(new Phrase(donneeBody["Art_monht" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell9.Border = PdfPCell.NO_BORDER; cell9.Border += PdfPCell.RIGHT_BORDER; cell9.Border += PdfPCell.LEFT_BORDER;
                     table.AddCell(cell9);
