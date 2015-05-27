@@ -143,7 +143,7 @@ namespace EssaiJobImp
                                 else
                                 {
                                     break;
-
+                                    System.IO.File.Delete(destFile);
                                 }
                                 supOk = false;
                             }
