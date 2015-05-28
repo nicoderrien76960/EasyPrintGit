@@ -135,6 +135,9 @@ namespace EssaiJobImp
                                         case "RETOUR FOURNISSEUR":
                                             CommandeFournisseur rCF = new CommandeFournisseur(); rCF.lectureCF(cheminDoc, profil);
                                             break;
+                                        case "AVOIR":
+                                            BonLivraison BL3 = new BonLivraison(); BL3.lectureBL(cheminDoc,profil);
+                                            break;
                                         case null:
                                             break;
                                     }

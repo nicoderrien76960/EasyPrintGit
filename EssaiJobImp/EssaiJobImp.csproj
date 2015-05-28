@@ -126,6 +126,12 @@
     <Compile Include="Form_reglage.Designer.cs">
       <DependentUpon>Form_reglage.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmDevis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDevis.Designer.cs">
+      <DependentUpon>FrmDevis.cs</DependentUpon>
+    </Compile>
     <Compile Include="GestionListeDoc.cs" />
     <Compile Include="Imprimante.cs" />
     <Compile Include="LogHelper.cs" />

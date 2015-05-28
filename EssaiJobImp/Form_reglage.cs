@@ -18,6 +18,8 @@ namespace EssaiJobImp
         {
             InitializeComponent();
             dicoProfil=remplirLB();
+            splitContainer2.Panel2Collapsed = true;
+            splitContainer2.Panel2.Hide();   
         }
         public Dictionary<String,List<String>> remplirLB()
         {
@@ -44,10 +46,8 @@ namespace EssaiJobImp
                     {
                         cBProfil.Items.Add(v.Key.ToString());
                     }
-                    
                 }
             }
-
             return listeProfil;
         }
         public void remplirLBImprimante(string value)
@@ -88,7 +88,6 @@ namespace EssaiJobImp
             btn_Valider.Visible = false;
             label2.Visible = false;           
         }
-
         private void btn_AjoutImp_Click(object sender, EventArgs e)
         {
             string document = dicoProfil.Keys.ElementAt(lBProfil.SelectedIndex).ToString();
@@ -96,7 +95,6 @@ namespace EssaiJobImp
             btnValidAjout.Visible = true;
             tBModifImp.Visible = true;
         }
-
         private void btn_ModifImp_Click(object sender, EventArgs e)
         {
             if (lBImprimante.SelectedItem!=null)
@@ -107,7 +105,6 @@ namespace EssaiJobImp
                 tBModifImp.Visible = true;
             }
         }
-
         private void btnValidAjout_Click(object sender, EventArgs e)
         {
             string document = dicoProfil.Keys.ElementAt(lBProfil.SelectedIndex).ToString();
@@ -122,7 +119,6 @@ namespace EssaiJobImp
             label2.Visible = false;
             this.Update();
         }
-
         private void btnAjoutProfil_Click(object sender, EventArgs e)
         {
             label3.Visible = true;
@@ -132,9 +128,8 @@ namespace EssaiJobImp
             tbAjoutImprimante.Visible = true;
             this.Update();
         }
-
         private void btnValiderAjoutPro_Click(object sender, EventArgs e)
-        {
+        {   
             string document = dicoProfil.Keys.ElementAt(lBProfil.SelectedIndex).ToString();
             bool result = list.AjouteUser(document, tbAjoutProfil.Text.ToString(), tbAjoutImprimante.Text.ToString());
             if (result == true)
@@ -149,7 +144,6 @@ namespace EssaiJobImp
             tbAjoutImprimante.Visible = false;
             this.Update();
         }
-
         private void btnSupProfil_Click(object sender, EventArgs e)
         {
             string document = dicoProfil.Keys.ElementAt(lBProfil.SelectedIndex).ToString();
@@ -161,7 +155,6 @@ namespace EssaiJobImp
             else { MessageBox.Show("Erreur lors de la supression"); }
             this.Update();
         }
-
         private void btn_SupImp_Click(object sender, EventArgs e)
         {
             string document = dicoProfil.Keys.ElementAt(lBProfil.SelectedIndex).ToString();
@@ -174,5 +167,9 @@ namespace EssaiJobImp
             this.Update();
         }
 
+        private void btnImprimante_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

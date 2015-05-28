@@ -47,18 +47,20 @@
             this.btn_ModifImp = new System.Windows.Forms.Button();
             this.btn_AjoutImp = new System.Windows.Forms.Button();
             this.lBImprimante = new System.Windows.Forms.ListBox();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.paramètreDocumentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.devisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.btnImprimante = new System.Windows.Forms.Button();
+            this.btnDevis = new System.Windows.Forms.Button();
+            this.btnBL = new System.Windows.Forms.Button();
+            this.btnCF = new System.Windows.Forms.Button();
+            this.btnBP = new System.Windows.Forms.Button();
+            this.btnAR = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -69,7 +71,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Brown;
             this.label1.Font = new System.Drawing.Font("Lucida Sans", 21.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(226, 24);
+            this.label1.Location = new System.Drawing.Point(307, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(402, 33);
             this.label1.TabIndex = 0;
@@ -85,17 +87,16 @@
             this.cBProfil.FormattingEnabled = true;
             this.cBProfil.Location = new System.Drawing.Point(13, 14);
             this.cBProfil.Name = "cBProfil";
-            this.cBProfil.Size = new System.Drawing.Size(305, 22);
+            this.cBProfil.Size = new System.Drawing.Size(308, 22);
             this.cBProfil.TabIndex = 1;
             this.cBProfil.SelectedIndexChanged += new System.EventHandler(this.cBProfil_SelectedIndexChanged);
             this.cBProfil.SelectedValueChanged += new System.EventHandler(this.cBProfil_SelectedIndexChanged);
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(11, 62);
+            this.splitContainer1.Location = new System.Drawing.Point(210, 62);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -122,8 +123,8 @@
             this.splitContainer1.Panel2.Controls.Add(this.btn_AjoutImp);
             this.splitContainer1.Panel2.Controls.Add(this.lBImprimante);
             this.splitContainer1.Panel2.Controls.Add(this.cBProfil);
-            this.splitContainer1.Size = new System.Drawing.Size(836, 310);
-            this.splitContainer1.SplitterDistance = 364;
+            this.splitContainer1.Size = new System.Drawing.Size(840, 310);
+            this.splitContainer1.SplitterDistance = 365;
             this.splitContainer1.TabIndex = 2;
             // 
             // label4
@@ -207,7 +208,7 @@
             this.lBProfil.Location = new System.Drawing.Point(15, 14);
             this.lBProfil.MultiColumn = true;
             this.lBProfil.Name = "lBProfil";
-            this.lBProfil.Size = new System.Drawing.Size(341, 144);
+            this.lBProfil.Size = new System.Drawing.Size(342, 144);
             this.lBProfil.TabIndex = 0;
             this.lBProfil.SelectedIndexChanged += new System.EventHandler(this.lBProfil_SelectedIndexChanged);
             // 
@@ -292,72 +293,91 @@
             this.lBImprimante.ItemHeight = 14;
             this.lBImprimante.Location = new System.Drawing.Point(13, 56);
             this.lBImprimante.Name = "lBImprimante";
-            this.lBImprimante.Size = new System.Drawing.Size(305, 74);
+            this.lBImprimante.Size = new System.Drawing.Size(308, 74);
             this.lBImprimante.TabIndex = 2;
             // 
-            // menuStrip1
+            // splitContainer2
             // 
-            this.menuStrip1.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.paramètreDocumentToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(852, 24);
-            this.menuStrip1.TabIndex = 3;
-            this.menuStrip1.Text = "menuStrip1";
+            this.splitContainer2.Location = new System.Drawing.Point(12, 62);
+            this.splitContainer2.Name = "splitContainer2";
             // 
-            // paramètreDocumentToolStripMenuItem
+            // splitContainer2.Panel1
             // 
-            this.paramètreDocumentToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.devisToolStripMenuItem,
-            this.cFToolStripMenuItem,
-            this.aRToolStripMenuItem,
-            this.bPToolStripMenuItem,
-            this.bLToolStripMenuItem});
-            this.paramètreDocumentToolStripMenuItem.Name = "paramètreDocumentToolStripMenuItem";
-            this.paramètreDocumentToolStripMenuItem.Size = new System.Drawing.Size(130, 20);
-            this.paramètreDocumentToolStripMenuItem.Text = "Paramètre document";
+            this.splitContainer2.Panel1.BackColor = System.Drawing.Color.Brown;
+            this.splitContainer2.Panel1.Controls.Add(this.btnAR);
+            this.splitContainer2.Panel1.Controls.Add(this.btnBP);
+            this.splitContainer2.Panel1.Controls.Add(this.btnCF);
+            this.splitContainer2.Panel1.Controls.Add(this.btnBL);
+            this.splitContainer2.Panel1.Controls.Add(this.btnDevis);
+            this.splitContainer2.Panel1.Controls.Add(this.btnImprimante);
+            this.splitContainer2.Size = new System.Drawing.Size(192, 310);
+            this.splitContainer2.SplitterDistance = 163;
+            this.splitContainer2.TabIndex = 4;
             // 
-            // devisToolStripMenuItem
+            // btnImprimante
             // 
-            this.devisToolStripMenuItem.Name = "devisToolStripMenuItem";
-            this.devisToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.devisToolStripMenuItem.Text = "Devis";
+            this.btnImprimante.Location = new System.Drawing.Point(20, 47);
+            this.btnImprimante.Name = "btnImprimante";
+            this.btnImprimante.Size = new System.Drawing.Size(156, 32);
+            this.btnImprimante.TabIndex = 0;
+            this.btnImprimante.Text = "Imprimante";
+            this.btnImprimante.UseVisualStyleBackColor = true;
+            this.btnImprimante.Click += new System.EventHandler(this.btnImprimante_Click);
             // 
-            // cFToolStripMenuItem
+            // btnDevis
             // 
-            this.cFToolStripMenuItem.Name = "cFToolStripMenuItem";
-            this.cFToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.cFToolStripMenuItem.Text = "CF";
+            this.btnDevis.Location = new System.Drawing.Point(20, 85);
+            this.btnDevis.Name = "btnDevis";
+            this.btnDevis.Size = new System.Drawing.Size(156, 32);
+            this.btnDevis.TabIndex = 1;
+            this.btnDevis.Text = "Devis";
+            this.btnDevis.UseVisualStyleBackColor = true;
             // 
-            // aRToolStripMenuItem
+            // btnBL
             // 
-            this.aRToolStripMenuItem.Name = "aRToolStripMenuItem";
-            this.aRToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.aRToolStripMenuItem.Text = "AR";
+            this.btnBL.Location = new System.Drawing.Point(20, 123);
+            this.btnBL.Name = "btnBL";
+            this.btnBL.Size = new System.Drawing.Size(156, 32);
+            this.btnBL.TabIndex = 2;
+            this.btnBL.Text = "BL";
+            this.btnBL.UseVisualStyleBackColor = true;
             // 
-            // bPToolStripMenuItem
+            // btnCF
             // 
-            this.bPToolStripMenuItem.Name = "bPToolStripMenuItem";
-            this.bPToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.bPToolStripMenuItem.Text = "BP";
+            this.btnCF.Location = new System.Drawing.Point(20, 161);
+            this.btnCF.Name = "btnCF";
+            this.btnCF.Size = new System.Drawing.Size(156, 32);
+            this.btnCF.TabIndex = 3;
+            this.btnCF.Text = "CF";
+            this.btnCF.UseVisualStyleBackColor = true;
             // 
-            // bLToolStripMenuItem
+            // btnBP
             // 
-            this.bLToolStripMenuItem.Name = "bLToolStripMenuItem";
-            this.bLToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.bLToolStripMenuItem.Text = "BL";
+            this.btnBP.Location = new System.Drawing.Point(20, 199);
+            this.btnBP.Name = "btnBP";
+            this.btnBP.Size = new System.Drawing.Size(156, 32);
+            this.btnBP.TabIndex = 4;
+            this.btnBP.Text = "BP";
+            this.btnBP.UseVisualStyleBackColor = true;
+            // 
+            // btnAR
+            // 
+            this.btnAR.Location = new System.Drawing.Point(20, 237);
+            this.btnAR.Name = "btnAR";
+            this.btnAR.Size = new System.Drawing.Size(156, 32);
+            this.btnAR.TabIndex = 6;
+            this.btnAR.Text = "AR";
+            this.btnAR.UseVisualStyleBackColor = true;
             // 
             // Form_reglage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkRed;
-            this.ClientSize = new System.Drawing.Size(852, 384);
+            this.ClientSize = new System.Drawing.Size(1055, 384);
+            this.Controls.Add(this.splitContainer2);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
             this.MaximumSize = new System.Drawing.Size(1500, 423);
             this.MinimumSize = new System.Drawing.Size(863, 423);
             this.Name = "Form_reglage";
@@ -368,8 +388,9 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -396,12 +417,12 @@
         private System.Windows.Forms.TextBox tbAjoutProfil;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tbAjoutImprimante;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem paramètreDocumentToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem devisToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cFToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aRToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem bPToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem bLToolStripMenuItem;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.Button btnAR;
+        private System.Windows.Forms.Button btnBP;
+        private System.Windows.Forms.Button btnCF;
+        private System.Windows.Forms.Button btnBL;
+        private System.Windows.Forms.Button btnDevis;
+        private System.Windows.Forms.Button btnImprimante;
     }
 }
