@@ -11,8 +11,6 @@ namespace EssaiJobImp
 {
     public partial class Form_reglage : Form
     {
-        UserControlImprimante UCI = new UserControlImprimante();
-        
         public Form_reglage()
         {
             InitializeComponent();
@@ -21,9 +19,38 @@ namespace EssaiJobImp
         }
         private void btnImprimante_Click(object sender, EventArgs e)
         {
+            UserControlImprimante UCI = new UserControlImprimante();
             splitContainer1.Panel1.Controls.Clear();
+            splitContainer1.Panel2.Controls.Clear();
             splitContainer1.Panel1.Controls.Add(UCI); 
             UCI.dicoProfil = UCI.remplirLB();
+        }
+
+        private void btnDevis_Click(object sender, EventArgs e)
+        {
+            UserControlDevis UCD = new UserControlDevis();
+            splitContainer1.Panel1.Controls.Clear();
+            splitContainer1.Panel2.Controls.Clear();
+            splitContainer1.Panel2Collapsed = true;
+            splitContainer1.Panel1.Controls.Add(UCD);
+        }
+
+        private void btnAR_Click(object sender, EventArgs e)
+        {
+            UserControlAR UCAR = new UserControlAR();
+            splitContainer1.Panel1.Controls.Clear();
+            splitContainer1.Panel2.Controls.Clear();
+            splitContainer1.Panel2Collapsed = true;
+            splitContainer1.Panel1.Controls.Add(UCAR);
+        }
+
+        private void btnBP_Click(object sender, EventArgs e)
+        {
+            UserControlBP UCBP = new UserControlBP();
+            splitContainer1.Panel1.Controls.Clear();
+            splitContainer1.Panel2.Controls.Clear();
+            splitContainer1.Panel2Collapsed = true;
+            splitContainer1.Panel1.Controls.Add(UCBP);
         }
     }
 }

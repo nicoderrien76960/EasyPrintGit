@@ -145,8 +145,8 @@ namespace EssaiJobImp
                                 }
                                 else
                                 {
-                                    break;
                                     System.IO.File.Delete(destFile);
+                                    break;
                                 }
                                 supOk = false;
                             }

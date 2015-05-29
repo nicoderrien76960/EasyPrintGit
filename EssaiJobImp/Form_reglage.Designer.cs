@@ -103,6 +103,7 @@
             this.btnAR.TabIndex = 6;
             this.btnAR.Text = "AR";
             this.btnAR.UseVisualStyleBackColor = true;
+            this.btnAR.Click += new System.EventHandler(this.btnAR_Click);
             // 
             // btnBP
             // 
@@ -112,6 +113,7 @@
             this.btnBP.TabIndex = 4;
             this.btnBP.Text = "BP";
             this.btnBP.UseVisualStyleBackColor = true;
+            this.btnBP.Click += new System.EventHandler(this.btnBP_Click);
             // 
             // btnCF
             // 
@@ -139,6 +141,7 @@
             this.btnDevis.TabIndex = 1;
             this.btnDevis.Text = "Devis";
             this.btnDevis.UseVisualStyleBackColor = true;
+            this.btnDevis.Click += new System.EventHandler(this.btnDevis_Click);
             // 
             // btnImprimante
             // 

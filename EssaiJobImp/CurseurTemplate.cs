@@ -43,7 +43,7 @@ namespace EssaiJobImp
             XPathNodeIterator Nodes;
             XmlDoc.Load("TemplateSetting.config");
             Navigator = XmlDoc.CreateNavigator();
-            string ExpXPath = "//P[@nom='" + typeDoc + "' and Code ='"+valeur+"']";
+            string ExpXPath = "//P[@nom='" + typeDoc + "' and Code ='"+code+"']";
             Nodes = Navigator.Select(Navigator.Compile(ExpXPath));
             if (Nodes.Count != 0)
             {
