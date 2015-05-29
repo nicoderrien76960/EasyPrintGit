@@ -123,6 +123,7 @@
             this.btnCF.TabIndex = 3;
             this.btnCF.Text = "CF";
             this.btnCF.UseVisualStyleBackColor = true;
+            this.btnCF.Click += new System.EventHandler(this.btnCF_Click);
             // 
             // btnBL
             // 
@@ -132,6 +133,7 @@
             this.btnBL.TabIndex = 2;
             this.btnBL.Text = "BL";
             this.btnBL.UseVisualStyleBackColor = true;
+            this.btnBL.Click += new System.EventHandler(this.btnBL_Click);
             // 
             // btnDevis
             // 

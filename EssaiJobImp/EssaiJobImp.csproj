@@ -144,11 +144,23 @@
     <Compile Include="UserControlAR.Designer.cs">
       <DependentUpon>UserControlAR.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControlBL.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControlBL.Designer.cs">
+      <DependentUpon>UserControlBL.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControlBP.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControlBP.Designer.cs">
       <DependentUpon>UserControlBP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlCF.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControlCF.Designer.cs">
+      <DependentUpon>UserControlCF.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControlDevis.cs">
       <SubType>UserControl</SubType>
@@ -205,8 +217,14 @@
     <EmbeddedResource Include="UserControlAR.resx">
       <DependentUpon>UserControlAR.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControlBL.resx">
+      <DependentUpon>UserControlBL.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControlBP.resx">
       <DependentUpon>UserControlBP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControlCF.resx">
+      <DependentUpon>UserControlCF.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControlDevis.resx">
       <DependentUpon>UserControlDevis.cs</DependentUpon>
