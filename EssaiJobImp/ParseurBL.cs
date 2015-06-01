@@ -172,7 +172,6 @@ namespace EssaiJobImp
                 //----------------------------------------------------------------------------------------------------
                 CurseurTemplate ct = new CurseurTemplate();
                 valeurTemplate = ct.chercher("BL");
-
                 float[] largeurs = { 
                                    int.Parse(valeurTemplate["Dimension1"]),
                                    int.Parse(valeurTemplate["Dimension2"]),
