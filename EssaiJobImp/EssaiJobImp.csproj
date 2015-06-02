@@ -114,6 +114,7 @@
     <Compile Include="CommandeFournisseur.cs" />
     <Compile Include="CurseurTemplate.cs" />
     <Compile Include="Devis.cs" />
+    <Compile Include="Facturation.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -236,6 +237,7 @@
     <EmbeddedResource Include="UserControlImprimanteProfil.resx">
       <DependentUpon>UserControlImprimanteProfil.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="baliseConfFacturation.config" />
     <None Include="ClassDiagram1.cd" />
     <None Include="EssaiJobImp_CléTemporaire.pfx" />
     <Content Include="profilImpAR.config" />

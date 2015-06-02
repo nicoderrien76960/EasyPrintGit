@@ -391,7 +391,7 @@ namespace EssaiJobImp
                     //--------------------------------------------GESTION DU SAUT DE PAGE-------------------------------------------------------------------------------------------
                     float temp = table.TotalHeight;
                     dimTab = temp;
-                    if (dimTab >= 410 && i < iBody)
+                    if (dimTab >= 400 && i <= iBody)
                     {
                         //Saut de page
                         numPage++;

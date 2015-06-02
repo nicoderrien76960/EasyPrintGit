@@ -33,8 +33,8 @@ namespace EssaiJobImp
                 {
                     if (pq.FullName == nomIMP)//Condition sur imprimante qui a créer l'objet Imprimante
                     {
-                        try
-                        {
+                       // try
+                        //{
                             int filecount = files.GetUpperBound(0) + 1;  //Nombre de fichier contenu dans le spool
                             for (int i = 0; i < filecount; i++)//Nombre de fichier dans dossier spool
                             {
@@ -138,6 +138,9 @@ namespace EssaiJobImp
                                         case "AVOIR":
                                             BonLivraison BL3 = new BonLivraison(); BL3.lectureBL(cheminDoc,profil);
                                             break;
+                                        case "FACTURE":
+                                            Facturation FA = new Facturation(); FA.lectureFA(cheminDoc,profil);
+                                            break;
                                         case null:
                                             break;
                                     }
@@ -150,12 +153,12 @@ namespace EssaiJobImp
                                 }
                                 supOk = false;
                             }
-                        }
-                        catch (Exception e)
+                        //}
+                       /* catch (Exception e)
                         {
                             //Inscrit dans un fichier les differente erreur
                             LogHelper.WriteToFile(e.Message, "Imprimante " + nomDoc);
-                        }
+                        }*/
                     }
                 }
         }
