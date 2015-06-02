@@ -36,7 +36,7 @@ namespace EssaiJobImp
         public void miseEnForm(string typeDoc)
         {
             int incCopie = 0;
-            int nbCopie = int.Parse(donneEntete["Nombre_copies"]);
+            int nbCopie = 1;
             while (incCopie < nbCopie)
             {
                 string chemin = "E:\\DocFinaux\\Facturation\\" + nomDoc + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf";
@@ -66,10 +66,12 @@ namespace EssaiJobImp
                 //Celulle de droite contenant l'adresse de livraison
                 Paragraph pAdl = new Paragraph();
                 //pAdl.Add(new Phrase("Adresse de livraison\n\n", FontFactory.GetFont(FontFactory.HELVETICA, 11, Font.BOLD)));
+                if (donneEntete.ContainsKey("Tiers_adl1"))
+                {
                     if (donneEntete["Tiers_adl1"] == "")
                     {
                         pAdl.Add(new Phrase("\n    \n"));
-                        pAdl.Add(new Phrase("\n"+donneEntete["Tiers_adf1"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.BOLD)));
+                        pAdl.Add(new Phrase("\n" + donneEntete["Tiers_adf1"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.BOLD)));
                         pAdl.Add(new Phrase(donneEntete["Tiers_adf2"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.BOLD)));
                         pAdl.Add(new Phrase(donneEntete["Tiers_adf3"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.BOLD)));
                         pAdl.Add(new Phrase(donneEntete["Tiers_adf4"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.BOLD)));
@@ -79,13 +81,14 @@ namespace EssaiJobImp
                     else
                     {
                         pAdl.Add(new Phrase("\n    \n"));
-                        pAdl.Add(new Phrase("\n"+donneEntete["Tiers_adl1"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.BOLD)));
+                        pAdl.Add(new Phrase("\n" + donneEntete["Tiers_adl1"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.BOLD)));
                         pAdl.Add(new Phrase(donneEntete["Tiers_adl2"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.BOLD)));
                         pAdl.Add(new Phrase(donneEntete["Tiers_adl3"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.BOLD)));
                         pAdl.Add(new Phrase(donneEntete["Tiers_adl4"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.BOLD)));
                         pAdl.Add(new Phrase(donneEntete["Tiers_adlcp"] + "   " + donneEntete["Tiers_adl6"], FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.BOLD)));
                         //pAdl.Add(new Phrase("\n\nAdresse de facturation\n\n", FontFactory.GetFont(FontFactory.HELVETICA, 11, Font.BOLD)));
                     }
+                }
                 PdfPCell celulleFinDroite = new PdfPCell(pAdl);
                 celulleFinDroite.Bottom = PdfPCell.ALIGN_BOTTOM;
                 celulleFinDroite.Rowspan = 2;
@@ -138,8 +141,13 @@ namespace EssaiJobImp
                 refCli.Add(new Phrase("Référence client " + donneeBody["Bon_rcl1"] + " du " + donneeBody["Bon_datrcl1"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.BOLD)));
                 nouveauDocument.Add(refCli);*/
                 //Recap dessus tableau
-                Phrase c = new Phrase("\nVous avez été servi par : " + donneEntete["Bon_vendeur_lib"] + "                                                                                                                                       \n", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.ITALIC));
-                nouveauDocument.Add(c);
+                Phrase c = null;
+                if (donneEntete.ContainsKey("Bon_vendeur_lib"))
+                {
+                    c = new Phrase("\nVous avez été servi par : " + donneEntete["Bon_vendeur_lib"] + "                                                                                                                                       \n", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.ITALIC));
+                    nouveauDocument.Add(c);
+                }
+                else { c = new Phrase("\n "); }
                 Phrase pPage1 = new Phrase("\n                                                   " + donneEntete["Document_type"] + "                 " + donneEntete["Duplicata"] + "                                                                            Page n° 1           \n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD));
                 pPage1.Leading = 10;
                 nouveauDocument.Add(pPage1);
@@ -525,7 +533,7 @@ namespace EssaiJobImp
                 nouveauDocument.Close();
                 incCopie++;
 
-                int nbImp = 0; int nbImpOK = 0;
+                /*int nbImp = 0; int nbImpOK = 0;
                 string[] printer = new string[20]; // tableau qui contient les imprimantes du profil d'impression
                 ProfilImprimante profil = new ProfilImprimante();
                 profil.chargementXML("AR");     // chargement selon le type de doc
@@ -573,7 +581,7 @@ namespace EssaiJobImp
                     catch (Exception e)
                     { LogHelper.WriteToFile(e.Message, "ParseurBP" + donneEntete["Document_numero"].Trim()); }
                     // incrément à chaque impression terminée
-                }
+                }*/
             }
         }
     }

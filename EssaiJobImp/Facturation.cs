@@ -69,7 +69,7 @@ namespace EssaiJobImp
             XmlNode entete = root.SelectSingleNode("descendant::Document_entete");
             XmlNode lignes = root.SelectSingleNode("descendant::Lignes");
             XmlNode pied = root.SelectSingleNode("descendant::Document_pied");
-            foreach (XmlNode noeud in doc)
+            /*foreach (XmlNode noeud in doc)
             {
                 foreach (string s in baliseEntete)                                              //--------------------------------
                 {                                                                               //
@@ -78,7 +78,7 @@ namespace EssaiJobImp
                         donneeEntete.Add(s, noeud.InnerText);                                   //          Parseur donnée Doc 
                     }                                                                           //
                 }                                                                               //
-            }                                                                                   //---------------------------------
+            }        */                                                                           //---------------------------------
             foreach (XmlNode noeud in entete)                                                   //---------------------------------
             {                                                                                   //
                 foreach (string s in baliseEntete)                                              //

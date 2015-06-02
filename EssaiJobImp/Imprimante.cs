@@ -69,16 +69,41 @@ namespace EssaiJobImp
                                     string[] text = System.IO.File.ReadAllLines(files[i]);
                                     string patternLectFalse = "(%-12345X@PJL JOB NAME|\\210-SERVIMP|&l26A)";//Premier caractère qui apparait sur les documents en cours d'impression
                                     string sPattern = "<Spool>";
-                                    string sPatternTypeDoc = "<Document_type>"; bool patternOK = true;
+                                    string sPatternTypeDoc = "<Document_type>"; bool patternOK = true; bool patternOK2 = false; bool découpageOK = true; int controle = 0; int test = 0;
+                                    string sPatternTypeDoc2 ="<Document type=\"DOC_CLIENT\" doc=\"FACTURE ";
+                                    StreamWriter sr = null;
                                     foreach (string s in text)//Analyse ligne du document actuel
                                     {
+                                        controle++;
                                         //Premier tri si le document lu est en fait l'impression final d'un doc déjà traité, ne pas le lire et passer au suivant
                                         if ((System.Text.RegularExpressions.Regex.IsMatch(s, patternLectFalse, System.Text.RegularExpressions.RegexOptions.IgnoreCase) == false) && patternOK == true)
                                         {
-                                            //Regex type de document
-                                            if (System.Text.RegularExpressions.Regex.IsMatch(s, sPatternTypeDoc, System.Text.RegularExpressions.RegexOptions.IgnoreCase))
+
+                                            if (System.Text.RegularExpressions.Regex.IsMatch(s, "<Document type=\"DOC_CLIENT\" doc=\"FACTURE ", System.Text.RegularExpressions.RegexOptions.IgnoreCase))
+                                            { 
+                                                découpageOK = false;
+                                                sr = new StreamWriter(@"E:\Copie spool\tempo"+test+".SPL");
+                                            }
+                                            if (System.Text.RegularExpressions.Regex.IsMatch(s, "</Document>", System.Text.RegularExpressions.RegexOptions.IgnoreCase))
                                             {
-                                                typeDoc = s.Substring(24, (s.IndexOf(']') - 24));
+                                                sr.WriteLine(s);
+                                                découpageOK = true; }
+                                            if (découpageOK == false)
+                                            { sr.WriteLine(s); }
+                                            if ((découpageOK == true) && (sr!=null))
+                                            {sr.Close(); test++; }
+                                            //Regex type de document
+                                            if (System.Text.RegularExpressions.Regex.IsMatch(s, sPatternTypeDoc2, System.Text.RegularExpressions.RegexOptions.IgnoreCase))
+                                            {
+                                                typeDoc = "FACTURE";
+                                                patternOK2 = true;
+                                            }
+                                            else
+                                            {
+                                                if (System.Text.RegularExpressions.Regex.IsMatch(s, sPatternTypeDoc, System.Text.RegularExpressions.RegexOptions.IgnoreCase)&& patternOK2==false)
+                                                {
+                                                    typeDoc = s.Substring(24, (s.IndexOf(']') - 24));
+                                                }
                                             }
                                             //Regex balise <spool>\ prévoir changement du regex dans les fichiers de conf
                                             if (System.Text.RegularExpressions.Regex.IsMatch(s, sPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase))
@@ -108,43 +133,89 @@ namespace EssaiJobImp
                                             }
                                         }
                                         else
-                                        { patternOK = false; typeDoc = null; System.IO.File.Delete(sourceFile); }
+                                        { patternOK = false; typeDoc = null; System.IO.File.Delete(sourceFile); patternOK2 = false; }
                                         nomDoc = nomFichier;
                                     }
                                     cheminDoc = destFile;
-                                    switch (typeDoc.TrimStart())
+                                    if (test != 0)
                                     {
-                                        case "DEVIS":
-                                            Devis dev = new Devis(); dev.lectureDevis(cheminDoc, profil);
-                                            break;
-                                        case "BORDEREAU DE LIVRAISON":
-                                            BonLivraison BL = new BonLivraison(); BL.lectureBL(cheminDoc, profil);
-                                            break;
-                                        case "BON D'ENLEVEMENT":
-                                            BonLivraison BL2 = new BonLivraison(); BL2.lectureBL(cheminDoc, profil);
-                                            break;
-                                        case "BON DE PREPARATION":
-                                            BonPréparation BP = new BonPréparation(); BP.lectureBP(cheminDoc, profil);
-                                            break;
-                                        case "COMMANDE ADHERENT":
-                                            AccuseReception AR = new AccuseReception(); AR.lectureAR(cheminDoc, profil);
-                                            break;
-                                        case "BON DE COMMANDE FOURNISSEUR":
-                                            CommandeFournisseur CF = new CommandeFournisseur(); CF.lectureCF(cheminDoc, profil);
-                                            break;
-                                        case "RETOUR FOURNISSEUR":
-                                            CommandeFournisseur rCF = new CommandeFournisseur(); rCF.lectureCF(cheminDoc, profil);
-                                            break;
-                                        case "AVOIR":
-                                            BonLivraison BL3 = new BonLivraison(); BL3.lectureBL(cheminDoc,profil);
-                                            break;
-                                        case "FACTURE":
-                                            Facturation FA = new Facturation(); FA.lectureFA(cheminDoc,profil);
-                                            break;
-                                        case null:
-                                            break;
+                                        int compteur=0;
+                                        while (compteur < (test-3))
+                                        {
+                                            cheminDoc = @"E:\Copie spool\tempo" + compteur + ".SPL";
+                                            destFile = @"E:\Copie spool\tempo" + compteur + ".SPL";
+                                            switch (typeDoc.TrimStart())
+                                            {
+                                                case "DEVIS":
+                                                    Devis dev = new Devis(); dev.lectureDevis(cheminDoc, profil);
+                                                    break;
+                                                case "BORDEREAU DE LIVRAISON":
+                                                    BonLivraison BL = new BonLivraison(); BL.lectureBL(cheminDoc, profil);
+                                                    break;
+                                                case "BON D'ENLEVEMENT":
+                                                    BonLivraison BL2 = new BonLivraison(); BL2.lectureBL(cheminDoc, profil);
+                                                    break;
+                                                case "BON DE PREPARATION":
+                                                    BonPréparation BP = new BonPréparation(); BP.lectureBP(cheminDoc, profil);
+                                                    break;
+                                                case "COMMANDE ADHERENT":
+                                                    AccuseReception AR = new AccuseReception(); AR.lectureAR(cheminDoc, profil);
+                                                    break;
+                                                case "BON DE COMMANDE FOURNISSEUR":
+                                                    CommandeFournisseur CF = new CommandeFournisseur(); CF.lectureCF(cheminDoc, profil);
+                                                    break;
+                                                case "RETOUR FOURNISSEUR":
+                                                    CommandeFournisseur rCF = new CommandeFournisseur(); rCF.lectureCF(cheminDoc, profil);
+                                                    break;
+                                                case "AVOIR":
+                                                    BonLivraison BL3 = new BonLivraison(); BL3.lectureBL(cheminDoc, profil);
+                                                    break;
+                                                case "FACTURE":
+                                                    Facturation FA = new Facturation(); FA.lectureFA(cheminDoc, profil);
+                                                    break;
+                                                case null:
+                                                    break;
+                                            }
+                                            compteur++;
+                                            System.IO.File.Delete(destFile);
+                                        }
                                     }
-                                    System.IO.File.Delete(destFile);
+                                    else
+                                    {
+                                        switch (typeDoc.TrimStart())
+                                        {
+                                            case "DEVIS":
+                                                Devis dev = new Devis(); dev.lectureDevis(cheminDoc, profil);
+                                                break;
+                                            case "BORDEREAU DE LIVRAISON":
+                                                BonLivraison BL = new BonLivraison(); BL.lectureBL(cheminDoc, profil);
+                                                break;
+                                            case "BON D'ENLEVEMENT":
+                                                BonLivraison BL2 = new BonLivraison(); BL2.lectureBL(cheminDoc, profil);
+                                                break;
+                                            case "BON DE PREPARATION":
+                                                BonPréparation BP = new BonPréparation(); BP.lectureBP(cheminDoc, profil);
+                                                break;
+                                            case "COMMANDE ADHERENT":
+                                                AccuseReception AR = new AccuseReception(); AR.lectureAR(cheminDoc, profil);
+                                                break;
+                                            case "BON DE COMMANDE FOURNISSEUR":
+                                                CommandeFournisseur CF = new CommandeFournisseur(); CF.lectureCF(cheminDoc, profil);
+                                                break;
+                                            case "RETOUR FOURNISSEUR":
+                                                CommandeFournisseur rCF = new CommandeFournisseur(); rCF.lectureCF(cheminDoc, profil);
+                                                break;
+                                            case "AVOIR":
+                                                BonLivraison BL3 = new BonLivraison(); BL3.lectureBL(cheminDoc, profil);
+                                                break;
+                                            case "FACTURE":
+                                                Facturation FA = new Facturation(); FA.lectureFA(cheminDoc, profil);
+                                                break;
+                                            case null:
+                                                break;
+                                        }
+                                        System.IO.File.Delete(destFile);
+                                    }
                                 }
                                 else
                                 {
