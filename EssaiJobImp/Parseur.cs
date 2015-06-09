@@ -211,8 +211,16 @@ namespace EssaiJobImp
                     table.AddCell(cell6);
                     PdfPCell cell7 = new PdfPCell(new Phrase(donneeBody["Art_remise1" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell7.Border = PdfPCell.NO_BORDER; cell7.Border += PdfPCell.RIGHT_BORDER; cell7.Border += PdfPCell.LEFT_BORDER;
                     table.AddCell(cell7);
-                    PdfPCell cell8 = new PdfPCell(new Phrase(double.Parse(donneeBody["Art_prinet" + i]).ToString("N2") + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell8.Border = PdfPCell.NO_BORDER; cell8.Border += PdfPCell.RIGHT_BORDER; cell8.Border += PdfPCell.LEFT_BORDER;
-                    table.AddCell(cell8);
+                    if (donneeBody["Art_prinet"+i]!="")
+                    {
+                        PdfPCell cell8 = new PdfPCell(new Phrase(double.Parse(donneeBody["Art_prinet" + i]).ToString("N2") + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell8.Border = PdfPCell.NO_BORDER; cell8.Border += PdfPCell.RIGHT_BORDER; cell8.Border += PdfPCell.LEFT_BORDER;
+                        table.AddCell(cell8);
+                    }
+                    else
+                    {
+                        PdfPCell cell8 = new PdfPCell(new Phrase(donneeBody["Art_prinet" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell8.Border = PdfPCell.NO_BORDER; cell8.Border += PdfPCell.RIGHT_BORDER; cell8.Border += PdfPCell.LEFT_BORDER;
+                        table.AddCell(cell8);
+                    }
                     PdfPCell cell9 = new PdfPCell(new Phrase(donneeBody["Art_monht" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell9.Border = PdfPCell.NO_BORDER; cell9.Border += PdfPCell.RIGHT_BORDER; cell9.Border += PdfPCell.LEFT_BORDER;
                     table.AddCell(cell9);
                     PdfPCell cell10 = new PdfPCell(new Phrase("0"+donneeBody["Art_tva_code" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell10.Border = PdfPCell.NO_BORDER; cell10.Border += PdfPCell.RIGHT_BORDER; cell10.Border += PdfPCell.LEFT_BORDER;
