@@ -199,7 +199,32 @@ namespace EssaiJobImp
                 image3.SetAbsolutePosition(12.5f, 595);
                 nouveauDocument.Add(image3);
                 int i; int nbLigne = 0; float resultat = 0; float dimTab = 0; int décrement = 0; int numPage = 0;         //Constitution du tableau d'article
-                bool okDési = false; bool okStart = false; double tempoTOT = 0;
+                bool okDési = false; bool okStart = false; double tempoTOT = 0; int iEntete = 0;
+                if (donneEntete.ContainsKey("Commentaire_texte0"))
+                {
+                    PdfPCell cell1 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell1.Border = PdfPCell.NO_BORDER; cell1.Border += PdfPCell.RIGHT_BORDER; cell1.Border += PdfPCell.LEFT_BORDER;
+                    table.AddCell(cell1);
+                    Paragraph pCell2 = new Paragraph(); 
+                    while(donneEntete.ContainsKey("Commentaire_texte"+iEntete))
+                    {
+                        pCell2.Add(new Phrase(donneEntete["Commentaire_texte"+iEntete] + "\n", FontFactory.GetFont(FontFactory.COURIER, 7, Font.NORMAL)));
+                        iEntete++;
+                    }
+                    PdfPCell cell2 = new PdfPCell(pCell2); cell2.Border = PdfPCell.NO_BORDER; cell2.Border += PdfPCell.RIGHT_BORDER; cell2.Border += PdfPCell.LEFT_BORDER;
+                    table.AddCell(cell2);
+                    PdfPCell cell3 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell3.Border = PdfPCell.NO_BORDER; cell3.Border += PdfPCell.RIGHT_BORDER; cell3.Border += PdfPCell.LEFT_BORDER;
+                    table.AddCell(cell3);
+                    PdfPCell cell4 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell4.Border = PdfPCell.NO_BORDER; cell4.Border += PdfPCell.RIGHT_BORDER; cell4.Border += PdfPCell.LEFT_BORDER;
+                    table.AddCell(cell4);
+                    PdfPCell cell5 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell5.Border = PdfPCell.NO_BORDER; cell5.Border += PdfPCell.RIGHT_BORDER; cell5.Border += PdfPCell.LEFT_BORDER;
+                    table.AddCell(cell5);
+                    PdfPCell cell6 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell6.Border = PdfPCell.NO_BORDER; cell6.Border += PdfPCell.RIGHT_BORDER; cell6.Border += PdfPCell.LEFT_BORDER;
+                    table.AddCell(cell6);
+                    PdfPCell cell7 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell7.Border = PdfPCell.NO_BORDER; cell7.Border += PdfPCell.RIGHT_BORDER; cell7.Border += PdfPCell.LEFT_BORDER;
+                    table.AddCell(cell7);
+                    PdfPCell cell8 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell8.Border = PdfPCell.NO_BORDER; cell8.Border += PdfPCell.RIGHT_BORDER; cell8.Border += PdfPCell.LEFT_BORDER;
+                    table.AddCell(cell8);
+                }
                 for (i = 1; i <= iBody; i++)
                 {
                     //Condition ARTICLE----------------------------------------------------------------------------------------------------------------------
@@ -596,11 +621,21 @@ namespace EssaiJobImp
                 cellTotal2.AddElement(new Phrase(donneeFoot["Base_tva_mttc" + iTotal] , FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD)));
                 tableauPied.AddCell(cellTotal2);
                 Paragraph echeance = new Paragraph();
+                echeance.SpacingBefore = 2f;
+                echeance.MultipliedLeading = 0.75f;
                 if (donneeFoot.ContainsKey("Echeance_date" + (iTotal + 1)))
                 {
-                    echeance.Add(new Phrase("Echéance   : " + donneeFoot["Echeance_date" + (iTotal + 1)], FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD)));
-                    echeance.Add(new Phrase("\t \t \t                                                                                                    Net à payer " + donneeFoot["Base_tva_mttc" + iTotal] + "€\n", FontFactory.GetFont(FontFactory.HELVETICA, 12, Font.BOLD)));
-                    echeance.Add(new Phrase("% à régler : " + donneeFoot["Echeance_pour" + (iTotal + 1)], FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD)));
+                    echeance.Add(new Phrase("Echéance   : " + donneeFoot["Echeance_date" + (iTotal + 1)], FontFactory.GetFont(FontFactory.COURIER, 8, Font.NORMAL)));
+                    echeance.Add(new Phrase("\t \t \t                                                                                            Net à payer " + donneeFoot["Base_tva_mttc" + iTotal] + "€\n", FontFactory.GetFont(FontFactory.HELVETICA, 12, Font.BOLD)));
+                    if (donneeFoot["Loi_sapin"]!=" "){echeance.Add(new Phrase(donneeFoot["Loi_sapin"], FontFactory.GetFont(FontFactory.COURIER, 8, Font.NORMAL)));}
+                    if (donneeFoot["Reglement_mode"] != "Traite")
+                    {
+                        echeance.Add(new Phrase("% à régler : " + donneeFoot["Echeance_pour" + (iTotal + 1)]+"\n ", FontFactory.GetFont(FontFactory.COURIER, 8, Font.NORMAL)));
+                    }
+                    else
+                    {
+                        echeance.Add(new Phrase("\nRéglement par   " +donneeFoot["Traite"]+"        "+donneeFoot["Acceptation"]+"        "+donneeFoot["Domiciliation"] , FontFactory.GetFont(FontFactory.COURIER, 8, Font.NORMAL)));
+                    }
                     nouveauDocument.Add(tableauPied);
                     nouveauDocument.Add(echeance);
                 }
@@ -615,33 +650,42 @@ namespace EssaiJobImp
                 PdfPTable tabPapillon = new PdfPTable(2);
                 tabPapillon.TotalWidth = 595;
                 tabPapillon.LockedWidth = true;
-                tabPapillon.AddCell(new PdfPCell(new Phrase("\n "))).Border=PdfPCell.NO_BORDER;
+                tabPapillon.AddCell(new PdfPCell(new Phrase(" ", FontFactory.GetFont(FontFactory.HELVETICA,2,Font.NORMAL)))).Border=PdfPCell.NO_BORDER;
+                PdfPCell cellClientPapillon = new PdfPCell();
+                cellClientPapillon.VerticalAlignment = PdfPCell.ALIGN_BOTTOM;
+                cellClientPapillon.HorizontalAlignment = PdfPCell.ALIGN_BOTTOM;
+                cellClientPapillon.Border = PdfPCell.NO_BORDER;
+                cellClientPapillon.AddElement(new Phrase(" ", FontFactory.GetFont(FontFactory.HELVETICA, 7, Font.BOLD)));
+                tabPapillon.AddCell(cellClientPapillon);
+                tabPapillon.AddCell(new PdfPCell(new Phrase(" "))).Border = PdfPCell.NO_BORDER;
                 PdfPTable papillon = new PdfPTable(4);
                 papillon.TotalWidth = 280;
+                papillon.SpacingBefore = 0;
                 papillon.LockedWidth = true;
-                papillon.AddCell(new Phrase("Client", FontFactory.GetFont(FontFactory.HELVETICA, 11, Font.BOLD)));
-                papillon.AddCell(new Phrase("Date", FontFactory.GetFont(FontFactory.HELVETICA, 11, Font.BOLD)));
-                papillon.AddCell(new Phrase("N° Facture", FontFactory.GetFont(FontFactory.HELVETICA, 11, Font.BOLD)));
-                papillon.AddCell(new Phrase("Montant TTC", FontFactory.GetFont(FontFactory.HELVETICA, 11, Font.BOLD)));
-                papillon.AddCell(new Phrase(donneEntete["Client_code"], FontFactory.GetFont(FontFactory.HELVETICA, 9)));
-                papillon.AddCell(new Phrase(donneEntete["Document_date"], FontFactory.GetFont(FontFactory.HELVETICA, 9)));
-                papillon.AddCell(new Phrase(donneEntete["Document_numero"], FontFactory.GetFont(FontFactory.HELVETICA, 9)));
-                papillon.AddCell(new Phrase(donneeFoot["Pied_net"], FontFactory.GetFont(FontFactory.HELVETICA, 9)));
+                papillon.AddCell(new Phrase("Client", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD)));
+                papillon.AddCell(new Phrase("Date", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD)));
+                papillon.AddCell(new Phrase("N° Facture", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD)));
+                papillon.AddCell(new Phrase("Montant TTC", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD)));
+                papillon.AddCell(new Phrase(donneEntete["Client_code"], FontFactory.GetFont(FontFactory.HELVETICA, 8)));
+                papillon.AddCell(new Phrase(donneEntete["Document_date"], FontFactory.GetFont(FontFactory.HELVETICA, 8)));
+                papillon.AddCell(new Phrase(donneEntete["Document_numero"], FontFactory.GetFont(FontFactory.HELVETICA, 8)));
+                papillon.AddCell(new Phrase(donneeFoot["Pied_net"], FontFactory.GetFont(FontFactory.HELVETICA, 8)));
                 PdfPCell cellpapillon = new PdfPCell();
                 cellpapillon.Colspan = 4;
                 cellpapillon.AddElement(new Phrase("       PAPILLON A JOINDRE A VOTRE REGLEMENT", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLDITALIC)));
                 PdfPCell cp = new PdfPCell();
                 cp.Border = PdfPCell.NO_BORDER;
-                cp.AddElement(new Phrase("\n  "));
+                cp.AddElement(new Phrase("\n\n                 "+donneEntete["Tiers_adf1"],FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD)));
                 cp.AddElement(papillon);
                 papillon.AddCell(cellpapillon);
                 papillon.HorizontalAlignment = PdfPCell.ALIGN_RIGHT;
+                
                 tabPapillon.AddCell(cp);
                 nouveauDocument.Add(tabPapillon);
                 nouveauDocument.Close();
                 incCopie++;
 
-                int nbImp = 0; int nbImpOK = 0;
+                /*int nbImp = 0; int nbImpOK = 0;
                 string[] printer = new string[20]; // tableau qui contient les imprimantes du profil d'impression
                 ProfilImprimante profil = new ProfilImprimante();
                 profil.chargementXML("Facture");     // chargement selon le type de doc
@@ -677,7 +721,7 @@ namespace EssaiJobImp
                             switches.Add("-dNOPAUSE");
                             switches.Add("-dNOSAFER");
                             switches.Add("-dNumCopies=1");
-                            switches.Add("-sDEVICE=pxlcolor"); //Pilote d'impression
+                            switches.Add("-sDEVICE="+ConfigurationManager.AppSettings["PiloteImpressionFacture"]); //Pilote d'impression
                             switches.Add("-sOutputFile=%printer%" + printerName);
                             switches.Add("-f");
                             switches.Add(inputFile);
@@ -689,7 +733,7 @@ namespace EssaiJobImp
                     catch (Exception e)
                     { LogHelper.WriteToFile(e.Message, "ParseurBP" + donneEntete["Document_numero"].Trim()); }
                     // incrément à chaque impression terminée
-                }
+                }*/
             }
         }
     }

@@ -78,9 +78,11 @@ namespace EssaiJobImp
                         donneeEntete.Add(s, noeud.InnerText);                                   //          Parseur donnée Doc 
                     }                                                                           //
                 }                                                                               //
-            }        */                                                                           //---------------------------------
+            }        */
+            int iEntete=0;//---------------------------------
             foreach (XmlNode noeud in entete)                                                   //---------------------------------
-            {                                                                                   //
+            {                
+                //
                 foreach (string s in baliseEntete)                                              //
                 {                                                                               //
                     if (noeud.Name == s)                                                        //              Parseur En tete
@@ -88,7 +90,7 @@ namespace EssaiJobImp
                         donneeEntete.Add(s, noeud.InnerText);                                   //
                     }                                                                           //
                 }
-                if (noeud.Name == "Commentaire_general")
+                if (noeud.Name == "Commentaire_entete")
                 {
                     XmlNode nCommentaireBon = noeud;
                     foreach (XmlNode n in nCommentaireBon)
@@ -97,7 +99,8 @@ namespace EssaiJobImp
                         {                                                                       //
                             if (n.Name == s)                                                    //              Parseur En tete
                             {                                                                   //
-                                donneeEntete.Add(s, n.InnerText);                               //
+                                donneeEntete.Add(s+iEntete, n.InnerText);
+                                iEntete++;//
                             }                                                                   //
                         }                                                                       //
                     }                                                                           //

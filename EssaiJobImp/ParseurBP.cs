@@ -228,13 +228,13 @@ namespace EssaiJobImp
                                         pCell2.Add(new Phrase(donneeBody["Libelle" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD)));
                                         string clé = entry.Key;
                                         if (donneeBody.ContainsKey("Art_lot" + i)) { pCell2.Add(new Phrase("Numéro de lot : " + donneeBody["Art_lot" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); }
-                                        pCell2.Add(new Phrase(donneeBody[clé] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD)));                             
+                                        pCell2.Add(new Phrase(donneeBody[clé] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 7.5F, Font.BOLDITALIC)));                             
                                         okStart = true;
                                     }
                                     else
                                     {
                                         string clé = entry.Key;
-                                        pCell2.Add(new Phrase(donneeBody[clé] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD)));
+                                        pCell2.Add(new Phrase(donneeBody[clé] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 7.5F, Font.BOLDITALIC)));
                                     }
                                     okDési = true;
                                 }
