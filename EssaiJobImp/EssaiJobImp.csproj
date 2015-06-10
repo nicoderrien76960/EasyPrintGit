@@ -170,6 +170,12 @@
     <Compile Include="UserControlDevis.Designer.cs">
       <DependentUpon>UserControlDevis.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControlFacturation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControlFacturation.Designer.cs">
+      <DependentUpon>UserControlFacturation.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControlImprimante.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -230,6 +236,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControlDevis.resx">
       <DependentUpon>UserControlDevis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControlFacturation.resx">
+      <DependentUpon>UserControlFacturation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControlImprimante.resx">
       <DependentUpon>UserControlImprimante.cs</DependentUpon>

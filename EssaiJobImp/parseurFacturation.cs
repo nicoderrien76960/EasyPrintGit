@@ -544,7 +544,7 @@ namespace EssaiJobImp
                 cellP.VerticalAlignment = PdfPCell.ALIGN_BOTTOM;
                 cellP.AddElement(new Phrase("BASE\nTAUX\nMONTANT\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD)));
                 tableauPied.AddCell(cellP);
-                int iTempo = 2; int iTotal = 0;
+                int iTempo = 2; int iTotal = 0; 
                 while (iTempo<(dimDocPied+2))
                 {
                     if (donneeFoot.ContainsKey("Base_tva_mht" + iTempo))

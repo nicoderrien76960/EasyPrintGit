@@ -71,5 +71,13 @@ namespace EssaiJobImp
             splitContainer1.Panel1.Controls.Add(UCBL);
         }
 
+        private void btnFacturation_Click(object sender, EventArgs e)
+        {
+            UserControlFacturation UCFA = new UserControlFacturation();
+            splitContainer1.Panel1.Controls.Clear();
+            splitContainer1.Panel2.Controls.Clear();
+            splitContainer1.Panel2Collapsed = true;
+            splitContainer1.Panel1.Controls.Add(UCFA);
+        }
     }
 }
