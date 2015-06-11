@@ -721,7 +721,8 @@ namespace EssaiJobImp
                             switches.Add("-dNOPAUSE");
                             switches.Add("-dNOSAFER");
                             switches.Add("-dNumCopies=1");
-                            switches.Add("-sDEVICE="+ConfigurationManager.AppSettings["PiloteImpressionFacture"]); //Pilote d'impression
+                            switches.Add("-sDEVICE="+ConfigurationManager.AppSettings["PiloteImpressionFacture"]);
+                            //switches.Add("-r360x360");//Pilote d'impression
                             switches.Add("-sOutputFile=%printer%" + printerName);
                             switches.Add("-f");
                             switches.Add(inputFile);
