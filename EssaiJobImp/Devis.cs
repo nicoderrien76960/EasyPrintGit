@@ -90,8 +90,8 @@ namespace EssaiJobImp
                     }                                                                           //
                 }                                                                               //
             }                                                                                   //
-            int iBody = 0; int iFoot; int compt = 0;//                                                           //----------------------------------
-            foreach (XmlNode noeud in lignes)                                                   //----------------------------------
+            int iBody = 0; int iFoot; int compt = 0;//                                          //-------------------------------------------------------------------------------------------
+            foreach (XmlNode noeud in lignes)                                                   //
             {                                                                                   //
                 XmlNode nligne = noeud;                                                         //
                 XmlNodeList nligneinfo = noeud.SelectNodes("descendant::Ligne_info");           //
@@ -188,7 +188,7 @@ namespace EssaiJobImp
             p.miseEnForm("Devis");                               //Mise en forme pdf des données reçu
             //------------------------------------------------------------------------------------------------
         }
-        //Getteur dictionnaire          -----------------------NON UTILISE------------------------------------
+        //Getteur dictionnaire --------------------------------------------------------------------------------------------------------NON UTILISE------------------------------------
         public Dictionary<string, string> getDonneeEntete()                                                     
         {
             return donneeEntete;

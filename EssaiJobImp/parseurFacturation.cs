@@ -51,11 +51,11 @@ namespace EssaiJobImp
                 tableau.LockedWidth = true;
                 //-----------------Ajout Pattern/Image--------------------------------------------------------
 
-                Image image5 = Image.GetInstance("E:\\PatternFonddepagefacturation.png");
+                Image image5 = Image.GetInstance("E:\\PatternFonddepagefacturation2.png");
                 image5.Alignment = Image.UNDERLYING;
                 image5.ScaleAbsolute(PageSize.A4);
                 image5.ScalePercent(35, 36);
-                image5.SetAbsolutePosition(-3, -3);
+                image5.SetAbsolutePosition(-8, -9);
                 nouveauDocument.Add(image5);
                 //-------------------------------------------------------------------------------------------------
                                                                              //Encadré photo
@@ -156,7 +156,7 @@ namespace EssaiJobImp
                     nouveauDocument.Add(c);
                 }
                 else { c = new Phrase("\n\n ", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.ITALIC)); nouveauDocument.Add(c); }
-                Phrase pPage1 = new Phrase("\n                                                   " + donneEntete["Document_type"] + "                 " + donneEntete["Duplicata"] + "                                                                            Page n° 1           \n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD));
+                Phrase pPage1 = new Phrase("\n                                                   " + donneEntete["Document_type"] + "                 " + donneEntete["Duplicata"] + "                                                                         Page n° 1           \n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD));
                 pPage1.Leading = 10;
                 nouveauDocument.Add(pPage1);
                 //--------------------------------------------------------------------------------------------------------
@@ -210,6 +210,29 @@ namespace EssaiJobImp
                         pCell2.Add(new Phrase(donneEntete["Commentaire_texte"+iEntete] + "\n", FontFactory.GetFont(FontFactory.COURIER, 7, Font.NORMAL)));
                         iEntete++;
                     }
+                    PdfPCell cell2 = new PdfPCell(pCell2); cell2.Border = PdfPCell.NO_BORDER; cell2.Border += PdfPCell.RIGHT_BORDER; cell2.Border += PdfPCell.LEFT_BORDER;
+                    table.AddCell(cell2);
+                    PdfPCell cell3 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell3.Border = PdfPCell.NO_BORDER; cell3.Border += PdfPCell.RIGHT_BORDER; cell3.Border += PdfPCell.LEFT_BORDER;
+                    table.AddCell(cell3);
+                    PdfPCell cell4 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell4.Border = PdfPCell.NO_BORDER; cell4.Border += PdfPCell.RIGHT_BORDER; cell4.Border += PdfPCell.LEFT_BORDER;
+                    table.AddCell(cell4);
+                    PdfPCell cell5 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell5.Border = PdfPCell.NO_BORDER; cell5.Border += PdfPCell.RIGHT_BORDER; cell5.Border += PdfPCell.LEFT_BORDER;
+                    table.AddCell(cell5);
+                    PdfPCell cell6 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell6.Border = PdfPCell.NO_BORDER; cell6.Border += PdfPCell.RIGHT_BORDER; cell6.Border += PdfPCell.LEFT_BORDER;
+                    table.AddCell(cell6);
+                    PdfPCell cell7 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell7.Border = PdfPCell.NO_BORDER; cell7.Border += PdfPCell.RIGHT_BORDER; cell7.Border += PdfPCell.LEFT_BORDER;
+                    table.AddCell(cell7);
+                    PdfPCell cell8 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell8.Border = PdfPCell.NO_BORDER; cell8.Border += PdfPCell.RIGHT_BORDER; cell8.Border += PdfPCell.LEFT_BORDER;
+                    table.AddCell(cell8);
+                }
+                if (donneeBody.ContainsKey("Bon_datliv1"))
+                {
+                    PdfPCell cell1 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell1.Border = PdfPCell.NO_BORDER; cell1.Border += PdfPCell.RIGHT_BORDER; cell1.Border += PdfPCell.LEFT_BORDER;
+                    table.AddCell(cell1);
+                    Paragraph pCell2 = new Paragraph();
+                    pCell2.Add(new Phrase("\nReference client "+donneeBody["Bon_rcl1"] +"           du "+donneeBody["Bon_datrcl1"]+ "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLDITALIC)));
+                    pCell2.Add(new Phrase("Bon n°" + donneeBody["Bon_numero1"] + " du " + donneeBody["Bon_date1"] +"  "+donneeBody["Bon_typvte1"]+"  "+donneeBody["Bon_datliv1"]+ "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLDITALIC)));
+                    pCell2.Add(new Phrase("Adresse de livraison " + donneEntete["Tiers_adf1"] + "  " + donneEntete["Tiers_adf2"] +"   "+donneEntete["Tiers_adf6"]+"   "+donneEntete["Tiers_adfcp"]+ "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLDITALIC)));
                     PdfPCell cell2 = new PdfPCell(pCell2); cell2.Border = PdfPCell.NO_BORDER; cell2.Border += PdfPCell.RIGHT_BORDER; cell2.Border += PdfPCell.LEFT_BORDER;
                     table.AddCell(cell2);
                     PdfPCell cell3 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell3.Border = PdfPCell.NO_BORDER; cell3.Border += PdfPCell.RIGHT_BORDER; cell3.Border += PdfPCell.LEFT_BORDER;
@@ -634,7 +657,7 @@ namespace EssaiJobImp
                     }
                     else
                     {
-                        echeance.Add(new Phrase("\nRéglement par   " +donneeFoot["Traite"]+"        "+donneeFoot["Acceptation"]+"        "+donneeFoot["Domiciliation"] , FontFactory.GetFont(FontFactory.COURIER, 8, Font.NORMAL)));
+                        echeance.Add(new Phrase("\nRéglement par   " +donneeFoot["Traite"]+"        "+donneeFoot["Acceptation"]+"        "+donneeFoot["Domiciliation"], FontFactory.GetFont(FontFactory.COURIER, 8, Font.NORMAL)));
                     }
                     nouveauDocument.Add(tableauPied);
                     nouveauDocument.Add(echeance);
@@ -647,10 +670,15 @@ namespace EssaiJobImp
                 } 
 
                 //PAPILLON
-                PdfPTable tabPapillon = new PdfPTable(2);
+                float[] largeursPapillon = { 55, 55 };
+                PdfPTable tabPapillon = new PdfPTable(largeursPapillon);
                 tabPapillon.TotalWidth = 595;
                 tabPapillon.LockedWidth = true;
-                tabPapillon.AddCell(new PdfPCell(new Phrase(" ", FontFactory.GetFont(FontFactory.HELVETICA,2,Font.NORMAL)))).Border=PdfPCell.NO_BORDER;
+                PdfPCell cellPapillonB = new PdfPCell();
+                cellPapillonB.AddElement(new Phrase(" ", FontFactory.GetFont(FontFactory.HELVETICA,2,Font.NORMAL)));
+                cellPapillonB.Border = PdfPCell.NO_BORDER;
+                tabPapillon.AddCell(cellPapillonB);
+                //tabPapillon.AddCell(new PdfPCell(new Phrase(" ", FontFactory.GetFont(FontFactory.HELVETICA,2,Font.NORMAL)))).Border=PdfPCell.NO_BORDER;
                 PdfPCell cellClientPapillon = new PdfPCell();
                 cellClientPapillon.VerticalAlignment = PdfPCell.ALIGN_BOTTOM;
                 cellClientPapillon.HorizontalAlignment = PdfPCell.ALIGN_BOTTOM;
@@ -675,10 +703,15 @@ namespace EssaiJobImp
                 cellpapillon.AddElement(new Phrase("       PAPILLON A JOINDRE A VOTRE REGLEMENT", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLDITALIC)));
                 PdfPCell cp = new PdfPCell();
                 cp.Border = PdfPCell.NO_BORDER;
-                cp.AddElement(new Phrase("\n\n                 "+donneEntete["Tiers_adf1"],FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD)));
+                if (donneeFoot.ContainsKey("Echeance_date" + (iTotal + 1)))
+                {
+                    cp.AddElement(new Phrase("\n                          " + donneEntete["Tiers_adf1"], FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD)));
+                }
+                else { cp.AddElement(new Phrase("\n\n                          " + donneEntete["Tiers_adf1"], FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); }
+                //cp.HorizontalAlignment = PdfPCell.ALIGN_RIGHT;
                 cp.AddElement(papillon);
                 papillon.AddCell(cellpapillon);
-                papillon.HorizontalAlignment = PdfPCell.ALIGN_RIGHT;
+                papillon.HorizontalAlignment = PdfPCell.ALIGN_LEFT;
                 
                 tabPapillon.AddCell(cp);
                 nouveauDocument.Add(tabPapillon);
