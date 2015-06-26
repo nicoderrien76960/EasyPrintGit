@@ -136,7 +136,6 @@
     <Compile Include="ParseurBP.cs" />
     <Compile Include="ParseurCF.cs" />
     <Compile Include="ParseurFacturation.cs" />
-    <Compile Include="RawPrinterHelper.cs" />
     <Compile Include="ProfilImprimante.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

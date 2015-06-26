@@ -39,7 +39,15 @@ namespace EssaiJobImp
             int nbCopie = 1;
             while (incCopie < nbCopie)
             {
-                string chemin = "E:\\DocFinaux\\Facturation\\" + nomDoc + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf";
+                string chemin = "";
+                if (!System.IO.Directory.Exists("E:\\DocFinaux\\Facturation\\"+donneEntete["Client_code"]))
+                {
+                    System.IO.Directory.CreateDirectory("E:\\DocFinaux\\Facturation\\" + donneEntete["Client_code"]);
+                    chemin="E:\\DocFinaux\\Facturation\\"+donneEntete["Client_code"]+"\\" + nomDoc + "_" + donneEntete["Client_code"] + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf";
+                }else
+                {
+                    chemin = "E:\\DocFinaux\\Facturation\\" + donneEntete["Client_code"] + "\\" + nomDoc + "_" + donneEntete["Client_code"] + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf";
+                }               
                 Document nouveauDocument = new Document(PageSize.A4, 20, 20, 12, 2);
                 PdfWriter writer = PdfWriter.GetInstance(nouveauDocument, new FileStream(chemin, FileMode.Create));     //Stockage du document
                 //----------------------------------------

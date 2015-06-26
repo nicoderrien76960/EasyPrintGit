@@ -436,7 +436,7 @@ namespace EssaiJobImp
                 incCopie++;
 
                 #region ImpressionOld
-                /*myPrinters.SetDefaultPrinter("Imp204");
+                myPrinters.SetDefaultPrinter("Imp204");
                 Process proc = new Process();
                 proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                 proc.StartInfo.Verb = "print";
@@ -463,7 +463,7 @@ namespace EssaiJobImp
                          clsProcess => clsProcess.ProcessName.StartsWith("AcroRd32")))
                 {
                     clsProcess.Kill();
-                }*/
+                }
                 #endregion
                 //Solution d'impression fonctionnel, API payante----------------------------------------------------------------------------------------------
 
