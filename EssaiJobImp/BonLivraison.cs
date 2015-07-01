@@ -80,13 +80,23 @@ namespace EssaiJobImp
                 }                                                                               //
             }                                                                                   //---------------------------------
             foreach (XmlNode noeud in entete)                                                   //---------------------------------
-            {                                                                                   //
+            {
                 foreach (string s in baliseEntete)                                              //
                 {                                                                               //
                     if (noeud.Name == s)                                                        //              Parseur En tete
-                    {                                                                           //
-                        donneeEntete.Add(s, noeud.InnerText);                                   //
-                    }                                                                           //
+                    {
+                        if (noeud.Name == "Duplicata")
+                        {
+                            if (noeud.Attributes.Count == 0)
+                            {
+                                donneeEntete.Add(s, noeud.InnerText);
+                            }
+                            else { donneeEntete.Add("Duplicata", ""); }//                            //
+                        }else
+                        {
+                            donneeEntete.Add(s, noeud.InnerText);
+                        }
+                    }                                                                          //
                 }
                 if (noeud.Name == "Commentaire_general")
                 {

@@ -116,7 +116,8 @@ namespace EssaiJobImp
             nouveauDocument.Add(tableau);
                                                                                                                 //Dessus tableau
             Paragraph pRécap = new Paragraph();
-            Chunk contact = new Chunk("Votre contact : " + donneEntete["Bon_vendeur_lib"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 7, Font.ITALIC));//FontFactory pour changer la police
+            Chunk contact = null; 
+            contact = new Chunk("Votre contact : " + donneEntete["Bon_vendeur_lib"] + "\n     "+donneEntete["Duplicata"], FontFactory.GetFont(FontFactory.HELVETICA, 7, Font.ITALIC));//FontFactory pour changer la police
             Chunk delai = new Chunk("Livraison : " + donneEntete["Tiers_adf1"] + " - " + donneEntete["Tiers_adf2"] + " - " + donneEntete["Tiers_adfcp"] + "  " + donneEntete["Tiers_adf6"]+"\n"+"\n" , FontFactory.GetFont(FontFactory.HELVETICA,7, Font.ITALIC)).SetUnderline(2,2);
             Chunk ligneEspace = new Chunk("\n", FontFactory.GetFont(FontFactory.HELVETICA, 1, Font.ITALIC));
             pRécap.Add(contact);
