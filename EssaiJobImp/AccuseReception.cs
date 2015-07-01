@@ -91,7 +91,7 @@ namespace EssaiJobImp
                             {
                                 donneeEntete.Add(s, noeud.InnerText);
                             }
-                            else { donneeEntete.Add("Duplicata", ""); }//                            //
+                            else { donneeEntete.Add("Duplicata", "         "); }//                            //
                         }
                         else
                         {
