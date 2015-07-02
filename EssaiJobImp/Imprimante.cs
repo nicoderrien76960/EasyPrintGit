@@ -121,8 +121,8 @@ namespace EssaiJobImp
                                                         PrintJobInfoCollection jobs = pq2.GetPrintJobInfoCollection();
                                                         foreach (PrintSystemJobInfo job in jobs)//Lecture des docs dans file d'attente
                                                         {
-                                                            if (job.Name == nom_spool)//Condition nom du doc de la file
                                                             {
+                                                            if (job.Name == nom_spool)//Condition nom du doc de la file
                                                                 job.Cancel();
                                                                 profil = job.Submitter;
                                                                 break;

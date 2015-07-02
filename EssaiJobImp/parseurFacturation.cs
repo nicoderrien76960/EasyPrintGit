@@ -118,6 +118,9 @@ namespace EssaiJobImp
                 celulleMilieuGauche.Border = PdfPCell.NO_BORDER;
                 tableau.AddCell(celulleMilieuGauche);
 
+
+
+
                 //Tableau dans celulle bas gauche du tableau d'entete
                 PdfPCell celulleBasGauche = new PdfPCell();
                 Paragraph ptest = new Paragraph();
