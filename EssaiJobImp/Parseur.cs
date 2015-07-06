@@ -414,7 +414,7 @@ namespace EssaiJobImp
 
             nouveauDocument.Close();
 
-            int nbImp = 0; int nbImpOK = 0;
+           /* int nbImp = 0; int nbImpOK = 0;
                 string[] printer = new string[20]; // tableau qui contient les imprimantes du profil d'impression
                 ProfilImprimante profil = new ProfilImprimante();
                 profil.chargementXML("Dev");     // chargement selon le type de doc
@@ -461,8 +461,10 @@ namespace EssaiJobImp
                     }
                     catch (Exception e)
                     { LogHelper.WriteToFile(e.Message, "ParseurBP" + donneEntete["Document_numero"].Trim()); }
-                }
-
+                }*/
+            Mail m = new Mail();
+            m.remplirDictionnaire();
+            m.comparerDocument(donneEntete["Client_code"]);
         }
     }
 }

@@ -350,6 +350,7 @@ namespace EssaiJobImp
                         table.AddCell(cell7);
                         PdfPCell cell8 = new PdfPCell((new Phrase(donneeBody["Lib_rempl_mt" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD)))); cell8.Border = PdfPCell.NO_BORDER; cell8.Border += PdfPCell.LEFT_BORDER; cell8.Border += PdfPCell.RIGHT_BORDER;
                         table.AddCell(cell8);
+                        okDési = false; okStart = false;
                     }
                     //Condition COMMENTAIRE--------------------------------------------------------------------------------------------------------------------------------
                     if (donneeBody["Ligne_type" + i] == "COM")
