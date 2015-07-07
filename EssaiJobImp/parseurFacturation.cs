@@ -119,8 +119,6 @@ namespace EssaiJobImp
                 tableau.AddCell(celulleMilieuGauche);
 
 
-
-
                 //Tableau dans celulle bas gauche du tableau d'entete
                 PdfPCell celulleBasGauche = new PdfPCell();
                 Paragraph ptest = new Paragraph();
@@ -154,7 +152,7 @@ namespace EssaiJobImp
                 tableau.AddCell(celulleHauteDroite);
 
                 nouveauDocument.Add(tableau);
-
+                        
                 //Récap ref client et numéro de téléphone
                 /*Paragraph refCli = new Paragraph();
                 refCli.Add(new Phrase("Référence client " + donneeBody["Bon_rcl1"] + " du " + donneeBody["Bon_datrcl1"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.BOLD)));

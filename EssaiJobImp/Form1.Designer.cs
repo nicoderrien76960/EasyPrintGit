@@ -45,6 +45,7 @@
             this.btnPause = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
             this.btnReprise = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -227,12 +228,23 @@
             this.btnReprise.Visible = false;
             this.btnReprise.Click += new System.EventHandler(this.btnReprise_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(879, 20);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 25;
+            this.button1.Text = "Test Envoi Mail";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkRed;
             this.ClientSize = new System.Drawing.Size(1004, 332);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnReprise);
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.btnPause);
@@ -278,6 +290,7 @@
         private System.Windows.Forms.Button btnPause;
         private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.Button btnReprise;
+        private System.Windows.Forms.Button button1;
     }
 }
 

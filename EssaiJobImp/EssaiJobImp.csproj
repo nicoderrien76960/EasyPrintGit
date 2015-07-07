@@ -115,6 +115,7 @@
     <Compile Include="CommandeFournisseur.cs" />
     <Compile Include="CurseurTemplate.cs" />
     <Compile Include="Devis.cs" />
+    <Compile Include="EssaiUDP.cs" />
     <Compile Include="Facturation.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

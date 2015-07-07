@@ -55,7 +55,9 @@ namespace EssaiJobImp
         }
         public void envoiDocument(string path, string id, string mail)
         {
-            using (SmtpClient smtpClient = new SmtpClient("smtp.abcr76.fr",587))
+            string tempo = System.Configuration.ConfigurationManager.AppSettings["ParamMail"];
+            string[] paramServeur = tempo.Split('%');
+            using (SmtpClient smtpClient = new SmtpClient(paramServeur[0], int.Parse(paramServeur[1])))
             {
                 MailMessage message = new MailMessage();
 

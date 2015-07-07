@@ -290,5 +290,11 @@ namespace EssaiJobImp
         {
           
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            EssaiUDP UDP = new EssaiUDP();
+            UDP.Lancer();
+        }
     }
 }
