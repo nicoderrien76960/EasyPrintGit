@@ -166,6 +166,12 @@
     <Compile Include="UserControlCF.Designer.cs">
       <DependentUpon>UserControlCF.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControlChemin.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControlChemin.Designer.cs">
+      <DependentUpon>UserControlChemin.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControlDevis.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -235,6 +241,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControlCF.resx">
       <DependentUpon>UserControlCF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControlChemin.resx">
+      <DependentUpon>UserControlChemin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControlDevis.resx">
       <DependentUpon>UserControlDevis.cs</DependentUpon>

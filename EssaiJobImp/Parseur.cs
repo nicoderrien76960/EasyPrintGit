@@ -36,15 +36,17 @@ namespace EssaiJobImp
         }
         public void miseEnForm(string typeDoc)
         {
-            string chemin = "E:\\DocFinaux\\DEVIS\\DEVIS_" + nomDoc + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf";
+            string cheminDocFinaux = ConfigurationManager.AppSettings["CheminDocFinaux"].ToString();
+            string cheminRessources= ConfigurationManager.AppSettings["CheminRessources"].ToString();
+            string chemin = cheminDocFinaux+"\\DocFinaux\\DEVIS\\DEVIS_" + nomDoc + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf";
             Document nouveauDocument = new Document(PageSize.A4,20,20,12,20);
             PdfWriter.GetInstance(nouveauDocument, new FileStream(chemin, FileMode.Create));     //Stockage du document
             nouveauDocument.Open();
-            Image image4 = Image.GetInstance("E:\\EssaiePatternTot.jpg");
+            Image image4 = Image.GetInstance(cheminRessources+"\\EssaiePatternTot.jpg");
             image4.Alignment = Image.UNDERLYING;
             image4.SetAbsolutePosition(385, 70);
             //----------------------------------------------------------------------------------------------------Filligrane--------
-            Image image5 = Image.GetInstance("E:\\FiligraneDevis.png");
+            Image image5 = Image.GetInstance(cheminRessources+"\\FiligraneDevis.png");
             image5.Alignment = Image.UNDERLYING;
             image5.SetAbsolutePosition(200, 250);
             nouveauDocument.Add(image5);
@@ -55,14 +57,14 @@ namespace EssaiJobImp
             tableau.TotalWidth = 550;
             tableau.LockedWidth = true;
             Paragraph pLogo = new Paragraph();
-            Image image = Image.GetInstance("E:\\ABCR 4cm.jpg");
+            Image image = Image.GetInstance(cheminRessources+"\\ABCR 4cm.jpg");
             pLogo.Add(image);                                                                               //Encadré photo
             PdfPCell celulleHauteGauche = new PdfPCell(image);
             celulleHauteGauche.Border = PdfPCell.NO_BORDER;
             tableau.AddCell(celulleHauteGauche);
                                                                                                             //Encadré info devis
             Paragraph pDoc = new Paragraph();
-            Image image2 = Image.GetInstance("E:\\EssaiePatternHautDroite.jpg");
+            Image image2 = Image.GetInstance(cheminRessources+"\\EssaiePatternHautDroite.jpg");
             image2.Alignment = Image.UNDERLYING;
             image2.SetAbsolutePosition(335, 740);
             nouveauDocument.Add(image2);
@@ -161,7 +163,7 @@ namespace EssaiJobImp
             table.AddCell(cellET8);
             PdfPCell cellET9 = new PdfPCell(new Phrase("TVA", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cellET9.Border = PdfPCell.NO_BORDER; //cellET9.Border += PdfPCell.BOTTOM_BORDER;
             table.AddCell(cellET9);
-            Image image3 = Image.GetInstance("E:\\EssaiePatternEnteteTableau.jpg");
+            Image image3 = Image.GetInstance(cheminRessources+"\\EssaiePatternEnteteTableau.jpg");
             image3.Alignment = Image.UNDERLYING;
             image3.SetAbsolutePosition(20, 569);
             nouveauDocument.Add(image3);
@@ -414,7 +416,10 @@ namespace EssaiJobImp
 
             nouveauDocument.Close();
 
-           /* int nbImp = 0; int nbImpOK = 0;
+            //Copie Doc dans GED
+           // System.IO.File.Copy(chemin, ConfigurationManager.AppSettings["cheminGED"]);
+
+           int nbImp = 0; int nbImpOK = 0;  
                 string[] printer = new string[20]; // tableau qui contient les imprimantes du profil d'impression
                 ProfilImprimante profil = new ProfilImprimante();
                 profil.chargementXML("Dev");     // chargement selon le type de doc
@@ -461,10 +466,10 @@ namespace EssaiJobImp
                     }
                     catch (Exception e)
                     { LogHelper.WriteToFile(e.Message, "ParseurBP" + donneEntete["Document_numero"].Trim()); }
-                }*/
-            Mail m = new Mail();
+                }
+            /*Mail m = new Mail();
             m.remplirDictionnaire();
-            m.comparerDocument(donneEntete["Client_code"]);
+            m.comparerDocument(donneEntete["Client_code"]);*/
         }
     }
 }

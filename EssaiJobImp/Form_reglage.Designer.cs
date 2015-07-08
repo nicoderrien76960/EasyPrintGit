@@ -31,13 +31,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.btnFacturation = new System.Windows.Forms.Button();
             this.btnAR = new System.Windows.Forms.Button();
             this.btnBP = new System.Windows.Forms.Button();
             this.btnCF = new System.Windows.Forms.Button();
             this.btnBL = new System.Windows.Forms.Button();
             this.btnDevis = new System.Windows.Forms.Button();
             this.btnImprimante = new System.Windows.Forms.Button();
-            this.btnFacturation = new System.Windows.Forms.Button();
+            this.btnChemin = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
@@ -86,6 +87,7 @@
             // splitContainer2.Panel1
             // 
             this.splitContainer2.Panel1.BackColor = System.Drawing.Color.Brown;
+            this.splitContainer2.Panel1.Controls.Add(this.btnChemin);
             this.splitContainer2.Panel1.Controls.Add(this.btnFacturation);
             this.splitContainer2.Panel1.Controls.Add(this.btnAR);
             this.splitContainer2.Panel1.Controls.Add(this.btnBP);
@@ -97,9 +99,19 @@
             this.splitContainer2.SplitterDistance = 163;
             this.splitContainer2.TabIndex = 4;
             // 
+            // btnFacturation
+            // 
+            this.btnFacturation.Location = new System.Drawing.Point(16, 231);
+            this.btnFacturation.Name = "btnFacturation";
+            this.btnFacturation.Size = new System.Drawing.Size(156, 32);
+            this.btnFacturation.TabIndex = 7;
+            this.btnFacturation.Text = "Facturation";
+            this.btnFacturation.UseVisualStyleBackColor = true;
+            this.btnFacturation.Click += new System.EventHandler(this.btnFacturation_Click);
+            // 
             // btnAR
             // 
-            this.btnAR.Location = new System.Drawing.Point(20, 219);
+            this.btnAR.Location = new System.Drawing.Point(16, 193);
             this.btnAR.Name = "btnAR";
             this.btnAR.Size = new System.Drawing.Size(156, 32);
             this.btnAR.TabIndex = 6;
@@ -109,7 +121,7 @@
             // 
             // btnBP
             // 
-            this.btnBP.Location = new System.Drawing.Point(20, 181);
+            this.btnBP.Location = new System.Drawing.Point(16, 155);
             this.btnBP.Name = "btnBP";
             this.btnBP.Size = new System.Drawing.Size(156, 32);
             this.btnBP.TabIndex = 4;
@@ -119,7 +131,7 @@
             // 
             // btnCF
             // 
-            this.btnCF.Location = new System.Drawing.Point(20, 143);
+            this.btnCF.Location = new System.Drawing.Point(16, 117);
             this.btnCF.Name = "btnCF";
             this.btnCF.Size = new System.Drawing.Size(156, 32);
             this.btnCF.TabIndex = 3;
@@ -129,7 +141,7 @@
             // 
             // btnBL
             // 
-            this.btnBL.Location = new System.Drawing.Point(20, 105);
+            this.btnBL.Location = new System.Drawing.Point(16, 79);
             this.btnBL.Name = "btnBL";
             this.btnBL.Size = new System.Drawing.Size(156, 32);
             this.btnBL.TabIndex = 2;
@@ -139,7 +151,7 @@
             // 
             // btnDevis
             // 
-            this.btnDevis.Location = new System.Drawing.Point(20, 67);
+            this.btnDevis.Location = new System.Drawing.Point(16, 41);
             this.btnDevis.Name = "btnDevis";
             this.btnDevis.Size = new System.Drawing.Size(156, 32);
             this.btnDevis.TabIndex = 1;
@@ -149,7 +161,7 @@
             // 
             // btnImprimante
             // 
-            this.btnImprimante.Location = new System.Drawing.Point(20, 29);
+            this.btnImprimante.Location = new System.Drawing.Point(16, 3);
             this.btnImprimante.Name = "btnImprimante";
             this.btnImprimante.Size = new System.Drawing.Size(156, 32);
             this.btnImprimante.TabIndex = 0;
@@ -157,15 +169,15 @@
             this.btnImprimante.UseVisualStyleBackColor = true;
             this.btnImprimante.Click += new System.EventHandler(this.btnImprimante_Click);
             // 
-            // btnFacturation
+            // btnChemin
             // 
-            this.btnFacturation.Location = new System.Drawing.Point(20, 257);
-            this.btnFacturation.Name = "btnFacturation";
-            this.btnFacturation.Size = new System.Drawing.Size(156, 32);
-            this.btnFacturation.TabIndex = 7;
-            this.btnFacturation.Text = "Facturation";
-            this.btnFacturation.UseVisualStyleBackColor = true;
-            this.btnFacturation.Click += new System.EventHandler(this.btnFacturation_Click);
+            this.btnChemin.Location = new System.Drawing.Point(16, 269);
+            this.btnChemin.Name = "btnChemin";
+            this.btnChemin.Size = new System.Drawing.Size(156, 32);
+            this.btnChemin.TabIndex = 8;
+            this.btnChemin.Text = "Chemin";
+            this.btnChemin.UseVisualStyleBackColor = true;
+            this.btnChemin.Click += new System.EventHandler(this.btnChemin_Click);
             // 
             // Form_reglage
             // 
@@ -202,5 +214,6 @@
         private System.Windows.Forms.Button btnDevis;
         private System.Windows.Forms.Button btnImprimante;
         private System.Windows.Forms.Button btnFacturation;
+        private System.Windows.Forms.Button btnChemin;
     }
 }

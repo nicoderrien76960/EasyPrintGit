@@ -38,10 +38,12 @@ namespace EssaiJobImp
         {
             int incCopie = 0;
             int nbCopie = int.Parse(donneEntete["Nombre_copies"]);
+            string cheminDocFinaux = ConfigurationManager.AppSettings["CheminDocFinaux"].ToString();
+            string cheminRessources = ConfigurationManager.AppSettings["CheminRessources"].ToString();
             while (incCopie < nbCopie)
             {
                 bool drapReliquat = false;
-                string chemin = "E:\\DocFinaux\\BP\\BP_" + nomDoc + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf";
+                string chemin = cheminDocFinaux+"\\DocFinaux\\BP\\BP_" + nomDoc + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf";
                 Document nouveauDocument = new Document(PageSize.A4, 20, 20, 12, 20);
                 PdfWriter.GetInstance(nouveauDocument, new FileStream(chemin, FileMode.Create));     //Stockage du document
                 //----------------------------------------
@@ -52,17 +54,17 @@ namespace EssaiJobImp
                 tableau.TotalWidth = 550;
                 tableau.LockedWidth = true;
                 //-----------------Ajout Pattern/Image--------------------------------------------------------
-                Image image2 = Image.GetInstance("E:\\EssaiePatternHautDroiteBP.jpg");
+                Image image2 = Image.GetInstance(cheminRessources+"\\EssaiePatternHautDroiteBP.jpg");
                 image2.Alignment = Image.UNDERLYING;
                 image2.SetAbsolutePosition(325, 755);
                 nouveauDocument.Add(image2);
-                Image image5 = Image.GetInstance("E:\\FiligraneBP.png");
+                Image image5 = Image.GetInstance(cheminRessources+"\\FiligraneBP.png");
                 image5.Alignment = Image.UNDERLYING;
                 image5.SetAbsolutePosition(180, 270);
                 nouveauDocument.Add(image5);
                 //------------------------------------------------------------------------------------------------------
                 Paragraph pLogo = new Paragraph();
-                Image image = Image.GetInstance("E:\\ABCR 3cm.jpg");
+                Image image = Image.GetInstance(cheminRessources+"\\ABCR 3cm.jpg");
                 pLogo.Add(image);                                                                               //Encadré photo
                 PdfPCell celulleHauteGauche = new PdfPCell(image);
                 celulleHauteGauche.Border = PdfPCell.NO_BORDER;
@@ -197,7 +199,7 @@ namespace EssaiJobImp
                 cellvideDebut.Colspan = 5;
                 cellvideDebut.Border = PdfPCell.NO_BORDER;
                 table.AddCell(cellvideDebut);
-                Image image3 = Image.GetInstance("E:\\EssaiePatternEnteteTableau.jpg");
+                Image image3 = Image.GetInstance(cheminRessources+"\\EssaiePatternEnteteTableau.jpg");
                 image3.Alignment = Image.UNDERLYING;
                 image3.SetAbsolutePosition(20, 597);
                 nouveauDocument.Add(image3);
@@ -376,7 +378,7 @@ namespace EssaiJobImp
                         cellBlancheD.Border = PdfPCell.NO_BORDER;
                         cellBlancheD.Border += PdfPCell.LEFT_BORDER;
                         cellBlancheD.Border += PdfPCell.RIGHT_BORDER;
-                        cellFin.Border = PdfPCell.NO_BORDER;
+                        cellFin.Border = PdfPCell.NO_BORDER;                
                         cellFin.Border += PdfPCell.TOP_BORDER;
                         table.AddCell(cellBlanche); table.AddCell(cellBlanche); table.AddCell(cellBlanche); table.AddCell(cellBlanche); table.AddCell(cellBlancheD);
                         table.AddCell(cellFin);

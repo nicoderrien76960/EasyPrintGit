@@ -35,9 +35,15 @@ namespace EssaiJobImp
         {
             int incCopie = 0;
             int nbCopie = int.Parse(donneEntete["Nombre_copies"]);
+            string cheminDocFinaux = ConfigurationManager.AppSettings["CheminDocFinaux"].ToString();
+            string cheminRessources = ConfigurationManager.AppSettings["CheminRessources"].ToString();
             while (incCopie < nbCopie)
             {
-                string chemin = "E:\\DocFinaux\\BL\\BL_" + nomDoc + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf";
+                string chemin = cheminDocFinaux+"\\DocFinaux\\BL\\BL_" + nomDoc + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf";
+                if (System.IO.File.Exists(chemin))
+                {
+                    chemin = cheminDocFinaux+"\\DocFinaux\\BL\\BL_" + nomDoc + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() + ".pdf";
+                }
                 Document nouveauDocument = new Document(PageSize.A4, 20, 20, 12, 13);
                 PdfWriter.GetInstance(nouveauDocument, new FileStream(chemin, FileMode.Create));     //Stockage du document
                 //----------------------------------------
@@ -48,27 +54,27 @@ namespace EssaiJobImp
                 tableau.TotalWidth = 550;
                 tableau.LockedWidth = true;
                 //-----------------Ajout Pattern/Image--------------------------------------------------------
-                Image image2 = Image.GetInstance("E:\\EssaiePatternHautDroiteBP.jpg");
+                Image image2 = Image.GetInstance(cheminRessources+"\\EssaiePatternHautDroiteBP.jpg");
                 image2.Alignment = Image.UNDERLYING;
                 image2.SetAbsolutePosition(325, 750);
                 nouveauDocument.Add(image2);
                 if (donneEntete["Bon_typvte"] == "LIVREE")
                 {
-                    Image image5 = Image.GetInstance("E:\\FiligraneBL.png");
+                    Image image5 = Image.GetInstance(cheminRessources+"\\FiligraneBL.png");
                     image5.Alignment = Image.UNDERLYING;
                     image5.SetAbsolutePosition(215, 270);
                     nouveauDocument.Add(image5);
                 }
                 else
                 {
-                    Image image5 = Image.GetInstance("E:\\FiligraneBE.png");
+                    Image image5 = Image.GetInstance(cheminRessources+"\\FiligraneBE.png");
                     image5.Alignment = Image.UNDERLYING;
                     image5.SetAbsolutePosition(170, 240);
                     nouveauDocument.Add(image5);
                 }
                 //-------------------------------------------------------------------------------------------------
                 Paragraph pLogo = new Paragraph();
-                Image image = Image.GetInstance("E:\\ABCR 3cm.jpg");
+                Image image = Image.GetInstance(cheminRessources+"\\ABCR 3cm.jpg");
                 pLogo.Add(image);                                                                               //Encadré photo
                 PdfPCell celulleHauteGauche = new PdfPCell(image);
                 celulleHauteGauche.Border = PdfPCell.NO_BORDER;
@@ -201,7 +207,7 @@ namespace EssaiJobImp
                 table.AddCell(cellET7);
                 PdfPCell cellET8 = new PdfPCell(new Phrase("Montant HT", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cellET8.Border = PdfPCell.NO_BORDER; //cellET8.Border += PdfPCell.BOTTOM_BORDER;
                 table.AddCell(cellET8);
-                Image image3 = Image.GetInstance("E:\\EssaiePatternEnteteTableau.jpg");
+                Image image3 = Image.GetInstance(cheminRessources+"\\EssaiePatternEnteteTableau.jpg");
                 image3.Alignment = Image.UNDERLYING;
                 image3.SetAbsolutePosition(20, 585);
                 nouveauDocument.Add(image3);
@@ -430,14 +436,14 @@ namespace EssaiJobImp
                         }  
                         if (donneEntete["Bon_typvte"] == "LIVREE")
                         {
-                            Image image5 = Image.GetInstance("E:\\FiligraneBL.png");
+                            Image image5 = Image.GetInstance(cheminRessources+"\\FiligraneBL.png");
                             image5.Alignment = Image.UNDERLYING;
                             image5.SetAbsolutePosition(200, 250);
                             nouveauDocument.Add(image5);
                         }
                         else
                         {
-                            Image image5 = Image.GetInstance("E:\\FiligraneBE.png");
+                            Image image5 = Image.GetInstance(cheminRessources+"\\FiligraneBE.png");
                             image5.Alignment = Image.UNDERLYING;
                             image5.SetAbsolutePosition(155, 240);
                             nouveauDocument.Add(image5);
@@ -516,7 +522,7 @@ namespace EssaiJobImp
                     table.AddCell(cellFin);
                 }
                 //-----------------Ajout Pattern bas de page---------------------------------------------------------
-                Image image4 = Image.GetInstance("E:\\EssaiePatternTotBL.jpg");
+                Image image4 = Image.GetInstance(cheminRessources+"\\EssaiePatternTotBL.jpg");
                 image4.Alignment = Image.UNDERLYING;
                 image4.SetAbsolutePosition(385, 105);
                 nouveauDocument.Add(image4);
@@ -569,7 +575,12 @@ namespace EssaiJobImp
                 string[] printer = new string[20]; // tableau qui contient les imprimantes du profil d'impression taille par defaut 20
                 ProfilImprimante profil = new ProfilImprimante();
                 profil.chargementXML("BL");     // chargement selon le type de doc
-                string vendeur = unProfil.Substring(2, 3);
+                string vendeur="";
+                try
+                {
+                    vendeur = unProfil.Substring(2, 3);
+                }
+                catch {  vendeur = unProfil.Substring(2, 2); }
                 vendeur = vendeur.TrimEnd();
                 var listeProfil = profil.getDonneeProfil();
                 try

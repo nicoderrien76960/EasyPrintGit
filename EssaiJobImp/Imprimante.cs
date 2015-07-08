@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Printing;
 using System.IO;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace EssaiJobImp
 {
@@ -19,6 +20,7 @@ namespace EssaiJobImp
         int nbDoc=0;
         string cheminDoc;
         List<Spool> listFichierSpool = new List<Spool>();//Liste de fichier contenu dans le spool
+        string cheminDocFinaux = ConfigurationManager.AppSettings["CheminDocFinaux"].ToString();
         public void lectureSpooler(string nomIMP)
         {
             string typeDoc="";
@@ -44,15 +46,15 @@ namespace EssaiJobImp
                                 string nom_spool = "";
                                 string nomFichier = System.IO.Path.GetFileName(files[i]);//Récuperation du nom du fichier lu
                                 string sourceFile = System.IO.Path.Combine(@"C:\Windows\System32\spool\PRINTERS", nomFichier);//C:\Windows\System32\spool\PRINTERS
-                                string destFile = System.IO.Path.Combine(@"E:\Copie spool", nomFichier);
-                                string[] files2 = Directory.GetFiles(@"E:\Copie spool", "*SPL");//Tableau contenant les fichier SPL
+                                string destFile = System.IO.Path.Combine(cheminDocFinaux+@"\Copie spool", nomFichier);
+                                string[] files2 = Directory.GetFiles(cheminDocFinaux+@"\Copie spool", "*SPL");//Tableau contenant les fichier SPL
                                 int file2count = files2.GetUpperBound(0) + 1;
                                 int emplacementDoc = 0;
                                 if (temp.Second != actuelle.Second)//Condition tempo de temps d'analyse des docs
                                 {
                                     for (int j = 0; j < filecount; j++)//Analyse existant dans fichier de destination
                                     {
-                                        if (System.IO.File.Exists(@"E:\Copie spool\" + nomFichier))//Condition d'existance
+                                        if (System.IO.File.Exists(cheminDocFinaux + @"\Copie spool\" + nomFichier))//Condition d'existance
                                         {   
                                             System.IO.File.Copy(sourceFile, destFile, true);
                                             supOk = true;
@@ -82,7 +84,7 @@ namespace EssaiJobImp
                                             if (System.Text.RegularExpressions.Regex.IsMatch(s, "<Document type=\"DOC_CLIENT\" doc=\"FACTURE ", System.Text.RegularExpressions.RegexOptions.IgnoreCase))
                                             { 
                                                 découpageOK = false;
-                                                sr = new StreamWriter(@"E:\Copie spool\tempo" + test + ".SPL", false, Encoding.GetEncoding("iso-8859-1"));
+                                                sr = new StreamWriter(cheminDocFinaux + @"\Copie spool\tempo" + test + ".SPL", false, Encoding.GetEncoding("iso-8859-1"));
                                             }
                                             if (System.Text.RegularExpressions.Regex.IsMatch(s, "</Document>", System.Text.RegularExpressions.RegexOptions.IgnoreCase) && découpageOK==false)
                                             {
@@ -142,8 +144,8 @@ namespace EssaiJobImp
                                         int compteur=0;
                                         while (compteur < (test-3))
                                         {
-                                            cheminDoc = @"E:\Copie spool\tempo" + compteur + ".SPL";
-                                            destFile = @"E:\Copie spool\tempo" + compteur + ".SPL";
+                                            cheminDoc = cheminDocFinaux + @"\Copie spool\tempo" + compteur + ".SPL";
+                                            destFile = cheminDocFinaux + @"\Copie spool\tempo" + compteur + ".SPL";
                                             switch (typeDoc.TrimStart())
                                             {
                                                 case "DEVIS":

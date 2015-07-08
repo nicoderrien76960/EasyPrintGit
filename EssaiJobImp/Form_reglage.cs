@@ -79,5 +79,14 @@ namespace EssaiJobImp
             splitContainer1.Panel2Collapsed = true;
             splitContainer1.Panel1.Controls.Add(UCFA);
         }
+
+        private void btnChemin_Click(object sender, EventArgs e)
+        {
+            UserControlChemin UCC = new UserControlChemin();
+            splitContainer1.Panel1.Controls.Clear();
+            splitContainer1.Panel2.Controls.Clear();
+            splitContainer1.Panel2Collapsed = true;
+            splitContainer1.Panel1.Controls.Add(UCC);
+        }
     }
 }
