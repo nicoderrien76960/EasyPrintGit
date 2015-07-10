@@ -191,7 +191,7 @@
             this.MaximumSize = new System.Drawing.Size(1500, 423);
             this.MinimumSize = new System.Drawing.Size(863, 423);
             this.Name = "Form_reglage";
-            this.Text = "Form_reglafge";
+            this.Text = "Réglages";
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);

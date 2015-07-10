@@ -11,6 +11,8 @@ using PrinterForce;
 using System.Threading.Tasks;
 using System.Linq;
 using Ghostscript.NET.Processor;
+using IBM.Data.DB2.iSeries;
+using System.Data.Odbc;
 
 namespace EssaiJobImp
 {
@@ -568,6 +570,35 @@ namespace EssaiJobImp
                 //--------------------------------------------------------------------------------------------------------------
                 nouveauDocument.Close();
                 incCopie++;
+
+                //Copie Doc dans GED
+                try
+                {
+                    String connectionString = "Driver={iSeries Access ODBC Driver};System=10.211.200.1;Uid=AMAD;Pwd=AMAD5678;";
+                    OdbcConnection conn = new OdbcConnection(connectionString);
+                    conn.Open();
+                    string requete = "select T1.NOCLI c1 , T1.NOMCL c2 from B00C0ACR.AMAGESTCOM.ACLIENL1 T1 where T1.NOCLI = '" + donneEntete["Client_code"] + "'";
+                    OdbcCommand act = new OdbcCommand(requete, conn);
+                    OdbcDataReader act0 = act.ExecuteReader();
+                    string nomADH = "";
+                    while (act0.Read())
+                    {
+                        nomADH = (act0.GetString(1));
+                    }
+                    conn.Close();
+                    if (!System.IO.Directory.Exists(ConfigurationManager.AppSettings["cheminGED"] + "\\" + donneEntete["Client_code"] + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM") + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\BL\\"))
+                    {
+                        System.IO.Directory.CreateDirectory(ConfigurationManager.AppSettings["cheminGED"] + "\\" + donneEntete["Client_code"] + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\BL\\");
+                        System.IO.File.Copy(chemin, ConfigurationManager.AppSettings["cheminGED"] + "\\" + donneEntete["Client_code"] + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\BL\\" + "\\BL_" + nomDoc + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf");
+                    }
+                    else
+                    {
+                        System.IO.File.Copy(chemin, ConfigurationManager.AppSettings["cheminGED"] + "\\" + donneEntete["Client_code"] + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\BL\\" + "\\BL_" + nomDoc + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf");
+                    }
+                }
+                catch { }
+                //--------------------------------------------------------FIN COPIE------------------------------------------------------
+           
 
                 #region impression
                 //---------Gestion de l'impression--------------------------------------------------------------------------
