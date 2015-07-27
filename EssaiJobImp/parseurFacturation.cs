@@ -271,7 +271,8 @@ namespace EssaiJobImp
                         Paragraph pCell2 = new Paragraph();
                         pCell2.Add(new Phrase("\nReference client " + donneeBody["Bon_rcl"+i] + "           du " + donneeBody["Bon_datrcl"+i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLDITALIC)));
                         pCell2.Add(new Phrase("Bon n°" + donneeBody["Bon_numero"+i] + " du " + donneeBody["Bon_date"+i] + "  " + donneeBody["Bon_typvte"+i] + "  " + donneeBody["Bon_datliv"+i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLDITALIC)));
-                        pCell2.Add(new Phrase("Adresse de livraison " + donneeBody["Tiers_adl1"+i] + "  " + donneeBody["Tiers_adl2"+i] + "   " + donneeBody["Tiers_adl6"+i] + "   " + donneeBody["Tiers_adlcp"+i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLDITALIC)));
+                        if (donneeBody.ContainsKey("Tiers_adl1"+i)) { pCell2.Add(new Phrase("Adresse de livraison " + donneeBody["Tiers_adl1" + i] + "  " + donneeBody["Tiers_adl2" + i] + "   " + donneeBody["Tiers_adl6" + i] + "   " + donneeBody["Tiers_adlcp" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLDITALIC))); }
+                        else { pCell2.Add(new Phrase(" ", FontFactory.GetFont(FontFactory.HELVETICA, 8 , Font.BOLDITALIC))); }
                         PdfPCell cell2 = new PdfPCell(pCell2); cell2.Border = PdfPCell.NO_BORDER; cell2.Border += PdfPCell.RIGHT_BORDER; cell2.Border += PdfPCell.LEFT_BORDER;
                         table.AddCell(cell2);
                         PdfPCell cell3 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell3.Border = PdfPCell.NO_BORDER; cell3.Border += PdfPCell.RIGHT_BORDER; cell3.Border += PdfPCell.LEFT_BORDER;
@@ -566,7 +567,7 @@ namespace EssaiJobImp
                         table.AddCell(cellFin);
                         nouveauDocument.Add(table);//----------------------------------------------------------------------------Repère ligne en dessous--------------------------------------------------
                         Phrase pReport = new Phrase("                                                                                                                                                             A REPORTER\n\n\n\n\n\n", FontFactory.GetFont(FontFactory.HELVETICA, 11, Font.BOLD));
-                        Phrase pPage = new Phrase("\n                                                   " + donneEntete["Document_type"] + "                 " + donneEntete["Duplicata"] + "                                                                            Page n° " + (numPage + 1) + "            \n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD));
+                        Phrase pPage = new Phrase("\n                                                   " + donneEntete["Document_type"] + "                 " + donneEntete["Duplicata"] + "                                                                         Page n° " + (numPage + 1) + "            \n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD));
                         nouveauDocument.Add(pReport);
                         table.DeleteBodyRows();
                         nouveauDocument.Add(Chunk.NEXTPAGE);
@@ -739,7 +740,7 @@ namespace EssaiJobImp
                 if (donneeFoot.ContainsKey("Echeance_date" + (iTotal + 1)))
                 {
                     echeance.Add(new Phrase("Echéance   : " + donneeFoot["Echeance_date" + (iTotal + 1)], FontFactory.GetFont(FontFactory.COURIER, 8, Font.NORMAL)));
-                    echeance.Add(new Phrase("\t \t \t                                                                                            Net à payer : " + donneeFoot["Base_tva_mttc" + iTotal] + "€\n", FontFactory.GetFont(FontFactory.HELVETICA, 12, Font.BOLD)));
+                    echeance.Add(new Phrase("\t \t \t                                                                                          Net à payer : " + donneeFoot["Base_tva_mttc" + iTotal] + "€\n", FontFactory.GetFont(FontFactory.HELVETICA, 12, Font.BOLD)));
                     if (donneeFoot["Loi_sapin"]!=" "){echeance.Add(new Phrase(donneeFoot["Loi_sapin"], FontFactory.GetFont(FontFactory.COURIER, 8, Font.NORMAL)));}
                     if (donneeFoot["Reglement_mode"] != "Traite")
                     {

@@ -156,14 +156,14 @@ namespace EssaiJobImp
                                 if (donneeBody.ContainsKey(s + iBody))                          //
                                 {
                                     if (donneeBody.ContainsKey(s + iBody + "bis"))              //
-                                    {                                                           //
-                                        donneeBody.Add(s + iBody + "bis" + compt, n.InnerText);
-                                        compt++;                                                //
+                                    {
+                                        compt++; //
+                                        donneeBody.Add(s + iBody + "bis" + compt, n.InnerText);                                                   //
                                     }
                                     else
                                     {
                                         donneeBody.Add(s + iBody + "bis", n.InnerText);
-                                        compt = 0;
+                                        //compt = 0;
                                     }
                                 }                                                               //<--- Permet de crée un incrémentation des clés (libelle1, libelle2, libelle3, ect)     
                                 else                                                            //
