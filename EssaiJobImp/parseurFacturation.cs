@@ -13,6 +13,8 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using PrinterForce;
 using Ghostscript.NET.Processor;
+using IBM.Data.DB2.iSeries;
+using System.Data.Odbc;
 
 namespace EssaiJobImp
 {
@@ -44,7 +46,7 @@ namespace EssaiJobImp
                 string chemin = "";
                 if (!System.IO.Directory.Exists(cheminDocFinaux+"\\DocFinaux\\Facturation\\"+donneEntete["Client_code"]))
                 {
-                     
+                    System.IO.Directory.CreateDirectory(cheminDocFinaux + "\\DocFinaux\\Facturation\\" + donneEntete["Client_code"]);
                     chemin = cheminDocFinaux + "\\DocFinaux\\Facturation\\" + donneEntete["Client_code"] + "\\" + nomDoc + "_" + donneEntete["Client_code"] + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf";
                 }else
                 {
@@ -236,7 +238,7 @@ namespace EssaiJobImp
                     PdfPCell cell8 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell8.Border = PdfPCell.NO_BORDER; cell8.Border += PdfPCell.RIGHT_BORDER; cell8.Border += PdfPCell.LEFT_BORDER;
                     table.AddCell(cell8);
                 }
-                if (donneeBody.ContainsKey("Bon_datliv1"))
+                /*if (donneeBody.ContainsKey("Bon_datliv1"))
                 {
                     PdfPCell cell1 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell1.Border = PdfPCell.NO_BORDER; cell1.Border += PdfPCell.RIGHT_BORDER; cell1.Border += PdfPCell.LEFT_BORDER;
                     table.AddCell(cell1);
@@ -258,9 +260,33 @@ namespace EssaiJobImp
                     table.AddCell(cell7);
                     PdfPCell cell8 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell8.Border = PdfPCell.NO_BORDER; cell8.Border += PdfPCell.RIGHT_BORDER; cell8.Border += PdfPCell.LEFT_BORDER;
                     table.AddCell(cell8);
-                }
+                }*/
                 for (i = 1; i <= iBody; i++)
                 {
+                    if (donneeBody["Ligne_type" +i]=="BON")
+                    {
+                        nbLigne++;
+                        PdfPCell cell1 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell1.Border = PdfPCell.NO_BORDER; cell1.Border += PdfPCell.RIGHT_BORDER; cell1.Border += PdfPCell.LEFT_BORDER;
+                        table.AddCell(cell1);
+                        Paragraph pCell2 = new Paragraph();
+                        pCell2.Add(new Phrase("\nReference client " + donneeBody["Bon_rcl"+i] + "           du " + donneeBody["Bon_datrcl"+i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLDITALIC)));
+                        pCell2.Add(new Phrase("Bon n°" + donneeBody["Bon_numero"+i] + " du " + donneeBody["Bon_date"+i] + "  " + donneeBody["Bon_typvte"+i] + "  " + donneeBody["Bon_datliv"+i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLDITALIC)));
+                        pCell2.Add(new Phrase("Adresse de livraison " + donneeBody["Tiers_adl1"+i] + "  " + donneeBody["Tiers_adl2"+i] + "   " + donneeBody["Tiers_adl6"+i] + "   " + donneeBody["Tiers_adlcp"+i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLDITALIC)));
+                        PdfPCell cell2 = new PdfPCell(pCell2); cell2.Border = PdfPCell.NO_BORDER; cell2.Border += PdfPCell.RIGHT_BORDER; cell2.Border += PdfPCell.LEFT_BORDER;
+                        table.AddCell(cell2);
+                        PdfPCell cell3 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell3.Border = PdfPCell.NO_BORDER; cell3.Border += PdfPCell.RIGHT_BORDER; cell3.Border += PdfPCell.LEFT_BORDER;
+                        table.AddCell(cell3);
+                        PdfPCell cell4 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell4.Border = PdfPCell.NO_BORDER; cell4.Border += PdfPCell.RIGHT_BORDER; cell4.Border += PdfPCell.LEFT_BORDER;
+                        table.AddCell(cell4);
+                        PdfPCell cell5 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell5.Border = PdfPCell.NO_BORDER; cell5.Border += PdfPCell.RIGHT_BORDER; cell5.Border += PdfPCell.LEFT_BORDER;
+                        table.AddCell(cell5);
+                        PdfPCell cell6 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell6.Border = PdfPCell.NO_BORDER; cell6.Border += PdfPCell.RIGHT_BORDER; cell6.Border += PdfPCell.LEFT_BORDER;
+                        table.AddCell(cell6);
+                        PdfPCell cell7 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell7.Border = PdfPCell.NO_BORDER; cell7.Border += PdfPCell.RIGHT_BORDER; cell7.Border += PdfPCell.LEFT_BORDER;
+                        table.AddCell(cell7);
+                        PdfPCell cell8 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell8.Border = PdfPCell.NO_BORDER; cell8.Border += PdfPCell.RIGHT_BORDER; cell8.Border += PdfPCell.LEFT_BORDER;
+                        table.AddCell(cell8);
+                    }
                     //Condition ARTICLE----------------------------------------------------------------------------------------------------------------------
                     if (donneeBody["Ligne_type" + i] == "ART")
                     {
@@ -443,6 +469,59 @@ namespace EssaiJobImp
                         table.AddCell(cellVide);
                         table.AddCell(cellVide);
                         table.AddCell(cellFin);
+                    }
+                    if (donneeBody["Ligne_type" +i] =="ESC")
+                    {
+                        nbLigne++;
+                        string sPattern = "libelle" + i + "bis";
+                        PdfPCell cell1 = new PdfPCell(new Phrase(donneeBody["Art_code" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell1.Border = PdfPCell.NO_BORDER; cell1.Border += PdfPCell.RIGHT_BORDER; cell1.Border += PdfPCell.LEFT_BORDER;
+                        table.AddCell(cell1);
+                        Paragraph pCell2 = new Paragraph();
+                        PdfPCell cell2 = new PdfPCell(pCell2); cell2.Border = PdfPCell.NO_BORDER; cell2.Border += PdfPCell.RIGHT_BORDER; cell2.Border += PdfPCell.LEFT_BORDER;
+                        foreach (KeyValuePair<string, string> entry in donneeBody)
+                        {
+                            if (System.Text.RegularExpressions.Regex.IsMatch(entry.Key, sPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase))
+                            {
+                                if (okStart == false)
+                                {
+                                    pCell2.Add(new Phrase(donneeBody["Libelle" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD)));
+                                    string clé = entry.Key;
+                                    if (donneeBody.ContainsKey("Art_lot" + i)) { pCell2.Add(new Phrase("Numéro de lot : " + donneeBody["Art_lot" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); }
+                                    pCell2.Add(new Phrase(donneeBody[clé] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 7.5F, Font.BOLDITALIC)));
+                                    okStart = true;
+                                }
+                                else
+                                {
+                                    string clé = entry.Key;
+                                    pCell2.Add(new Phrase(donneeBody[clé] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 7.5F, Font.BOLDITALIC)));
+                                }
+                                okDési = true;
+                            }
+                        }
+                        if (okDési == false)
+                        {
+                            PdfPCell cell3 = new PdfPCell(new Phrase(donneeBody["Libelle" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell3.Border = PdfPCell.NO_BORDER; cell3.Border += PdfPCell.RIGHT_BORDER; cell3.Border += PdfPCell.LEFT_BORDER;
+                            table.AddCell(cell3);
+                        }
+                        else { table.AddCell(cell2); }
+                        PdfPCell cell4 = new PdfPCell(new Phrase(donneeBody["Art_unite" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell4.Border = PdfPCell.NO_BORDER; cell4.Border += PdfPCell.RIGHT_BORDER; cell4.Border += PdfPCell.LEFT_BORDER;
+                        table.AddCell(cell4);
+                        PdfPCell cell5 = new PdfPCell(new Phrase(donneeBody["Art_qte" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell5.Border = PdfPCell.NO_BORDER; cell5.Border += PdfPCell.RIGHT_BORDER; cell5.Border += PdfPCell.LEFT_BORDER;
+                        table.AddCell(cell5);
+                        PdfPCell cell6 = new PdfPCell(new Phrase("\n ", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell6.Border = PdfPCell.NO_BORDER; cell6.Border += PdfPCell.RIGHT_BORDER; cell6.Border += PdfPCell.LEFT_BORDER;
+                        table.AddCell(cell6);
+                        PdfPCell cell7 = new PdfPCell(new Phrase("\n ", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell7.Border = PdfPCell.NO_BORDER; cell7.Border += PdfPCell.RIGHT_BORDER; cell7.Border += PdfPCell.LEFT_BORDER;
+                        table.AddCell(cell7);
+                        PdfPCell cell8 = new PdfPCell(new Phrase(" " + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell8.Border = PdfPCell.NO_BORDER; cell8.Border += PdfPCell.RIGHT_BORDER; cell8.Border += PdfPCell.LEFT_BORDER;
+                        table.AddCell(cell8);
+                        PdfPCell cell9 = new PdfPCell(new Phrase(donneeBody["Art_monht" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell9.Border = PdfPCell.NO_BORDER; cell9.Border += PdfPCell.RIGHT_BORDER; cell9.Border += PdfPCell.LEFT_BORDER;
+                        table.AddCell(cell9);
+                        if (donneeBody["Art_monht" + i] != "")
+                        {
+                            tempoTOT = tempoTOT + double.Parse(donneeBody["Art_monht" + i]);
+                        }
+                        else { tempoTOT = tempoTOT + 0; }
+                        okDési = false; okStart = false;
                     }
                     PdfPCell cellEcartDroite = new PdfPCell(new Phrase(" " + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 2, Font.BOLD)));
 
@@ -660,7 +739,7 @@ namespace EssaiJobImp
                 if (donneeFoot.ContainsKey("Echeance_date" + (iTotal + 1)))
                 {
                     echeance.Add(new Phrase("Echéance   : " + donneeFoot["Echeance_date" + (iTotal + 1)], FontFactory.GetFont(FontFactory.COURIER, 8, Font.NORMAL)));
-                    echeance.Add(new Phrase("\t \t \t                                                                                            Net à payer " + donneeFoot["Base_tva_mttc" + iTotal] + "€\n", FontFactory.GetFont(FontFactory.HELVETICA, 12, Font.BOLD)));
+                    echeance.Add(new Phrase("\t \t \t                                                                                            Net à payer : " + donneeFoot["Base_tva_mttc" + iTotal] + "€\n", FontFactory.GetFont(FontFactory.HELVETICA, 12, Font.BOLD)));
                     if (donneeFoot["Loi_sapin"]!=" "){echeance.Add(new Phrase(donneeFoot["Loi_sapin"], FontFactory.GetFont(FontFactory.COURIER, 8, Font.NORMAL)));}
                     if (donneeFoot["Reglement_mode"] != "Traite")
                     {
@@ -675,7 +754,8 @@ namespace EssaiJobImp
                 }
                 else
                 {
-                    echeance.Add(new Phrase("\t \t \t                                                                                                                            Votre avoir " + donneeFoot["Pied_net"] + "€\n\n", FontFactory.GetFont(FontFactory.HELVETICA, 12, Font.BOLD)));
+                    echeance.Add(new Phrase(donneeFoot["Loi_sapin"]+"\n ", FontFactory.GetFont(FontFactory.COURIER, 8, Font.NORMAL)));
+                    echeance.Add(new Phrase("\t \t \t                                                                                                                            Votre avoir " + donneeFoot["Pied_net"] + "€\n", FontFactory.GetFont(FontFactory.HELVETICA, 12, Font.BOLD)));
                     nouveauDocument.Add(tableauPied);
                     nouveauDocument.Add(echeance);
                 } 
@@ -728,6 +808,41 @@ namespace EssaiJobImp
                 nouveauDocument.Add(tabPapillon);
                 nouveauDocument.Close();
                 incCopie++;
+
+
+                //--------------------------------------------------COPIE GED--------------------------------------------------------
+                try
+                {
+                    String connectionString = "Driver={iSeries Access ODBC Driver};System=10.211.200.1;Uid=AMAD;Pwd=AMAD5678;";
+                    OdbcConnection conn = new OdbcConnection(connectionString);
+                    conn.Open();
+                    string requete = "select T1.NOCLI c1 , T1.NOMCL c2 from B00C0ACR.AMAGESTCOM.ACLIENL1 T1 where T1.NOCLI = '" + donneEntete["Client_code"] + "'";
+                    OdbcCommand act = new OdbcCommand(requete, conn);
+                    OdbcDataReader act0 = act.ExecuteReader();
+                    string nomADH = "";
+                    while (act0.Read())
+                    {
+                        nomADH = (act0.GetString(1));
+                    }
+                    conn.Close();
+                    if (!System.IO.Directory.Exists(ConfigurationManager.AppSettings["cheminGED"] + "\\" + donneEntete["Client_code"] + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM") + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\Facturation\\"))
+                    {
+                        System.IO.Directory.CreateDirectory(ConfigurationManager.AppSettings["cheminGED"] + "\\" + donneEntete["Client_code"] + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\Facturation\\");
+                        System.IO.File.Copy(chemin, ConfigurationManager.AppSettings["cheminGED"] + "\\" + donneEntete["Client_code"] + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\Facturation\\" + "\\"+ nomDoc + "_" + donneEntete["Client_code"] + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf");
+                    }
+                    else
+                    {
+                        System.IO.File.Copy(chemin, ConfigurationManager.AppSettings["cheminGED"] + "\\" + donneEntete["Client_code"] + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\Facturation\\" + nomDoc + "_" + donneEntete["Client_code"] + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf");
+                    }
+                }
+                catch (Exception e)
+                {
+                    LogHelper.WriteToFile(e.Message, "ENVOI GED Facture");
+                }
+
+                //----------------------------------------------FIN COPIE----------------------------------------------------------
+
+
 
                 int nbImp = 0; int nbImpOK = 0;
                 string[] printer = new string[20]; // tableau qui contient les imprimantes du profil d'impression

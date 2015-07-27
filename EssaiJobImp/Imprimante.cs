@@ -123,8 +123,9 @@ namespace EssaiJobImp
                                                         PrintJobInfoCollection jobs = pq2.GetPrintJobInfoCollection();
                                                         foreach (PrintSystemJobInfo job in jobs)//Lecture des docs dans file d'attente
                                                         {
-                                                            {
-                                                            if (job.Name == nom_spool)//Condition nom du doc de la file
+                                                            
+                                                            if (job.Name == nom_spool)
+                                                            {                                   //Condition nom du doc de la file
                                                                 job.Cancel();
                                                                 profil = job.Submitter;
                                                                 break;
@@ -139,13 +140,53 @@ namespace EssaiJobImp
                                         nomDoc = nomFichier;    
                                     }
                                     cheminDoc = destFile;
-                                    if (test != 0)
+                                    if ((Environment.UserName != profil) && profil != "")
                                     {
-                                        int compteur=0;
-                                        while (compteur < (test-3))
+                                        if (test != 0)
                                         {
-                                            cheminDoc = cheminDocFinaux + @"\Copie spool\tempo" + compteur + ".SPL";
-                                            destFile = cheminDocFinaux + @"\Copie spool\tempo" + compteur + ".SPL";
+                                            int compteur = 0;
+                                            while (compteur < (test - 3))
+                                            {
+                                                cheminDoc = cheminDocFinaux + @"\Copie spool\tempo" + compteur + ".SPL";
+                                                destFile = cheminDocFinaux + @"\Copie spool\tempo" + compteur + ".SPL";
+                                                switch (typeDoc.TrimStart())
+                                                {
+                                                    case "DEVIS":
+                                                        Devis dev = new Devis(); dev.lectureDevis(cheminDoc, profil);
+                                                        break;
+                                                    case "BORDEREAU DE LIVRAISON":
+                                                        BonLivraison BL = new BonLivraison(); BL.lectureBL(cheminDoc, profil);
+                                                        break;
+                                                    case "BON D'ENLEVEMENT":
+                                                        BonLivraison BL2 = new BonLivraison(); BL2.lectureBL(cheminDoc, profil);
+                                                        break;
+                                                    case "BON DE PREPARATION":
+                                                        BonPréparation BP = new BonPréparation(); BP.lectureBP(cheminDoc, profil);
+                                                        break;
+                                                    case "COMMANDE ADHERENT":
+                                                        AccuseReception AR = new AccuseReception(); AR.lectureAR(cheminDoc, profil);
+                                                        break;
+                                                    case "BON DE COMMANDE FOURNISSEUR":
+                                                        CommandeFournisseur CF = new CommandeFournisseur(); CF.lectureCF(cheminDoc, profil);
+                                                        break;
+                                                    case "RETOUR FOURNISSEUR":
+                                                        CommandeFournisseur rCF = new CommandeFournisseur(); rCF.lectureCF(cheminDoc, profil);
+                                                        break;
+                                                    case "AVOIR":
+                                                        BonLivraison BL3 = new BonLivraison(); BL3.lectureBL(cheminDoc, profil);
+                                                        break;
+                                                    case "FACTURE":
+                                                        Facturation FA = new Facturation(); FA.lectureFA(cheminDoc, profil);
+                                                        break;
+                                                    case null:
+                                                        break;
+                                                }
+                                                compteur++;
+                                                System.IO.File.Delete(destFile);
+                                            }
+                                        }
+                                        else
+                                        {
                                             switch (typeDoc.TrimStart())
                                             {
                                                 case "DEVIS":
@@ -178,45 +219,8 @@ namespace EssaiJobImp
                                                 case null:
                                                     break;
                                             }
-                                            compteur++;
                                             System.IO.File.Delete(destFile);
                                         }
-                                    }
-                                    else
-                                    {
-                                        switch (typeDoc.TrimStart())
-                                        {
-                                            case "DEVIS":
-                                                Devis dev = new Devis(); dev.lectureDevis(cheminDoc, profil);
-                                                break;
-                                            case "BORDEREAU DE LIVRAISON":
-                                                BonLivraison BL = new BonLivraison(); BL.lectureBL(cheminDoc, profil);
-                                                break;
-                                            case "BON D'ENLEVEMENT":
-                                                BonLivraison BL2 = new BonLivraison(); BL2.lectureBL(cheminDoc, profil);
-                                                break;
-                                            case "BON DE PREPARATION":
-                                                BonPréparation BP = new BonPréparation(); BP.lectureBP(cheminDoc, profil);
-                                                break;
-                                            case "COMMANDE ADHERENT":
-                                                AccuseReception AR = new AccuseReception(); AR.lectureAR(cheminDoc, profil);
-                                                break;
-                                            case "BON DE COMMANDE FOURNISSEUR":
-                                                CommandeFournisseur CF = new CommandeFournisseur(); CF.lectureCF(cheminDoc, profil);
-                                                break;
-                                            case "RETOUR FOURNISSEUR":
-                                                CommandeFournisseur rCF = new CommandeFournisseur(); rCF.lectureCF(cheminDoc, profil);
-                                                break;
-                                            case "AVOIR":
-                                                BonLivraison BL3 = new BonLivraison(); BL3.lectureBL(cheminDoc, profil);
-                                                break;
-                                            case "FACTURE":
-                                                Facturation FA = new Facturation(); FA.lectureFA(cheminDoc, profil);
-                                                break;
-                                            case null:
-                                                break;
-                                        }
-                                        System.IO.File.Delete(destFile);
                                     }
                                 }
                                 else

@@ -513,7 +513,12 @@ namespace EssaiJobImp
                 string[] printer = new string[20]; // tableau qui contient les imprimantes du profil d'impression
                 ProfilImprimante profil = new ProfilImprimante();
                 profil.chargementXML("BP");     // chargement selon le type de doc
-                string vendeur = unProfil.Substring(2, 3);
+                string vendeur = "";
+                try
+                {
+                    vendeur = unProfil.Substring(2, 3);
+                }
+                catch { vendeur = unProfil.Substring(2, 2); }
                 vendeur = vendeur.TrimEnd();
                 var listeProfil = profil.getDonneeProfil();
                 try
@@ -534,7 +539,7 @@ namespace EssaiJobImp
                 }
                 catch(Exception e)
                 {
-                    LogHelper.WriteToFile(e.Message, "Erreur attribution imprimante par profil" + vendeur);
+                    LogHelper.WriteToFile(e.Message, "Erreur attribution imprimante par profil " + unProfil.ToString());
                     printer[nbImp] = "Imp211";                 //Imprimante par defaut (essai)
                     nbImp++;
                 }

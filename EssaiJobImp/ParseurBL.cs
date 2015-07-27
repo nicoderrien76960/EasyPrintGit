@@ -433,7 +433,7 @@ namespace EssaiJobImp
                             Phrase pPage = new Phrase("                       " + "                                       " + donneEntete["Document_type"] + "   " + "                                " + donneEntete["Duplicata"] + "                                                     Page n° " + (numPage + 1) + "  \n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD));
                             nouveauDocument.Add(pPage);
                         }else{
-                            Phrase pPage = new Phrase("                                    " + "                 BON DE LIVRAISON   " + "                 " + donneEntete["Duplicata"] + "                                                       Page n° " + (numPage + 1) + " \n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD));
+                            Phrase pPage = new Phrase("                                    " + "                 BON DE LIVRAISON   " + "                 " + donneEntete["Duplicata"] + "                                                           Page n° " + (numPage + 1) + " \n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD));
                             nouveauDocument.Add(pPage);
                         }  
                         if (donneEntete["Bon_typvte"] == "LIVREE")
