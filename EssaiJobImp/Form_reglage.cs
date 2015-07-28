@@ -88,5 +88,14 @@ namespace EssaiJobImp
             splitContainer1.Panel2Collapsed = true;
             splitContainer1.Panel1.Controls.Add(UCC);
         }
+
+        private void btnMail_Click(object sender, EventArgs e)
+        {
+            UserControlMail UCM = new UserControlMail();
+            splitContainer1.Panel1.Controls.Clear();
+            splitContainer1.Panel2.Controls.Clear();
+            splitContainer1.Panel2Collapsed = true;
+            splitContainer1.Panel1.Controls.Add(UCM);
+        }   
     }
 }

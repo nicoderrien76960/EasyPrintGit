@@ -196,6 +196,12 @@
     <Compile Include="UserControlImprimanteProfil.Designer.cs">
       <DependentUpon>UserControlImprimanteProfil.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControlMail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControlMail.Designer.cs">
+      <DependentUpon>UserControlMail.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -256,6 +262,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControlImprimanteProfil.resx">
       <DependentUpon>UserControlImprimanteProfil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControlMail.resx">
+      <DependentUpon>UserControlMail.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="baliseConfFacturation.config" />
     <None Include="ClassDiagram1.cd" />
