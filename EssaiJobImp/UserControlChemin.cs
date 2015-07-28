@@ -19,6 +19,8 @@ namespace EssaiJobImp
             textBox1.Text = ConfigurationManager.AppSettings["CheminGED"];
             textBox4.Text = ConfigurationManager.AppSettings["CheminRessources"];
             textBox3.Text = ConfigurationManager.AppSettings["CheminDocFinaux"];
+            textBox2.Text = ConfigurationManager.AppSettings["ImpDef"];
+            textBox5.Text = ConfigurationManager.AppSettings["ImpDefBL"];
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -36,6 +38,8 @@ namespace EssaiJobImp
             ConfigurationManager.AppSettings["CheminGED"] = textBox1.Text;
             ConfigurationManager.AppSettings["CheminRessources"] = textBox4.Text;
             ConfigurationManager.AppSettings["CheminDocFinaux"] = textBox3.Text ;
+            ConfigurationManager.AppSettings["ImpDef"] = textBox2.Text;
+            ConfigurationManager.AppSettings["ImpDefBL"] = textBox5.Text;
             MessageBox.Show("Modification effectuée");
         }
     }

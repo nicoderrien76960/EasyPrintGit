@@ -101,7 +101,7 @@ namespace EssaiJobImp
                                                 patternOK2 = true;
                                             }
                                             else
-                                            {
+                                            {   
                                                 if (System.Text.RegularExpressions.Regex.IsMatch(s, sPatternTypeDoc, System.Text.RegularExpressions.RegexOptions.IgnoreCase)&& patternOK2==false)
                                                 {
                                                     typeDoc = s.Substring(24, (s.IndexOf(']') - 24));

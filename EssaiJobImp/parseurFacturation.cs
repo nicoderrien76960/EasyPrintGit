@@ -895,9 +895,9 @@ namespace EssaiJobImp
                     { LogHelper.WriteToFile(e.Message, "ParseurBP" + donneEntete["Document_numero"].Trim()); }
                     // incrément à chaque impression terminée
                 }
-                /*Mail m = new Mail();
+                Mail m = new Mail();
                 m.remplirDictionnaire();
-                m.comparerDocument();*/
+                m.comparerDocument(donneEntete["Client_code"]);
             }
         }
     }
