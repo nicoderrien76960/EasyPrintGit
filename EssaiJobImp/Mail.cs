@@ -62,9 +62,8 @@ namespace EssaiJobImp
                 MailMessage message = new MailMessage();
 
                 message.From = new MailAddress(paramServeur[2], paramServeur[3]);
-                message.To.Add(mail.TrimEnd());//mail.TrimEnd()
+                message.To.Add(mail.TrimEnd());
                 message.Subject = "Votre Facturation du Mois de "+DateTime.Now.ToString("MMMM");
-                //message.Body = "Bonjour,\n\nVous trouverez en pièce jointe de ce mail votre facture du mois de "+DateTime.Now.ToString("MMMM")+"\n\n\nCordialement, la coopérative ABCR";
                 message.Body = "<p><span style=\"font-size: small;\"><font face=\"helvetica\">Bonjour,</font></span></p><p>&nbsp;</p><p>Veuillez trouver en pi&egrave;ce jointe de ce mail votre facture du mois de "+DateTime.Now.ToString("MMMM")+"</p><p>&nbsp;</p><p>Cordialement, la coop&eacute;rative ABCR.</p><p>&nbsp;</p><p>&nbsp;</p>";
                 message.IsBodyHtml = true;
                 Attachment data = new Attachment(path);

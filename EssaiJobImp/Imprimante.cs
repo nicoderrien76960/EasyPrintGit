@@ -107,11 +107,10 @@ namespace EssaiJobImp
                                                     typeDoc = s.Substring(24, (s.IndexOf(']') - 24));
                                                 }
                                             }
-                                            //Regex balise <spool>\ prévoir changement du regex dans les fichiers de conf
+                                            //Regex balise <spool>/ prévoir changement du regex dans les fichiers de conf
                                             if (System.Text.RegularExpressions.Regex.IsMatch(s, sPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase))
                                             {
                                                 nom_spool = s.Substring(16, 10);
-                                                //textBox1.Text += (nom_spool + " ------> ");
                                                 if (supOk == true)//Condition si copie ok donc suppression
                                                 {
                                                     System.IO.File.Delete(sourceFile);
