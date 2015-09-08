@@ -742,13 +742,16 @@ namespace EssaiJobImp
                     echeance.Add(new Phrase("Echéance   : " + donneeFoot["Echeance_date" + (iTotal + 1)], FontFactory.GetFont(FontFactory.COURIER, 8, Font.NORMAL)));
                     echeance.Add(new Phrase("\t \t \t                                                                                          Net à payer : " + donneeFoot["Base_tva_mttc" + iTotal] + "€\n", FontFactory.GetFont(FontFactory.HELVETICA, 12, Font.BOLD)));
                     if (donneeFoot["Loi_sapin"]!=" "){echeance.Add(new Phrase(donneeFoot["Loi_sapin"], FontFactory.GetFont(FontFactory.COURIER, 8, Font.NORMAL)));}
-                    if (donneeFoot["Reglement_mode"] != "Traite")
+                    if (donneeFoot.ContainsKey("Reglement_mode"))
                     {
-                        echeance.Add(new Phrase("% à régler : " + donneeFoot["Echeance_pour" + (iTotal + 1)]+"\n ", FontFactory.GetFont(FontFactory.COURIER, 8, Font.NORMAL)));
-                    }
-                    else
-                    {
-                        echeance.Add(new Phrase("\nRéglement par   " +donneeFoot["Traite"]+"        "+donneeFoot["Acceptation"]+"        "+donneeFoot["Domiciliation"], FontFactory.GetFont(FontFactory.COURIER, 8, Font.NORMAL)));
+                        if (donneeFoot["Reglement_mode"] != "Traite")
+                        {
+                            echeance.Add(new Phrase("% à régler : " + donneeFoot["Echeance_pour" + (iTotal + 1)] + "\n ", FontFactory.GetFont(FontFactory.COURIER, 8, Font.NORMAL)));
+                        }
+                        else
+                        {
+                            echeance.Add(new Phrase("\nRéglement par   " + donneeFoot["Traite"] + "        " + donneeFoot["Acceptation"] + "        " + donneeFoot["Domiciliation"], FontFactory.GetFont(FontFactory.COURIER, 8, Font.NORMAL)));
+                        }
                     }
                     nouveauDocument.Add(tableauPied);
                     nouveauDocument.Add(echeance);

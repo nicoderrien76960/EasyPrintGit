@@ -41,7 +41,7 @@ namespace EssaiJobImp
                         DateTime datePlus1;
                         try
                         {
-                            datePlus1 = System.IO.Directory.GetLastWriteTime(doc[i + 1]).Date;                       //   <--- EN REFLEXION
+                            datePlus1 = System.IO.Directory.GetLastWriteTime(doc[i + 1]).Date;                       //   <--- EN REFLEXION!
                         }catch{ datePlus1 = date; }
                         
                         DateTime dateActuelle = DateTime.Today;
