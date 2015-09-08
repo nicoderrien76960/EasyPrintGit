@@ -89,7 +89,7 @@ namespace EssaiJobImp
 
                 try
                 {
-                    textBox1.Text = nomFichier;
+                    textBox2.Text = nomFichier;
                     ConfigurationManager.AppSettings["CheminPatternHautDroiteDevis"] = textBox2.Text;
                 }
                 catch (Exception ex)
@@ -113,7 +113,7 @@ namespace EssaiJobImp
 
                 try
                 {
-                    textBox1.Text = nomFichier;
+                    textBox3.Text = nomFichier;
                     ConfigurationManager.AppSettings["CheminPatternTableau"] = textBox3.Text;
                 }
                 catch (Exception ex)
@@ -137,7 +137,7 @@ namespace EssaiJobImp
 
                 try
                 {
-                    textBox1.Text = nomFichier;
+                    textBox4.Text = nomFichier;
                     ConfigurationManager.AppSettings["CheminFilligraneDevis"] = textBox4.Text;
                 }
                 catch (Exception ex)
@@ -161,7 +161,7 @@ namespace EssaiJobImp
 
                 try
                 {
-                    textBox1.Text = nomFichier;
+                    textBox5.Text = nomFichier;
                     ConfigurationManager.AppSettings["CheminPatternTot"] = textBox5.Text;
                 }
                 catch (Exception ex)

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace EssaiJobImp
 {
@@ -25,6 +26,11 @@ namespace EssaiJobImp
             tBD6.Text = dicoBL["Dimension6"];
             tBD7.Text = dicoBL["Dimension7"];
             tBD8.Text = dicoBL["Dimension8"];
+            textBox1.Text = ConfigurationManager.AppSettings["CheminLogoABCR"];
+            textBox2.Text = ConfigurationManager.AppSettings["CheminPatternHautDroite"];
+            textBox3.Text = ConfigurationManager.AppSettings["CheminPatternTableau"];
+            textBox4.Text = ConfigurationManager.AppSettings["CheminFilligraneBL"];
+            textBox5.Text = ConfigurationManager.AppSettings["CheminPatternTotBl"];
         }
         private void btnValider_Click(object sender, EventArgs e)
         {
@@ -41,6 +47,126 @@ namespace EssaiJobImp
                 MessageBox.Show("Modification effectuée");
             }
             else { MessageBox.Show("Les valeurs entrée dépasse la somme total de 110ppp"); }
+        }
+
+        private void btnCheminLogo_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.InitialDirectory = Application.ExecutablePath; 
+            openFileDialog1.FileName = "Logo";
+            openFileDialog1.Filter = "Fichiers image (*.jpg)|*.jpg|Tous les fichiers (*.*)|*.*";
+            openFileDialog1.FilterIndex = 1;
+            string nomFichier = "";
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                nomFichier = openFileDialog1.FileName;
+
+                try
+                {
+                    textBox1.Text = nomFichier;
+                    ConfigurationManager.AppSettings["CheminLogoABCR"] = textBox1.Text;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Problème à la lecture du fichier (" + ex.Message + ")", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.InitialDirectory = Application.ExecutablePath;
+            openFileDialog1.FileName = "Logo";
+            openFileDialog1.Filter = "Fichiers image (*.jpg)|*.jpg|Tous les fichiers (*.*)|*.*";
+            openFileDialog1.FilterIndex = 1;
+            string nomFichier = "";
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                nomFichier = openFileDialog1.FileName;
+
+                try
+                {
+                    textBox2.Text = nomFichier;
+                    ConfigurationManager.AppSettings["CheminPatternHautDroite"] = textBox2.Text;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Problème à la lecture du fichier (" + ex.Message + ")", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.InitialDirectory = Application.ExecutablePath;
+            openFileDialog1.FileName = "Logo";
+            openFileDialog1.Filter = "Fichiers image (*.jpg)|*.jpg|Tous les fichiers (*.*)|*.*";
+            openFileDialog1.FilterIndex = 1;
+            string nomFichier = "";
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                nomFichier = openFileDialog1.FileName;
+
+                try
+                {
+                    textBox3.Text = nomFichier;
+                    ConfigurationManager.AppSettings["CheminPatternTableau"] = textBox3.Text;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Problème à la lecture du fichier (" + ex.Message + ")", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.InitialDirectory = Application.ExecutablePath;
+            openFileDialog1.FileName = "Logo";
+            openFileDialog1.Filter = "Fichiers image (*.jpg)|*.jpg|Tous les fichiers (*.*)|*.*";
+            openFileDialog1.FilterIndex = 1;
+            string nomFichier = "";
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                nomFichier = openFileDialog1.FileName;
+
+                try
+                {
+                    textBox4.Text = nomFichier;
+                    ConfigurationManager.AppSettings["CheminFilligraneBL"] = textBox4.Text;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Problème à la lecture du fichier (" + ex.Message + ")", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.InitialDirectory = Application.ExecutablePath;
+            openFileDialog1.FileName = "Logo";
+            openFileDialog1.Filter = "Fichiers image (*.jpg)|*.jpg|Tous les fichiers (*.*)|*.*";
+            openFileDialog1.FilterIndex = 1;
+            string nomFichier = "";
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                nomFichier = openFileDialog1.FileName;
+
+                try
+                {
+                    textBox5.Text = nomFichier;
+                    ConfigurationManager.AppSettings["CheminPatternTotBl"] = textBox5.Text;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Problème à la lecture du fichier (" + ex.Message + ")", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
         }
     }
 }
