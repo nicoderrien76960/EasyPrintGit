@@ -141,7 +141,23 @@ namespace EssaiJobImp
                 celulleBasGauche.AddElement(tabCell);
                 celulleBasGauche.Border = PdfPCell.NO_BORDER;
                 celulleBasGauche.Bottom = PdfPCell.ALIGN_BOTTOM;
+                Paragraph pCell2Entete = new Paragraph();
+                int iEntete = 0;
+                if (donneEntete.ContainsKey("Commentaire_texte0"))
+                {
+                    Phrase maPhrase = new Phrase();
+                    pCell2Entete.Leading = 10;
+                    while (donneEntete.ContainsKey("Commentaire_texte" + iEntete))
+                    {
+                        maPhrase = new Phrase(donneEntete["Commentaire_texte" + iEntete] + "\n", FontFactory.GetFont(FontFactory.COURIER, 7, Font.NORMAL)); 
+                        pCell2Entete.Add(maPhrase);
+                        iEntete++;
+                    }
+                }
+                pCell2Entete.FirstLineIndent = 0;
+                celulleBasGauche.AddElement(pCell2Entete);
                 tableau.AddCell(celulleBasGauche);
+
                 //Adresse facturation
                 Paragraph pAdf = new Paragraph();
                 pAdf.Add(new Phrase("\n\n\n\n"+donneEntete["Tiers_adf1"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.BOLD)));
@@ -165,10 +181,10 @@ namespace EssaiJobImp
                 Phrase c = null;
                 if (donneEntete.ContainsKey("Bon_vendeur_lib"))
                 {
-                    c = new Phrase("\nVous avez été servi par : " + donneEntete["Bon_vendeur_lib"] + "                                                                                                                                       \n", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.ITALIC));
+                    c = new Phrase("Vous avez été servi par : " + donneEntete["Bon_vendeur_lib"] + "                                                                                                                                       \n", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.ITALIC));
                     nouveauDocument.Add(c);
                 }
-                else { c = new Phrase("\n\n ", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.ITALIC)); nouveauDocument.Add(c); }
+                else { c = new Phrase("\n ", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.ITALIC)); nouveauDocument.Add(c); }
                 Phrase pPage1 = new Phrase("\n                                                   " + donneEntete["Document_type"] + "                 " + donneEntete["Duplicata"] + "                                                                         Page n° 1           \n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD));
                 pPage1.Leading = 10;
                 nouveauDocument.Add(pPage1);
@@ -212,32 +228,8 @@ namespace EssaiJobImp
                 image3.SetAbsolutePosition(12.5f, 595);
                 nouveauDocument.Add(image3);
                 int i; int nbLigne = 0; float resultat = 0; float dimTab = 0; int décrement = 0; int numPage = 0;         //Constitution du tableau d'article
-                bool okDési = false; bool okStart = false; double tempoTOT = 0; int iEntete = 0;
-                if (donneEntete.ContainsKey("Commentaire_texte0"))
-                {
-                    PdfPCell cell1 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell1.Border = PdfPCell.NO_BORDER; cell1.Border += PdfPCell.RIGHT_BORDER; cell1.Border += PdfPCell.LEFT_BORDER;
-                    table.AddCell(cell1);
-                    Paragraph pCell2 = new Paragraph(); 
-                    while(donneEntete.ContainsKey("Commentaire_texte"+iEntete))
-                    {
-                        pCell2.Add(new Phrase(donneEntete["Commentaire_texte"+iEntete] + "\n", FontFactory.GetFont(FontFactory.COURIER, 7, Font.NORMAL)));
-                        iEntete++;
-                    }
-                    PdfPCell cell2 = new PdfPCell(pCell2); cell2.Border = PdfPCell.NO_BORDER; cell2.Border += PdfPCell.RIGHT_BORDER; cell2.Border += PdfPCell.LEFT_BORDER;
-                    table.AddCell(cell2);
-                    PdfPCell cell3 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell3.Border = PdfPCell.NO_BORDER; cell3.Border += PdfPCell.RIGHT_BORDER; cell3.Border += PdfPCell.LEFT_BORDER;
-                    table.AddCell(cell3);
-                    PdfPCell cell4 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell4.Border = PdfPCell.NO_BORDER; cell4.Border += PdfPCell.RIGHT_BORDER; cell4.Border += PdfPCell.LEFT_BORDER;
-                    table.AddCell(cell4);
-                    PdfPCell cell5 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell5.Border = PdfPCell.NO_BORDER; cell5.Border += PdfPCell.RIGHT_BORDER; cell5.Border += PdfPCell.LEFT_BORDER;
-                    table.AddCell(cell5);
-                    PdfPCell cell6 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell6.Border = PdfPCell.NO_BORDER; cell6.Border += PdfPCell.RIGHT_BORDER; cell6.Border += PdfPCell.LEFT_BORDER;
-                    table.AddCell(cell6);
-                    PdfPCell cell7 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell7.Border = PdfPCell.NO_BORDER; cell7.Border += PdfPCell.RIGHT_BORDER; cell7.Border += PdfPCell.LEFT_BORDER;
-                    table.AddCell(cell7);
-                    PdfPCell cell8 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell8.Border = PdfPCell.NO_BORDER; cell8.Border += PdfPCell.RIGHT_BORDER; cell8.Border += PdfPCell.LEFT_BORDER;
-                    table.AddCell(cell8);
-                }
+                bool okDési = false; bool okStart = false; double tempoTOT = 0; 
+                
                 /*if (donneeBody.ContainsKey("Bon_datliv1"))
                 {
                     PdfPCell cell1 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell1.Border = PdfPCell.NO_BORDER; cell1.Border += PdfPCell.RIGHT_BORDER; cell1.Border += PdfPCell.LEFT_BORDER;
@@ -567,7 +559,8 @@ namespace EssaiJobImp
                         table.AddCell(cellFin);
                         nouveauDocument.Add(table);//----------------------------------------------------------------------------Repère ligne en dessous--------------------------------------------------
                         Phrase pReport = new Phrase("                                                                                                                                                             A REPORTER\n\n\n\n\n\n", FontFactory.GetFont(FontFactory.HELVETICA, 11, Font.BOLD));
-                        Phrase pPage = new Phrase("\n                                                   " + donneEntete["Document_type"] + "                 " + donneEntete["Duplicata"] + "                                                                         Page n° " + (numPage + 1) + "            \n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD));
+                        Phrase pPage = new Phrase("\n                                                   " + donneEntete["Document_type"] + "                 " + donneEntete["Duplicata"] + "                                                                         Page n° " + (numPage + 1) + "            ", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD));
+                        pPage.Leading = 15;
                         nouveauDocument.Add(pReport);
                         table.DeleteBodyRows();
                         nouveauDocument.Add(Chunk.NEXTPAGE);

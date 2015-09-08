@@ -44,11 +44,11 @@ namespace EssaiJobImp
             Document nouveauDocument = new Document(PageSize.A4,20,20,12,20);
             PdfWriter.GetInstance(nouveauDocument, new FileStream(chemin, FileMode.Create));     //Stockage du document
             nouveauDocument.Open();
-            Image image4 = Image.GetInstance(cheminRessources+"\\EssaiePatternTot.jpg");
+            Image image4 = Image.GetInstance(ConfigurationManager.AppSettings["CheminPatternTot"]);
             image4.Alignment = Image.UNDERLYING;
             image4.SetAbsolutePosition(385, 70);
             //----------------------------------------------------------------------------------------------------Filligrane--------
-            Image image5 = Image.GetInstance(cheminRessources+"\\FiligraneDevis.png");
+            Image image5 = Image.GetInstance(ConfigurationManager.AppSettings["CheminFilligraneDevis"]);
             image5.Alignment = Image.UNDERLYING;
             image5.SetAbsolutePosition(200, 250);
             nouveauDocument.Add(image5);
@@ -59,14 +59,14 @@ namespace EssaiJobImp
             tableau.TotalWidth = 550;
             tableau.LockedWidth = true;
             Paragraph pLogo = new Paragraph();
-            Image image = Image.GetInstance(cheminRessources+"\\ABCR 4cm.jpg");
+            Image image = Image.GetInstance(ConfigurationManager.AppSettings["CheminLogoABCR"]);
             pLogo.Add(image);                                                                               //Encadré photo
             PdfPCell celulleHauteGauche = new PdfPCell(image);
             celulleHauteGauche.Border = PdfPCell.NO_BORDER;
             tableau.AddCell(celulleHauteGauche);
                                                                                                             //Encadré info devis
             Paragraph pDoc = new Paragraph();
-            Image image2 = Image.GetInstance(cheminRessources+"\\EssaiePatternHautDroite.jpg");
+            Image image2 = Image.GetInstance(ConfigurationManager.AppSettings["CheminPatternHautDroiteDevis"]);
             image2.Alignment = Image.UNDERLYING;
             image2.SetAbsolutePosition(335, 740);
             nouveauDocument.Add(image2);
@@ -165,7 +165,7 @@ namespace EssaiJobImp
             table.AddCell(cellET8);
             PdfPCell cellET9 = new PdfPCell(new Phrase("TVA", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cellET9.Border = PdfPCell.NO_BORDER; //cellET9.Border += PdfPCell.BOTTOM_BORDER;
             table.AddCell(cellET9);
-            Image image3 = Image.GetInstance(cheminRessources+"\\EssaiePatternEnteteTableau.jpg");
+            Image image3 = Image.GetInstance(ConfigurationManager.AppSettings["CheminPatternTableau"]);
             image3.Alignment = Image.UNDERLYING;
             image3.SetAbsolutePosition(20, 569);
             nouveauDocument.Add(image3);
