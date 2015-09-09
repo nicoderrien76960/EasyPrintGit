@@ -171,5 +171,10 @@ namespace EssaiJobImp
                 }
             }
         }
+
+        private void UserControlDevis_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

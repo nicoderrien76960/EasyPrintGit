@@ -435,6 +435,7 @@
             this.Controls.Add(this.btnValider);
             this.Name = "UserControlDevis";
             this.Size = new System.Drawing.Size(746, 332);
+            this.Load += new System.EventHandler(this.UserControlDevis_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

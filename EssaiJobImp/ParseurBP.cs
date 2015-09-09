@@ -56,17 +56,17 @@ namespace EssaiJobImp
                 tableau.TotalWidth = 550;
                 tableau.LockedWidth = true;
                 //-----------------Ajout Pattern/Image--------------------------------------------------------
-                Image image2 = Image.GetInstance(cheminRessources+"\\EssaiePatternHautDroiteBP.jpg");
+                Image image2 = Image.GetInstance(ConfigurationManager.AppSettings["CheminPatternHautDroiteBp"]);
                 image2.Alignment = Image.UNDERLYING;
                 image2.SetAbsolutePosition(325, 755);
                 nouveauDocument.Add(image2);
-                Image image5 = Image.GetInstance(cheminRessources+"\\FiligraneBP.png");
+                Image image5 = Image.GetInstance(ConfigurationManager.AppSettings["CheminFilligraneBp"]);
                 image5.Alignment = Image.UNDERLYING;
                 image5.SetAbsolutePosition(180, 270);
                 nouveauDocument.Add(image5);
                 //------------------------------------------------------------------------------------------------------
                 Paragraph pLogo = new Paragraph();
-                Image image = Image.GetInstance(cheminRessources+"\\ABCR 3cm.jpg");
+                Image image = Image.GetInstance(ConfigurationManager.AppSettings["CheminLogoABCR"]);
                 pLogo.Add(image);                                                                               //Encadré photo
                 PdfPCell celulleHauteGauche = new PdfPCell(image);
                 celulleHauteGauche.Border = PdfPCell.NO_BORDER;
@@ -201,7 +201,7 @@ namespace EssaiJobImp
                 cellvideDebut.Colspan = 5;
                 cellvideDebut.Border = PdfPCell.NO_BORDER;
                 table.AddCell(cellvideDebut);
-                Image image3 = Image.GetInstance(cheminRessources+"\\EssaiePatternEnteteTableau.jpg");
+                Image image3 = Image.GetInstance(ConfigurationManager.AppSettings["CheminPatternTableau"]);
                 image3.Alignment = Image.UNDERLYING;
                 image3.SetAbsolutePosition(20, 597);
                 nouveauDocument.Add(image3);
