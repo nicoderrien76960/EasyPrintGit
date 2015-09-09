@@ -63,7 +63,7 @@ namespace EssaiJobImp
                 tableau.LockedWidth = true;
                 //-----------------Ajout Pattern/Image--------------------------------------------------------
 
-                Image image5 = Image.GetInstance(cheminRessources+"\\PatternFonddepagefacturation2.png");
+                Image image5 = Image.GetInstance(ConfigurationManager.AppSettings["CheminPatternFondPageFacturation"]);
                 image5.Alignment = Image.UNDERLYING;
                 image5.ScaleAbsolute(PageSize.A4);
                 image5.ScalePercent(35, 36);
@@ -223,7 +223,7 @@ namespace EssaiJobImp
                 table.AddCell(cellET7);
                 PdfPCell cellET8 = new PdfPCell(new Phrase("Montant HT", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cellET8.Border = PdfPCell.NO_BORDER; //cellET8.Border += PdfPCell.BOTTOM_BORDER;
                 table.AddCell(cellET8);
-                Image image3 = Image.GetInstance(cheminRessources+"\\EssaiePatternEnteteTableauFacture.jpg");
+                Image image3 = Image.GetInstance(ConfigurationManager.AppSettings["CheminPatternEnteteTableauFacture"]);
                 image3.Alignment = Image.UNDERLYING;
                 image3.SetAbsolutePosition(12.5f, 595);
                 nouveauDocument.Add(image3);

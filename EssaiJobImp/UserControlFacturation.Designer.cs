@@ -46,6 +46,13 @@
             this.tBD8 = new System.Windows.Forms.TextBox();
             this.tBD1 = new System.Windows.Forms.TextBox();
             this.btnValider = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.btnCheminLogo = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // label10
@@ -143,7 +150,7 @@
             this.tBD2.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tBD2.Location = new System.Drawing.Point(190, 82);
             this.tBD2.Name = "tBD2";
-            this.tBD2.Size = new System.Drawing.Size(153, 20);
+            this.tBD2.Size = new System.Drawing.Size(101, 20);
             this.tBD2.TabIndex = 48;
             // 
             // tBD3
@@ -151,7 +158,7 @@
             this.tBD3.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tBD3.Location = new System.Drawing.Point(190, 110);
             this.tBD3.Name = "tBD3";
-            this.tBD3.Size = new System.Drawing.Size(153, 20);
+            this.tBD3.Size = new System.Drawing.Size(101, 20);
             this.tBD3.TabIndex = 47;
             // 
             // tBD4
@@ -159,7 +166,7 @@
             this.tBD4.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tBD4.Location = new System.Drawing.Point(190, 138);
             this.tBD4.Name = "tBD4";
-            this.tBD4.Size = new System.Drawing.Size(153, 20);
+            this.tBD4.Size = new System.Drawing.Size(101, 20);
             this.tBD4.TabIndex = 46;
             // 
             // tBD5
@@ -167,7 +174,7 @@
             this.tBD5.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tBD5.Location = new System.Drawing.Point(190, 166);
             this.tBD5.Name = "tBD5";
-            this.tBD5.Size = new System.Drawing.Size(153, 20);
+            this.tBD5.Size = new System.Drawing.Size(101, 20);
             this.tBD5.TabIndex = 45;
             // 
             // tBD6
@@ -175,7 +182,7 @@
             this.tBD6.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tBD6.Location = new System.Drawing.Point(190, 194);
             this.tBD6.Name = "tBD6";
-            this.tBD6.Size = new System.Drawing.Size(153, 20);
+            this.tBD6.Size = new System.Drawing.Size(101, 20);
             this.tBD6.TabIndex = 44;
             // 
             // tBD7
@@ -183,7 +190,7 @@
             this.tBD7.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tBD7.Location = new System.Drawing.Point(190, 222);
             this.tBD7.Name = "tBD7";
-            this.tBD7.Size = new System.Drawing.Size(153, 20);
+            this.tBD7.Size = new System.Drawing.Size(101, 20);
             this.tBD7.TabIndex = 43;
             // 
             // tBD8
@@ -191,7 +198,7 @@
             this.tBD8.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tBD8.Location = new System.Drawing.Point(190, 250);
             this.tBD8.Name = "tBD8";
-            this.tBD8.Size = new System.Drawing.Size(153, 20);
+            this.tBD8.Size = new System.Drawing.Size(101, 20);
             this.tBD8.TabIndex = 42;
             // 
             // tBD1
@@ -199,13 +206,13 @@
             this.tBD1.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tBD1.Location = new System.Drawing.Point(190, 54);
             this.tBD1.Name = "tBD1";
-            this.tBD1.Size = new System.Drawing.Size(153, 20);
+            this.tBD1.Size = new System.Drawing.Size(101, 20);
             this.tBD1.TabIndex = 41;
             // 
             // btnValider
             // 
             this.btnValider.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnValider.Location = new System.Drawing.Point(384, 253);
+            this.btnValider.Location = new System.Drawing.Point(167, 276);
             this.btnValider.Name = "btnValider";
             this.btnValider.Size = new System.Drawing.Size(124, 46);
             this.btnValider.TabIndex = 40;
@@ -213,11 +220,78 @@
             this.btnValider.UseVisualStyleBackColor = true;
             this.btnValider.Click += new System.EventHandler(this.btnValider_Click);
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(642, 92);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(77, 20);
+            this.button1.TabIndex = 63;
+            this.button1.Text = "Choissir";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(444, 92);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(192, 20);
+            this.textBox2.TabIndex = 62;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(342, 85);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(96, 26);
+            this.label12.TabIndex = 61;
+            this.label12.Text = "Chemin pattern\r\nentête de tableau :";
+            this.label12.Click += new System.EventHandler(this.label12_Click);
+            // 
+            // btnCheminLogo
+            // 
+            this.btnCheminLogo.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCheminLogo.Location = new System.Drawing.Point(642, 54);
+            this.btnCheminLogo.Name = "btnCheminLogo";
+            this.btnCheminLogo.Size = new System.Drawing.Size(77, 20);
+            this.btnCheminLogo.TabIndex = 60;
+            this.btnCheminLogo.Text = "Choissir";
+            this.btnCheminLogo.UseVisualStyleBackColor = true;
+            this.btnCheminLogo.Click += new System.EventHandler(this.btnCheminLogo_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(444, 54);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(192, 20);
+            this.textBox1.TabIndex = 59;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(324, 54);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(114, 13);
+            this.label11.TabIndex = 58;
+            this.label11.Text = "Chemin fond de page :";
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // UserControlFacturation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Brown;
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.btnCheminLogo);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -237,7 +311,7 @@
             this.Controls.Add(this.tBD1);
             this.Controls.Add(this.btnValider);
             this.Name = "UserControlFacturation";
-            this.Size = new System.Drawing.Size(594, 358);
+            this.Size = new System.Drawing.Size(745, 358);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -263,5 +337,12 @@
         private System.Windows.Forms.TextBox tBD8;
         private System.Windows.Forms.TextBox tBD1;
         private System.Windows.Forms.Button btnValider;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button btnCheminLogo;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
