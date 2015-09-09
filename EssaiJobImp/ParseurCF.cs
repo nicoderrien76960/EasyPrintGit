@@ -55,17 +55,17 @@ namespace EssaiJobImp
                 tableau.TotalWidth = 550;
                 tableau.LockedWidth = true;
                 //-----------------Ajout Pattern/Image--------------------------------------------------------
-                Image image2 = Image.GetInstance(cheminRessources+"\\EssaiePatternHautDroiteBP.jpg");
+                Image image2 = Image.GetInstance(ConfigurationManager.AppSettings["CheminPatternHautDroiteBp"]);
                 image2.Alignment = Image.UNDERLYING;
                 image2.SetAbsolutePosition(325, 760);
                 nouveauDocument.Add(image2);
-                Image image5 = Image.GetInstance(cheminRessources+"\\FiligraneCF.png");
+                Image image5 = Image.GetInstance(ConfigurationManager.AppSettings["CheminFilligraneCf"]);
                 image5.Alignment = Image.UNDERLYING;
                 image5.SetAbsolutePosition(200, 250);
                 nouveauDocument.Add(image5);
                 //-------------------------------------------------------------------------------------------------
                 Paragraph pLogo = new Paragraph();
-                Image image = Image.GetInstance(cheminRessources+"\\ABCR 3cm.jpg");
+                Image image = Image.GetInstance(ConfigurationManager.AppSettings["CheminLogoABCR"]);
                 pLogo.Add(image);                                                                               //Encadré photo
                 PdfPCell celulleHauteGauche = new PdfPCell(image);
                 celulleHauteGauche.Border = PdfPCell.NO_BORDER;
@@ -175,7 +175,7 @@ namespace EssaiJobImp
                 table.AddCell(cellET7);
                 PdfPCell cellET8 = new PdfPCell(new Phrase("Montant HT\n ", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cellET8.Border = PdfPCell.NO_BORDER; //cellET8.Border += PdfPCell.BOTTOM_BORDER;
                 table.AddCell(cellET8);
-                Image image3 = Image.GetInstance(cheminRessources+"\\EssaiePatternEnteteTableau.jpg");
+                Image image3 = Image.GetInstance(ConfigurationManager.AppSettings["CheminPatternTableau"]);
                 image3.Alignment = Image.UNDERLYING;
                 image3.SetAbsolutePosition(20, 610);
                 nouveauDocument.Add(image3);
@@ -470,7 +470,7 @@ namespace EssaiJobImp
                     table.AddCell(cellFin);
                 }
                 //-----------------Ajout Pattern bas de page---------------------------------------------------------
-                Image image4 = Image.GetInstance(cheminRessources+"\\EssaiePatternTotBL.jpg");
+                Image image4 = Image.GetInstance(ConfigurationManager.AppSettings["CheminPatternTotBl"]);
                 image4.Alignment = Image.UNDERLYING;
                 image4.SetAbsolutePosition(385, 130);
                 nouveauDocument.Add(image4);
@@ -510,7 +510,7 @@ namespace EssaiJobImp
                 cartouche.AddCell(cellFoot3);
                
                 nouveauDocument.Add(cartouche);
-                Phrase phraseFin = new Phrase("\nHORAIRES RECEPTION ABCR                     8H - 12H / 13H30 - 16h30                              EXPLOITATION 02 35 95 88 22", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD));
+                Phrase phraseFin = new Phrase("\n"+ConfigurationManager.AppSettings["TexteBasCartouche"], FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD));
                 nouveauDocument.Add(phraseFin);
                 //--------------------------------------------------------------------------------------------------------------
                 nouveauDocument.Close();

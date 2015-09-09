@@ -69,7 +69,7 @@
             // btnValider
             // 
             this.btnValider.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnValider.Location = new System.Drawing.Point(182, 289);
+            this.btnValider.Location = new System.Drawing.Point(161, 289);
             this.btnValider.Name = "btnValider";
             this.btnValider.Size = new System.Drawing.Size(106, 43);
             this.btnValider.TabIndex = 0;

@@ -27,7 +27,7 @@ namespace EssaiJobImp
             tBD7.Text = dicoBL["Dimension7"];
             tBD8.Text = dicoBL["Dimension8"];
             textBox1.Text = ConfigurationManager.AppSettings["CheminLogoABCR"];
-            textBox2.Text = ConfigurationManager.AppSettings["CheminPatternHautDroite"];
+            textBox2.Text = ConfigurationManager.AppSettings["CheminPatternHautDroiteBp"];
             textBox3.Text = ConfigurationManager.AppSettings["CheminPatternTableau"];
             textBox4.Text = ConfigurationManager.AppSettings["CheminFilligraneBL"];
             textBox5.Text = ConfigurationManager.AppSettings["CheminPatternTotBl"];
@@ -87,7 +87,7 @@ namespace EssaiJobImp
                 try
                 {
                     textBox2.Text = nomFichier;
-                    ConfigurationManager.AppSettings["CheminPatternHautDroite"] = textBox2.Text;
+                    ConfigurationManager.AppSettings["CheminPatternHautDroiteBp"] = textBox2.Text;
                 }
                 catch (Exception ex)
                 {
