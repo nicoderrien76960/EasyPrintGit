@@ -31,6 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.btnVariable = new System.Windows.Forms.Button();
             this.btnMail = new System.Windows.Forms.Button();
             this.btnChemin = new System.Windows.Forms.Button();
             this.btnFacturation = new System.Windows.Forms.Button();
@@ -90,6 +91,7 @@
             // splitContainer2.Panel1
             // 
             this.splitContainer2.Panel1.BackColor = System.Drawing.Color.Brown;
+            this.splitContainer2.Panel1.Controls.Add(this.btnVariable);
             this.splitContainer2.Panel1.Controls.Add(this.btnMail);
             this.splitContainer2.Panel1.Controls.Add(this.btnChemin);
             this.splitContainer2.Panel1.Controls.Add(this.btnFacturation);
@@ -103,9 +105,19 @@
             this.splitContainer2.SplitterDistance = 163;
             this.splitContainer2.TabIndex = 4;
             // 
+            // btnVariable
+            // 
+            this.btnVariable.Location = new System.Drawing.Point(20, 352);
+            this.btnVariable.Name = "btnVariable";
+            this.btnVariable.Size = new System.Drawing.Size(156, 32);
+            this.btnVariable.TabIndex = 11;
+            this.btnVariable.Text = "Variable";
+            this.btnVariable.UseVisualStyleBackColor = true;
+            this.btnVariable.Click += new System.EventHandler(this.btnVariable_Click);
+            // 
             // btnMail
             // 
-            this.btnMail.Location = new System.Drawing.Point(21, 317);
+            this.btnMail.Location = new System.Drawing.Point(20, 316);
             this.btnMail.Name = "btnMail";
             this.btnMail.Size = new System.Drawing.Size(156, 32);
             this.btnMail.TabIndex = 10;
@@ -115,7 +127,7 @@
             // 
             // btnChemin
             // 
-            this.btnChemin.Location = new System.Drawing.Point(21, 279);
+            this.btnChemin.Location = new System.Drawing.Point(20, 278);
             this.btnChemin.Name = "btnChemin";
             this.btnChemin.Size = new System.Drawing.Size(156, 32);
             this.btnChemin.TabIndex = 8;
@@ -125,7 +137,7 @@
             // 
             // btnFacturation
             // 
-            this.btnFacturation.Location = new System.Drawing.Point(21, 241);
+            this.btnFacturation.Location = new System.Drawing.Point(20, 240);
             this.btnFacturation.Name = "btnFacturation";
             this.btnFacturation.Size = new System.Drawing.Size(156, 32);
             this.btnFacturation.TabIndex = 7;
@@ -135,7 +147,7 @@
             // 
             // btnAR
             // 
-            this.btnAR.Location = new System.Drawing.Point(21, 203);
+            this.btnAR.Location = new System.Drawing.Point(20, 202);
             this.btnAR.Name = "btnAR";
             this.btnAR.Size = new System.Drawing.Size(156, 32);
             this.btnAR.TabIndex = 6;
@@ -145,7 +157,7 @@
             // 
             // btnBP
             // 
-            this.btnBP.Location = new System.Drawing.Point(21, 165);
+            this.btnBP.Location = new System.Drawing.Point(20, 164);
             this.btnBP.Name = "btnBP";
             this.btnBP.Size = new System.Drawing.Size(156, 32);
             this.btnBP.TabIndex = 4;
@@ -155,7 +167,7 @@
             // 
             // btnCF
             // 
-            this.btnCF.Location = new System.Drawing.Point(21, 127);
+            this.btnCF.Location = new System.Drawing.Point(20, 126);
             this.btnCF.Name = "btnCF";
             this.btnCF.Size = new System.Drawing.Size(156, 32);
             this.btnCF.TabIndex = 3;
@@ -165,7 +177,7 @@
             // 
             // btnBL
             // 
-            this.btnBL.Location = new System.Drawing.Point(21, 89);
+            this.btnBL.Location = new System.Drawing.Point(20, 88);
             this.btnBL.Name = "btnBL";
             this.btnBL.Size = new System.Drawing.Size(156, 32);
             this.btnBL.TabIndex = 2;
@@ -175,7 +187,7 @@
             // 
             // btnDevis
             // 
-            this.btnDevis.Location = new System.Drawing.Point(21, 51);
+            this.btnDevis.Location = new System.Drawing.Point(20, 50);
             this.btnDevis.Name = "btnDevis";
             this.btnDevis.Size = new System.Drawing.Size(156, 32);
             this.btnDevis.TabIndex = 1;
@@ -185,7 +197,7 @@
             // 
             // btnImprimante
             // 
-            this.btnImprimante.Location = new System.Drawing.Point(21, 13);
+            this.btnImprimante.Location = new System.Drawing.Point(20, 12);
             this.btnImprimante.Name = "btnImprimante";
             this.btnImprimante.Size = new System.Drawing.Size(156, 32);
             this.btnImprimante.TabIndex = 0;
@@ -230,5 +242,6 @@
         private System.Windows.Forms.Button btnFacturation;
         private System.Windows.Forms.Button btnChemin;
         private System.Windows.Forms.Button btnMail;
+        private System.Windows.Forms.Button btnVariable;
     }
 }

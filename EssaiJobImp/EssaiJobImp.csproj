@@ -202,6 +202,12 @@
     <Compile Include="UserControlMail.Designer.cs">
       <DependentUpon>UserControlMail.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControlVariable.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControlVariable.Designer.cs">
+      <DependentUpon>UserControlVariable.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -265,6 +271,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControlMail.resx">
       <DependentUpon>UserControlMail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControlVariable.resx">
+      <DependentUpon>UserControlVariable.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="baliseConfFacturation.config" />
     <None Include="ClassDiagram1.cd" />

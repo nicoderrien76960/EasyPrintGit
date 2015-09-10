@@ -555,8 +555,8 @@ namespace EssaiJobImp
                             switches.Add("-dBATCH");
                             switches.Add("-dNOPAUSE");
                             switches.Add("-dNOSAFER");
-                            switches.Add("-dNumCopies=1");
-                            switches.Add("-sDEVICE=ljet4");
+                            switches.Add("-dNumCopies="+ConfigurationManager.AppSettings["NbCopieGC"]);
+                            switches.Add("-sDEVICE="+ConfigurationManager.AppSettings["PiloteImpressionGC"]);
                             switches.Add("-sOutputFile=%printer%" + printerName);
                             switches.Add("-f");
                             switches.Add(inputFile);
