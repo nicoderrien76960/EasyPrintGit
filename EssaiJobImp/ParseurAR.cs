@@ -539,7 +539,7 @@ namespace EssaiJobImp
                 //Copie Doc dans GED
                 try
                 {
-                    String connectionString = "Driver={iSeries Access ODBC Driver};System=10.211.200.1;Uid=AMAD;Pwd=AMAD5678;";
+                    String connectionString = ConfigurationManager.AppSettings["ChaineDeConnexionBase"];
                     OdbcConnection conn = new OdbcConnection(connectionString);
                     conn.Open();
                     string requete = "select T1.NOCLI c1 , T1.NOMCL c2 from B00C0ACR.AMAGESTCOM.ACLIENL1 T1 where T1.NOCLI = '" + donneEntete["Client_code"] + "'";
@@ -603,8 +603,8 @@ namespace EssaiJobImp
                             switches.Add("-dBATCH");
                             switches.Add("-dNOPAUSE");
                             switches.Add("-dNOSAFER");
-                            switches.Add("-dNumCopies=1");
-                            switches.Add("-sDEVICE=ljet4");
+                            switches.Add("-dNumCopies="+ConfigurationManager.AppSettings["NbCopieGC"]);
+                            switches.Add("-sDEVICE=" + ConfigurationManager.AppSettings["PiloteImpressionGC"]);
                             switches.Add("-sOutputFile=%printer%" + printerName);
                             switches.Add("-f");
                             switches.Add(inputFile);

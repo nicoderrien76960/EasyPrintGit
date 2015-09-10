@@ -181,7 +181,7 @@ namespace EssaiJobImp
                 Phrase c = null;
                 if (donneEntete.ContainsKey("Bon_vendeur_lib"))
                 {
-                    c = new Phrase("Vous avez été servi par : " + donneEntete["Bon_vendeur_lib"] + "                                                                                                                                       \n", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.ITALIC));
+                    c = new Phrase("Vous avez été servi par : " + donneEntete["Bon_vendeur_lib"] + "                                                                                                                                       \n\n", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.ITALIC));
                     nouveauDocument.Add(c);
                 }
                 else { c = new Phrase("\n ", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.ITALIC)); nouveauDocument.Add(c); }
@@ -810,7 +810,7 @@ namespace EssaiJobImp
                 //--------------------------------------------------COPIE GED--------------------------------------------------------
                 try
                 {
-                    String connectionString = "Driver={iSeries Access ODBC Driver};System=10.211.200.1;Uid=AMAD;Pwd=AMAD5678;";
+                    String connectionString = ConfigurationManager.AppSettings["ChaineDeConnexionBase"];
                     OdbcConnection conn = new OdbcConnection(connectionString);
                     conn.Open();
                     string requete = "select T1.NOCLI c1 , T1.NOMCL c2 from B00C0ACR.AMAGESTCOM.ACLIENL1 T1 where T1.NOCLI = '" + donneEntete["Client_code"] + "'";
@@ -876,7 +876,7 @@ namespace EssaiJobImp
                             switches.Add("-dBATCH");
                             switches.Add("-dNOPAUSE");
                             switches.Add("-dNOSAFER");
-                            switches.Add("-dNumCopies=1");
+                            switches.Add("-dNumCopies="+ConfigurationManager.AppSettings["NbCopieGC"]);
                             switches.Add("-sDEVICE="+ConfigurationManager.AppSettings["PiloteImpressionFacture"]);
                             //switches.Add("-r360x360");//Pilote d'impression
                             switches.Add("-sOutputFile=%printer%" + printerName);
