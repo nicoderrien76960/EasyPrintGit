@@ -839,61 +839,83 @@ namespace EssaiJobImp
 
                 //----------------------------------------------FIN COPIE----------------------------------------------------------
 
-
-
-                int nbImp = 0; int nbImpOK = 0;
-                string[] printer = new string[20]; // tableau qui contient les imprimantes du profil d'impression
-                ProfilImprimante profil = new ProfilImprimante();
-                profil.chargementXML("Facture");     // chargement selon le type de doc
-                string vendeur = unProfil.Substring(2, 3);
-                vendeur = vendeur.TrimEnd();
-                var listeProfil = profil.getDonneeProfil();
+                //Requette qui retourne le champ "OUI/NON" envoi mail facture
+                String connectionString2 = ConfigurationManager.AppSettings["ChaineDeConnexionBase"];
+                OdbcConnection conn2 = new OdbcConnection(connectionString2);
+                conn2.Open();
+                string requete2 = "select T1.NOCLI c1 , T1.CLID5 c2 , T1.RENDI c3 , T1.PROFE c4 from B00C0ACR.AMAGESTCOM.ACLIENL1 T1 where T1.CLID5 = 'OUI'";
+                OdbcCommand act2 = new OdbcCommand(requete2, conn2);
+                OdbcDataReader act20 = null;
+                bool effectuerImpression=true;
                 try
                 {
-                    foreach (string v in listeProfil[vendeur])      //lecture des imprimantes liée à un profil
+                    act20 = act2.ExecuteReader();
+                    while (act20.Read())
                     {
-                        printer[nbImp] = v.ToString();
-                        nbImp++;                                    //on incrémente le nombre d'impression à executer
+                        if(act20.GetString(0)==donneEntete["Client_code"])
+                        {
+                            if(act20.GetString(1)=="OUI")                                               //Si la ligne de l'enrigistrement dans la base est à OUI pour cet ID, alors ne pas imprimer
+                            { effectuerImpression = false; }
+                        }
                     }
                 }
-                catch
+                catch (Exception e) { LogHelper.WriteToFile(e.Message, "Erreur de connexion à la base, rupture d'impression"); }
+                if (effectuerImpression == true)
                 {
-                    printer[nbImp] = ConfigurationManager.AppSettings["ImpDef"];                 //Imprimante par defaut (essai)
-                    nbImp++;
-                }
-                nbImp = nbImp - 1;
-                while (nbImpOK <= nbImp)                        // boucle tant que le nombre d'impression fait n'à pas atteint le nombre d'impression demander
-                {
-                    string printerName = printer[nbImpOK];
-                    string inputFile = String.Format(@"{0}", chemin);
+                    int nbImp = 0; int nbImpOK = 0;
+                    string[] printer = new string[20]; // tableau qui contient les imprimantes du profil d'impression
+                    ProfilImprimante profil = new ProfilImprimante();
+                    profil.chargementXML("Facture");     // chargement selon le type de doc
+                    string vendeur = unProfil.Substring(2, 3);
+                    vendeur = vendeur.TrimEnd();
+                    var listeProfil = profil.getDonneeProfil();
                     try
                     {
-                        using (GhostscriptProcessor processor = new GhostscriptProcessor())
+                        foreach (string v in listeProfil[vendeur])      //lecture des imprimantes liée à un profil
                         {
-                            List<string> switches = new List<string>();
-                            switches.Add("-empty");
-                            switches.Add("-dPrinted");
-                            switches.Add("-dBATCH");
-                            switches.Add("-dNOPAUSE");
-                            switches.Add("-dNOSAFER");
-                            switches.Add("-dNumCopies="+ConfigurationManager.AppSettings["NbCopieGC"]);
-                            switches.Add("-sDEVICE="+ConfigurationManager.AppSettings["PiloteImpressionFacture"]);
-                            //switches.Add("-r360x360");//Pilote d'impression
-                            switches.Add("-sOutputFile=%printer%" + printerName);
-                            switches.Add("-f");
-                            switches.Add(inputFile);
-
-                            processor.StartProcessing(switches.ToArray(), null);
-                        }   
-                        nbImpOK++;
+                            printer[nbImp] = v.ToString();
+                            nbImp++;                                    //on incrémente le nombre d'impression à executer
+                        }
                     }
-                    catch (Exception e)
-                    { LogHelper.WriteToFile(e.Message, "ParseurBP" + donneEntete["Document_numero"].Trim()); }
-                    // incrément à chaque impression terminée
+                    catch
+                    {
+                        printer[nbImp] = ConfigurationManager.AppSettings["ImpDef"];                 //Imprimante par defaut (essai)
+                        nbImp++;
+                    }
+                    nbImp = nbImp - 1;
+                    while (nbImpOK <= nbImp)                        // boucle tant que le nombre d'impression fait n'à pas atteint le nombre d'impression demander
+                    {
+                        string printerName = printer[nbImpOK];
+                        string inputFile = String.Format(@"{0}", chemin);
+                        try
+                        {
+                            using (GhostscriptProcessor processor = new GhostscriptProcessor())
+                            {
+                                List<string> switches = new List<string>();
+                                switches.Add("-empty");
+                                switches.Add("-dPrinted");
+                                switches.Add("-dBATCH");
+                                switches.Add("-dNOPAUSE");
+                                switches.Add("-dNOSAFER");
+                                switches.Add("-dNumCopies=" + ConfigurationManager.AppSettings["NbCopieGC"]);
+                                switches.Add("-sDEVICE=" + ConfigurationManager.AppSettings["PiloteImpressionFacture"]);
+                                //switches.Add("-r360x360");//Pilote d'impression
+                                switches.Add("-sOutputFile=%printer%" + printerName);
+                                switches.Add("-f");
+                                switches.Add(inputFile);
+
+                                processor.StartProcessing(switches.ToArray(), null);
+                            }
+                            nbImpOK++;
+                        }
+                        catch (Exception e)
+                        { LogHelper.WriteToFile(e.Message, "ParseurBP" + donneEntete["Document_numero"].Trim()); }
+                        // incrément à chaque impression terminée
+                    }
                 }
-                Mail m = new Mail();
+                /*Mail m = new Mail();
                 m.remplirDictionnaire();
-                m.comparerDocument(donneEntete["Client_code"]);
+                m.comparerDocument(donneEntete["Client_code"]);*/
             }
         }
     }

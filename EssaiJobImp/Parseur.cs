@@ -426,7 +426,7 @@ namespace EssaiJobImp
                 conn.Open();
                 string requete = "select T1.NOCLI c1 , T1.NOMCL c2 from B00C0ACR.AMAGESTCOM.ACLIENL1 T1 where T1.NOCLI = '" + donneEntete["Client_code"] + "'";
                 OdbcCommand act = new OdbcCommand(requete, conn);
-                OdbcDataReader act0 = act.ExecuteReader();
+                OdbcDataReader act0 = act.ExecuteReader(); 
                 string nomADH = "";
                 while (act0.Read())
                 {

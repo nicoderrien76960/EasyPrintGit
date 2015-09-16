@@ -47,7 +47,15 @@ namespace EssaiJobImp
                         DateTime dateActuelle = DateTime.Today;
                         if (date == dateActuelle)
                         {
-                            envoiDocument(doc[i], key, dicoMailADH[key]);  //Fonction envoi de doc
+                            try
+                            {
+                                envoiDocument(doc[i], key, dicoMailADH[key]);  //Fonction envoi de doc
+                            }
+                            catch (Exception e)
+                            {
+                                //Inscrit dans un fichier les differente erreur
+                                LogHelper.WriteToFile(e.Message, "Erreur envoie de mail");
+                            }
                         }
                     }
                 } 
