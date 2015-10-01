@@ -9,7 +9,10 @@ using System.IO;
 
 namespace EssaiJobImp
 {
-    class Devis
+    /// <summary>
+    /// Classe récupérant les informations d'un document Devis selon les choix fait dans la selection des balise (chargementXML)
+    /// </summary>
+    class Devis 
     {
         private List<string> baliseEntete = new List<string>();                         //Liste correspondant aux balise lu dans le fichier de conf
         private List<string> baliseBody = new List<string>();
@@ -17,6 +20,9 @@ namespace EssaiJobImp
         private Dictionary<string, string> donneeEntete = new Dictionary<string, string>();         //Dictionnaire qui contienne les données du document
         private Dictionary<string, string> donneeBody = new Dictionary<string, string>();           //Chaque dictionnaire correspond à une parti du document (Ente, Corps, Pied)
         private Dictionary<string, string> donneeFoot = new Dictionary<string, string>();
+        /// <summary>
+        /// Méthode de chargement du fichier de config XML
+        /// </summary>
         public void chargementXML()
         {
             string bal;
@@ -51,6 +57,11 @@ namespace EssaiJobImp
                 baliseFoot.Add(bal);
             }
         }
+        /// <summary>
+        /// Lit le devis selon et compare les balises selon les demandes inscrite dans le fichier XML
+        /// </summary>
+        /// <param name="cheminDoc">Chemin du document path</param>
+        /// <param name="profil">Profil de l'utilisateur du devis</param>
         public void lectureDevis(string cheminDoc, string profil)  //<<----CheminDoc contient en paramètre le fichier spool actuellement lu pour le traiter
         {
             chargementXML();
@@ -65,7 +76,7 @@ namespace EssaiJobImp
             unxml.LoadXml(fileText);
             XmlNode root = unxml.DocumentElement;
 
-            List<string> tempoBody = new List<string>();
+            List<string> tempoBody = new List<string>();                                         //Création des objet XML pour la lecture du document
             XmlNode doc = unxml.SelectSingleNode("Documents_Rubis");
             XmlNode entete = root.SelectSingleNode("descendant::Document_entete");
             XmlNode lignes = root.SelectSingleNode("descendant::Lignes");
@@ -77,7 +88,7 @@ namespace EssaiJobImp
                     if (noeud.Name == s)                                                        //
                     {                                                                           //
                         donneeEntete.Add(s, noeud.InnerText);                                   //          Parseur donnée Doc 
-                    }                                                                           //
+                    }                                                                           //          Récupère les données d'entete
                 }                                                                               //
             }                                                                                   //---------------------------------
             foreach (XmlNode noeud in entete)                                                   //---------------------------------
@@ -92,7 +103,7 @@ namespace EssaiJobImp
                             {
                                 donneeEntete.Add(s, noeud.InnerText);
                             }
-                            else { donneeEntete.Add("Duplicata", "         "); }//                            //
+                            else { donneeEntete.Add("Duplicata", "         "); }                           //
                         }
                         else
                         {
@@ -128,10 +139,9 @@ namespace EssaiJobImp
                         {                                                                       //
                             donneeBody.Add(s + iBody, node.InnerText);                          //
                         }                                                                       //
-                    }  //
+                    }  
                     foreach (XmlNode n in nligneinfo2)                                          //
                     {
-//
                         foreach (string s in baliseBody)                                        //
                         {                                                                       //
                             if (n.Name == s)                                                    //

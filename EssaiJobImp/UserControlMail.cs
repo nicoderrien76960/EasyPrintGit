@@ -25,6 +25,17 @@ namespace EssaiJobImp
             textBox5.Text = paramServeur[1];       
         }
 
+        internal CurseurTemplate CurseurTemplate
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             string tempo = System.Configuration.ConfigurationManager.AppSettings["ParamMail"];

@@ -17,6 +17,18 @@ namespace EssaiJobImp
             splitContainer2.Panel2Collapsed = true;
             splitContainer2.Panel2.Hide();   
         }
+
+        public UserControlImprimante UserControlImprimante
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+    
         private void btnImprimante_Click(object sender, EventArgs e)
         {
             UserControlImprimante UCI = new UserControlImprimante();

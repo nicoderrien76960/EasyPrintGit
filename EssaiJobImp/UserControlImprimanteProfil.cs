@@ -16,6 +16,128 @@ namespace EssaiJobImp
         {
             InitializeComponent();
         }
+
+        internal ProfilImprimante ProfilImprimante
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+        public UserControlBL UserControlBL
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+        public UserControlAR UserControlAR
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+        public UserControlFacturation UserControlFacturation
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+        public UserControlDevis UserControlDevis
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+        public UserControlCF UserControlCF
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+        public UserControlVariable UserControlVariable
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+        public UserControlChemin UserControlChemin
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+        public UserControlMail UserControlMail
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+        public UserControlBP UserControlBP
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+        internal GestionListeDoc GestionListeDoc
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+    
         public Dictionary<String, List<String>> dicoProfil = new Dictionary<string, List<string>>();
         public Dictionary<String, List<String>> dicoProfilImp = new Dictionary<string, List<string>>();
         GestionListeDoc list = new GestionListeDoc();

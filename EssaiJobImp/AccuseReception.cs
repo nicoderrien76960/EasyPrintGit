@@ -9,6 +9,9 @@ using System.IO;
 
 namespace EssaiJobImp
 {
+    /// <summary>
+    /// Classe récupérant les informations d'un document Accuse de Récéption selon les choix fait dans la selection des balise (chargementXML)
+    /// </summary>
     class AccuseReception 
     {
         private List<string> baliseEntete = new List<string>();                         //Liste correspondant aux balise lu dans le fichier de conf
@@ -17,6 +20,9 @@ namespace EssaiJobImp
         private Dictionary<string, string> donneeEntete = new Dictionary<string, string>();         //Dictionnaire qui contienne les données du document
         private Dictionary<string, string> donneeBody = new Dictionary<string, string>();           //Chaque dictionnaire correspond à une parti du document (Ente, Corps, Pied)
         private Dictionary<string, string> donneeFoot = new Dictionary<string, string>();
+        /// <summary>
+        /// Méthode de chargement du fichier de config XML
+        /// </summary>
         public void chargementXML()
         {
             string bal;
@@ -50,6 +56,11 @@ namespace EssaiJobImp
                 baliseFoot.Add(bal);
             }
         }
+        /// <summary>
+        /// Lit l'accuse de reception selon et compare les balises selon les demandes inscrite dans le fichier XML
+        /// </summary>
+        /// <param name="cheminDoc">Chemin du document path</param>
+        /// <param name="profil">Profil de l'utilisateur de l'accuse de reception</param>
         public void lectureAR(string cheminDoc, string profil)//<<----CheminDoc contient en paramètre le fichier spool actuellement lu pour le traiter
         {
             chargementXML();
@@ -84,26 +95,26 @@ namespace EssaiJobImp
                 foreach (string s in baliseEntete)                                              //
                 {                                                                               //
                     if (noeud.Name == s)                                                        //              Parseur En tete
-                    {
-                        if (noeud.Name == "Duplicata")
-                        {
-                            if (noeud.Attributes.Count == 0)
-                            {
-                                donneeEntete.Add(s, noeud.InnerText);
-                            }
-                            else { donneeEntete.Add("Duplicata", "\t                   "); }//                            //
-                        }
-                        else
-                        {
-                            donneeEntete.Add(s, noeud.InnerText);
-                        }
-                    }                                                                               //
-                }
-                if (noeud.Name == "Commentaire_general")
-                {
-                    XmlNode nCommentaireBon = noeud;
-                    foreach (XmlNode n in nCommentaireBon)
-                    {
+                    {                                                                           //
+                        if (noeud.Name == "Duplicata")                                          //
+                        {                                                                       //
+                            if (noeud.Attributes.Count == 0)                                    //
+                            {                                                                   //
+                                donneeEntete.Add(s, noeud.InnerText);                           //
+                            }                                                                   //
+                            else { donneeEntete.Add("Duplicata", "\t                   "); }    //
+                        }                                                                       //
+                        else                                                                    //
+                        {                                                                       //
+                            donneeEntete.Add(s, noeud.InnerText);                               //
+                        }                                                                       //
+                    }                                                                           //
+                }                                                                               //
+                if (noeud.Name == "Commentaire_general")                                        //
+                {                                                                               //
+                    XmlNode nCommentaireBon = noeud;                                            //
+                    foreach (XmlNode n in nCommentaireBon)                                      //
+                    {                                                                           //
                         foreach (string s in baliseEntete)                                      //
                         {                                                                       //
                             if (n.Name == s)                                                    //              Parseur En tete
@@ -114,7 +125,7 @@ namespace EssaiJobImp
                     }                                                                           //
                 }                                                                               //
             }                                                                                   //
-            int iBody = 0; int iFoot; int compt = 0;                                            //                                          //----------------------------------
+            int iBody = 0; int iFoot; int compt = 0;                                            //                                        
             foreach (XmlNode noeud in lignes)                                                   //----------------------------------
             {                                                                                   //
                 XmlNode nligne = noeud;                                                         //
@@ -129,11 +140,11 @@ namespace EssaiJobImp
                             donneeBody.Add(s + iBody, node.InnerText);                          //
                         }                                                                       //
                     }                                                                           //
-                }
-
+                }                                                                               //
+                                                                                                //
                 foreach (XmlNode node in nligneinfo)                                            //
-                {
-
+                {                                                                               //
+                                                                                                //
                     XmlNode nligneinfo2 = node;                                                 //
                     foreach (string s in baliseBody)                                            //                Parseur Body
                     {                                                                           //
@@ -143,33 +154,33 @@ namespace EssaiJobImp
                         }                                                                       //
                     }                                                                           //
                     foreach (XmlNode n in nligneinfo2)                                          //
-                    {
-//
+                    {                                                                           //
+//                                                                                              //
                         foreach (string s in baliseBody)                                        //
                         {                                                                       //
                             if (n.Name == s)                                                    //
                             {                                                                   //
                                                                                                 //
                                 if (donneeBody.ContainsKey(s + iBody))                          //
-                                {
+                                {                                                               //
                                     if (donneeBody.ContainsKey(s + iBody + "bis"))              //
                                     {                                                           //
-                                        donneeBody.Add(s + iBody + "bis" +compt, n.InnerText);
+                                        donneeBody.Add(s + iBody + "bis" +compt, n.InnerText);  //
                                         compt++;                                                //
-                                    }
-                                    else
-                                    {
-                                        donneeBody.Add(s + iBody + "bis", n.InnerText);
-                                        compt = 0;
-                                    }
+                                    }                                                           //
+                                    else                                                        //
+                                    {                                                           //
+                                        donneeBody.Add(s + iBody + "bis", n.InnerText);         //
+                                        compt = 0;                                              //
+                                    }                                                           //
                                 }                                                               //<--- Permet de crée un incrémentation des clés (libelle1, libelle2, libelle3, ect)     
                                 else                                                            //
                                 {                                                               //
                                     donneeBody.Add(s + iBody, n.InnerText);                     //
                                 }                                                               //
                                                                                                 //
-                            }
-                        }
+                            }                                                                   //
+                        }                                                                       //
                     }                                                                           //
                 }                                                                               //
             }                                                                                   //
@@ -185,7 +196,7 @@ namespace EssaiJobImp
                         donneeFoot.Add(s, noeud.InnerText);                                     //
                     }                                                                           //
                 }                                                                               //              Parseur Pied                                                                          //------------------------------------
-            }
+            }                                                                                   //-----------------------------------------------------
             string nomDoc = donneeEntete["Document_numero"];
             ParseurAR p = new ParseurAR(donneeEntete, donneeBody, donneeFoot, iBody, iFoot,nomDoc, profil);
             //------------------------------------------------------------------------------------------------

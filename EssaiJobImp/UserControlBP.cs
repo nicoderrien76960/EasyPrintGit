@@ -29,6 +29,18 @@ namespace EssaiJobImp
             textBox4.Text = ConfigurationManager.AppSettings["CheminFilligraneBp"];
             textBox5.Text = ConfigurationManager.AppSettings["CheminPatternTot"];
         }
+
+        internal CurseurTemplate CurseurTemplate
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+    
         private void btnValider_Click(object sender, EventArgs e)
         {
             if ((int.Parse(tBD1.Text) + int.Parse(tBD2.Text) + int.Parse(tBD3.Text) + int.Parse(tBD4.Text) + int.Parse(tBD5.Text)) <= 110)

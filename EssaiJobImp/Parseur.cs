@@ -19,7 +19,7 @@ using System.Data.Odbc;
 
 namespace EssaiJobImp
 {
-    class Parseur
+    class Parseur : Devis
     {
         private Dictionary<string, string> donneEntete;
         private Dictionary<string, string> donneeBody;
@@ -36,6 +36,29 @@ namespace EssaiJobImp
             this.nomDoc = nomDoc;
             this.unProfil = profil;
         }
+
+        internal ProfilImprimante ProfilImprimante
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+        internal CurseurTemplate CurseurTemplate
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+    
         public void miseEnForm(string typeDoc)
         {
             string cheminDocFinaux = ConfigurationManager.AppSettings["CheminDocFinaux"].ToString();
@@ -59,7 +82,7 @@ namespace EssaiJobImp
             tableau.TotalWidth = 550;
             tableau.LockedWidth = true;
             Paragraph pLogo = new Paragraph();
-            Image image = Image.GetInstance(ConfigurationManager.AppSettings["CheminLogoABCR"]);
+            Image image = Image.GetInstance(ConfigurationManager.AppSettings["CheminLogoABCRDevis"]);
             pLogo.Add(image);                                                                               //Encadré photo
             PdfPCell celulleHauteGauche = new PdfPCell(image);
             celulleHauteGauche.Border = PdfPCell.NO_BORDER;
@@ -92,7 +115,7 @@ namespace EssaiJobImp
             p.Add(new Phrase(donneEntete["Adresse_interne_5"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 7, Font.BOLD)));
             p.Add(new Phrase(donneEntete["Adresse_interne_6"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 7, Font.BOLD)));
             p.Add(new Phrase(donneEntete["Adresse_interne_7"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.BOLD)));
-            p.Add(new Phrase(donneEntete["Adresse_interne_8"] + "\n" + "\n" + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.BOLD)));
+            p.Add(new Phrase(donneEntete["Adresse_interne_8"] + "\n" + "\n" + "\n"+"\n"+"\n ", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.BOLD)));
             PdfPCell celluleBasGauche = new PdfPCell(p);
             celluleBasGauche.Border = PdfPCell.NO_BORDER;
             tableau.AddCell(celluleBasGauche);
@@ -100,7 +123,7 @@ namespace EssaiJobImp
             Paragraph pClient = new Paragraph();
             if (donneEntete["Tiers_adl1"] == "")
             {
-                pClient.Add(new Phrase("\n"/*+"\n"*/+ donneEntete["Tiers_adf1"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD)));
+                pClient.Add(new Phrase("\n"+"\n"+ donneEntete["Tiers_adf1"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD)));
                 pClient.Add(new Phrase(donneEntete["Tiers_adf2"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD)));
                 pClient.Add(new Phrase(donneEntete["Tiers_adf3"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD)));
                 pClient.Add(new Phrase(donneEntete["Tiers_adf4"] + "\n" + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD)));
@@ -167,7 +190,7 @@ namespace EssaiJobImp
             table.AddCell(cellET9);
             Image image3 = Image.GetInstance(ConfigurationManager.AppSettings["CheminPatternTableau"]);
             image3.Alignment = Image.UNDERLYING;
-            image3.SetAbsolutePosition(20, 569);
+            image3.SetAbsolutePosition(20, 567);
             nouveauDocument.Add(image3);
 
             int i; int nbLigne = 0; float resultat = 0; float dimTab = 0; int décrement = 0; int numPage = 0;         //Constitution du tableau d'article

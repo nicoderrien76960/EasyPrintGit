@@ -23,6 +23,17 @@ namespace EssaiJobImp
             textBox5.Text = ConfigurationManager.AppSettings["ImpDefBL"];
         }
 
+        internal CurseurTemplate CurseurTemplate
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
         private void label5_Click(object sender, EventArgs e)
         {
 

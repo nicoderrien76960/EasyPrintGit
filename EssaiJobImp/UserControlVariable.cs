@@ -21,6 +21,17 @@ namespace EssaiJobImp
             textBox3.Text = ConfigurationManager.AppSettings["PiloteImpressionGC"];
         }
 
+        internal CurseurTemplate CurseurTemplate
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
         private void btnValider_Click(object sender, EventArgs e)
         {
             ConfigurationManager.AppSettings["ChaineDeConnexionBase"] = textBox1.Text;

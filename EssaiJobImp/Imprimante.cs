@@ -15,12 +15,20 @@ namespace EssaiJobImp
         public string nomSpool;
         public string nomImprimante;
     }
+    /// <summary>
+    /// Classe qui récupère les documents du spool pour une imprimante
+    /// 
+    /// </summary>
     class Imprimante : ICloneable
     {
         int nbDoc=0;
         string cheminDoc;
         List<Spool> listFichierSpool = new List<Spool>();//Liste de fichier contenu dans le spool
         string cheminDocFinaux = ConfigurationManager.AppSettings["CheminDocFinaux"].ToString();
+        /// <summary>
+        /// Fonction qui lit les fichier contenu dans le spool d'une imprimante
+        /// </summary>
+        /// <param name="nomIMP">Nom de l'imprimante.</param>
         public void lectureSpooler(string nomIMP)
         {
             string typeDoc="";
@@ -135,11 +143,11 @@ namespace EssaiJobImp
                                             }
                                         }
                                         else
-                                        { patternOK = false; typeDoc = null; System.IO.File.Delete(sourceFile); patternOK2 = false; }
+                                        { patternOK = false; typeDoc = null; System.IO.File.Delete(sourceFile); patternOK2 = false; } //Si tout est OK je supprime le fichier copier
                                         nomDoc = nomFichier;    
                                     }
                                     cheminDoc = destFile;
-                                    if ((Environment.UserName != profil) && profil != "")
+                                    if ((Environment.UserName != profil) && profil != "")   //TEST sur le nom du profil
                                     {
                                         if (test != 0)
                                         {

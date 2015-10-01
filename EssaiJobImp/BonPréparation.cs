@@ -9,6 +9,9 @@ using System.IO;
 
 namespace EssaiJobImp
 {
+    /// <summary>
+    /// Classe récupérant les informations d'un document Bon de Préparation selon les choix fait dans la selection des balises (chargementXML)
+    /// </summary>
     class BonPréparation 
     {
         private List<string> baliseEntete = new List<string>();                         //Liste correspondant aux balise lu dans le fichier de conf
@@ -17,6 +20,9 @@ namespace EssaiJobImp
         private Dictionary<string, string> donneeEntete = new Dictionary<string, string>();         //Dictionnaire qui contienne les données du document
         private Dictionary<string, string> donneeBody = new Dictionary<string, string>();           //Chaque dictionnaire correspond à une parti du document (Ente, Corps, Pied)
         private Dictionary<string, string> donneeFoot = new Dictionary<string, string>();
+        /// <summary>
+        /// Méthode de chargement du fichier de config XML
+        /// </summary>
         public void chargementXML()
         {
             string bal;
@@ -50,6 +56,11 @@ namespace EssaiJobImp
                 baliseFoot.Add(bal);
             } 
         }
+        /// <summary>
+        /// Lit le bon de préparation selon et compare les balises selon les demandes inscrite dans le fichier XML
+        /// </summary>
+        /// <param name="cheminDoc">Chemin du document path</param>
+        /// <param name="profil">Profil de l'utilisateur du bon de préparation</param>
         public void lectureBP(string cheminDoc, string profil)
         {
             chargementXML();
@@ -81,64 +92,63 @@ namespace EssaiJobImp
                 }                                                                               //
             }                                                                                   //---------------------------------
             foreach (XmlNode noeud in entete)                                                   //---------------------------------
-            {//
+            {                                                                                   //
                 foreach (string s in baliseEntete)                                              //
                 {                                                                               //
                     if (noeud.Name == s)                                                        //              Parseur En tete
-                    {
-                        if (noeud.Name == "Duplicata")
-                        {
-                            if (noeud.Attributes.Count == 0)
-                            {
-                                donneeEntete.Add(s, noeud.InnerText);
-                            }
-                            else { donneeEntete.Add("Duplicata", "\t                   "); }//                            //
-                        }
-                        else
-                        {
-                            donneeEntete.Add(s, noeud.InnerText);
-                        }
-                    }                                                                          //
-                }
-                if (noeud.Name == "Commentaire_general")
-                {
-                    XmlNode nCommentaireBon = noeud;
-                    foreach (XmlNode n in nCommentaireBon)
-                    {
-                        foreach (string s in baliseEntete)                                              //
-                        {                                                                               //
-                            if (n.Name == s)                                                        //              Parseur En tete
-                            {                                                                           //
-                                donneeEntete.Add(s, n.InnerText);                                   //
-                            }                                                                           //
-                        }
-                    }
-                }//
-                if (noeud.Name == "Commentaire_entete")
-                {
-                    XmlNode nCommentaireBon = noeud;
-                    foreach (XmlNode n in nCommentaireBon)
-                    {
-                        foreach (string s in baliseEntete)                                              //
-                        {                                                                               //
-                            if (n.Name == s)                                                        //              Parseur En tete
-                            {                                                                           //
-                                if (donneeEntete.ContainsKey(s+"entete"))                              //
-                                {
-                                    donneeEntete.Add(s +"entete"+ iHead, n.InnerText);
-                                    iHead++;
-                                }
-                                else
-                                {                                                           //
-                                    donneeEntete.Add(s+"entete", n.InnerText);
-                                }     //
-                            }
-                            //
-                        }
-                    }
-                }                                                           
+                    {                                                                           //
+                        if (noeud.Name == "Duplicata")                                          //
+                        {                                                                       //
+                            if (noeud.Attributes.Count == 0)                                    //
+                            {                                                                   //
+                                donneeEntete.Add(s, noeud.InnerText);                           //
+                            }                                                                   //
+                            else { donneeEntete.Add("Duplicata", "\t                   "); }    //
+                        }                                                                       //
+                        else                                                                    //
+                        {                                                                       //
+                            donneeEntete.Add(s, noeud.InnerText);                               //
+                        }                                                                       //
+                    }                                                                           //
+                }                                                                               //
+                if (noeud.Name == "Commentaire_general")                                        //
+                {                                                                               //
+                    XmlNode nCommentaireBon = noeud;                                            //
+                    foreach (XmlNode n in nCommentaireBon)                                      //
+                    {                                                                           //
+                        foreach (string s in baliseEntete)                                      //
+                        {                                                                       //
+                            if (n.Name == s)                                                    //
+                            {                                                                   //
+                                donneeEntete.Add(s, n.InnerText);                               //
+                            }                                                                   //
+                        }                                                                       //
+                    }                                                                           //
+                }//                                                                             //
+                if (noeud.Name == "Commentaire_entete")                                         //
+                {                                                                               //
+                    XmlNode nCommentaireBon = noeud;                                            //
+                    foreach (XmlNode n in nCommentaireBon)                                      //
+                    {                                                                           //
+                        foreach (string s in baliseEntete)                                      //
+                        {                                                                       //
+                            if (n.Name == s)                                                    //
+                            {                                                                   //
+                                if (donneeEntete.ContainsKey(s+"entete"))                       //
+                                {                                                               //
+                                    donneeEntete.Add(s +"entete"+ iHead, n.InnerText);          //
+                                    iHead++;                                                    //
+                                }                                                               //
+                                else                                                            //
+                                {                                                               //
+                                    donneeEntete.Add(s+"entete", n.InnerText);                  //
+                                }                                                               //
+                            }                                                                   //
+                        }                                                                       //
+                    }                                                                           //
+                }                                                                               //
             }                                                                                   //
-            int iBody = 0; int iFoot; int compt = 0;                        //                                                           //----------------------------------
+            int iBody = 0; int iFoot; int compt = 0;                                            //----------------------------------
             foreach (XmlNode noeud in lignes)                                                   //----------------------------------
             {                                                                                   //
                 XmlNode nligne = noeud;                                                         //
@@ -153,11 +163,11 @@ namespace EssaiJobImp
                             donneeBody.Add(s + iBody, node.InnerText);                          //
                         }                                                                       //
                     }                                                                           //
-                }
-
+                }                                                                               //
+                                                                                                //
                 foreach (XmlNode node in nligneinfo)                                            //
-                {
-
+                {                                                                               //
+                                                                                                //
                     XmlNode nligneinfo2 = node;                                                 //
                     foreach (string s in baliseBody)                                            //                Parseur Body
                     {                                                                           //
@@ -167,31 +177,31 @@ namespace EssaiJobImp
                         }                                                                       //
                     }                                                                           //
                     foreach (XmlNode n in nligneinfo2)                                          //
-                    {
+                    {                                                                           //
                         foreach (string s in baliseBody)                                        //
                         {                                                                       //
                             if (n.Name == s)                                                    //
                             {                                                                   //
                                                                                                 //
                                 if (donneeBody.ContainsKey(s + iBody))                          //
-                                {
+                                {                                                               //
                                     if (donneeBody.ContainsKey(s + iBody + "bis"))              //
                                     {                                                           //
-                                        donneeBody.Add(s + iBody + "bis" +compt, n.InnerText);
+                                        donneeBody.Add(s + iBody + "bis" +compt, n.InnerText);  //
                                         compt++;                                                //
-                                    }
-                                    else
-                                    {
-                                        donneeBody.Add(s + iBody + "bis", n.InnerText);
-                                        compt = 0;
-                                    }
+                                    }                                                           //
+                                    else                                                        //
+                                    {                                                           //
+                                        donneeBody.Add(s + iBody + "bis", n.InnerText);         //
+                                        compt = 0;                                              //
+                                    }                                                           //
                                 }                                                               //<--- Permet de crée un incrémentation des clés (libelle1, libelle2, libelle3, ect)     
                                 else                                                            //
                                 {                                                               //
                                     donneeBody.Add(s + iBody, n.InnerText);                     //
-                                }                                                               //                                                                   //
-                            }
-                        }
+                                }                                                               //                                                                   
+                            }                                                                   //
+                        }                                                                       //
                     }                                                                           //
                 }                                                                               //
             }                                                                                   //
@@ -214,14 +224,14 @@ namespace EssaiJobImp
                         foreach (string s in baliseFoot)                                        //
                         {                                                                       //                                                               
                                 if (node.Name == s)                                             //
-                                { 
+                                {                                                               //
                                     if (donneeFoot.ContainsKey(s))                              //
-                                    {
-                                        donneeFoot.Add(s + iFoot, node.InnerText);
-                                    }  
-                                    else
                                     {                                                           //
-                                        donneeFoot.Add(s, node.InnerText);   
+                                        donneeFoot.Add(s + iFoot, node.InnerText);              //
+                                    }                                                           //
+                                    else                                                        //
+                                    {                                                           //
+                                        donneeFoot.Add(s, node.InnerText);                      //
                                     }                                                           //
                                 }                                                               //                                                                  
                         }                                                                       //

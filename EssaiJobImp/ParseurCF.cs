@@ -18,7 +18,7 @@ using System.Data.Odbc;
 
 namespace EssaiJobImp
 {
-    class ParseurCF
+    class ParseurCF : CommandeFournisseur
     {
         
         private Dictionary<string, string> donneEntete;
@@ -36,6 +36,18 @@ namespace EssaiJobImp
             this.nomDoc = nomDoc;
             this.unProfil = profil;
         }
+
+        internal ProfilImprimante ProfilImprimante
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+    
         public void miseEnForm(string typeDoc)
         {
             int incCopie = 0;
@@ -517,6 +529,39 @@ namespace EssaiJobImp
                 incCopie++;
 
                 //Copie Doc dans GED
+                try
+                {
+                    String connectionString = ConfigurationManager.AppSettings["ChaineDeConnexionBase"];
+                    OdbcConnection conn = new OdbcConnection(connectionString);
+                    conn.Open();
+                    string requete = "select T1.CFCLI c1 , T1.CFBON c2 , T2.NOMCL c3 from (B00C0ACR.AMAGESTCOM.ADETBOP1 T3 LEFT OUTER JOIN B00C0ACR.AMAGESTCOM.ACLIENL1 T2 on T3.NOCLI = T2.NOCLI) LEFT OUTER JOIN B00C0ACR.AMAGESTCOM.ACFDETP1 T1 on T3.NOFOU = T1.NOFOU and T3.SFOUR = T1.SFOUR and T3.NBOFO = T1.CFBON and T3.NLIFO = T1.CFLIG where T1.CFBON = '" + donneEntete["Document_numero"] + "'";
+                    OdbcCommand act = new OdbcCommand(requete, conn);
+                    OdbcDataReader act0 = act.ExecuteReader();
+                    string nomADH = ""; 
+                    string codeClient = "";
+                    while (act0.Read())
+                    {
+                        nomADH = (act0.GetString(2));
+                        codeClient = (act0.GetString(0));
+                    }
+                    conn.Close();
+                    if (nomADH != "")
+                    {
+                        if (!System.IO.Directory.Exists(ConfigurationManager.AppSettings["cheminGED"] + "\\" + codeClient + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM") + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\CF\\"))
+                        {
+                            System.IO.Directory.CreateDirectory(ConfigurationManager.AppSettings["cheminGED"] + "\\" + codeClient + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\CF\\");
+                            System.IO.File.Copy(chemin, ConfigurationManager.AppSettings["cheminGED"] + "\\" + codeClient + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\CF\\" + "\\CF_" + nomDoc + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf");
+                        }
+                        else
+                        {
+                            System.IO.File.Copy(chemin, ConfigurationManager.AppSettings["cheminGED"] + "\\" + codeClient + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\CF\\" + "\\CF_" + nomDoc + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf");
+                        }
+                    }
+                }
+                catch
+                {
+                    LogHelper.WriteToFile("Erreur d'écriture dans la GED", "PARSEURCF");
+                }
 
                 //--------------------------------------------------------FIN COPIE------------------------------------------------------
            

@@ -18,7 +18,7 @@ using System.Data.Odbc;
 
 namespace EssaiJobImp
 {
-    class ParseurAR
+    class ParseurAR : AccuseReception
     {
         private Dictionary<string, string> donneEntete;
         private Dictionary<string, string> donneeBody;
@@ -35,6 +35,29 @@ namespace EssaiJobImp
             this.nomDoc = nomDoc;
             this.unProfil = profil;
         }
+
+        internal ProfilImprimante ProfilImprimante
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+        internal CurseurTemplate CurseurTemplate
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+    
         public void miseEnForm(string typeDoc)
         {
             int incCopie = 0;

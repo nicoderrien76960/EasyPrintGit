@@ -32,6 +32,9 @@ namespace EssaiJobImp
         int timer = 250; DateTime dureeF;
         Imprimante imprimante = new Imprimante();
         object sender; EventArgs e;
+        /// <summary>
+        /// Démarrage du programme ici
+        /// </summary>
         public Form1()
         {
             InitializeComponent();
@@ -41,7 +44,10 @@ namespace EssaiJobImp
                 Timer1_Click(sender, e);
             }
         }
-        List<string> listeImp = new List<string>();
+        List<string> listeImp = new List<string>();                 //Liste d'imprimante
+        /// <summary>
+        /// Récupère une liste d'imprimante grace au fichier de configuration correspondant
+        /// </summary>
         public void chargementXML()
         {
             string imp;
@@ -61,6 +67,11 @@ namespace EssaiJobImp
                 listeImp.Add(imp);
             }
         }
+        /// <summary>
+        /// Boucle infini qui permet la lecture des spools Windows toute les 250ms (paramètre modifiable)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void s_myTimer_Tick(object sender, EventArgs e)
         {
             TimeSpan diffTemps = DateTime.Now - dureeF;
@@ -84,7 +95,6 @@ namespace EssaiJobImp
             }
             imprimante.setNbDoc(0);
         }
-
         public void s_myTimer_Tick2(object sender, EventArgs e)
         {
             s_myCounter2++;
@@ -295,6 +305,28 @@ namespace EssaiJobImp
         {
             EssaiUDP UDP = new EssaiUDP();
             UDP.Lancer();
+        }
+
+        internal Imprimante Imprimante
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+        public Form_reglage Form_reglage
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
         }
     }
 }
