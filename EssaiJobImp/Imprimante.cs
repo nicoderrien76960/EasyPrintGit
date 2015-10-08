@@ -17,7 +17,6 @@ namespace EssaiJobImp
     }
     /// <summary>
     /// Classe qui récupère les documents du spool pour une imprimante
-    /// 
     /// </summary>
     class Imprimante : ICloneable
     {
@@ -43,8 +42,8 @@ namespace EssaiJobImp
                 {
                     if (pq.FullName == nomIMP)//Condition sur imprimante qui a créer l'objet Imprimante
                     {
-                        try
-                        {
+                        /*try
+                        {*/
                             int filecount = files.GetUpperBound(0) + 1;  //Nombre de fichier contenu dans le spool
                             for (int i = 0; i < filecount; i++)//Nombre de fichier dans dossier spool
                             {
@@ -81,6 +80,7 @@ namespace EssaiJobImp
                                     string sPattern = "<Spool>";
                                     string sPatternTypeDoc = "<Document_type>"; bool patternOK = true; bool patternOK2 = false; bool découpageOK = true; int controle = 0; int test = 0;
                                     string sPatternTypeDoc2 ="<Document type=\"DOC_CLIENT\" doc=\"FACTURE ";
+                                    string sPatternTypeDoc3 = "<Document type=\"DOC_CLIENT\" doc=\"RELEVE\"";
                                     StreamWriter sr = null;
                                     foreach (string s in text)//Analyse ligne du document actuel
                                     {
@@ -91,6 +91,11 @@ namespace EssaiJobImp
 
                                             if (System.Text.RegularExpressions.Regex.IsMatch(s, "<Document type=\"DOC_CLIENT\" doc=\"FACTURE ", System.Text.RegularExpressions.RegexOptions.IgnoreCase))
                                             { 
+                                                découpageOK = false;
+                                                sr = new StreamWriter(cheminDocFinaux + @"\Copie spool\tempo" + test + ".SPL", false, Encoding.GetEncoding("iso-8859-1"));
+                                            }
+                                            if (System.Text.RegularExpressions.Regex.IsMatch(s, "<Document type=\"DOC_CLIENT\" doc=\"RELEVE\"", System.Text.RegularExpressions.RegexOptions.IgnoreCase))
+                                            {
                                                 découpageOK = false;
                                                 sr = new StreamWriter(cheminDocFinaux + @"\Copie spool\tempo" + test + ".SPL", false, Encoding.GetEncoding("iso-8859-1"));
                                             }
@@ -111,6 +116,18 @@ namespace EssaiJobImp
                                             else
                                             {   
                                                 if (System.Text.RegularExpressions.Regex.IsMatch(s, sPatternTypeDoc, System.Text.RegularExpressions.RegexOptions.IgnoreCase)&& patternOK2==false)
+                                                {
+                                                    typeDoc = s.Substring(24, (s.IndexOf(']') - 24));
+                                                }
+                                            } 
+                                            if (System.Text.RegularExpressions.Regex.IsMatch(s, sPatternTypeDoc3, System.Text.RegularExpressions.RegexOptions.IgnoreCase))
+                                            {
+                                                typeDoc = "RELEVE";
+                                                patternOK2 = true;
+                                            }
+                                            else
+                                            {
+                                                if (System.Text.RegularExpressions.Regex.IsMatch(s, sPatternTypeDoc, System.Text.RegularExpressions.RegexOptions.IgnoreCase) && patternOK2 == false)
                                                 {
                                                     typeDoc = s.Substring(24, (s.IndexOf(']') - 24));
                                                 }
@@ -185,6 +202,9 @@ namespace EssaiJobImp
                                                     case "FACTURE":
                                                         Facturation FA = new Facturation(); FA.lectureFA(cheminDoc, profil);
                                                         break;
+                                                    case "RELEVE":
+                                                        Releve R = new Releve(); R.lectureR(cheminDoc,profil);
+                                                        break;
                                                     case null:
                                                         break;
                                                 }
@@ -223,6 +243,9 @@ namespace EssaiJobImp
                                                 case "FACTURE":
                                                     Facturation FA = new Facturation(); FA.lectureFA(cheminDoc, profil);
                                                     break;
+                                                case "RELEVE":
+                                                    Releve R = new Releve(); R.lectureR(cheminDoc, profil);
+                                                    break;
                                                 case null:
                                                     break;
                                             }
@@ -237,12 +260,12 @@ namespace EssaiJobImp
                                 }
                                 supOk = false;
                             }
-                        }
+                        /*}
                         catch (Exception e)
                         {
                             //Inscrit dans un fichier les differente erreur
                             LogHelper.WriteToFile(e.Message, "Imprimante " + nomDoc);
-                        }
+                        }*/
                     }
                 }
         }

@@ -36,18 +36,6 @@ namespace EssaiJobImp
             this.nomDoc = nomDoc;
             this.unProfil = profil;
         }
-
-        internal ProfilImprimante ProfilImprimante
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-    
         public void miseEnForm(string typeDoc)
         {
             int incCopie = 0;
@@ -547,14 +535,14 @@ namespace EssaiJobImp
                     conn.Close();
                     if (nomADH != "")
                     {
-                        if (!System.IO.Directory.Exists(ConfigurationManager.AppSettings["cheminGED"] + "\\" + codeClient + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM") + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\CF\\"))
+                        if (!System.IO.Directory.Exists(ConfigurationManager.AppSettings["cheminGEDCF"] + "\\" + codeClient + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM") + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\CF\\"))
                         {
-                            System.IO.Directory.CreateDirectory(ConfigurationManager.AppSettings["cheminGED"] + "\\" + codeClient + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\CF\\");
-                            System.IO.File.Copy(chemin, ConfigurationManager.AppSettings["cheminGED"] + "\\" + codeClient + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\CF\\" + "\\CF_" + nomDoc + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf");
+                            System.IO.Directory.CreateDirectory(ConfigurationManager.AppSettings["cheminGEDCF"] + "\\" + codeClient + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\CF\\");
+                            System.IO.File.Copy(chemin, ConfigurationManager.AppSettings["cheminGEDCF"] + "\\" + codeClient + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\CF\\" + "\\CF_" + nomDoc + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf");
                         }
                         else
                         {
-                            System.IO.File.Copy(chemin, ConfigurationManager.AppSettings["cheminGED"] + "\\" + codeClient + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\CF\\" + "\\CF_" + nomDoc + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf");
+                            System.IO.File.Copy(chemin, ConfigurationManager.AppSettings["cheminGEDCF"] + "\\" + codeClient + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\CF\\" + "\\CF_" + nomDoc + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf");
                         }
                     }
                 }
@@ -592,6 +580,7 @@ namespace EssaiJobImp
                     string inputFile = String.Format(@"{0}", chemin);
                     try
                     {
+                        //Envoi de l'ordre d'impression vers l'imprimante, les "switches" sont des arguments de la ligne de script "processor" de type GhostscriptProcessor
                         using (GhostscriptProcessor processor = new GhostscriptProcessor())
                         {
                             List<string> switches = new List<string>();

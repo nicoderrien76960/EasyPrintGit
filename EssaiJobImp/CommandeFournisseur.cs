@@ -55,7 +55,7 @@ namespace EssaiJobImp
                 bal = (string)unNode.InnerXml;
                 baliseFoot.Add(bal);
             } 
-        }
+        }               
         /// <summary>
         /// Lit la commande fournisseur selon et compare les balises selon les demandes inscrite dans le fichier XML
         /// </summary>

@@ -9,9 +9,12 @@ using System.Net.Mail;
 
 namespace EssaiJobImp
 {
+    /// <summary>
+    /// Anciennement le module d'envoi de facture par mail, version obsolète remplacé par un module à part
+    /// </summary>
     class Mail
-    {
-        Dictionary<string, string> dicoMailADH = new Dictionary<string, string>();
+    {   
+        /*Dictionary<string, string> dicoMailADH = new Dictionary<string, string>();
         public Mail()
         { }
         public void remplirDictionnaire()
@@ -78,6 +81,6 @@ namespace EssaiJobImp
                 message.Attachments.Add(data);
                 smtpClient.Send(message);
             }
-        }
+        }*/
     }
 }

@@ -74,6 +74,7 @@ namespace EssaiJobImp
             XmlDocument unxml = new XmlDocument();                                              //Ouverture du document 
             unxml.LoadXml(fileText);
             XmlNode root = unxml.DocumentElement;
+            
 
             List<string> tempoBody = new List<string>();
             XmlNode doc = unxml.SelectSingleNode("Documents_Rubis");

@@ -35,29 +35,6 @@ namespace EssaiJobImp
             this.nomDoc = nomDoc;
             this.unProfil = profil;
         }
-
-        internal ProfilImprimante ProfilImprimante
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-
-        internal CurseurTemplate CurseurTemplate
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-    
         public void miseEnForm(string typeDoc)
         {
             int incCopie = 0;
@@ -92,7 +69,6 @@ namespace EssaiJobImp
                 PdfPCell celulleHauteGauche = new PdfPCell(image);
                 celulleHauteGauche.Border = PdfPCell.NO_BORDER;
                 tableau.AddCell(celulleHauteGauche);
-
                 //Celulle de droite contenant l'adresse de livraison
                 Paragraph pAdl = new Paragraph();
                 pAdl.Add(new Phrase("Adresse de livraison\n\n", FontFactory.GetFont(FontFactory.HELVETICA, 11, Font.BOLD)));
@@ -129,8 +105,7 @@ namespace EssaiJobImp
                 celulleFinDroite.Rowspan = 2;
                 celulleFinDroite.Border = PdfPCell.NO_BORDER;
                 celulleFinDroite.PaddingLeft = 35;
-                tableau.AddCell(celulleFinDroite);
-               
+                tableau.AddCell(celulleFinDroite);    
                 //Adresse ABCR
                 string tel = donneEntete["Adresse_interne_7"]; string fax = donneEntete["Adresse_interne_8"];
                 tel = tel.Substring(3, 15); fax = fax.Substring(3, 15);
@@ -140,10 +115,8 @@ namespace EssaiJobImp
                 PdfPCell celulleMilieuGauche = new PdfPCell(p);
                 celulleMilieuGauche.Border = PdfPCell.NO_BORDER;
                 tableau.AddCell(celulleMilieuGauche);
-
                 //Tableau dans celulle bas gauche du tableau d'entete
-                PdfPCell celulleBasGauche = new PdfPCell();
-                
+                PdfPCell celulleBasGauche = new PdfPCell();              
                 PdfPTable tabCell = new PdfPTable(3);
                 tabCell.TotalWidth = 230;
                 tabCell.LockedWidth = true;
@@ -168,10 +141,8 @@ namespace EssaiJobImp
                 celulleHauteDroite.Border = PdfPCell.NO_BORDER;
                 celulleHauteDroite.HorizontalAlignment = Element.ALIGN_LEFT;
                 celulleHauteDroite.PaddingLeft = 35;
-                tableau.AddCell(celulleHauteDroite);
-                
-                nouveauDocument.Add(tableau);
-                
+                tableau.AddCell(celulleHauteDroite);          
+                nouveauDocument.Add(tableau); 
                 //Récap ref client et numéro de téléphone
                 Paragraph refCli = new Paragraph();
                 refCli.Add(new Phrase("Référence client " + donneeBody["Bon_rcl1"] + " du " + donneeBody["Bon_datrcl1"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.BOLD)));
@@ -187,7 +158,7 @@ namespace EssaiJobImp
                 //-------------------------------------------------------------------------------------------------------
                 CurseurTemplate ct = new CurseurTemplate();
                 valeurTemplate = ct.chercher("AR");
-
+                //Dimension du tableau principal
                 float[] largeurs = { 
                                    int.Parse(valeurTemplate["Dimension1"]),
                                    int.Parse(valeurTemplate["Dimension2"]),
@@ -199,7 +170,7 @@ namespace EssaiJobImp
                                    int.Parse(valeurTemplate["Dimension8"])
                                };  
                 PdfPTable table = new PdfPTable(largeurs);
-                table.TotalWidth = 555;                                                                                         //Chaque colonne crée ci dessus doit être rempli
+                table.TotalWidth = 555;                                                        //Chaque colonne crée ci dessus doit être rempli
                 table.LockedWidth = true;
                 PdfPCell cellET1 = new PdfPCell(new Phrase(donneEntete["Colonne_art"], FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cellET1.Border = PdfPCell.NO_BORDER; //cellET1.Border += PdfPCell.BOTTOM_BORDER;
                 table.AddCell(cellET1);
@@ -405,7 +376,6 @@ namespace EssaiJobImp
                         table.AddCell(cellFin);
                     }
                     PdfPCell cellEcartDroite = new PdfPCell(new Phrase(" " + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 2, Font.BOLD)));
-
                     PdfPCell cellEcart = new PdfPCell(new Phrase(" " + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 2, Font.BOLD)));
                     cellEcart.Border = PdfPCell.NO_BORDER;
                     cellEcart.Border += PdfPCell.LEFT_BORDER;
@@ -414,7 +384,6 @@ namespace EssaiJobImp
                     cellEcartDroite.Border += PdfPCell.RIGHT_BORDER;
                     cellEcartDroite.Border += PdfPCell.LEFT_BORDER;
                     table.AddCell(cellEcartDroite); table.AddCell(cellEcart); table.AddCell(cellEcart); table.AddCell(cellEcart); table.AddCell(cellEcart); table.AddCell(cellEcart); table.AddCell(cellEcart); table.AddCell(cellEcart);
-
                     //--------------------------------------------GESTION DU SAUT DE PAGE-------------------------------------------------------------------------------------------
                     float temp = table.TotalHeight;
                     dimTab = temp;
@@ -459,7 +428,7 @@ namespace EssaiJobImp
                         dimTab = 0;
                         décrement = (i - 1);
                     }
-                    //FinGestionSautPage
+                    //FinGestionSautPage----------------------------------------------------------------------------------------------------------------------------------------------------
                 }
                 //Gestion Commentaires de bon
                 if (donneEntete.ContainsKey("Commentaire_texte"))
@@ -467,7 +436,6 @@ namespace EssaiJobImp
                     PdfPCell cellComBlanche = new PdfPCell(new Phrase(" "));
                     PdfPCell cellComBlancheD = new PdfPCell(new Phrase(" "));
                     PdfPCell cellCommentaireBon = new PdfPCell(new Phrase(donneEntete["Commentaire_texte"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD)));
-
                     cellComBlanche.Border = PdfPCell.NO_BORDER;
                     cellComBlanche.Border += PdfPCell.RIGHT_BORDER;
                     cellComBlanche.Border += PdfPCell.LEFT_BORDER;
@@ -482,6 +450,7 @@ namespace EssaiJobImp
                     table.AddCell(cellComBlanche); table.AddCell(cellCommentaireBon); table.AddCell(cellComBlanche); table.AddCell(cellComBlanche); table.AddCell(cellComBlanche); table.AddCell(cellComBlanche); table.AddCell(cellComBlanche); table.AddCell(cellComBlancheD);
                 }
                 //----------------------------------------------Gestion Code Camion--------------------------------------------------------------------------------------------------------------------------------
+                #region Gestion Code Camion
                 /*if (donneEntete.ContainsKey("Camion_code") && donneEntete["Camion_code"] != "ENV")
                 {
                     PdfPCell cellComBlanche = new PdfPCell(new Phrase(" "));
@@ -497,6 +466,7 @@ namespace EssaiJobImp
                     table.AddCell(cellComBlanche); table.AddCell(cellComBlanche); table.AddCell(cellComBlanche); table.AddCell(cellComBlanche); table.AddCell(cellComBlanche); table.AddCell(cellComBlanche); table.AddCell(cellComBlanche); table.AddCell(cellComBlancheD);
                     table.AddCell(cellComBlanche); table.AddCell(cellCommentaireBon); table.AddCell(cellComBlanche); table.AddCell(cellComBlanche); table.AddCell(cellComBlanche); table.AddCell(cellComBlanche); table.AddCell(cellComBlanche); table.AddCell(cellComBlancheD);
                 }*/
+                #endregion
                 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
                 int b;                                          //----------------------------------------------------------------
                 for (b = 0; b <= i; b++)                        //
@@ -537,12 +507,10 @@ namespace EssaiJobImp
                 PdfPTable tableauPied = new PdfPTable(3);
                 tableauPied.TotalWidth = 555;
                 tableauPied.LockedWidth = true;
-
                 PdfPCell cellulePied = new PdfPCell();
                 cellulePied.Colspan = 2;
                 cellulePied.Border = PdfPCell.NO_BORDER;
                 tableauPied.AddCell(cellulePied);
-
                 string euro = "€";
                 if (donneeFoot["Pied_montant_ttc"] == "") { euro = " "; }
                 PdfPTable tableauTot = new PdfPTable(1);
@@ -553,12 +521,9 @@ namespace EssaiJobImp
                 PdfPCell cellTot = new PdfPCell(tableauTot);
                 cellTot.Border = PdfPCell.NO_BORDER;
                 tableauPied.AddCell(cellTot);
-
                 nouveauDocument.Add(tableauPied);
-
                 nouveauDocument.Close();
                 incCopie++;
-
                 //Copie Doc dans GED
                 try
                 {
@@ -584,10 +549,8 @@ namespace EssaiJobImp
                         System.IO.File.Copy(chemin, ConfigurationManager.AppSettings["cheminGED"] + "\\" + donneEntete["Client_code"] + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\AR\\" + "\\AR_" + nomDoc + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf");
                     }
                 }
-                catch
-                {
-
-                }
+                catch 
+                { }
                 //--------------------------------------------------------FIN COPIE------------------------------------------------------
            
 

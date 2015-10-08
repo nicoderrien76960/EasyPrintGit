@@ -13,17 +13,6 @@ namespace EssaiJobImp
     {
         string nomProfil;
         string imp;
-
-        public Form1 Form1
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
     }
     class GestionListeDoc
     {

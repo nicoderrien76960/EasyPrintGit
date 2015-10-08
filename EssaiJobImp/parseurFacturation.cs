@@ -35,18 +35,6 @@ namespace EssaiJobImp
             this.nomDoc = nomDoc;
             this.unProfil = profil;
         }
-
-        internal ProfilImprimante ProfilImprimante
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-    
         public void miseEnForm(string typeDoc)
         {
             int incCopie = 0;
@@ -82,7 +70,7 @@ namespace EssaiJobImp
                 image5.SetAbsolutePosition(-8, -9);
                 nouveauDocument.Add(image5);
                 //-------------------------------------------------------------------------------------------------
-                                                                             //Encadré photo
+                //Encadré photo
                 PdfPCell celulleHauteGauche = new PdfPCell(new Phrase("\n\n\n"));
                 celulleHauteGauche.Border = PdfPCell.NO_BORDER;
                 tableau.AddCell(celulleHauteGauche);
@@ -183,8 +171,7 @@ namespace EssaiJobImp
                 celulleHauteDroite.PaddingLeft = 35;
                 tableau.AddCell(celulleHauteDroite);
 
-                nouveauDocument.Add(tableau);
-                        
+                nouveauDocument.Add(tableau);      
                 //Récap ref client et numéro de téléphone
                 /*Paragraph refCli = new Paragraph();
                 refCli.Add(new Phrase("Référence client " + donneeBody["Bon_rcl1"] + " du " + donneeBody["Bon_datrcl1"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.BOLD)));
@@ -817,8 +804,6 @@ namespace EssaiJobImp
                 nouveauDocument.Add(tabPapillon);
                 nouveauDocument.Close();
                 incCopie++;
-
-
                 //--------------------------------------------------COPIE GED--------------------------------------------------------
                 try
                 {
@@ -848,13 +833,12 @@ namespace EssaiJobImp
                 {
                     LogHelper.WriteToFile(e.Message, "ENVOI GED Facture");
                 }
-
                 //----------------------------------------------FIN COPIE----------------------------------------------------------
-
                 //Requette qui retourne le champ "OUI/NON" envoi mail facture
                 String connectionString2 = ConfigurationManager.AppSettings["ChaineDeConnexionBase"];
                 OdbcConnection conn2 = new OdbcConnection(connectionString2);
                 conn2.Open();
+                //Requete de séléction sur le champ "envoi facture par mail"
                 string requete2 = "select T1.NOCLI c1 , T1.CLID5 c2 , T1.RENDI c3 , T1.PROFE c4 from B00C0ACR.AMAGESTCOM.ACLIENL1 T1 where T1.CLID5 = 'OUI'";
                 OdbcCommand act2 = new OdbcCommand(requete2, conn2);
                 OdbcDataReader act20 = null;
@@ -864,7 +848,7 @@ namespace EssaiJobImp
                     act20 = act2.ExecuteReader();
                     while (act20.Read())
                     {
-                        if(act20.GetString(0)==donneEntete["Client_code"])
+                        if(act20.GetString(0)==donneEntete["Client_code"])// Si le code client est égale au résultat de la requete sur la ligne lu "NOCLI"
                         {
                             if(act20.GetString(1)=="OUI")                                               //Si la ligne de l'enrigistrement dans la base est à OUI pour cet ID, alors ne pas imprimer
                             { effectuerImpression = false; }
@@ -901,6 +885,8 @@ namespace EssaiJobImp
                         string inputFile = String.Format(@"{0}", chemin);
                         try
                         {
+
+                            //Envoi de l'ordre d'impression vers l'imprimante, les "switches" sont des arguments de la ligne de script "processor" de type GhostscriptProcessor
                             using (GhostscriptProcessor processor = new GhostscriptProcessor())
                             {
                                 List<string> switches = new List<string>();

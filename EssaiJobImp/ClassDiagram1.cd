@@ -87,17 +87,9 @@
   <Class Name="EssaiJobImp.Imprimante" BaseTypeListCollapsed="true">
     <Position X="9.25" Y="8.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>hAAAAAAAAQYgAAAEAAkAAAQBABAAAAAAAAAAAQAAABA=</HashCode>
+      <HashCode>AAAAAAAAAAYgAAAAAAEAAAQBABAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>Imprimante.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Devis" />
-      <Property Name="AccuseReception" />
-      <Property Name="BonLivraison" />
-      <Property Name="BonPréparation" />
-      <Property Name="CommandeFournisseur" />
-      <Property Name="Facturation" />
-    </ShowAsAssociation>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="EssaiJobImp.LogHelper">
@@ -117,24 +109,16 @@
   <Class Name="EssaiJobImp.Parseur">
     <Position X="0.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAABQAAEAAAAABAQAAAAAAAIAAAAAAABAACIIAAAAAA=</HashCode>
+      <HashCode>AAAAQAAEAAAAABAQAAAAAAAIAAAAAAABAACIIAAAAAA=</HashCode>
       <FileName>Parseur.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="ProfilImprimante" />
-      <Property Name="CurseurTemplate" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="EssaiJobImp.ParseurAR">
     <Position X="0.5" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAABQAAEAAAAABAQAAAAAAAIAAAAAAABAACIIAAAAAA=</HashCode>
+      <HashCode>AAAAQAAEAAAAABAQAAAAAAAIAAAAAAABAACIIAAAAAA=</HashCode>
       <FileName>ParseurAR.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="ProfilImprimante" />
-      <Property Name="CurseurTemplate" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="EssaiJobImp.ParseurBL">
     <Position X="9.75" Y="4" Width="1.5" />
@@ -176,12 +160,9 @@
   <Class Name="EssaiJobImp.ParseurFacturation">
     <Position X="3.75" Y="9" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAABQAAEAAAAABAQAAAAAAAIAAAAAAABAACIIAAAAAA=</HashCode>
+      <HashCode>AAAAQAAEAAAAABAQAAAAAAAIAAAAAAABAACIIAAAAAA=</HashCode>
       <FileName>ParseurFacturation.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="ProfilImprimante" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="EssaiJobImp.ProfilImprimante">
     <Position X="6.25" Y="12" Width="1.5" />
@@ -318,22 +299,16 @@
   <Struct Name="EssaiJobImp.Imp" Collapsed="true">
     <Position X="18.25" Y="9.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAEAAAAAAgAABAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAABAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GestionListeDoc.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Form1" />
-    </ShowAsAssociation>
   </Struct>
   <Struct Name="EssaiJobImp.Spool" Collapsed="true">
     <Position X="12.25" Y="9.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAABAAAAAAAAg=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAABAAAAAAAAA=</HashCode>
       <FileName>Imprimante.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Imprimante" />
-    </ShowAsAssociation>
   </Struct>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

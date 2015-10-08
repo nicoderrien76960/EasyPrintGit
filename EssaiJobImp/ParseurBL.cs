@@ -33,18 +33,6 @@ namespace EssaiJobImp
             this.nomDoc = nomDoc;
             this.unProfil = profil;
         }
-
-        internal ProfilImprimante ProfilImprimante
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-    
         public void miseEnForm(string typeDoc)
         {
             int incCopie = 0;
@@ -278,6 +266,7 @@ namespace EssaiJobImp
                         table.AddCell(cell9);
                         okDési = false; okStart = false;
                     }
+                    //Condition COMMANDE------------------------------------------------------------------------------------------------------------------------------------
                     if (donneeBody["Ligne_type" + i] == "CDE")
                     {
                         nbLigne++;
@@ -646,6 +635,7 @@ namespace EssaiJobImp
                     string inputFile = String.Format(@"{0}", chemin);
                     try
                     {
+                        //Envoi de l'ordre d'impression vers l'imprimante, les "switches" sont des arguments de la ligne de script "processor" de type GhostscriptProcessor
                         using (GhostscriptProcessor processor = new GhostscriptProcessor())
                         {
                             List<string> switches = new List<string>();
