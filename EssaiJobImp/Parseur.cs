@@ -47,7 +47,7 @@ namespace EssaiJobImp
             Image image4 = Image.GetInstance(ConfigurationManager.AppSettings["CheminPatternTot"]);
             image4.Alignment = Image.UNDERLYING;
             image4.SetAbsolutePosition(385, 70);
-            //----------------------------------------------------------------------------------------------------Filligrane--------
+            //----------------------------------------------------------------------------------------------------Filligrane-----------------------------------------------
             Image image5 = Image.GetInstance(ConfigurationManager.AppSettings["CheminFilligraneDevis"]);
             image5.Alignment = Image.UNDERLYING;
             image5.SetAbsolutePosition(200, 250);
