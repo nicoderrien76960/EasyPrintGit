@@ -117,6 +117,16 @@ namespace EssaiJobImp
             splitContainer1.Panel2.Controls.Clear();
             splitContainer1.Panel2Collapsed = true;
             splitContainer1.Panel1.Controls.Add(UCV);
+        }
+
+        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Form_reglage_Load(object sender, EventArgs e)
+        {
+
         }   
     }
 }

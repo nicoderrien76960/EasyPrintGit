@@ -43,9 +43,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnPause = new System.Windows.Forms.Button();
-            this.btnStop = new System.Windows.Forms.Button();
             this.btnReprise = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -143,7 +141,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.DarkRed;
+            this.label1.BackColor = System.Drawing.SystemColors.Highlight;
             this.label1.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(652, 140);
             this.label1.Name = "label1";
@@ -182,14 +180,14 @@
             this.label2.Font = new System.Drawing.Font("Lucida Sans", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(208, 20);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(144, 33);
+            this.label2.Size = new System.Drawing.Size(282, 33);
             this.label2.TabIndex = 20;
-            this.label2.Text = "EasyPrint";
+            this.label2.Text = "Ireport Rubis V 1.8";
             // 
             // pictureBox1
             // 
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.pictureBox1.Image = global::EssaiJobImp.Properties.Resources.image;
+            this.pictureBox1.Image = global::EssaiJobImp.Properties.Resources.Sans_titre;
             this.pictureBox1.Location = new System.Drawing.Point(12, 9);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(184, 127);
@@ -207,47 +205,23 @@
             this.btnPause.UseVisualStyleBackColor = true;
             this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
             // 
-            // btnStop
-            // 
-            this.btnStop.Location = new System.Drawing.Point(294, 113);
-            this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(75, 23);
-            this.btnStop.TabIndex = 23;
-            this.btnStop.Text = "Stop";
-            this.btnStop.UseVisualStyleBackColor = true;
-            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
-            // 
             // btnReprise
             // 
-            this.btnReprise.Location = new System.Drawing.Point(376, 112);
+            this.btnReprise.Location = new System.Drawing.Point(300, 112);
             this.btnReprise.Name = "btnReprise";
             this.btnReprise.Size = new System.Drawing.Size(75, 23);
             this.btnReprise.TabIndex = 24;
             this.btnReprise.Text = "Reprise";
             this.btnReprise.UseVisualStyleBackColor = true;
-            this.btnReprise.Visible = false;
             this.btnReprise.Click += new System.EventHandler(this.btnReprise_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(879, 20);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 25;
-            this.button1.Text = "Test Envoi Mail";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Visible = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.DarkRed;
+            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(1004, 332);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnReprise);
-            this.Controls.Add(this.btnStop);
             this.Controls.Add(this.btnPause);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label2);
@@ -289,9 +263,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnPause;
-        private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.Button btnReprise;
-        private System.Windows.Forms.Button button1;
     }
 }
 

@@ -406,14 +406,14 @@
             this.textBox6.Location = new System.Drawing.Point(386, 263);
             this.textBox6.Multiline = true;
             this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(192, 54);
+            this.textBox6.Size = new System.Drawing.Size(275, 152);
             this.textBox6.TabIndex = 56;
             // 
             // UserControlCF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Brown;
+            this.BackColor = System.Drawing.Color.LightGray;
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button4);
@@ -451,7 +451,7 @@
             this.Controls.Add(this.btnValider);
             this.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "UserControlCF";
-            this.Size = new System.Drawing.Size(676, 354);
+            this.Size = new System.Drawing.Size(1170, 605);
             this.ResumeLayout(false);
             this.PerformLayout();
 

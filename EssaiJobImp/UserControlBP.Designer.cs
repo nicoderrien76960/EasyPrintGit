@@ -317,7 +317,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Brown;
+            this.BackColor = System.Drawing.Color.LightGray;
             this.Controls.Add(this.button4);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.label15);
@@ -347,7 +347,7 @@
             this.Controls.Add(this.btnValider);
             this.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "UserControlBP";
-            this.Size = new System.Drawing.Size(700, 358);
+            this.Size = new System.Drawing.Size(1148, 604);
             this.Load += new System.EventHandler(this.UserControlBP_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

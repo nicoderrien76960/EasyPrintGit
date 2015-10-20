@@ -11,8 +11,10 @@ namespace EssaiJobImp
 {
     struct Imp
     {
-        string nomProfil;
-        string imp;
+       /*ND DEBUT 19 10 2015 */
+        //string nomProfil;
+        //string imp;
+        /*ND FIN 19 10 2015*/
     }
     class GestionListeDoc
     {

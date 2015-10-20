@@ -285,7 +285,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Brown;
+            this.BackColor = System.Drawing.Color.LightGray;
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label12);
@@ -311,7 +311,7 @@
             this.Controls.Add(this.tBD1);
             this.Controls.Add(this.btnValider);
             this.Name = "UserControlFacturation";
-            this.Size = new System.Drawing.Size(745, 358);
+            this.Size = new System.Drawing.Size(1143, 611);
             this.ResumeLayout(false);
             this.PerformLayout();
 

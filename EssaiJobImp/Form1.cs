@@ -31,7 +31,14 @@ namespace EssaiJobImp
         static int s_myCounter6 = 0;
         int timer = 250; DateTime dureeF;
         Imprimante imprimante = new Imprimante();
-        object sender; EventArgs e;
+        /*ND DEBUT 19 10 2015*/
+        object sender ; 
+        EventArgs e  ;
+        
+        
+        
+
+        /*FIN ND 19 10 2015*/
         /// <summary>
         /// Démarrage du programme ici
         /// </summary>
@@ -296,16 +303,16 @@ namespace EssaiJobImp
             s_myTimer6.Start();
             btnReprise.Visible = false;
         }
-        private void btnStop_Click(object sender, EventArgs e)
+      /*  private void btnStop_Click(object sender, EventArgs e)
         {
           
-        }
+        }*/
 
-        private void button1_Click(object sender, EventArgs e)
+      /*  private void button1_Click(object sender, EventArgs e)
         {
-            EssaiUDP UDP = new EssaiUDP();
+           EssaiUDP UDP = new EssaiUDP();
             UDP.Lancer();
-        }
+        }*/
 
         internal Imprimante Imprimante
         {
@@ -328,5 +335,7 @@ namespace EssaiJobImp
             {
             }
         }
+
+       
     }
 }

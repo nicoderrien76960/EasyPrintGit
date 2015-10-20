@@ -124,7 +124,11 @@ namespace EssaiJobImp
                     }                                                                           //
                 }                                                                               //
             }                                                                                   //
-            int iBody = 0; int iFoot; int compt = 0;                                            //                                          
+            int iBody = 0; int iFoot; 
+            
+            /*ND DEBUT 19 10 2015*/
+            //int compt = 0;                                            //                                          
+            /* ND FIN 19 10 2015*/
             foreach (XmlNode noeud in lignes)                                                   //----------------------------------
             {
                 XmlNode nDetail = noeud;

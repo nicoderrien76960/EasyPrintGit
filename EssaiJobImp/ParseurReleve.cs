@@ -137,35 +137,44 @@ namespace EssaiJobImp
                 PdfPTable table = new PdfPTable(largeurs);
                 table.TotalWidth = 565;                                                                                         //Chaque colonne crée ci dessus doit être rempli
                 table.LockedWidth = true;
-                PdfPCell cellET1 = new PdfPCell(new Phrase("Date", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD))); //cellET1.Border = PdfPCell.NO_BORDER; //cellET1.Border += PdfPCell.BOTTOM_BORDER;
+                PdfPCell cellET1 = new PdfPCell(new Phrase("Date", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD))); 
                 cellET1.SetLeading(2f, 1.2f);
                 cellET1.PaddingBottom = 7f;
                 table.AddCell(cellET1);
-                PdfPCell cellET2 = new PdfPCell(new Phrase("Type Pièce", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD))); //cellET2.Border = PdfPCell.NO_BORDER; //cellET2.Border += PdfPCell.BOTTOM_BORDER;
+                PdfPCell cellET2 = new PdfPCell(new Phrase("Type Pièce", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD))); 
                 cellET2.SetLeading(2f, 1.2f);
                 cellET2.PaddingBottom = 7f;
                 table.AddCell(cellET2);
-                PdfPCell cellET3 = new PdfPCell(new Phrase("Référence", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD))); //cellET3.Border = PdfPCell.NO_BORDER; //cellET3.Border += PdfPCell.BOTTOM_BORDER;
+                PdfPCell cellET3 = new PdfPCell(new Phrase("Référence", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD))); 
                 cellET3.SetLeading(2f, 1.2f);
                 cellET3.PaddingBottom = 7f;
                 table.AddCell(cellET3);
-                PdfPCell cellET4 = new PdfPCell(new Phrase("T.V.A", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD))); //cellET4.Border = PdfPCell.NO_BORDER; //cellET4.Border += PdfPCell.BOTTOM_BORDER;
+                PdfPCell cellET4 = new PdfPCell(new Phrase("T.V.A", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD))); 
                 cellET4.HorizontalAlignment = Element.ALIGN_RIGHT;
                 cellET4.PaddingBottom = 7f;
                 cellET4.SetLeading(2f, 1.2f); 
                 table.AddCell(cellET4);
-                PdfPCell cellET5 = new PdfPCell(new Phrase("Avoir", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD))); //cellET5.Border = PdfPCell.NO_BORDER; //cellET5.Border += PdfPCell.BOTTOM_BORDER;
+                PdfPCell cellET5 = new PdfPCell(new Phrase("Avoir", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD))); 
                 cellET5.HorizontalAlignment = Element.ALIGN_RIGHT;
                 cellET5.PaddingBottom = 7f;
                 cellET5.SetLeading(2f, 1.2f);
                 table.AddCell(cellET5);
-                PdfPCell cellET6 = new PdfPCell(new Phrase("Facture", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD))); //cellET6.Border = PdfPCell.NO_BORDER; //cellET6.Border += PdfPCell.BOTTOM_BORDER;
+                PdfPCell cellET6 = new PdfPCell(new Phrase("Facture", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD))); 
                 cellET6.HorizontalAlignment = Element.ALIGN_RIGHT;
                 cellET6.PaddingBottom = 7f;
                 cellET6.SetLeading(2f, 1.2f);
                 table.AddCell(cellET6);
                 int i; int nbLigne = 0; float resultat = 0; float dimTab = 0; int décrement = 0; int numPage = 0;         //Constitution du tableau
-                bool okDési = false; bool okStart = false; double tempoTOT = 0;
+               
+                /*ND DEBUT 19 10 2015*/
+               // bool okDési = false; 
+                /*ND FIN 19 10 2015*/
+              
+                /* ND debut 19 10 2015*/
+                //bool okStart = false; 
+                /*ND FIN 19 10 2015*/
+
+                double tempoTOT = 0;
                 for (i = 0; i < iBody; i++)
                 {
                     nbLigne++;

@@ -220,13 +220,15 @@
             // 
             // btnValider
             // 
+            this.btnValider.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnValider.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnValider.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnValider.Location = new System.Drawing.Point(148, 267);
             this.btnValider.Name = "btnValider";
             this.btnValider.Size = new System.Drawing.Size(106, 43);
             this.btnValider.TabIndex = 40;
             this.btnValider.Text = "Valider";
-            this.btnValider.UseVisualStyleBackColor = true;
+            this.btnValider.UseVisualStyleBackColor = false;
             this.btnValider.Click += new System.EventHandler(this.btnValider_Click);
             // 
             // textBox5
@@ -377,7 +379,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Brown;
+            this.BackColor = System.Drawing.Color.LightGray;
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -413,7 +415,7 @@
             this.Controls.Add(this.btnValider);
             this.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "UserControlBL";
-            this.Size = new System.Drawing.Size(724, 332);
+            this.Size = new System.Drawing.Size(1175, 621);
             this.ResumeLayout(false);
             this.PerformLayout();
 

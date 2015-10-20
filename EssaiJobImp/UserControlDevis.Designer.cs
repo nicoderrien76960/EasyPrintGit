@@ -397,7 +397,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Brown;
+            this.BackColor = System.Drawing.Color.LightGray;
             this.Controls.Add(this.button4);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.label15);
@@ -434,7 +434,7 @@
             this.Controls.Add(this.tBD1);
             this.Controls.Add(this.btnValider);
             this.Name = "UserControlDevis";
-            this.Size = new System.Drawing.Size(746, 332);
+            this.Size = new System.Drawing.Size(1158, 613);
             this.Load += new System.EventHandler(this.UserControlDevis_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -178,7 +178,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Brown;
+            this.BackColor = System.Drawing.Color.LightGray;
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label9);
@@ -196,7 +196,7 @@
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "UserControlChemin";
-            this.Size = new System.Drawing.Size(587, 332);
+            this.Size = new System.Drawing.Size(1168, 677);
             this.ResumeLayout(false);
             this.PerformLayout();
 
