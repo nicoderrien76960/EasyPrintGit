@@ -76,7 +76,10 @@ namespace EssaiJobImp
                                     }
                                     nbDoc = 1;
                                     string[] text = System.IO.File.ReadAllLines(files[i],Encoding.Default);
-                                    string patternLectFalse = "(%-12345X@PJL JOB NAME|\\210-SERVIMP|&l26A)";//Premier caractère qui apparait sur les documents en cours d'impression
+                                    //string patternLectFalse = "(%-12345X@PJL JOB NAME|\\210-SERVIMP|&l26A)";//Premier caractère qui apparait sur les documents en cours d'impression
+                                    string patternLectFalse = "(%-12345X@PJL|\\210-SERVIMP|&l26A)";//Premier caractère qui apparait sur les documents en cours d'impression
+                                    //"%-12345X@PJL SET RENDERMODE=COLOR"
+
                                     string sPattern = "<Spool>";
                                     string sPatternTypeDoc = "<Document_type>"; bool patternOK = true; bool patternOK2 = false; bool découpageOK = true; int controle = 0; int test = 0;
                                     string sPatternTypeDoc2 ="<Document type=\"DOC_CLIENT\" doc=\"FACTURE ";

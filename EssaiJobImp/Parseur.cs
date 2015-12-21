@@ -58,12 +58,24 @@ namespace EssaiJobImp
             PdfPTable tableau = new PdfPTable(2);
             tableau.TotalWidth = 550;
             tableau.LockedWidth = true;
+
+
+            Image image6 = Image.GetInstance(ConfigurationManager.AppSettings["CheminLogoABCRDevis"]);
+            image6.ScaleAbsolute(PageSize.A4);
+            image6.ScaleToFit(175, 180);
+            image6.SetAbsolutePosition(13, 715);
+            nouveauDocument.Add(image6);
+            
             Paragraph pLogo = new Paragraph();
-            Image image = Image.GetInstance(ConfigurationManager.AppSettings["CheminLogoABCRDevis"]);
-            pLogo.Add(image);                                                                               //Encadré photo
-            PdfPCell celulleHauteGauche = new PdfPCell(image);
+            //Image image = Image.GetInstance(ConfigurationManager.AppSettings["CheminLogoABCRDevis"]);
+           // pLogo.Add(image);                  
+            //Encadré photo
+            pLogo.Add(new Phrase(""));
+            PdfPCell celulleHauteGauche = new PdfPCell(pLogo);
             celulleHauteGauche.Border = PdfPCell.NO_BORDER;
-            tableau.AddCell(celulleHauteGauche);                                                           //Encadré info devis
+            tableau.AddCell(celulleHauteGauche);                                                         //Encadré info devis
+
+
             Paragraph pDoc = new Paragraph();
             Image image2 = Image.GetInstance(ConfigurationManager.AppSettings["CheminPatternHautDroiteDevis"]);
             image2.Alignment = Image.UNDERLYING;

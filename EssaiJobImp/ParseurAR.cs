@@ -63,12 +63,24 @@ namespace EssaiJobImp
                 image5.SetAbsolutePosition(185, 250);
                 nouveauDocument.Add(image5);
                 //-------------------------------------------------------------------------------------------------
-                Paragraph pLogo = new Paragraph();
-                Image image = Image.GetInstance(ConfigurationManager.AppSettings["CheminLogoABCR"]);
-                pLogo.Add(image);                                                                               //Encadré photo
-                PdfPCell celulleHauteGauche = new PdfPCell(image);
+               // Paragraph pLogo = new Paragraph();
+               // Image image = Image.GetInstance(ConfigurationManager.AppSettings["CheminLogoABCR"]);
+               // pLogo.Add(image);                                                                               //Encadré photo
+               // PdfPCell celulleHauteGauche = new PdfPCell(image);
+                /*---------------------------------------------------------------------------------*/
+                PdfPCell celulleHauteGauche = new PdfPCell();
+                celulleHauteGauche.AddElement(new Phrase("\n\n\n\n"));
                 celulleHauteGauche.Border = PdfPCell.NO_BORDER;
                 tableau.AddCell(celulleHauteGauche);
+
+                Image image6 = Image.GetInstance(ConfigurationManager.AppSettings["CheminLogoABCR_AR"]);
+                image6.ScaleAbsolute(PageSize.A4);
+                float x = float.Parse(ConfigurationManager.AppSettings["LargeurLogoABCR_AR"]);
+                float y = float.Parse(ConfigurationManager.AppSettings["HauteurLogoABCR_AR"]);
+                image6.ScaleAbsolute(x, y);
+                image6.SetAbsolutePosition(13, 755);
+                nouveauDocument.Add(image6);
+
                 //Celulle de droite contenant l'adresse de livraison
                 Paragraph pAdl = new Paragraph();
                 pAdl.Add(new Phrase("Adresse de livraison\n\n", FontFactory.GetFont(FontFactory.HELVETICA, 11, Font.BOLD)));

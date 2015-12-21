@@ -217,7 +217,6 @@ namespace EssaiJobImp
                     float temp = table.TotalHeight;
                     dimTab = temp;
                     if (dimTab >= 380 && i < iBody)
-                    //if (dimTab >= 380 && i <= iBody)
                     {
                         //Saut de page  
                         numPage++;
@@ -246,9 +245,7 @@ namespace EssaiJobImp
                         table.AddCell(cellFin);
                         nouveauDocument.Add(table);//----------------------------------------------------------------------------Repère ligne en dessous--------------------------------------------------
                         Phrase pReport = new Phrase("                                                                                                                                                             A REPORTER\n\n\n\n\n\n", FontFactory.GetFont(FontFactory.HELVETICA, 11, Font.BOLD));
-                       /*10 12 15 ND correction bug saut de page donnée entete innexistante*/
-                        // Phrase pPage = new Phrase("\n                                                   " + donneEntete["Document_type"] + "                 " + donneEntete["Duplicata"] + "                                                                         Page n° " + (numPage + 1) + "            ", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD));
-                        Phrase pPage = new Phrase("\n                                                   " + donneEntete["Document_type"] + "                                                                                          Page n° " + (numPage + 1) + "            ", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD));
+                        Phrase pPage = new Phrase("\n                                                   " + donneEntete["Document_type"] + "                 " + donneEntete["Duplicata"] + "                                                                         Page n° " + (numPage + 1) + "            ", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD));
                         pPage.Leading = 15;
                         nouveauDocument.Add(pReport);
                         table.DeleteBodyRows();
@@ -391,31 +388,21 @@ namespace EssaiJobImp
                 nouveauDocument.Close();
                 incCopie++;
                 //--------------------------------------------------COPIE GED--------------------------------------------------------
-                string nomADH = "";
-                string numcli = "";
                 try
                 {
                     String connectionString = ConfigurationManager.AppSettings["ChaineDeConnexionBase"];
                     OdbcConnection conn = new OdbcConnection(connectionString);
                     conn.Open();
-                    //string requete = "select T1.NOCLI c1 , T1.NOMCL c2 from B00C0ACR.AMAGESTCOM.ACLIENL1 T1 where T1.NOCLI = '" + donneeFoot["Tra_nocli"] + "'";
-                    numcli = donneEntete["Tiers_nocpt"].Substring(3, 6); 
-                    string requete = "select T1.NOCLI c1 , T1.NOMCL c2 from B00C0ACR.AMAGESTCOM.ACLIENL1 T1 where T1.NOCLI = '" + numcli + "'";
+                    string requete = "select T1.NOCLI c1 , T1.NOMCL c2 from B00C0ACR.AMAGESTCOM.ACLIENL1 T1 where T1.NOCLI = '" + donneeFoot["Tra_nocli"] + "'";
                     OdbcCommand act = new OdbcCommand(requete, conn);
                     OdbcDataReader act0 = act.ExecuteReader();
-                    //string nomADH = "";
-                    //act0.Read();
+                    string nomADH = "";
                     while (act0.Read())
                     {
                         nomADH = (act0.GetString(1));
-                        nomADH = nomADH.Trim();
-
-                        /*test recup nom*/
-                       // LogHelper.WriteToFile("requete : ", requete + "-" + numcli);
-
                     }
-                    conn.Close();                 
-                    /*if (!System.IO.Directory.Exists(ConfigurationManager.AppSettings["cheminGED"] + "\\" + donneeFoot["Tra_nocli"] + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM") + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\Facturation\\"))
+                    conn.Close();
+                    if (!System.IO.Directory.Exists(ConfigurationManager.AppSettings["cheminGED"] + "\\" + donneeFoot["Tra_nocli"] + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM") + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\Facturation\\"))
                     {
                         System.IO.Directory.CreateDirectory(ConfigurationManager.AppSettings["cheminGED"] + "\\" + donneeFoot["Tra_nocli"] + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\Facturation\\");
                         System.IO.File.Copy(chemin, ConfigurationManager.AppSettings["cheminGED"] + "\\" + donneeFoot["Tra_nocli"] + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\Facturation\\RELEVE" + "\\" + nomDoc + "_" + donneeFoot["Tra_nocli"] + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf");
@@ -423,23 +410,11 @@ namespace EssaiJobImp
                     else
                     {
                         System.IO.File.Copy(chemin, ConfigurationManager.AppSettings["cheminGED"] + "\\" + donneeFoot["Tra_nocli"] + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\Facturation\\RELEVE" + nomDoc + "_" + donneeFoot["Tra_nocli"] + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf");
-                    }*/
-
-                    if (!System.IO.Directory.Exists(ConfigurationManager.AppSettings["cheminGED"] + "\\" + numcli + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM") + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\Facturation\\"))
-                    {
-                        System.IO.Directory.CreateDirectory(ConfigurationManager.AppSettings["cheminGED"] + "\\" + numcli + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\Facturation\\");
-                        System.IO.File.Copy(chemin, ConfigurationManager.AppSettings["cheminGED"] + "\\" + numcli + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\Facturation\\RELEVE" + "\\" + nomDoc + "_" + donneeFoot["Tra_nocli"] + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf");
                     }
-                    else
-                    {
-                        System.IO.File.Copy(chemin, ConfigurationManager.AppSettings["cheminGED"] + "\\" + numcli + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\Facturation\\RELEVE" + nomDoc + "_" + donneeFoot["Tra_nocli"] + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf");
-                    }
-
-
                 }
                 catch (Exception e)
                 {
-                    LogHelper.WriteToFile(e.Message, "nomAdh : " + nomADH + "-"+ numcli + "ENVOI GED Releve");
+                    LogHelper.WriteToFile(e.Message, "ENVOI GED Releve");
                 }
                 //----------------------------------------------FIN COPIE----------------------------------------------------------
                 //Requette qui retourne le champ "OUI/NON" envoi mail facture
@@ -451,23 +426,15 @@ namespace EssaiJobImp
                 OdbcCommand act2 = new OdbcCommand(requete2, conn2);
                 OdbcDataReader act20 = null;
                 bool effectuerImpression = true;
-                string numCli ="";
                 try
                 {
                     act20 = act2.ExecuteReader();
                     while (act20.Read())
                     {
-                        numCli = donneEntete["Tiers_nocpt"].Substring(3, 6);
-
-                        /*ND 27 10 15 correction erreur généré recherche facture oui ou non donnée entete inexistante car code compte*/
-                       // if(act20.GetString(0) == donneEntete["Client_code"])// Si le code client est égale au résultat de la requete sur la ligne lu "NOCLI"
-                        
-                        if (act20.GetString(0) == numCli)// Si le code client est égale au résultat de la requete sur la ligne lu "NOCLI"
+                        if (act20.GetString(0) == donneEntete["Client_code"])// Si le code client est égale au résultat de la requete sur la ligne lu "NOCLI"
                         {
-                            if(act20.GetString(1) == "OUI")      //Si la ligne de l'enrigistrement dans la base est à OUI pour cet ID, alors ne pas imprimer
-                            { 
-                                effectuerImpression = false; 
-                            }
+                            if (act20.GetString(1) == "OUI")                                               //Si la ligne de l'enrigistrement dans la base est à OUI pour cet ID, alors ne pas imprimer
+                            { effectuerImpression = false; }
                         }
                     }
                 }
@@ -523,10 +490,7 @@ namespace EssaiJobImp
                             nbImpOK++;
                         }
                         catch (Exception e)
-                        { 
-                            //LogHelper.WriteToFile(e.Message, "ParseurBP" + donneEntete["Document_numero"].Trim()); 
-                            LogHelper.WriteToFile(e.Message, "relevé" +donneEntete["Tiers_nocpt"].Trim());
-                        }
+                        { LogHelper.WriteToFile(e.Message, "ParseurBP" + donneEntete["Document_numero"].Trim()); }
                         // incrément à chaque impression terminée
                     }
                 }
