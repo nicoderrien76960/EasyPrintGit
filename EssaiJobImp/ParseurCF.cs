@@ -15,6 +15,7 @@ using PrinterForce;
 using Ghostscript.NET.Processor;
 using IBM.Data.DB2.iSeries;
 using System.Data.Odbc;
+using System.Text.RegularExpressions; /*regex le 100316*/
 
 namespace EssaiJobImp
 {
@@ -83,17 +84,43 @@ namespace EssaiJobImp
                 celulleFinDroite.Border = PdfPCell.NO_BORDER;
                 celulleFinDroite.PaddingLeft = 35;
                 tableau.AddCell(celulleFinDroite);
-                
+                /*---------------------------*/
                 //Adresse ABCR
-                string tel=""; string fax="";
+                /*  string tel=""; string fax="";
+                  if (donneEntete["Adresse_interne_5"] == "")
+                  { tel = donneEntete["Adresse_interne_7"]; fax = donneEntete["Adresse_interne_8"]; }
+                  else
+                  { tel = donneEntete["Adresse_interne_5"]; fax = donneEntete["Adresse_interne_6"]; }
+                  tel = tel.Substring(3, 15); fax = fax.Substring(3, 15);
+                  Paragraph p = new Paragraph();
+                  p.Add(new Phrase(donneEntete["Adresse_interne_2"] + "      Tél  " + tel + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.BOLD)));
+                  p.Add(new Phrase(donneEntete["Adresse_interne_3"] + "    Fax " + fax + "\n\n", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.BOLD)));
+                  */
+                /*bug recup tel et fax 100316 nd*/
+
+                //Adresse ABCR
+                string tel = ""; string fax = "";
                 if (donneEntete["Adresse_interne_5"] == "")
-                { tel = donneEntete["Adresse_interne_7"]; fax = donneEntete["Adresse_interne_8"]; }
+                {
+                    tel = donneEntete["Adresse_interne_7"];
+                    fax = donneEntete["Adresse_interne_8"];
+
+                }
                 else
-                { tel = donneEntete["Adresse_interne_5"]; fax = donneEntete["Adresse_interne_6"]; }
-                tel = tel.Substring(3, 15); fax = fax.Substring(3, 15);
+                {
+                    tel = donneEntete["Adresse_interne_5"];
+                    fax = donneEntete["Adresse_interne_6"];
+
+                }
+                /*ND utilisation des regex pour supprimer fax et tel*/
+                var fax2 = Regex.Split(fax, @"(?<=FAX)");
+                var tel2 = Regex.Split(tel, @"(?<=TEL)");
+
                 Paragraph p = new Paragraph();
-                p.Add(new Phrase(donneEntete["Adresse_interne_2"] + "      Tél  " + tel + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.BOLD)));
-                p.Add(new Phrase(donneEntete["Adresse_interne_3"] + "    Fax " + fax + "\n\n", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.BOLD)));
+                p.Add(new Phrase(donneEntete["Adresse_interne_2"] + "      Tél  " + tel2[1] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.BOLD)));
+                p.Add(new Phrase(donneEntete["Adresse_interne_3"] + "    Fax " + fax2[1] + "\n\n", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.BOLD)));
+
+
                 PdfPCell celulleMilieuGauche = new PdfPCell(p);
                 celulleMilieuGauche.Border = PdfPCell.NO_BORDER;
                 tableau.AddCell(celulleMilieuGauche);
@@ -583,24 +610,27 @@ namespace EssaiJobImp
                         //Envoi de l'ordre d'impression vers l'imprimante, les "switches" sont des arguments de la ligne de script "processor" de type GhostscriptProcessor
                         using (GhostscriptProcessor processor = new GhostscriptProcessor())
                         {
-                            List<string> switches = new List<string>();
-                            switches.Add("-empty");
-                            switches.Add("-dPrinted");
-                            switches.Add("-dBATCH");
-                            switches.Add("-dNOPAUSE");
-                            switches.Add("-dNOSAFER");
-                            switches.Add("-dNumCopies="+ConfigurationManager.AppSettings["NbCopieGC"]);
-                            switches.Add("-sDEVICE="+ConfigurationManager.AppSettings["PiloteImpressionGC"]);
-                            switches.Add("-sOutputFile=%printer%" + printerName);
-                            switches.Add("-f");
-                            switches.Add(inputFile);
+                             List<string> switches = new List<string>();
+                             switches.Add("-empty");
+                             switches.Add("-dPrinted");
+                             switches.Add("-dBATCH");
+                             switches.Add("-dNOPAUSE");
+                             switches.Add("-dNOSAFER");
+                             switches.Add("-dNumCopies="+ConfigurationManager.AppSettings["NbCopieGC"]);
+                             switches.Add("-sDEVICE="+ConfigurationManager.AppSettings["PiloteImpressionGC"]);
+                             switches.Add("-sOutputFile=%printer%" + printerName);
+                             switches.Add("-f");
+                             switches.Add(inputFile);
 
-                            processor.StartProcessing(switches.ToArray(), null);
+                             processor.StartProcessing(switches.ToArray(), null);
+
+                           
+
                         }
                         nbImpOK++;
                     }
                     catch (Exception e)
-                    { LogHelper.WriteToFile(e.Message, "ParseurBP" + donneEntete["Document_numero"].Trim()); }
+                    { LogHelper.WriteToFile(e.Message, "Parseur CF" + donneEntete["Document_numero"].Trim()); }
                     // incrément à chaque impression terminée
                 }
             }
