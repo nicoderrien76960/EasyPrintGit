@@ -211,6 +211,7 @@
     <Compile Include="UserControlVariable.Designer.cs">
       <DependentUpon>UserControlVariable.cs</DependentUpon>
     </Compile>
+    <None Include="App.config" />
     <None Include="Resources\Sans titre.png" />
     <None Include="Resources\ABCR_LOGO_NON_ORCABISE.jpg" />
     <EmbeddedResource Include="Form1.resx">
