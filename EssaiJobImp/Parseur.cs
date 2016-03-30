@@ -60,20 +60,38 @@ namespace EssaiJobImp
             tableau.LockedWidth = true;
 
 
-            Image image6 = Image.GetInstance(ConfigurationManager.AppSettings["CheminLogoABCRDevis"]);
+            //Image image6 = Image.GetInstance(ConfigurationManager.AppSettings["CheminLogoABCRDevis"]);
+            //image6.ScaleAbsolute(PageSize.A4);
+            //image6.ScaleToFit(175, 180);
+            //image6.SetAbsolutePosition(13, 715);
+            //nouveauDocument.Add(image6);
+
+
+            /*test*/
+            Image image6 = Image.GetInstance(ConfigurationManager.AppSettings["CheminLogoABCR_DEVIS"]);
             image6.ScaleAbsolute(PageSize.A4);
-            image6.ScaleToFit(175, 180);
-            image6.SetAbsolutePosition(13, 715);
+            float x = float.Parse(ConfigurationManager.AppSettings["LargeurLogoABCR_DEVIS"]);
+            float y = float.Parse(ConfigurationManager.AppSettings["HauteurLogoABCR_DEVIS"]);
+            image6.ScaleAbsolute(x, y);
+            image6.SetAbsolutePosition(13, 755);
             nouveauDocument.Add(image6);
-            
-            Paragraph pLogo = new Paragraph();
+            /*---fin test */
+
+            // Paragraph pLogo = new Paragraph();
             //Image image = Image.GetInstance(ConfigurationManager.AppSettings["CheminLogoABCRDevis"]);
-           // pLogo.Add(image);                  
+            // pLogo.Add(image);                  
             //Encadré photo
-            pLogo.Add(new Phrase(""));
-            PdfPCell celulleHauteGauche = new PdfPCell(pLogo);
+            //pLogo.Add(new Phrase(""));
+
+            //PdfPCell celulleHauteGauche = new PdfPCell(pLogo);
+            //    celulleHauteGauche.Border = PdfPCell.NO_BORDER;
+            //tableau.AddCell(celulleHauteGauche);             //Encadré info devis
+
+
+            PdfPCell celulleHauteGauche = new PdfPCell();
+            celulleHauteGauche.AddElement(new Phrase("\n\n\n\n"));
             celulleHauteGauche.Border = PdfPCell.NO_BORDER;
-            tableau.AddCell(celulleHauteGauche);                                                         //Encadré info devis
+            tableau.AddCell(celulleHauteGauche);
 
 
             Paragraph pDoc = new Paragraph();

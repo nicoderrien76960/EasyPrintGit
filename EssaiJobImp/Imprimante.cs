@@ -13,7 +13,8 @@ namespace EssaiJobImp
     public struct Spool   //Création d'un object Spool (plan structure)
     {
         public string nomSpool;
-        public string nomImprimante;
+        //public string nomImprimante;
+        public string nomIMP;
     }
     /// <summary>
     /// Classe qui récupère les documents du spool pour une imprimante
@@ -64,8 +65,9 @@ namespace EssaiJobImp
                                         if (System.IO.File.Exists(cheminDocFinaux + @"\Copie spool\" + nomFichier))//Condition d'existance
                                         {   
                                             System.IO.File.Copy(sourceFile, destFile, true);
-                                            supOk = true;
-                                            emplacementDoc = j;
+                                         supOk = true;
+                                        //supOk = false;
+                                        emplacementDoc = j;
                                         }
                                         else
                                         {
@@ -106,11 +108,16 @@ namespace EssaiJobImp
                                             if (System.Text.RegularExpressions.Regex.IsMatch(s, "</Document>", System.Text.RegularExpressions.RegexOptions.IgnoreCase) && découpageOK==false)
                                             {
                                                 sr.WriteLine(s);
-                                                découpageOK = true; }
+                                                découpageOK = true;
+                                            }
                                             if (découpageOK == false)
-                                            { sr.WriteLine(s); }
+                                            {
+                                                sr.WriteLine(s);
+                                            }
                                             if ((découpageOK == true) && (sr!=null))
-                                            {sr.Close(); test++; }
+                                            {
+                                                sr.Close(); test++;
+                                            }
                                             //Regex type de document
                                             if (System.Text.RegularExpressions.Regex.IsMatch(s, sPatternTypeDoc2, System.Text.RegularExpressions.RegexOptions.IgnoreCase))
                                             {
@@ -164,7 +171,9 @@ namespace EssaiJobImp
                                             }
                                         }
                                         else
-                                        { patternOK = false; typeDoc = null; System.IO.File.Delete(sourceFile); patternOK2 = false; } //Si tout est OK je supprime le fichier copier
+                                        {
+                                        patternOK = false; typeDoc = null; System.IO.File.Delete(sourceFile); patternOK2 = false;
+                                    }   //Si tout est OK je supprime le fichier copier
                                         nomDoc = nomFichier;    
                                     }
                                     cheminDoc = destFile;
