@@ -655,7 +655,8 @@ namespace EssaiJobImp
                         nbImpOK++;
                     }
                     catch (Exception e)
-                    { LogHelper.WriteToFile(e.Message, "ParseurBP" + donneEntete["Document_numero"].Trim()); }
+                    {
+                        LogHelper.WriteToFile(e.Message, "ParseurBP" + donneEntete["Document_numero"].Trim()); }
                     // incrément à chaque impression terminée
                 }
                 #endregion
