@@ -295,7 +295,8 @@ namespace EssaiJobImp
                         if (donneeBody["Ligne_type" + i] != "BON" & donneeBody["Ligne_type" + i] != "CDE" & donneeBody["Ligne_type" + i] != "ART" & donneeBody["Ligne_type" + i] != "GRA" & donneeBody["Ligne_type" + i] != "COM" & donneeBody["Ligne_type" + i] != "ESC")
                         {
                             //--------------------------------debug ligne type
-                           // LogHelper.WriteToFile("ligne type inconnu->" + donneeBody["Ligne_type" + i]+"<-", "Debug dictionnaire --> a " + i + " ligne type");
+                           //récupère le type de ligne non connu qui provoque un plantage 
+                            LogHelper.WriteToFile("ligne type inconnu->" + donneeBody["Ligne_type" + i]+"<-", "Debug dictionnaire --> a " + i + " ligne type");
                         }
                         
                         
