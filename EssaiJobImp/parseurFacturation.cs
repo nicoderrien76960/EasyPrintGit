@@ -6,7 +6,7 @@ using System.IO;
 using System.Configuration;
 using System.Threading.Tasks;
 using System.Collections;
-//using System.Configuration;
+using System.Configuration;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.Diagnostics;
@@ -43,6 +43,9 @@ namespace EssaiJobImp
             int nbCopie = 1;
             string cheminDocFinaux = ConfigurationManager.AppSettings["CheminDocFinaux"].ToString();
             string cheminRessources = ConfigurationManager.AppSettings["CheminRessources"].ToString();
+
+           
+
             while (incCopie < nbCopie)
             {
                 string chemin = "";
@@ -83,14 +86,12 @@ namespace EssaiJobImp
                 image6.SetAbsolutePosition(13, 715);
                 nouveauDocument.Add(image6);
 
-             /*   Image image7 = Image.GetInstance(ConfigurationManager.AppSettings["CheminCGV"]);
+             /* Image image7 = Image.GetInstance(ConfigurationManager.AppSettings["CheminCGV"]);
                 image7.ScaleAbsolute(PageSize.A4);
                 image7.ScaleToFit(500, 390);
                 image7.SetAbsolutePosition(10, 23);
                 nouveauDocument.Add(image7); */
-
-                
-                
+       
                 
                 /*Image image5 = Image.GetInstance(ConfigurationManager.AppSettings["CheminPatternFondPageFacturation"]);
                 image5.Alignment = Image.UNDERLYING;
@@ -174,12 +175,6 @@ namespace EssaiJobImp
                 tabCell.AddCell(new Phrase("Date", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD)));
                 tabCell.AddCell(new Phrase("Numéro", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD)));
 
-              
-
-                
-               
-
-
                 tabCell.AddCell(new Phrase(donneEntete["Client_code"], FontFactory.GetFont(FontFactory.HELVETICA, 9)));
                 tabCell.AddCell(new Phrase(donneEntete["Document_date"], FontFactory.GetFont(FontFactory.HELVETICA, 9)));
                 tabCell.AddCell(new Phrase(donneEntete["Document_numero"], FontFactory.GetFont(FontFactory.HELVETICA, 9)));
@@ -188,6 +183,7 @@ namespace EssaiJobImp
                 celulleBasGauche.Border = PdfPCell.NO_BORDER;
                 celulleBasGauche.Bottom = PdfPCell.ALIGN_BOTTOM;
                 Paragraph pCell2Entete = new Paragraph();
+              
                 int iEntete = 0;
                 if (donneEntete.ContainsKey("Commentaire_texte0"))
                 {
@@ -223,6 +219,7 @@ namespace EssaiJobImp
                 refCli.Add(new Phrase("Référence client " + donneeBody["Bon_rcl1"] + " du " + donneeBody["Bon_datrcl1"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.BOLD)));
                 nouveauDocument.Add(refCli);*/
                 //Recap dessus tableau
+               
                 Phrase c = null;
                 if (donneEntete.ContainsKey("Bon_vendeur_lib"))
                 {
@@ -235,6 +232,7 @@ namespace EssaiJobImp
                 
                 if (donneEntete["Document_type"] == "FACTURE") { typeDeDocument = "FACTURE"; }
                 if (donneEntete["Document_type"] == "AVOIR") { typeDeDocument = " AVOIR "; }
+
                 Phrase pPage1 = new Phrase("\n                                                   " + typeDeDocument + "                 " + donneEntete["Duplicata"] + "                                                                         Page n° 1           \n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD));
                 //Phrase pPage1 = new Phrase("\n                                                   " + donneEntete["Document_type"] + "                 " + donneEntete["Duplicata"] + "                                                                         Page n° 1           \n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD));
                 pPage1.Leading = 10;
@@ -278,329 +276,401 @@ namespace EssaiJobImp
                 image3.Alignment = Image.UNDERLYING;
                 image3.SetAbsolutePosition(12.5f, 595);
                 nouveauDocument.Add(image3);
+
+
+
                 int i; int nbLigne = 0; float resultat = 0; float dimTab = 0; int décrement = 0; int numPage = 0;         //Constitution du tableau d'article
                 bool okDési = false; bool okStart = false; double tempoTOT = 0; 
                 
-                /*if (donneeBody.ContainsKey("Bon_datliv1"))
-                {
-                    PdfPCell cell1 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell1.Border = PdfPCell.NO_BORDER; cell1.Border += PdfPCell.RIGHT_BORDER; cell1.Border += PdfPCell.LEFT_BORDER;
-                    table.AddCell(cell1);
-                    Paragraph pCell2 = new Paragraph();
-                    pCell2.Add(new Phrase("\nReference client "+donneeBody["Bon_rcl1"] +"           du "+donneeBody["Bon_datrcl1"]+ "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLDITALIC)));
-                    pCell2.Add(new Phrase("Bon n°" + donneeBody["Bon_numero1"] + " du " + donneeBody["Bon_date1"] +"  "+donneeBody["Bon_typvte1"]+"  "+donneeBody["Bon_datliv1"]+ "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLDITALIC)));
-                    pCell2.Add(new Phrase("Adresse de livraison " + donneEntete["Tiers_adf1"] + "  " + donneEntete["Tiers_adf2"] +"   "+donneEntete["Tiers_adf6"]+"   "+donneEntete["Tiers_adfcp"]+ "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLDITALIC)));
-                    PdfPCell cell2 = new PdfPCell(pCell2); cell2.Border = PdfPCell.NO_BORDER; cell2.Border += PdfPCell.RIGHT_BORDER; cell2.Border += PdfPCell.LEFT_BORDER;
-                    table.AddCell(cell2);
-                    PdfPCell cell3 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell3.Border = PdfPCell.NO_BORDER; cell3.Border += PdfPCell.RIGHT_BORDER; cell3.Border += PdfPCell.LEFT_BORDER;
-                    table.AddCell(cell3);
-                    PdfPCell cell4 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell4.Border = PdfPCell.NO_BORDER; cell4.Border += PdfPCell.RIGHT_BORDER; cell4.Border += PdfPCell.LEFT_BORDER;
-                    table.AddCell(cell4);
-                    PdfPCell cell5 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell5.Border = PdfPCell.NO_BORDER; cell5.Border += PdfPCell.RIGHT_BORDER; cell5.Border += PdfPCell.LEFT_BORDER;
-                    table.AddCell(cell5);
-                    PdfPCell cell6 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell6.Border = PdfPCell.NO_BORDER; cell6.Border += PdfPCell.RIGHT_BORDER; cell6.Border += PdfPCell.LEFT_BORDER;
-                    table.AddCell(cell6);
-                    PdfPCell cell7 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell7.Border = PdfPCell.NO_BORDER; cell7.Border += PdfPCell.RIGHT_BORDER; cell7.Border += PdfPCell.LEFT_BORDER;
-                    table.AddCell(cell7);
-                    PdfPCell cell8 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell8.Border = PdfPCell.NO_BORDER; cell8.Border += PdfPCell.RIGHT_BORDER; cell8.Border += PdfPCell.LEFT_BORDER;
-                    table.AddCell(cell8);
-                }*/
-                for (i = 1; i <= iBody; i++)
-                {
+               
 
+               
 
-                 
-                    if (donneeBody["Ligne_type" + i] == "BON")
+                    for (i = 1; i <= iBody; i++)
+                
                     {
-                        nbLigne++;
-                        PdfPCell cell1 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell1.Border = PdfPCell.NO_BORDER; cell1.Border += PdfPCell.RIGHT_BORDER; cell1.Border += PdfPCell.LEFT_BORDER;
-                        table.AddCell(cell1);
-                        Paragraph pCell2 = new Paragraph();
-                        pCell2.Add(new Phrase("\nReference client " + donneeBody["Bon_rcl" + i] + "           du " + donneeBody["Bon_datrcl" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.ITALIC)));
-                        pCell2.Add(new Phrase("Bon n°" + donneeBody["Bon_numero" + i] + " du " + donneeBody["Bon_date" + i] + "  " + donneeBody["Bon_typvte" + i] + "  " + donneeBody["Bon_datliv" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.ITALIC)));
-                        if (donneeBody.ContainsKey("Tiers_adl1" + i)) { pCell2.Add(new Phrase("Adresse de livraison " + donneeBody["Tiers_adl1" + i] + "  " + donneeBody["Tiers_adl2" + i] + "   " + donneeBody["Tiers_adl6" + i] + "   " + donneeBody["Tiers_adlcp" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.ITALIC))); }
-                        else { pCell2.Add(new Phrase(" ", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.ITALIC))); }
-                        PdfPCell cell2 = new PdfPCell(pCell2); cell2.Border = PdfPCell.NO_BORDER; cell2.Border += PdfPCell.RIGHT_BORDER; cell2.Border += PdfPCell.LEFT_BORDER;
-                        table.AddCell(cell2);
-                        PdfPCell cell3 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell3.Border = PdfPCell.NO_BORDER; cell3.Border += PdfPCell.RIGHT_BORDER; cell3.Border += PdfPCell.LEFT_BORDER;
-                        table.AddCell(cell3);
-                        PdfPCell cell4 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell4.Border = PdfPCell.NO_BORDER; cell4.Border += PdfPCell.RIGHT_BORDER; cell4.Border += PdfPCell.LEFT_BORDER;
-                        table.AddCell(cell4);
-                        PdfPCell cell5 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell5.Border = PdfPCell.NO_BORDER; cell5.Border += PdfPCell.RIGHT_BORDER; cell5.Border += PdfPCell.LEFT_BORDER;
-                        table.AddCell(cell5);
-                        PdfPCell cell6 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell6.Border = PdfPCell.NO_BORDER; cell6.Border += PdfPCell.RIGHT_BORDER; cell6.Border += PdfPCell.LEFT_BORDER;
-                        table.AddCell(cell6);
-                        PdfPCell cell7 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell7.Border = PdfPCell.NO_BORDER; cell7.Border += PdfPCell.RIGHT_BORDER; cell7.Border += PdfPCell.LEFT_BORDER;
-                        table.AddCell(cell7);
-                        PdfPCell cell8 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell8.Border = PdfPCell.NO_BORDER; cell8.Border += PdfPCell.RIGHT_BORDER; cell8.Border += PdfPCell.LEFT_BORDER;
-                        table.AddCell(cell8);
-                    }
-
-                   
 
 
-                    //Condition ARTICLE----------------------------------------------------------------------------------------------------------------------
-                  
 
-                    if (donneeBody["Ligne_type" + i] == "ART")
-                    {
-                        nbLigne++;
-                        string sPattern = "libelle" + i + "bis";
-                        PdfPCell cell1 = new PdfPCell(new Phrase(donneeBody["Art_code" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell1.Border = PdfPCell.NO_BORDER; cell1.Border += PdfPCell.RIGHT_BORDER; cell1.Border += PdfPCell.LEFT_BORDER;
-                        table.AddCell(cell1);
-                        Paragraph pCell2 = new Paragraph();
-                        PdfPCell cell2 = new PdfPCell(pCell2); cell2.Border = PdfPCell.NO_BORDER; cell2.Border += PdfPCell.RIGHT_BORDER; cell2.Border += PdfPCell.LEFT_BORDER;
-                        foreach (KeyValuePair<string, string> entry in donneeBody)
+                        if (donneeBody["Ligne_type" + i] != "BON" & donneeBody["Ligne_type" + i] != "CDE" & donneeBody["Ligne_type" + i] != "ART" & donneeBody["Ligne_type" + i] != "GRA" & donneeBody["Ligne_type" + i] != "COM" & donneeBody["Ligne_type" + i] != "ESC")
                         {
-                            if (System.Text.RegularExpressions.Regex.IsMatch(entry.Key, sPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase))
-                            {
-                                if (okStart == false)
-                                {
-                                    pCell2.Add(new Phrase(donneeBody["Libelle" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8)));
-                                    string clé = entry.Key;
-                                    if (donneeBody.ContainsKey("Art_lot" + i)) { pCell2.Add(new Phrase("Numéro de lot : " + donneeBody["Art_lot" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); }
-                                    pCell2.Add(new Phrase(donneeBody[clé] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 7.5F, Font.ITALIC)));
-                                    okStart = true;
-                                }
-                                else
-                                {
-                                    string clé = entry.Key;
-                                    pCell2.Add(new Phrase(donneeBody[clé] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 7.5F, Font.ITALIC)));
-                                }
-                                okDési = true;
+                            //--------------------------------debug ligne type
+                           // LogHelper.WriteToFile("ligne type inconnu->" + donneeBody["Ligne_type" + i]+"<-", "Debug dictionnaire --> a " + i + " ligne type");
+                        }
+                        
+                        
+                        //--------------------------------debug ligne type
+                        //LogHelper.WriteToFile(donneeBody["Ligne_type" + i] ,"Debug dictionnaire --> a "+i+" ligne type");
+
+                        if (donneeBody["Ligne_type" + i] == "BON")
+                        {
+                            nbLigne++;
+                            PdfPCell cell1 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell1.Border = PdfPCell.NO_BORDER; cell1.Border += PdfPCell.RIGHT_BORDER; cell1.Border += PdfPCell.LEFT_BORDER;
+                            table.AddCell(cell1);
+                            Paragraph pCell2 = new Paragraph();
+                            pCell2.Add(new Phrase("\nReference client " + donneeBody["Bon_rcl" + i] + "           du " + donneeBody["Bon_datrcl" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.ITALIC)));
+                            pCell2.Add(new Phrase("Bon n°" + donneeBody["Bon_numero" + i] + " du " + donneeBody["Bon_date" + i] + "  " + donneeBody["Bon_typvte" + i] + "  " + donneeBody["Bon_datliv" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.ITALIC)));
+                            if (donneeBody.ContainsKey("Tiers_adl1" + i)) {
+                                pCell2.Add(new Phrase("Adresse de livraison " + donneeBody["Tiers_adl1" + i] + "  " + donneeBody["Tiers_adl2" + i] + "   " + donneeBody["Tiers_adl6" + i] + "   " + donneeBody["Tiers_adlcp" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.ITALIC))); 
                             }
-                        }
-                        if (okDési == false)
-                        {
-                            PdfPCell cell3 = new PdfPCell(new Phrase(donneeBody["Libelle" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell3.Border = PdfPCell.NO_BORDER; cell3.Border += PdfPCell.RIGHT_BORDER; cell3.Border += PdfPCell.LEFT_BORDER;
+                            else { 
+                                pCell2.Add(new Phrase(" ", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.ITALIC)));
+                            }
+                            PdfPCell cell2 = new PdfPCell(pCell2); cell2.Border = PdfPCell.NO_BORDER; cell2.Border += PdfPCell.RIGHT_BORDER; cell2.Border += PdfPCell.LEFT_BORDER;
+                            table.AddCell(cell2);
+                            PdfPCell cell3 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell3.Border = PdfPCell.NO_BORDER; cell3.Border += PdfPCell.RIGHT_BORDER; cell3.Border += PdfPCell.LEFT_BORDER;
                             table.AddCell(cell3);
+                            PdfPCell cell4 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell4.Border = PdfPCell.NO_BORDER; cell4.Border += PdfPCell.RIGHT_BORDER; cell4.Border += PdfPCell.LEFT_BORDER;
+                            table.AddCell(cell4);
+                            PdfPCell cell5 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell5.Border = PdfPCell.NO_BORDER; cell5.Border += PdfPCell.RIGHT_BORDER; cell5.Border += PdfPCell.LEFT_BORDER;
+                            table.AddCell(cell5);
+                            PdfPCell cell6 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell6.Border = PdfPCell.NO_BORDER; cell6.Border += PdfPCell.RIGHT_BORDER; cell6.Border += PdfPCell.LEFT_BORDER;
+                            table.AddCell(cell6);
+                            PdfPCell cell7 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell7.Border = PdfPCell.NO_BORDER; cell7.Border += PdfPCell.RIGHT_BORDER; cell7.Border += PdfPCell.LEFT_BORDER;
+                            table.AddCell(cell7);
+                            PdfPCell cell8 = new PdfPCell(new Phrase(" \n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell8.Border = PdfPCell.NO_BORDER; cell8.Border += PdfPCell.RIGHT_BORDER; cell8.Border += PdfPCell.LEFT_BORDER;
+                            table.AddCell(cell8);
+                       
+                        
+                        
                         }
-                        else { table.AddCell(cell2); }
-                        PdfPCell cell4 = new PdfPCell(new Phrase(donneeBody["Art_unite" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell4.Border = PdfPCell.NO_BORDER; cell4.Border += PdfPCell.RIGHT_BORDER; cell4.Border += PdfPCell.LEFT_BORDER;
-                        table.AddCell(cell4);
-                        PdfPCell cell5 = new PdfPCell(new Phrase(donneeBody["Art_qte" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell5.Border = PdfPCell.NO_BORDER; cell5.Border += PdfPCell.RIGHT_BORDER; cell5.Border += PdfPCell.LEFT_BORDER;
-                        table.AddCell(cell5);
-                        PdfPCell cell6 = new PdfPCell(new Phrase(donneeBody["Art_remise2" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell6.Border = PdfPCell.NO_BORDER; cell6.Border += PdfPCell.RIGHT_BORDER; cell6.Border += PdfPCell.LEFT_BORDER;
-                        table.AddCell(cell6);
-                        PdfPCell cell7 = new PdfPCell(new Phrase(donneeBody["Art_remise1" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell7.Border = PdfPCell.NO_BORDER; cell7.Border += PdfPCell.RIGHT_BORDER; cell7.Border += PdfPCell.LEFT_BORDER;
-                        table.AddCell(cell7);
-                        double prixnet = -99999;
-                        if (donneeBody["Art_prinet" + i] != "")
-                        { prixnet = double.Parse(donneeBody["Art_prinet" + i]); }
-                        if (prixnet != -99999)
+
+
+
+
+                        //Condition ARTICLE----------------------------------------------------------------------------------------------------------------------
+
+
+                        if (donneeBody["Ligne_type" + i] == "ART")
                         {
-                            PdfPCell cell8 = new PdfPCell(new Phrase(prixnet.ToString("N2") + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell8.Border = PdfPCell.NO_BORDER; cell8.Border += PdfPCell.RIGHT_BORDER; cell8.Border += PdfPCell.LEFT_BORDER;
+                            nbLigne++;
+                            string sPattern = "libelle" + i + "bis";
+
+                            //--------------------------------debug ligne type--------------------------------------
+                          //  LogHelper.WriteToFile(sPattern, "Debug dictionnaire --> b " + i + "libelle bis");
+                            //-----------------------------------------------------------------------------------
+
+                            PdfPCell cell1 = new PdfPCell(new Phrase(donneeBody["Art_code" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell1.Border = PdfPCell.NO_BORDER; cell1.Border += PdfPCell.RIGHT_BORDER; cell1.Border += PdfPCell.LEFT_BORDER;
+                            table.AddCell(cell1);
+                            Paragraph pCell2 = new Paragraph();
+                            PdfPCell cell2 = new PdfPCell(pCell2); cell2.Border = PdfPCell.NO_BORDER; cell2.Border += PdfPCell.RIGHT_BORDER; cell2.Border += PdfPCell.LEFT_BORDER;
+                            foreach (KeyValuePair<string, string> entry in donneeBody)
+                             {
+                                 //--------------------------------debug à commenter ligne type--------------------------------------
+                                // LogHelper.WriteToFile(entry.Key , "Debug dictionnaire regex up--> 0000 " + i + " donnée clé : ");
+                                 //-----------------------------------------------------------------------------------
+
+                                if (System.Text.RegularExpressions.Regex.IsMatch(entry.Key, sPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase))
+                                {
+
+                                    //--------------------------------debug à commenter ligne type--------------------------------------
+                                   // LogHelper.WriteToFile(entry.Key + "-" + sPattern, "Debug dictionnaire regex --> 00 " + i + " donnée clé : ");
+                                    //-----------------------------------------------------------------------------------
+                                    
+                                    
+                                    if (okStart == false)
+                                    {
+                                        pCell2.Add(new Phrase(donneeBody["Libelle" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8)));
+                                        string clé = entry.Key;
+                                        if (donneeBody.ContainsKey("Art_lot" + i)) { pCell2.Add(new Phrase("Numéro de lot : " + donneeBody["Art_lot" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); }
+                                        pCell2.Add(new Phrase(donneeBody[clé] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 7.5F, Font.ITALIC)));
+                                        okStart = true;
+                                        //--------------------------------debug à  commenter ligne type--------------------------------------
+                                      //  LogHelper.WriteToFile(donneeBody[clé], "Debug dictionnaire --> c " + i + " donnée clé : ");
+                                        //-----------------------------------------------------------------------------------
+                                    }
+                                    else
+                                    {
+                                        string clé = entry.Key;
+                                        pCell2.Add(new Phrase(donneeBody[clé] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 7.5F, Font.ITALIC)));
+
+                                        //--------------------------------debug à commenter ligne type--------------------------------------
+                                     //   LogHelper.WriteToFile(donneeBody[clé], "Debug dictionnaire --> d " + i + " donnée clé : ");
+                                        //-----------------------------------------------------------------------------------
+
+
+                                    }
+
+                                   
+                                  
+                                    
+                                    okDési = true;
+                                }
+                            }
+
+
+                            if (okDési == false)
+                            {
+                                PdfPCell cell3 = new PdfPCell(new Phrase(donneeBody["Libelle" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell3.Border = PdfPCell.NO_BORDER; cell3.Border += PdfPCell.RIGHT_BORDER; cell3.Border += PdfPCell.LEFT_BORDER;
+
+                                //--------------------------------debug à commenter ligne type--------------------------------------
+                               // LogHelper.WriteToFile(donneeBody["Libelle" + i], "Debug dictionnaire --> e " + i + " donnée clé : ");
+                                //-----------------------------------------------------------------------------------
+                                table.AddCell(cell3);
+                            }
+                            else {
+                                table.AddCell(cell2); 
+                            }
+
+                            PdfPCell cell4 = new PdfPCell(new Phrase(donneeBody["Art_unite" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell4.Border = PdfPCell.NO_BORDER; cell4.Border += PdfPCell.RIGHT_BORDER; cell4.Border += PdfPCell.LEFT_BORDER;
+                            table.AddCell(cell4);
+                            PdfPCell cell5 = new PdfPCell(new Phrase(donneeBody["Art_qte" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell5.Border = PdfPCell.NO_BORDER; cell5.Border += PdfPCell.RIGHT_BORDER; cell5.Border += PdfPCell.LEFT_BORDER;
+                            table.AddCell(cell5);
+                            PdfPCell cell6 = new PdfPCell(new Phrase(donneeBody["Art_remise2" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell6.Border = PdfPCell.NO_BORDER; cell6.Border += PdfPCell.RIGHT_BORDER; cell6.Border += PdfPCell.LEFT_BORDER;
+                            table.AddCell(cell6);
+                            PdfPCell cell7 = new PdfPCell(new Phrase(donneeBody["Art_remise1" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell7.Border = PdfPCell.NO_BORDER; cell7.Border += PdfPCell.RIGHT_BORDER; cell7.Border += PdfPCell.LEFT_BORDER;
+                            table.AddCell(cell7);
+                            double prixnet = -99999;
+
+                            if (donneeBody["Art_prinet" + i] != "")
+                            {
+                                prixnet = double.Parse(donneeBody["Art_prinet" + i]); 
+                            }
+
+                            if (prixnet != -99999)
+                            {
+                                PdfPCell cell8 = new PdfPCell(new Phrase(prixnet.ToString("N2") + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell8.Border = PdfPCell.NO_BORDER; cell8.Border += PdfPCell.RIGHT_BORDER; cell8.Border += PdfPCell.LEFT_BORDER;
+                                table.AddCell(cell8);
+                            }
+
+                            else
+                            {
+                                PdfPCell cell8 = new PdfPCell(new Phrase("" + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell8.Border = PdfPCell.NO_BORDER; cell8.Border += PdfPCell.RIGHT_BORDER; cell8.Border += PdfPCell.LEFT_BORDER;
+                                table.AddCell(cell8);
+                            }
+
+                            PdfPCell cell9 = new PdfPCell(new Phrase(donneeBody["Art_monht" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell9.Border = PdfPCell.NO_BORDER; cell9.Border += PdfPCell.RIGHT_BORDER; cell9.Border += PdfPCell.LEFT_BORDER;
+                            table.AddCell(cell9);
+
+                            if (donneeBody["Art_monht" + i] != "")
+                            {
+                                tempoTOT = tempoTOT + double.Parse(donneeBody["Art_monht" + i]);
+                            }
+                            else { 
+                                tempoTOT = tempoTOT + 0; 
+                            }
+                            okDési = false; okStart = false;
+                        }
+
+
+
+
+                        if (donneeBody["Ligne_type" + i] == "CDE")
+                        {
+                            nbLigne++;
+                            string sPattern = "libelle" + i + "bis";
+                            PdfPCell cell1 = new PdfPCell(new Phrase(donneeBody["Art_code" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell1.Border = PdfPCell.NO_BORDER; cell1.Border += PdfPCell.RIGHT_BORDER; cell1.Border += PdfPCell.LEFT_BORDER;
+                            table.AddCell(cell1);
+                            Paragraph pCell2 = new Paragraph();
+                            PdfPCell cell2 = new PdfPCell(pCell2); cell2.Border = PdfPCell.NO_BORDER; cell2.Border += PdfPCell.RIGHT_BORDER; cell2.Border += PdfPCell.LEFT_BORDER;
+                            foreach (KeyValuePair<string, string> entry in donneeBody)
+                            {
+                                if (System.Text.RegularExpressions.Regex.IsMatch(entry.Key, sPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase))
+                                {
+                                    if (okStart == false)
+                                    {
+                                        pCell2.Add(new Phrase(donneeBody["Libelle" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8)));
+                                        string clé = entry.Key;
+                                        if (donneeBody.ContainsKey("Art_lot" + i)) { pCell2.Add(new Phrase("Numéro de lot : " + donneeBody["Art_lot" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); }
+                                        pCell2.Add(new Phrase(donneeBody[clé] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8)));
+                                        okStart = true;
+                                    }
+                                    else
+                                    {
+                                        string clé = entry.Key;
+                                        pCell2.Add(new Phrase(donneeBody[clé] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8)));
+                                    }
+                                    okDési = true;
+                                }
+                            }
+                            if (okDési == false)
+                            {
+                                PdfPCell cell3 = new PdfPCell(new Phrase(donneeBody["Libelle" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell3.Border = PdfPCell.NO_BORDER; cell3.Border += PdfPCell.RIGHT_BORDER; cell3.Border += PdfPCell.LEFT_BORDER;
+                                table.AddCell(cell3);
+                            }
+                            else { { table.AddCell(cell2); } }
+                            PdfPCell cell4 = new PdfPCell(new Phrase(donneeBody["Art_unite" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell4.Border = PdfPCell.NO_BORDER; cell4.Border += PdfPCell.RIGHT_BORDER; cell4.Border += PdfPCell.LEFT_BORDER;
+                            table.AddCell(cell4);
+                            PdfPCell cell5 = new PdfPCell(new Phrase(donneeBody["Art_qte" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell5.Border = PdfPCell.NO_BORDER; cell5.Border += PdfPCell.RIGHT_BORDER; cell5.Border += PdfPCell.LEFT_BORDER;
+                            table.AddCell(cell5);
+                            PdfPCell cell6 = new PdfPCell(new Phrase("" + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell6.Border = PdfPCell.NO_BORDER; cell6.Border += PdfPCell.RIGHT_BORDER; cell6.Border += PdfPCell.LEFT_BORDER;
+                            table.AddCell(cell6);
+                            table.AddCell(cell6);
+                            table.AddCell(cell6);
+                            PdfPCell cell7 = new PdfPCell((new Phrase("En Commande\n", FontFactory.GetFont(FontFactory.HELVETICA, 8)))); cell7.Border = PdfPCell.NO_BORDER; cell7.Border += PdfPCell.RIGHT_BORDER; cell7.Border += PdfPCell.LEFT_BORDER;
+                            table.AddCell(cell7);
+                            okDési = false; okStart = false;
+                        }
+
+
+
+
+
+                        if (donneeBody["Ligne_type" + i] == "GRA")
+                        {
+                            nbLigne++;
+                            string sPattern = "libelle" + i + "bis";
+                            PdfPCell cell1 = new PdfPCell(new Phrase(donneeBody["Art_code" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell1.Border = PdfPCell.NO_BORDER; cell1.Border += PdfPCell.RIGHT_BORDER; cell1.Border += PdfPCell.LEFT_BORDER;
+                            table.AddCell(cell1);
+                            Paragraph pCell2 = new Paragraph();
+                            PdfPCell cell2 = new PdfPCell(pCell2); cell2.Border = PdfPCell.NO_BORDER; cell2.Border += PdfPCell.RIGHT_BORDER; cell2.Border += PdfPCell.LEFT_BORDER;
+                            foreach (KeyValuePair<string, string> entry in donneeBody)
+                            {
+                                if (System.Text.RegularExpressions.Regex.IsMatch(entry.Key, sPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase))
+                                {
+                                    if (okStart == false)
+                                    {
+                                        pCell2.Add(new Phrase(donneeBody["Libelle" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8)));
+                                        string clé = entry.Key;
+                                        if (donneeBody.ContainsKey("Art_lot" + i)) { pCell2.Add(new Phrase("Numéro de lot : " + donneeBody["Art_lot" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); }
+                                        pCell2.Add(new Phrase(donneeBody[clé] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8)));
+                                        okStart = true;
+                                    }
+                                    else
+                                    {
+                                        string clé = entry.Key;
+                                        pCell2.Add(new Phrase(donneeBody[clé] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8)));
+                                    }
+                                    okDési = true;
+                                }
+                            }
+
+                            if (okDési == false)
+                            {
+                                PdfPCell cell3 = new PdfPCell(new Phrase(donneeBody["Libelle" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell3.Border = PdfPCell.NO_BORDER; cell3.Border += PdfPCell.RIGHT_BORDER; cell3.Border += PdfPCell.LEFT_BORDER;
+                                table.AddCell(cell3);
+                            }
+                            else { { table.AddCell(cell2); } }
+                            PdfPCell cell4 = new PdfPCell(new Phrase(donneeBody["Art_unite" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell4.Border = PdfPCell.NO_BORDER; cell4.Border += PdfPCell.RIGHT_BORDER; cell4.Border += PdfPCell.LEFT_BORDER;
+                            table.AddCell(cell4);
+                            PdfPCell cell5 = new PdfPCell(new Phrase(donneeBody["Art_qte" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell5.Border = PdfPCell.NO_BORDER; cell5.Border += PdfPCell.RIGHT_BORDER; cell5.Border += PdfPCell.LEFT_BORDER;
+                            table.AddCell(cell5);
+                            PdfPCell cell6 = new PdfPCell(new Phrase("" + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell6.Border = PdfPCell.NO_BORDER; cell6.Border += PdfPCell.RIGHT_BORDER; cell6.Border += PdfPCell.LEFT_BORDER;
+                            table.AddCell(cell6);
+                            table.AddCell(cell6);
+                            PdfPCell cell7 = new PdfPCell(new Phrase("" + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell7.Border = PdfPCell.NO_BORDER; cell7.Border += PdfPCell.RIGHT_BORDER; cell7.Border += PdfPCell.LEFT_BORDER;
+                            table.AddCell(cell7);
+                            PdfPCell cell8 = new PdfPCell((new Phrase(donneeBody["Lib_rempl_mt" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8)))); cell8.Border = PdfPCell.NO_BORDER; cell8.Border += PdfPCell.LEFT_BORDER; cell8.Border += PdfPCell.RIGHT_BORDER;
                             table.AddCell(cell8);
                         }
-                        else
+
+
+                        if (donneeBody["Ligne_type" + i] == "COM")
                         {
-                            PdfPCell cell8 = new PdfPCell(new Phrase("" + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell8.Border = PdfPCell.NO_BORDER; cell8.Border += PdfPCell.RIGHT_BORDER; cell8.Border += PdfPCell.LEFT_BORDER;
+                            nbLigne++;
+                            PdfPCell cellVide = new PdfPCell(new Phrase("" + "\n"));
+
+                        /*------------------------------------------------debug com-----------------------------------------*/
+                     //       LogHelper.WriteToFile(donneeBody["Libelle" + i], "Debug dictionnaire --> f " + i + " COM : ");
+                        //------------------------------------------à commenter ---------------------------------------
+                            PdfPCell cell = new PdfPCell(new Phrase(donneeBody["Libelle" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8)));
+                            PdfPCell cellFin = new PdfPCell();
+                            cellVide.Border = PdfPCell.NO_BORDER;
+                            cellVide.Border += PdfPCell.RIGHT_BORDER;
+                            cellVide.Border += PdfPCell.LEFT_BORDER;
+                            cell.Border = PdfPCell.NO_BORDER;
+                            cell.Border += PdfPCell.RIGHT_BORDER;
+                            cell.Border += PdfPCell.LEFT_BORDER;
+                            cellFin.Border = PdfPCell.NO_BORDER;
+                            cellFin.Border += PdfPCell.LEFT_BORDER;
+                            cellFin.Border += PdfPCell.RIGHT_BORDER;
+                            table.AddCell(cellVide);
+                            table.AddCell(cell);
+                            table.AddCell(cellVide);
+                            table.AddCell(cellVide);
+                            table.AddCell(cellVide);
+                            table.AddCell(cellVide);
+                            table.AddCell(cellVide);
+                            table.AddCell(cellFin);
+                        }
+
+
+                        if (donneeBody["Ligne_type" + i] == "ESC")
+                        {
+                            nbLigne++;
+                            string sPattern = "libelle" + i + "bis";
+                            PdfPCell cell1 = new PdfPCell(new Phrase(donneeBody["Art_code" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell1.Border = PdfPCell.NO_BORDER; cell1.Border += PdfPCell.RIGHT_BORDER; cell1.Border += PdfPCell.LEFT_BORDER;
+                            table.AddCell(cell1);
+                            Paragraph pCell2 = new Paragraph();
+                            PdfPCell cell2 = new PdfPCell(pCell2); cell2.Border = PdfPCell.NO_BORDER; cell2.Border += PdfPCell.RIGHT_BORDER; cell2.Border += PdfPCell.LEFT_BORDER;
+                            foreach (KeyValuePair<string, string> entry in donneeBody)
+                            {
+                                if (System.Text.RegularExpressions.Regex.IsMatch(entry.Key, sPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase))
+                                {
+                                    if (okStart == false)
+                                    {
+                                        pCell2.Add(new Phrase(donneeBody["Libelle" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8)));
+                                        string clé = entry.Key;
+                                        if (donneeBody.ContainsKey("Art_lot" + i)) { pCell2.Add(new Phrase("Numéro de lot : " + donneeBody["Art_lot" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); }
+                                        pCell2.Add(new Phrase(donneeBody[clé] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 7.5F, Font.ITALIC)));
+                                        okStart = true;
+                                    }
+                                    else
+                                    {
+                                        string clé = entry.Key;
+                                        pCell2.Add(new Phrase(donneeBody[clé] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 7.5F, Font.ITALIC)));
+                                    }
+                                    okDési = true;
+                                }
+                            }
+                            if (okDési == false)
+                            {
+                                PdfPCell cell3 = new PdfPCell(new Phrase(donneeBody["Libelle" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell3.Border = PdfPCell.NO_BORDER; cell3.Border += PdfPCell.RIGHT_BORDER; cell3.Border += PdfPCell.LEFT_BORDER;
+                                table.AddCell(cell3);
+                            }
+                            else { table.AddCell(cell2); }
+                            PdfPCell cell4 = new PdfPCell(new Phrase(donneeBody["Art_unite" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell4.Border = PdfPCell.NO_BORDER; cell4.Border += PdfPCell.RIGHT_BORDER; cell4.Border += PdfPCell.LEFT_BORDER;
+                            table.AddCell(cell4);
+                            PdfPCell cell5 = new PdfPCell(new Phrase(donneeBody["Art_qte" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell5.Border = PdfPCell.NO_BORDER; cell5.Border += PdfPCell.RIGHT_BORDER; cell5.Border += PdfPCell.LEFT_BORDER;
+                            table.AddCell(cell5);
+                            PdfPCell cell6 = new PdfPCell(new Phrase("\n ", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell6.Border = PdfPCell.NO_BORDER; cell6.Border += PdfPCell.RIGHT_BORDER; cell6.Border += PdfPCell.LEFT_BORDER;
+                            table.AddCell(cell6);
+                            PdfPCell cell7 = new PdfPCell(new Phrase("\n ", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell7.Border = PdfPCell.NO_BORDER; cell7.Border += PdfPCell.RIGHT_BORDER; cell7.Border += PdfPCell.LEFT_BORDER;
+                            table.AddCell(cell7);
+                            PdfPCell cell8 = new PdfPCell(new Phrase(" " + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell8.Border = PdfPCell.NO_BORDER; cell8.Border += PdfPCell.RIGHT_BORDER; cell8.Border += PdfPCell.LEFT_BORDER;
                             table.AddCell(cell8);
-                        }
-                        PdfPCell cell9 = new PdfPCell(new Phrase(donneeBody["Art_monht" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell9.Border = PdfPCell.NO_BORDER; cell9.Border += PdfPCell.RIGHT_BORDER; cell9.Border += PdfPCell.LEFT_BORDER;
-                        table.AddCell(cell9);
-                        if (donneeBody["Art_monht" + i] != "")
-                        {
-                            tempoTOT = tempoTOT + double.Parse(donneeBody["Art_monht" + i]);
-                        }
-                        else { tempoTOT = tempoTOT + 0; }
-                        okDési = false; okStart = false;
-                    }
-                    if (donneeBody["Ligne_type" + i] == "CDE")
-                    {
-                        nbLigne++;
-                        string sPattern = "libelle" + i + "bis";
-                        PdfPCell cell1 = new PdfPCell(new Phrase(donneeBody["Art_code" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell1.Border = PdfPCell.NO_BORDER; cell1.Border += PdfPCell.RIGHT_BORDER; cell1.Border += PdfPCell.LEFT_BORDER;
-                        table.AddCell(cell1);
-                        Paragraph pCell2 = new Paragraph();
-                        PdfPCell cell2 = new PdfPCell(pCell2); cell2.Border = PdfPCell.NO_BORDER; cell2.Border += PdfPCell.RIGHT_BORDER; cell2.Border += PdfPCell.LEFT_BORDER;
-                        foreach (KeyValuePair<string, string> entry in donneeBody)
-                        {
-                            if (System.Text.RegularExpressions.Regex.IsMatch(entry.Key, sPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase))
+                            PdfPCell cell9 = new PdfPCell(new Phrase(donneeBody["Art_monht" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell9.Border = PdfPCell.NO_BORDER; cell9.Border += PdfPCell.RIGHT_BORDER; cell9.Border += PdfPCell.LEFT_BORDER;
+                            table.AddCell(cell9);
+                            if (donneeBody["Art_monht" + i] != "")
                             {
-                                if (okStart == false)
-                                {
-                                    pCell2.Add(new Phrase(donneeBody["Libelle" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8)));
-                                    string clé = entry.Key;
-                                    if (donneeBody.ContainsKey("Art_lot" + i)) { pCell2.Add(new Phrase("Numéro de lot : " + donneeBody["Art_lot" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); }
-                                    pCell2.Add(new Phrase(donneeBody[clé] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8)));
-                                    okStart = true;
-                                }
-                                else
-                                {
-                                    string clé = entry.Key;
-                                    pCell2.Add(new Phrase(donneeBody[clé] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8)));
-                                }
-                                okDési = true;
+                                tempoTOT = tempoTOT + double.Parse(donneeBody["Art_monht" + i]);
                             }
+                            else { tempoTOT = tempoTOT + 0; }
+                            okDési = false; okStart = false;
                         }
-                        if (okDési == false)
-                        {
-                            PdfPCell cell3 = new PdfPCell(new Phrase(donneeBody["Libelle" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell3.Border = PdfPCell.NO_BORDER; cell3.Border += PdfPCell.RIGHT_BORDER; cell3.Border += PdfPCell.LEFT_BORDER;
-                            table.AddCell(cell3);
-                        }
-                        else { { table.AddCell(cell2); } }
-                        PdfPCell cell4 = new PdfPCell(new Phrase(donneeBody["Art_unite" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell4.Border = PdfPCell.NO_BORDER; cell4.Border += PdfPCell.RIGHT_BORDER; cell4.Border += PdfPCell.LEFT_BORDER;
-                        table.AddCell(cell4);
-                        PdfPCell cell5 = new PdfPCell(new Phrase(donneeBody["Art_qte" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell5.Border = PdfPCell.NO_BORDER; cell5.Border += PdfPCell.RIGHT_BORDER; cell5.Border += PdfPCell.LEFT_BORDER;
-                        table.AddCell(cell5);
-                        PdfPCell cell6 = new PdfPCell(new Phrase("" + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell6.Border = PdfPCell.NO_BORDER; cell6.Border += PdfPCell.RIGHT_BORDER; cell6.Border += PdfPCell.LEFT_BORDER;
-                        table.AddCell(cell6);
-                        table.AddCell(cell6);
-                        table.AddCell(cell6);
-                        PdfPCell cell7 = new PdfPCell((new Phrase("En Commande\n", FontFactory.GetFont(FontFactory.HELVETICA, 8)))); cell7.Border = PdfPCell.NO_BORDER; cell7.Border += PdfPCell.RIGHT_BORDER; cell7.Border += PdfPCell.LEFT_BORDER;
-                        table.AddCell(cell7);
-                        okDési = false; okStart = false;
-                    }
 
+                        //---------------------------debug------------------
+                       // LogHelper.WriteToFile(nbLigne.ToString(), "Debug dictionnaire --> g " + i + " nbligne : ");
+                        //-------------------------------------------------
 
-                   
+                        PdfPCell cellEcartDroite = new PdfPCell(new Phrase(" " + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 2)));
 
+                        PdfPCell cellEcart = new PdfPCell(new Phrase(" " + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 2)));
+                        cellEcart.Border = PdfPCell.NO_BORDER;
+                        cellEcart.Border += PdfPCell.LEFT_BORDER;
+                        cellEcart.Border += PdfPCell.RIGHT_BORDER;
+                        cellEcartDroite.Border = PdfPCell.NO_BORDER;
+                        cellEcartDroite.Border += PdfPCell.RIGHT_BORDER;
+                        cellEcartDroite.Border += PdfPCell.LEFT_BORDER;
+                        table.AddCell(cellEcartDroite); table.AddCell(cellEcart); table.AddCell(cellEcart); table.AddCell(cellEcart); table.AddCell(cellEcart); table.AddCell(cellEcart); table.AddCell(cellEcart); table.AddCell(cellEcart);
 
-                    if (donneeBody["Ligne_type" + i] == "GRA")
-                    {
-                        nbLigne++;
-                        string sPattern = "libelle" + i + "bis";
-                        PdfPCell cell1 = new PdfPCell(new Phrase(donneeBody["Art_code" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell1.Border = PdfPCell.NO_BORDER; cell1.Border += PdfPCell.RIGHT_BORDER; cell1.Border += PdfPCell.LEFT_BORDER;
-                        table.AddCell(cell1);
-                        Paragraph pCell2 = new Paragraph();
-                        PdfPCell cell2 = new PdfPCell(pCell2); cell2.Border = PdfPCell.NO_BORDER; cell2.Border += PdfPCell.RIGHT_BORDER; cell2.Border += PdfPCell.LEFT_BORDER;
-                        foreach (KeyValuePair<string, string> entry in donneeBody)
-                        {
-                            if (System.Text.RegularExpressions.Regex.IsMatch(entry.Key, sPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase))
-                            {
-                                if (okStart == false)
-                                {
-                                    pCell2.Add(new Phrase(donneeBody["Libelle" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8)));
-                                    string clé = entry.Key;
-                                    if (donneeBody.ContainsKey("Art_lot" + i)) { pCell2.Add(new Phrase("Numéro de lot : " + donneeBody["Art_lot" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); }
-                                    pCell2.Add(new Phrase(donneeBody[clé] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8)));
-                                    okStart = true;
-                                }
-                                else
-                                {
-                                    string clé = entry.Key;
-                                    pCell2.Add(new Phrase(donneeBody[clé] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8)));
-                                }
-                                okDési = true;
-                            }
-                        }
-                        if (okDési == false)
-                        {
-                            PdfPCell cell3 = new PdfPCell(new Phrase(donneeBody["Libelle" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell3.Border = PdfPCell.NO_BORDER; cell3.Border += PdfPCell.RIGHT_BORDER; cell3.Border += PdfPCell.LEFT_BORDER;
-                            table.AddCell(cell3);
-                        }
-                        else { { table.AddCell(cell2); } }
-                        PdfPCell cell4 = new PdfPCell(new Phrase(donneeBody["Art_unite" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell4.Border = PdfPCell.NO_BORDER; cell4.Border += PdfPCell.RIGHT_BORDER; cell4.Border += PdfPCell.LEFT_BORDER;
-                        table.AddCell(cell4);
-                        PdfPCell cell5 = new PdfPCell(new Phrase(donneeBody["Art_qte" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell5.Border = PdfPCell.NO_BORDER; cell5.Border += PdfPCell.RIGHT_BORDER; cell5.Border += PdfPCell.LEFT_BORDER;
-                        table.AddCell(cell5);
-                        PdfPCell cell6 = new PdfPCell(new Phrase("" + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell6.Border = PdfPCell.NO_BORDER; cell6.Border += PdfPCell.RIGHT_BORDER; cell6.Border += PdfPCell.LEFT_BORDER;
-                        table.AddCell(cell6);
-                        table.AddCell(cell6);
-                        PdfPCell cell7 = new PdfPCell(new Phrase("" + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell7.Border = PdfPCell.NO_BORDER; cell7.Border += PdfPCell.RIGHT_BORDER; cell7.Border += PdfPCell.LEFT_BORDER;
-                        table.AddCell(cell7);
-                        PdfPCell cell8 = new PdfPCell((new Phrase(donneeBody["Lib_rempl_mt" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8)))); cell8.Border = PdfPCell.NO_BORDER; cell8.Border += PdfPCell.LEFT_BORDER; cell8.Border += PdfPCell.RIGHT_BORDER;
-                        table.AddCell(cell8);
-                    }
-                   
-                    if (donneeBody["Ligne_type" + i] == "COM")
-                    {
-                        nbLigne++;
-                        PdfPCell cellVide = new PdfPCell(new Phrase("" + "\n"));
-                        PdfPCell cell = new PdfPCell(new Phrase(donneeBody["Libelle" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8)));
-                        PdfPCell cellFin = new PdfPCell();
-                        cellVide.Border = PdfPCell.NO_BORDER;
-                        cellVide.Border += PdfPCell.RIGHT_BORDER;
-                        cellVide.Border += PdfPCell.LEFT_BORDER;
-                        cell.Border = PdfPCell.NO_BORDER;
-                        cell.Border += PdfPCell.RIGHT_BORDER;
-                        cell.Border += PdfPCell.LEFT_BORDER;
-                        cellFin.Border = PdfPCell.NO_BORDER;
-                        cellFin.Border += PdfPCell.LEFT_BORDER;
-                        cellFin.Border += PdfPCell.RIGHT_BORDER;
-                        table.AddCell(cellVide);
-                        table.AddCell(cell);
-                        table.AddCell(cellVide);
-                        table.AddCell(cellVide);
-                        table.AddCell(cellVide);
-                        table.AddCell(cellVide);
-                        table.AddCell(cellVide);
-                        table.AddCell(cellFin);
-                    }
-                    if (donneeBody["Ligne_type" + i] == "ESC")
-                    {
-                        nbLigne++;
-                        string sPattern = "libelle" + i + "bis";
-                        PdfPCell cell1 = new PdfPCell(new Phrase(donneeBody["Art_code" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell1.Border = PdfPCell.NO_BORDER; cell1.Border += PdfPCell.RIGHT_BORDER; cell1.Border += PdfPCell.LEFT_BORDER;
-                        table.AddCell(cell1);
-                        Paragraph pCell2 = new Paragraph();
-                        PdfPCell cell2 = new PdfPCell(pCell2); cell2.Border = PdfPCell.NO_BORDER; cell2.Border += PdfPCell.RIGHT_BORDER; cell2.Border += PdfPCell.LEFT_BORDER;
-                        foreach (KeyValuePair<string, string> entry in donneeBody)
-                        {
-                            if (System.Text.RegularExpressions.Regex.IsMatch(entry.Key, sPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase))
-                            {
-                                if (okStart == false)
-                                {
-                                    pCell2.Add(new Phrase(donneeBody["Libelle" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8)));
-                                    string clé = entry.Key;
-                                    if (donneeBody.ContainsKey("Art_lot" + i)) { pCell2.Add(new Phrase("Numéro de lot : " + donneeBody["Art_lot" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); }
-                                    pCell2.Add(new Phrase(donneeBody[clé] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 7.5F, Font.ITALIC)));
-                                    okStart = true;
-                                }
-                                else
-                                {
-                                    string clé = entry.Key;
-                                    pCell2.Add(new Phrase(donneeBody[clé] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 7.5F, Font.ITALIC)));
-                                }
-                                okDési = true;
-                            }
-                        }
-                        if (okDési == false)
-                        {
-                            PdfPCell cell3 = new PdfPCell(new Phrase(donneeBody["Libelle" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell3.Border = PdfPCell.NO_BORDER; cell3.Border += PdfPCell.RIGHT_BORDER; cell3.Border += PdfPCell.LEFT_BORDER;
-                            table.AddCell(cell3);
-                        }
-                        else { table.AddCell(cell2); }
-                        PdfPCell cell4 = new PdfPCell(new Phrase(donneeBody["Art_unite" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell4.Border = PdfPCell.NO_BORDER; cell4.Border += PdfPCell.RIGHT_BORDER; cell4.Border += PdfPCell.LEFT_BORDER;
-                        table.AddCell(cell4);
-                        PdfPCell cell5 = new PdfPCell(new Phrase(donneeBody["Art_qte" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell5.Border = PdfPCell.NO_BORDER; cell5.Border += PdfPCell.RIGHT_BORDER; cell5.Border += PdfPCell.LEFT_BORDER;
-                        table.AddCell(cell5);
-                        PdfPCell cell6 = new PdfPCell(new Phrase("\n ", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell6.Border = PdfPCell.NO_BORDER; cell6.Border += PdfPCell.RIGHT_BORDER; cell6.Border += PdfPCell.LEFT_BORDER;
-                        table.AddCell(cell6);
-                        PdfPCell cell7 = new PdfPCell(new Phrase("\n ", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell7.Border = PdfPCell.NO_BORDER; cell7.Border += PdfPCell.RIGHT_BORDER; cell7.Border += PdfPCell.LEFT_BORDER;
-                        table.AddCell(cell7);
-                        PdfPCell cell8 = new PdfPCell(new Phrase(" " + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell8.Border = PdfPCell.NO_BORDER; cell8.Border += PdfPCell.RIGHT_BORDER; cell8.Border += PdfPCell.LEFT_BORDER;
-                        table.AddCell(cell8);
-                        PdfPCell cell9 = new PdfPCell(new Phrase(donneeBody["Art_monht" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8))); cell9.Border = PdfPCell.NO_BORDER; cell9.Border += PdfPCell.RIGHT_BORDER; cell9.Border += PdfPCell.LEFT_BORDER;
-                        table.AddCell(cell9);
-                        if (donneeBody["Art_monht" + i] != "")
-                        {
-                            tempoTOT = tempoTOT + double.Parse(donneeBody["Art_monht" + i]);
-                        }
-                        else { tempoTOT = tempoTOT + 0; }
-                        okDési = false; okStart = false;
-                    }
-                    PdfPCell cellEcartDroite = new PdfPCell(new Phrase(" " + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 2)));
-
-                    PdfPCell cellEcart = new PdfPCell(new Phrase(" " + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 2)));
-                    cellEcart.Border = PdfPCell.NO_BORDER;
-                    cellEcart.Border += PdfPCell.LEFT_BORDER;
-                    cellEcart.Border += PdfPCell.RIGHT_BORDER;
-                    cellEcartDroite.Border = PdfPCell.NO_BORDER;
-                    cellEcartDroite.Border += PdfPCell.RIGHT_BORDER;
-                    cellEcartDroite.Border += PdfPCell.LEFT_BORDER;
-                    table.AddCell(cellEcartDroite); table.AddCell(cellEcart); table.AddCell(cellEcart); table.AddCell(cellEcart); table.AddCell(cellEcart); table.AddCell(cellEcart); table.AddCell(cellEcart); table.AddCell(cellEcart);
-
-                 
-
-
+                        /*------------------------------------------------debug je suis la com-----------------------------------------*/
+                     //   LogHelper.WriteToFile("*********************************", "Je suis la !!!**************************************** ");
+                        //------------------------------------------à commenter ---------------------------------------
+                        
+              
 
                     //--------------------------------------------GESTION DU SAUT DE PAGE-------------------------------------------------------------------------------------------
                     float temp = table.TotalHeight;
                     dimTab = temp;
+                  
+
                     if (dimTab >= 380 && i < iBody)
                     {
-                        //Saut de page  
+
+                      
+                        
+                        //Saut de page 
                         numPage++;
                         PdfPCell cellFin = new PdfPCell(new Phrase(" "));
                         PdfPCell cellBlanche = new PdfPCell(new Phrase(" "));
@@ -662,7 +732,7 @@ namespace EssaiJobImp
                     //FinGestionSautPage
                 }
                 //Gestion Commentaires de bon
-
+                  
               
 
                 if (donneEntete.ContainsKey("Commentaire_texte"))
@@ -685,7 +755,11 @@ namespace EssaiJobImp
                     table.AddCell(cellComBlanche); table.AddCell(cellCommentaireBon); table.AddCell(cellComBlanche); table.AddCell(cellComBlanche); table.AddCell(cellComBlanche); table.AddCell(cellComBlanche); table.AddCell(cellComBlanche); table.AddCell(cellComBlancheD);
                 }
 
-              
+
+            
+
+
+
                 //----------------------------------------------Gestion Code Camion--------------------------------------------------------------------------------------------------------------------------------
                 /*if (donneEntete.ContainsKey("Camion_code") && donneEntete["Camion_code"] != "ENV")
                 {
@@ -708,7 +782,12 @@ namespace EssaiJobImp
                 {                                               //              Compteur dimension du tableau
                     float temp = table.TotalHeight;             //
                     resultat = temp;                            //
-                }                                               //-------------------------------------------------------------------
+                }
+
+
+             
+                
+                //-------------------------------------------------------------------
                 if (i > iBody)
                 {
                     PdfPCell cellFin = new PdfPCell(new Phrase(" "));
@@ -737,6 +816,11 @@ namespace EssaiJobImp
                     table.AddCell(cellBlancheD);
                     table.AddCell(cellFin);
                 }
+
+
+               
+
+
                 //-----------------Ajout Pattern bas de page---------------------------------------------------------
                 table.SpacingAfter = -16;
                 nouveauDocument.Add(table);
@@ -752,23 +836,39 @@ namespace EssaiJobImp
                 tableauPied.SpacingBefore = 0;
 
                 int dimDocPied = 5; int dimactuDocPied = 0;
+
                 tableauPied.AddCell(new Phrase("NATURE", FontFactory.GetFont(FontFactory.HELVETICA, 8)));
-                if (donneeFoot.ContainsKey("Base_tva_nature2")) { tableauPied.AddCell(new Phrase("TVA 20%", FontFactory.GetFont(FontFactory.HELVETICA, 8))); dimactuDocPied++; }
-                if (donneeFoot.ContainsValue("FDG")) { tableauPied.AddCell(new Phrase("FDG", FontFactory.GetFont(FontFactory.HELVETICA, 8 ))); dimactuDocPied++; }
-                if (donneeFoot.ContainsValue("EXO")) { tableauPied.AddCell(new Phrase("EXO", FontFactory.GetFont(FontFactory.HELVETICA, 8))); dimactuDocPied++; }
+                if (donneeFoot.ContainsKey("Base_tva_nature3")) { 
+                    tableauPied.AddCell(new Phrase("TVA 20%", FontFactory.GetFont(FontFactory.HELVETICA, 8))); dimactuDocPied++; 
+                }
+                if (donneeFoot.ContainsValue("EXO")) { 
+                    tableauPied.AddCell(new Phrase("EXO", FontFactory.GetFont(FontFactory.HELVETICA, 8 ))); dimactuDocPied++; 
+                }
+                if (donneeFoot.ContainsValue("FDG")) { 
+                    tableauPied.AddCell(new Phrase("FDG", FontFactory.GetFont(FontFactory.HELVETICA, 8))); dimactuDocPied++; 
+                }
+
+
+               
+
+
+
                 while (dimactuDocPied < dimDocPied)
                 {
                     tableauPied.AddCell(new Phrase(" ", FontFactory.GetFont(FontFactory.HELVETICA, 8)));
                     dimactuDocPied++;
                 }
 
-                if (donneeFoot.ContainsValue("TOT")) { tableauPied.AddCell(new Phrase("Total", FontFactory.GetFont(FontFactory.HELVETICA, 8))); }
+                if (donneeFoot.ContainsValue("TOT")) {
+                    tableauPied.AddCell(new Phrase("Total", FontFactory.GetFont(FontFactory.HELVETICA, 8))); 
+                }
+
                 PdfPCell cellP = new PdfPCell();
                 cellP.VerticalAlignment = PdfPCell.ALIGN_BOTTOM;
                 cellP.AddElement(new Phrase("BASE\nTAUX\nMONTANT\n", FontFactory.GetFont(FontFactory.HELVETICA, 8)));
                 tableauPied.AddCell(cellP);
-                int iTempo = 2; int iTotal = 0;
-                while (iTempo < (dimDocPied + 2))
+                int iTempo = 3; int iTotal = 0;
+                while (iTempo <= (dimDocPied + 2))
                 {
                     if (donneeFoot.ContainsKey("Base_tva_mht" + iTempo))
                     {
@@ -788,13 +888,27 @@ namespace EssaiJobImp
                     else { tableauPied.AddCell(new Phrase(" ", FontFactory.GetFont(FontFactory.HELVETICA, 8))); }
                     iTempo++;
                 }
+
+
+
+
+               
                 PdfPCell cellTotal = new PdfPCell();
                 cellTotal.VerticalAlignment = PdfPCell.ALIGN_BOTTOM;
+
+                /*------------------------------------------------debug je suis la com-----------------------------------------*/
+             //   LogHelper.WriteToFile("*********************************", "Je suis la 2 ici !!!**************************************** ");
+                //------------------------------------------à commenter ---------------------------------------
+
                 cellTotal.AddElement(new Phrase(donneeFoot["Base_tva_mht" + iTotal] + "\n" + donneeFoot["Base_tva_taux" + iTotal] + "\n" + donneeFoot["Base_tva_mtva" + iTotal], FontFactory.GetFont(FontFactory.HELVETICA, 8)));
+               
                 tableauPied.AddCell(cellTotal);
                 tableauPied.AddCell(new PdfPCell(new Phrase("")));
-                iTempo = 2; iTotal = 0;
-                while (iTempo < (dimDocPied + 2))
+                iTempo = 3; iTotal = 0;
+             
+
+                
+                while (iTempo <= (dimDocPied + 2))
                 {
                     if (donneeFoot.ContainsKey("Base_tva_mht" + iTempo))
                     {
@@ -814,6 +928,9 @@ namespace EssaiJobImp
                     else { tableauPied.AddCell(new Phrase(" ", FontFactory.GetFont(FontFactory.HELVETICA, 8))); }
                     iTempo++;
                 }
+
+
+             
                 PdfPCell cellTotal2 = new PdfPCell();
                 cellTotal2.VerticalAlignment = PdfPCell.ALIGN_BOTTOM;
                 cellTotal2.AddElement(new Phrase(donneeFoot["Base_tva_mttc" + iTotal], FontFactory.GetFont(FontFactory.HELVETICA, 8)));
@@ -992,8 +1109,12 @@ namespace EssaiJobImp
                 nouveauDocument.Add(tabPapillon);
                 nouveauDocument.Close();
                 incCopie++;
-                
-               
+
+
+              
+
+
+
                 //--------------------------------------------------COPIE GED--------------------------------------------------------//
                 //en atente suite débug
 
@@ -1023,7 +1144,7 @@ namespace EssaiJobImp
                 }
                 catch (Exception e)
                 {
-                    LogHelper.WriteToFile(e.Message, "ENVOI GED Facture");
+                    LogHelper.WriteToFile(e.Message, " ENVOI GED Facture");
                 }
                
              

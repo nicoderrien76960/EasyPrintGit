@@ -35,8 +35,13 @@ namespace EssaiJobImp
                 unxmlBody.Load("baliseConfFacturation.config");
                 unxmlFoot.Load("baliseConfFacturation.config");
             }
-            catch
-            { }
+            catch(Exception e)
+            { 
+             
+                //à tester  
+                LogHelper.WriteToFile(e.Message, "test fichier à supprimer si porblème facuration.cs");
+               
+            }
             XmlNode node = unxml.SelectSingleNode("//configuration/BaliseEntete");                  //On lis les noeuds contenu dans le document de conf
             XmlNode nodeBody = unxmlBody.SelectSingleNode("//configuration/BaliseBody");
             XmlNode nodeFoot = unxmlFoot.SelectSingleNode("//configuration/BaliseFoot");
@@ -61,16 +66,20 @@ namespace EssaiJobImp
         /// </summary>
         /// <param name="cheminDoc">Chemin du document path</param>
         /// <param name="profil">Profil de l'utilisateur de la facture</param>
+        /// 
         public void lectureFA(string cheminDoc, string profil)//<<----CheminDoc contient en paramètre le fichier spool actuellement lu pour le traiter
         {
             chargementXML();
             string fileText = File.ReadAllText(cheminDoc, System.Text.Encoding.Default);
             List<char> charsToSubstitute = new List<char>();
+
             charsToSubstitute.Add((char)0x0c);                                      //Permet de changer le caractère FF contenu dans le fichier d'origine
+
             foreach (char c in charsToSubstitute)
             {
                 fileText = fileText.Replace(Convert.ToString(c), string.Empty);
             }
+
             XmlDocument unxml = new XmlDocument();                                              //Ouverture du document 
             unxml.LoadXml(fileText);
             XmlNode root = unxml.DocumentElement;
@@ -118,6 +127,8 @@ namespace EssaiJobImp
                     }                                                                           //
                 }                                                                               //
             }                                                                                   //
+           
+            
             int iBody = 0; int iFoot; int compt = 0;                                            //                                          
             foreach (XmlNode noeud in lignes)                                                   //----------------------------------
             {                                                                                   //
@@ -135,6 +146,7 @@ namespace EssaiJobImp
                     }                                                                           //
                 }                                                                               //
                                                                                                 //
+             
                 foreach (XmlNode node in nligneinfo)                                            //
                 {                                                                               //                                                                                             //
                     XmlNode nligneinfo2 = node;                                                 //
@@ -145,6 +157,7 @@ namespace EssaiJobImp
                             donneeBody.Add(s + iBody, node.InnerText);                          //
                         }                                                                       //
                     }                                                                           //
+                 
                     foreach (XmlNode n in nligneinfo2)                                          //
                     {                                                                           //
                                                                                                 //
@@ -174,21 +187,38 @@ namespace EssaiJobImp
                     }                                                                           //
                 }                                                                               //
             }                                                                                   //
-            iFoot = 0;                                                                          //-----------------------------------
+            
+            
+            
+            //iFoot = 0;                                                                          //-----------------------------------pied
+            iFoot = 0; 
             foreach (XmlNode noeud in pied)                                                     //-----------------------------------
             {                                                                                   //
                 XmlNode npiedBase = noeud;                                                      //
-                iFoot++;                                                                        //
+                iFoot++;
+                //si npiedBase contient "Recap_DEEE_liste" retirer 1 à ifoot
+
+                if (npiedBase.Name == "Recap_DEEE_liste") {
+                    iFoot = iFoot - 1;
+                    // bug facturation suite ajout Deee à gérer plus tard
+                }
+
+
                 foreach (XmlNode n in npiedBase)                                                //
                 {                                                                               //
                     foreach (string s in baliseFoot)                                            //
                     {                                                                           //
+
+                        //si npiedBase contient "Recap_DEEE_liste" retirer 1 à ifoot
+                        
+                        
                         if (n.Name == s)                                                        //
                         {                                                                       //
                             donneeFoot.Add(s+iFoot, n.InnerText);                               //
                         }                                                                       //
                     }                                                                           //
-                }                                                                               //
+                }           
+                //
                 foreach (string s in baliseFoot)                                                //
                 {                                                                               //
                     if (noeud.Name == s)                                                        //

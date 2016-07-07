@@ -274,11 +274,25 @@ namespace EssaiJobImp
                                 supOk = false;
                             }
                         }
-                        catch (Exception e)
+                       catch (Exception e)
+                        //catch (KeyNotFoundException e)
                         {
                             //Inscrit dans un fichier les differente erreur
+                            if (System.Text.RegularExpressions.Regex.IsMatch(e.Message,"PRINTERS", System.Text.RegularExpressions.RegexOptions.IgnoreCase))
+                            { 
+                                // si accès refusé à printer on ne fait rien sinon
+                                     //   LogHelper.WriteToFile(e.Message, "Imprimante " + nomDoc); à activer pour débug 
+                            }
+                            else { 
+
                             LogHelper.WriteToFile(e.Message, "Imprimante " + nomDoc);
+                            }
+                            
                         }
+
+                       
+
+
                     }
                 }
         }
