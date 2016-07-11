@@ -83,7 +83,7 @@ namespace EssaiJobImp
                 float y = float.Parse(ConfigurationManager.AppSettings["HauteurLogoABCRFacture"]);
             
                 image6.ScaleAbsolute(x, y);
-                image6.SetAbsolutePosition(13, 715);
+             //   image6.SetAbsolutePosition(13, 715);
                 nouveauDocument.Add(image6);
 
              /* Image image7 = Image.GetInstance(ConfigurationManager.AppSettings["CheminCGV"]);

@@ -46,8 +46,8 @@ namespace EssaiJobImp
             nouveauDocument.Open();
             Image image4 = Image.GetInstance(ConfigurationManager.AppSettings["CheminPatternTot"]);
             image4.Alignment = Image.UNDERLYING;
-            float x4 = float.Parse(ConfigurationManager.AppSettings["rectangleTotalX"]);
-            float y4 = float.Parse(ConfigurationManager.AppSettings["rectangleTotalY"]);
+            float x4 = float.Parse(ConfigurationManager.AppSettings["rectangleTotalDevisX"]);
+            float y4 = float.Parse(ConfigurationManager.AppSettings["rectangleTotalDevisY"]);
             image4.SetAbsolutePosition(x4, y4);
 
 
@@ -83,7 +83,9 @@ namespace EssaiJobImp
             float x = float.Parse(ConfigurationManager.AppSettings["LargeurLogoABCR_DEVIS"]);
             float y = float.Parse(ConfigurationManager.AppSettings["HauteurLogoABCR_DEVIS"]);
             image6.ScaleAbsolute(x, y);
-            image6.SetAbsolutePosition(13, 755);
+
+          //  image6.SetAbsolutePosition(13, 755);
+
             nouveauDocument.Add(image6);
            
             /*---fin test */
@@ -109,11 +111,10 @@ namespace EssaiJobImp
             Paragraph pDoc = new Paragraph();
             Image image2 = Image.GetInstance(ConfigurationManager.AppSettings["CheminPatternHautDroiteDevis"]);
             image2.Alignment = Image.UNDERLYING;
-            float x3 = float.Parse(ConfigurationManager.AppSettings["rectangleReferenceX"]);
-            float y3 = float.Parse(ConfigurationManager.AppSettings["rectangleReferenceY"]);
+            float x3 = float.Parse(ConfigurationManager.AppSettings["rectangleReferenceDevisX"]);
+            float y3 = float.Parse(ConfigurationManager.AppSettings["rectangleReferenceDevisY"]);
 
 
-           // image2.SetAbsolutePosition(335, 743);
             image2.SetAbsolutePosition(x3, y3);
             nouveauDocument.Add(image2);
             pDoc.Alignment = Element.ALIGN_RIGHT;
@@ -216,10 +217,10 @@ namespace EssaiJobImp
             image3.Alignment = Image.UNDERLYING;
 
             //image haut de tableau
-            float x2 = float.Parse(ConfigurationManager.AppSettings["bandeauTableauX"]);
-            float y2 = float.Parse(ConfigurationManager.AppSettings["bandeauTableauY"]);
+            float x2 = float.Parse(ConfigurationManager.AppSettings["bandeauTableauDevisX"]);
+            float y2 = float.Parse(ConfigurationManager.AppSettings["bandeauTableauDevisY"]);
             image3.SetAbsolutePosition(x2 ,y2);
-            //image3.SetAbsolutePosition(20, 588);
+           
             nouveauDocument.Add(image3);
 
             int i; int nbLigne = 0; float resultat = 0; float dimTab = 0; int décrement = 0; int numPage = 0;         //Constitution du tableau d'article

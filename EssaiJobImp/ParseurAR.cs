@@ -54,13 +54,23 @@ namespace EssaiJobImp
                 tableau.TotalWidth = 550;
                 tableau.LockedWidth = true;
                 //-----------------Ajout Pattern/Image--------------------------------------------------------
-                Image image2 = Image.GetInstance(ConfigurationManager.AppSettings["CheminPatternHautDroiteBp"]);
+                Image image2 = Image.GetInstance(ConfigurationManager.AppSettings["CheminPatternHautDroiteAR"]);
                 image2.Alignment = Image.UNDERLYING;
-                image2.SetAbsolutePosition(325, 755);
+
+
+                float x2 = float.Parse(ConfigurationManager.AppSettings["rectangleReferenceARX"]);
+                float y2 = float.Parse(ConfigurationManager.AppSettings["rectangleReferenceARY"]);
+                image2.SetAbsolutePosition(x2, y2);
+
+                //image2.SetAbsolutePosition(325, 755);
                 nouveauDocument.Add(image2);
                 Image image5 = Image.GetInstance(ConfigurationManager.AppSettings["CheminFilligraneAr"]);
                 image5.Alignment = Image.UNDERLYING;
-                image5.SetAbsolutePosition(185, 250);
+
+                float x3 = float.Parse(ConfigurationManager.AppSettings["filigraneARX"]);
+                float y3 = float.Parse(ConfigurationManager.AppSettings["filigraneARY"]);
+                image5.SetAbsolutePosition(x3, y3);
+                //image5.SetAbsolutePosition(185, 250);
                 nouveauDocument.Add(image5);
                 //-------------------------------------------------------------------------------------------------
                // Paragraph pLogo = new Paragraph();
@@ -78,7 +88,7 @@ namespace EssaiJobImp
                 float x = float.Parse(ConfigurationManager.AppSettings["LargeurLogoABCR_AR"]);
                 float y = float.Parse(ConfigurationManager.AppSettings["HauteurLogoABCR_AR"]);
                 image6.ScaleAbsolute(x, y);
-                image6.SetAbsolutePosition(13, 755);
+ //               image6.SetAbsolutePosition(13, 755);
                 nouveauDocument.Add(image6);
 
                 //Celulle de droite contenant l'adresse de livraison
@@ -202,7 +212,11 @@ namespace EssaiJobImp
                 table.AddCell(cellET8);
                 Image image3 = Image.GetInstance(ConfigurationManager.AppSettings["CheminPatternTableau"]);
                 image3.Alignment = Image.UNDERLYING;
-                image3.SetAbsolutePosition(20, 585);
+
+                float x4 = float.Parse(ConfigurationManager.AppSettings["bandeauTableauARX"]);
+                float y4 = float.Parse(ConfigurationManager.AppSettings["bandeauTableauARY"]);
+                image3.SetAbsolutePosition(x4, y4);
+                //image3.SetAbsolutePosition(20, 585);
                 nouveauDocument.Add(image3);
                 int i; int nbLigne = 0; float resultat = 0; float dimTab = 0; int décrement = 0; int numPage = 0;         //Constitution du tableau d'article
                 bool okDési = false; bool okStart = false;
@@ -432,8 +446,10 @@ namespace EssaiJobImp
                         nouveauDocument.Add(pPage);
                         //Image image5 = Image.GetInstance("E:\\FiligraneAR.png");//Changer lien pattern
                         image5.Alignment = Image.UNDERLYING;
+                      
                         image5.SetAbsolutePosition(200, 250);
                         nouveauDocument.Add(image5);
+
                         image3.SetAbsolutePosition(20, 578);
                         nouveauDocument.Add(image2); nouveauDocument.Add(image3);
                         table.AddCell(cellET1); table.AddCell(cellET2); table.AddCell(cellET3); table.AddCell(cellET4); table.AddCell(cellET5); table.AddCell(cellET6); table.AddCell(cellET7); table.AddCell(cellET8);
