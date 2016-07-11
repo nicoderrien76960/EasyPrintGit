@@ -83,6 +83,16 @@ namespace EssaiJobImp.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap logoDEVIS {
+            get {
+                object obj = ResourceManager.GetObject("logoDEVIS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Sans_titre {
             get {
                 object obj = ResourceManager.GetObject("Sans titre", resourceCulture);

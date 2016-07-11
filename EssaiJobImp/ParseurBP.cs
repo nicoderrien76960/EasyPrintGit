@@ -58,19 +58,42 @@ namespace EssaiJobImp
                 //-----------------Ajout Pattern/Image--------------------------------------------------------
                 Image image2 = Image.GetInstance(ConfigurationManager.AppSettings["CheminPatternHautDroiteBp"]);
                 image2.Alignment = Image.UNDERLYING;
-                image2.SetAbsolutePosition(325, 755);
+                float x2 = float.Parse(ConfigurationManager.AppSettings["rectangleReferenceBPX"]);
+                float y2 = float.Parse(ConfigurationManager.AppSettings["rectangleReferenceBPY"]);
+                image2.SetAbsolutePosition(x2, y2);
+                //image2.SetAbsolutePosition(325, 755);
                 nouveauDocument.Add(image2);
+
+
+
                 Image image5 = Image.GetInstance(ConfigurationManager.AppSettings["CheminFilligraneBp"]);
                 image5.Alignment = Image.UNDERLYING;
-                image5.SetAbsolutePosition(180, 270);
+                float x5 = float.Parse(ConfigurationManager.AppSettings["filigraneBPX"]);
+                float y5 = float.Parse(ConfigurationManager.AppSettings["filigraneBPY"]);
+                image5.SetAbsolutePosition(x5, y5);
+                //image5.SetAbsolutePosition(180, 270);
                 nouveauDocument.Add(image5);
                 //------------------------------------------------------------------------------------------------------
+
+
+
+
+                Image image = Image.GetInstance(ConfigurationManager.AppSettings["CheminLogoABCR_BP"]);
+                image.ScaleAbsolute(PageSize.A4);
+                float x = float.Parse(ConfigurationManager.AppSettings["LargeurLogoABCR_BP"]);
+                float y = float.Parse(ConfigurationManager.AppSettings["HauteurLogoABCR_BP"]);
+                image.ScaleAbsolute(x, y);
+                
                 Paragraph pLogo = new Paragraph();
-                Image image = Image.GetInstance(ConfigurationManager.AppSettings["CheminLogoABCR"]);
+               // Image image = Image.GetInstance(ConfigurationManager.AppSettings["CheminLogoABCR_BP"]);
                 pLogo.Add(image);                                                                               //Encadré photo
                 PdfPCell celulleHauteGauche = new PdfPCell(image);
                 celulleHauteGauche.Border = PdfPCell.NO_BORDER;
                 tableau.AddCell(celulleHauteGauche);
+
+
+
+
 
                 //Celulle de droite contenant l'adresse de livraison
                 Paragraph pAdl = new Paragraph();
@@ -203,7 +226,13 @@ namespace EssaiJobImp
                 table.AddCell(cellvideDebut);
                 Image image3 = Image.GetInstance(ConfigurationManager.AppSettings["CheminPatternTableau"]);
                 image3.Alignment = Image.UNDERLYING;
-                image3.SetAbsolutePosition(20, 597);
+
+
+                float x3 = float.Parse(ConfigurationManager.AppSettings["bandeauTableauBPX"]);
+                float y3 = float.Parse(ConfigurationManager.AppSettings["bandeauTableauBPY"]);
+                
+                //image3.SetAbsolutePosition(20, 597);
+                image3.SetAbsolutePosition(x3, y3);
                 nouveauDocument.Add(image3);
                 List<string> locPrecedent = new List<string>(); //Liste qui récupère les anciennes clés de localisation afin de ne pas les réintégrer au doc
                 int i; int nbLigne = 0; float resultat = 0; float dimTab = 0; int décrement = 0; int numPage = 0;         //Constitution du tableau d'article
@@ -224,7 +253,9 @@ namespace EssaiJobImp
                             if (System.Text.RegularExpressions.Regex.IsMatch(entry.Key, sPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase))
                             {
                                 if (System.Text.RegularExpressions.Regex.IsMatch(entry.Value, "Localisations secondaires", System.Text.RegularExpressions.RegexOptions.IgnoreCase))
-                                { }//Empeche de faire apparaitre la localisation secondaire dans la désignation
+                                { 
+                                
+                                }//Empeche de faire apparaitre la localisation secondaire dans la désignation
                                 else
                                 {
                                     if (okStart == false)

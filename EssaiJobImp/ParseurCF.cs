@@ -58,16 +58,37 @@ namespace EssaiJobImp
                 //-----------------Ajout Pattern/Image--------------------------------------------------------
                 Image image2 = Image.GetInstance(ConfigurationManager.AppSettings["CheminPatternHautDroiteBp"]);
                 image2.Alignment = Image.UNDERLYING;
-                image2.SetAbsolutePosition(325, 760);
+
+                float x2 = float.Parse(ConfigurationManager.AppSettings["rectangleReferenceCFX"]);
+                float y2 = float.Parse(ConfigurationManager.AppSettings["rectangleReferenceCFY"]);
+                image2.SetAbsolutePosition(x2, y2);
+                //image2.SetAbsolutePosition(325, 760);
                 nouveauDocument.Add(image2);
+
+
+
+
                 Image image5 = Image.GetInstance(ConfigurationManager.AppSettings["CheminFilligraneCf"]);
                 image5.Alignment = Image.UNDERLYING;
-                image5.SetAbsolutePosition(200, 250);
+                float x5 = float.Parse(ConfigurationManager.AppSettings["filigraneCFX"]);
+                float y5 = float.Parse(ConfigurationManager.AppSettings["filigraneCFY"]);
+                image5.SetAbsolutePosition(x5, y5);
+                //image5.SetAbsolutePosition(200, 250);
                 nouveauDocument.Add(image5);
                 //-------------------------------------------------------------------------------------------------
+
+
+
+                Image image = Image.GetInstance(ConfigurationManager.AppSettings["CheminLogoABCR_CF"]);
+                image.ScaleAbsolute(PageSize.A4);
+                float x = float.Parse(ConfigurationManager.AppSettings["LargeurLogoABCR_CF"]);
+                float y = float.Parse(ConfigurationManager.AppSettings["HauteurLogoABCR_CF"]);
+                image.ScaleAbsolute(x, y);
                 Paragraph pLogo = new Paragraph();
-                Image image = Image.GetInstance(ConfigurationManager.AppSettings["CheminLogoABCR"]);
-                pLogo.Add(image);                                                                               //Encadré photo
+                //Image image = Image.GetInstance(ConfigurationManager.AppSettings["CheminLogoABCR"]);
+                pLogo.Add(image);       
+                
+                //Encadré photo
                 PdfPCell celulleHauteGauche = new PdfPCell(image);
                 celulleHauteGauche.Border = PdfPCell.NO_BORDER;
                 tableau.AddCell(celulleHauteGauche);
@@ -202,10 +223,16 @@ namespace EssaiJobImp
                 table.AddCell(cellET7);
                 PdfPCell cellET8 = new PdfPCell(new Phrase("Montant HT\n ", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cellET8.Border = PdfPCell.NO_BORDER; //cellET8.Border += PdfPCell.BOTTOM_BORDER;
                 table.AddCell(cellET8);
+
                 Image image3 = Image.GetInstance(ConfigurationManager.AppSettings["CheminPatternTableau"]);
                 image3.Alignment = Image.UNDERLYING;
-                image3.SetAbsolutePosition(20, 610);
+                float x3 = float.Parse(ConfigurationManager.AppSettings["bandeauTableauCFX"]);
+                float y3 = float.Parse(ConfigurationManager.AppSettings["bandeauTableauCFY"]);
+                image3.SetAbsolutePosition(x3, y3);
+                //image3.SetAbsolutePosition(20, 610);
                 nouveauDocument.Add(image3);
+
+
                 int i; int nbLigne = 0; float resultat = 0; float dimTab = 0; int décrement = 0; int numPage = 0;         //Constitution du tableau d'article
                 bool okDési = false; bool okStart = false;
                 for (i = 1; i <= iBody; i++)
@@ -415,7 +442,7 @@ namespace EssaiJobImp
                         table.AddCell(cellFin);
                         nouveauDocument.Add(table);//----------------------------------------------------------------------------Repère ligne en dessous--------------------------------------------------
                         Phrase pReport = new Phrase("                                                                                                                                                             A REPORTER\n\n\n\n\n\n", FontFactory.GetFont(FontFactory.HELVETICA, 11, Font.BOLD));
-                        Phrase pPage = new Phrase("                       " + donneEntete["Document_type"] + "                 " + donneEntete["Duplicata"] + "                                                          Page n° " + (numPage+1)+"\n        ", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD));
+                        Phrase pPage = new Phrase("                       " + donneEntete["Document_type"] + "                 " + donneEntete["Duplicata"] + "                                                          Page n° " + (numPage+1)+"\n\n        ", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD));
                         nouveauDocument.Add(pReport);
                         table.DeleteBodyRows();
                         nouveauDocument.Add(Chunk.NEXTPAGE);
@@ -424,7 +451,10 @@ namespace EssaiJobImp
                         nouveauDocument.Add(refCli);
                         nouveauDocument.Add(c);
                         nouveauDocument.Add(pPage);
-                        nouveauDocument.Add(image5); nouveauDocument.Add(image3); nouveauDocument.Add(image2);
+                        nouveauDocument.Add(image5);
+                        image3.SetAbsolutePosition(x3, y3-5);
+                        nouveauDocument.Add(image3);
+                        nouveauDocument.Add(image2);
                         table.AddCell(cellET1); table.AddCell(cellET2); table.AddCell(cellET3); table.AddCell(cellET4); table.AddCell(cellET5); table.AddCell(cellET6); table.AddCell(cellET7); table.AddCell(cellET8);
                         dimTab = 0;
                         décrement = (i - 1);
@@ -499,7 +529,12 @@ namespace EssaiJobImp
                 //-----------------Ajout Pattern bas de page---------------------------------------------------------
                 Image image4 = Image.GetInstance(ConfigurationManager.AppSettings["CheminPatternTotBl"]);
                 image4.Alignment = Image.UNDERLYING;
-                image4.SetAbsolutePosition(385, 130);
+
+                float x4 = float.Parse(ConfigurationManager.AppSettings["rectangleTotalCFX"]);
+                float y4 = float.Parse(ConfigurationManager.AppSettings["rectangleTotalCFY"]);
+
+                image4.SetAbsolutePosition(x4, y4);
+                //image4.SetAbsolutePosition(385, 130);
                 nouveauDocument.Add(image4);
                 nouveauDocument.Add(table);
                 //-----------------------------------------------------------------------------------------------------

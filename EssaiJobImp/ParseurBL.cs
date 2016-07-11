@@ -58,25 +58,52 @@ namespace EssaiJobImp
                 //-----------------Ajout Pattern/Image--------------------------------------------------------
                 Image image2 = Image.GetInstance(ConfigurationManager.AppSettings["CheminPatternHautDroiteBp"]);
                 image2.Alignment = Image.UNDERLYING;
-                image2.SetAbsolutePosition(325, 750);
+
+
+                float x2 = float.Parse(ConfigurationManager.AppSettings["rectangleReferenceBLX"]);
+                float y2 = float.Parse(ConfigurationManager.AppSettings["rectangleReferenceBLY"]);
+                image2.SetAbsolutePosition(x2, y2);
+                //image2.SetAbsolutePosition(325, 750);
+
+
+                float x5;
+                float y5;
+
                 nouveauDocument.Add(image2);
                 if (donneEntete["Bon_typvte"] == "LIVREE")
                 {
                     Image image5 = Image.GetInstance(ConfigurationManager.AppSettings["CheminFilligraneBl"]);
                     image5.Alignment = Image.UNDERLYING;
-                    image5.SetAbsolutePosition(215, 270);
+
+                    x5 = float.Parse(ConfigurationManager.AppSettings["filigraneBLX"]);
+                    y5 = float.Parse(ConfigurationManager.AppSettings["filigraneBLY"]);
+
+                    image5.SetAbsolutePosition(x5, y5);
+                    //image5.SetAbsolutePosition(215, 270);
                     nouveauDocument.Add(image5);
                 }
                 else
                 {
                     Image image5 = Image.GetInstance(ConfigurationManager.AppSettings["CheminFilligraneBe"]);
                     image5.Alignment = Image.UNDERLYING;
-                    image5.SetAbsolutePosition(170, 240);
+                    x5 = float.Parse(ConfigurationManager.AppSettings["filigraneBLEX"]);
+                    y5 = float.Parse(ConfigurationManager.AppSettings["filigraneBLEY"]);
+                    image5.SetAbsolutePosition(x5, y5);
+                    //image5.SetAbsolutePosition(170, 240);
                     nouveauDocument.Add(image5);
                 }
                 //-------------------------------------------------------------------------------------------------
+
+
+                Image image = Image.GetInstance(ConfigurationManager.AppSettings["CheminLogoABCR_BL"]);
+                image.ScaleAbsolute(PageSize.A4);
+                float x = float.Parse(ConfigurationManager.AppSettings["LargeurLogoABCR_BL"]);
+                float y = float.Parse(ConfigurationManager.AppSettings["HauteurLogoABCR_BL"]);
+                image.ScaleAbsolute(x, y);
+                image.SetAbsolutePosition(13, 755);
+                
                 Paragraph pLogo = new Paragraph();
-                Image image = Image.GetInstance(ConfigurationManager.AppSettings["CheminLogoABCR"]);
+              //  Image image = Image.GetInstance(ConfigurationManager.AppSettings["CheminLogoABCR"]);
                 pLogo.Add(image);                                                                               //Encadré photo
                 PdfPCell celulleHauteGauche = new PdfPCell(image);
                 celulleHauteGauche.Border = PdfPCell.NO_BORDER;
@@ -211,7 +238,10 @@ namespace EssaiJobImp
                 table.AddCell(cellET8);
                 Image image3 = Image.GetInstance(ConfigurationManager.AppSettings["CheminPatternTableau"]);
                 image3.Alignment = Image.UNDERLYING;
-                image3.SetAbsolutePosition(20, 585);
+                float x3 = float.Parse(ConfigurationManager.AppSettings["bandeauTableauBLX"]);
+                float y3 = float.Parse(ConfigurationManager.AppSettings["bandeauTableauBLY"]);
+                image3.SetAbsolutePosition(x3, y3);
+                //image3.SetAbsolutePosition(20, 585);
                 nouveauDocument.Add(image3);
                 int i; int nbLigne = 0; float resultat = 0; float dimTab = 0; int décrement = 0; int numPage = 0;         //Constitution du tableau d'article
                 bool okDési = false; bool okStart = false;
@@ -441,6 +471,9 @@ namespace EssaiJobImp
                         {
                             Image image5 = Image.GetInstance(ConfigurationManager.AppSettings["CheminFilligraneBl"]);
                             image5.Alignment = Image.UNDERLYING;
+                            x5 = float.Parse(ConfigurationManager.AppSettings["filigraneBLX"]);
+                            y5 = float.Parse(ConfigurationManager.AppSettings["filigraneBLY"]);
+
                             image5.SetAbsolutePosition(200, 250);
                             nouveauDocument.Add(image5);
                         }
@@ -448,7 +481,9 @@ namespace EssaiJobImp
                         {
                             Image image5 = Image.GetInstance(ConfigurationManager.AppSettings["CheminFilligraneBe"]);
                             image5.Alignment = Image.UNDERLYING;
-                            image5.SetAbsolutePosition(155, 240);
+                            x5 = float.Parse(ConfigurationManager.AppSettings["filigraneBLEX"]);
+                            y5 = float.Parse(ConfigurationManager.AppSettings["filigraneBLEY"]);
+                            image5.SetAbsolutePosition(x5, y5);
                             nouveauDocument.Add(image5);
                         }
                         image3.SetAbsolutePosition(20, 580);
@@ -527,7 +562,12 @@ namespace EssaiJobImp
                 //-----------------Ajout Pattern bas de page---------------------------------------------------------
                 Image image4 = Image.GetInstance(ConfigurationManager.AppSettings["CheminPatternTotBl"]);
                 image4.Alignment = Image.UNDERLYING;
-                image4.SetAbsolutePosition(385, 105);
+
+                float x4 = float.Parse(ConfigurationManager.AppSettings["rectangleTotalBLX"]);
+                float y4 = float.Parse(ConfigurationManager.AppSettings["rectangleTotalBLY"]);
+                image4.SetAbsolutePosition(x4, y4);
+
+                //image4.SetAbsolutePosition(385, 105);
                 nouveauDocument.Add(image4);
                 nouveauDocument.Add(table);
                 //-----------------------------------------------------------------------------------------------------

@@ -44,7 +44,9 @@ namespace EssaiJobImp
             Document nouveauDocument = new Document(PageSize.A4,20,20,12,20);
             PdfWriter.GetInstance(nouveauDocument, new FileStream(chemin, FileMode.Create));     //Stockage du document
             nouveauDocument.Open();
+           
             Image image4 = Image.GetInstance(ConfigurationManager.AppSettings["CheminPatternTot"]);
+           
             image4.Alignment = Image.UNDERLYING;
             float x4 = float.Parse(ConfigurationManager.AppSettings["rectangleTotalDevisX"]);
             float y4 = float.Parse(ConfigurationManager.AppSettings["rectangleTotalDevisY"]);
@@ -84,7 +86,7 @@ namespace EssaiJobImp
             float y = float.Parse(ConfigurationManager.AppSettings["HauteurLogoABCR_DEVIS"]);
             image6.ScaleAbsolute(x, y);
 
-          //  image6.SetAbsolutePosition(13, 755);
+            image6.SetAbsolutePosition(13, 755);
 
             nouveauDocument.Add(image6);
            
@@ -131,10 +133,12 @@ namespace EssaiJobImp
             tableau.AddCell(celulleHauteDroite);                                                                                       
             //Encadré "ABCR"
             Paragraph p = new Paragraph();
-            p.Add(new Phrase(donneEntete["Adresse_interne_2"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD)));
-            p.Add(new Phrase(donneEntete["Adresse_interne_3"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD)));
+            p.Add(new Phrase(donneEntete["Adresse_interne_2"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.BOLD)));
+            p.Add(new Phrase(donneEntete["Adresse_interne_3"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.BOLD)));
             
-          /*  p.Add(new Phrase(donneEntete["Adresse_interne_4"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 7, Font.BOLD)));
+          /*  
+           * à ajouter si adresse plusieur lignes
+           * p.Add(new Phrase(donneEntete["Adresse_interne_4"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 7, Font.BOLD)));
             p.Add(new Phrase(donneEntete["Adresse_interne_5"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 7, Font.BOLD)));
             p.Add(new Phrase(donneEntete["Adresse_interne_6"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 7, Font.BOLD)));*/
 

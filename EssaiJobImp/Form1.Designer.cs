@@ -41,9 +41,9 @@
             this.tbNbfichier = new System.Windows.Forms.TextBox();
             this.btnReglage = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnPause = new System.Windows.Forms.Button();
             this.btnReprise = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -145,7 +145,7 @@
             this.label1.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(652, 140);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(152, 12);
+            this.label1.Size = new System.Drawing.Size(156, 14);
             this.label1.TabIndex = 17;
             this.label1.Text = "Nombre de fichier travaillé :";
             // 
@@ -178,23 +178,12 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Lucida Sans", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(208, 20);
+            this.label2.Location = new System.Drawing.Point(294, 63);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(278, 34);
+            this.label2.Size = new System.Drawing.Size(282, 33);
             this.label2.TabIndex = 20;
-            this.label2.Text = "Ireport Rubis V 2.0";
+            this.label2.Text = "Ireport Rubis V 2.1";
             this.label2.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.pictureBox1.Image = global::EssaiJobImp.Properties.Resources.Sans_titre;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 9);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(184, 127);
-            this.pictureBox1.TabIndex = 21;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // btnPause
             // 
@@ -215,6 +204,17 @@
             this.btnReprise.Text = "Reprise";
             this.btnReprise.UseVisualStyleBackColor = true;
             this.btnReprise.Click += new System.EventHandler(this.btnReprise_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pictureBox1.Image = global::EssaiJobImp.Properties.Resources.logoDEVIS;
+            this.pictureBox1.Location = new System.Drawing.Point(12, 9);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(284, 87);
+            this.pictureBox1.TabIndex = 21;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // Form1
             // 
