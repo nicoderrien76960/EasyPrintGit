@@ -64,6 +64,7 @@ namespace EssaiJobImp
 
                 //image2.SetAbsolutePosition(325, 755);
                 nouveauDocument.Add(image2);
+
                 Image image5 = Image.GetInstance(ConfigurationManager.AppSettings["CheminFilligraneAr"]);
                 image5.Alignment = Image.UNDERLYING;
 
@@ -88,7 +89,9 @@ namespace EssaiJobImp
                 float x = float.Parse(ConfigurationManager.AppSettings["LargeurLogoABCR_AR"]);
                 float y = float.Parse(ConfigurationManager.AppSettings["HauteurLogoABCR_AR"]);
                 image6.ScaleAbsolute(x, y);
- //               image6.SetAbsolutePosition(13, 755);
+                image6.SetAbsolutePosition(13, 755);
+
+               
                 nouveauDocument.Add(image6);
 
                 //Celulle de droite contenant l'adresse de livraison
@@ -212,12 +215,13 @@ namespace EssaiJobImp
                 table.AddCell(cellET8);
                 Image image3 = Image.GetInstance(ConfigurationManager.AppSettings["CheminPatternTableau"]);
                 image3.Alignment = Image.UNDERLYING;
-
-                float x4 = float.Parse(ConfigurationManager.AppSettings["bandeauTableauARX"]);
-                float y4 = float.Parse(ConfigurationManager.AppSettings["bandeauTableauARY"]);
-                image3.SetAbsolutePosition(x4, y4);
-                //image3.SetAbsolutePosition(20, 585);
+                float x6 = float.Parse(ConfigurationManager.AppSettings["bandeauTableauARX"]);
+                float y6 = float.Parse(ConfigurationManager.AppSettings["bandeauTableauARY"]);
+                
+              //  image3.SetAbsolutePosition(20, 585);
+                image3.SetAbsolutePosition(x6, y6);
                 nouveauDocument.Add(image3);
+
                 int i; int nbLigne = 0; float resultat = 0; float dimTab = 0; int décrement = 0; int numPage = 0;         //Constitution du tableau d'article
                 bool okDési = false; bool okStart = false;
                 for (i = 1; i <= iBody; i++)
@@ -444,14 +448,20 @@ namespace EssaiJobImp
                         nouveauDocument.Add(refCli);
                         nouveauDocument.Add(c);
                         nouveauDocument.Add(pPage);
+
+
+                        //LOGO
+                        nouveauDocument.Add(image6);
+
                         //Image image5 = Image.GetInstance("E:\\FiligraneAR.png");//Changer lien pattern
                         image5.Alignment = Image.UNDERLYING;
                       
-                        image5.SetAbsolutePosition(200, 250);
+                        image5.SetAbsolutePosition(x3, y3); //filigrane
                         nouveauDocument.Add(image5);
 
-                        image3.SetAbsolutePosition(20, 578);
-                        nouveauDocument.Add(image2); nouveauDocument.Add(image3);
+                        image3.SetAbsolutePosition(x6, y6-5); //bandeau
+                        nouveauDocument.Add(image2); 
+                        nouveauDocument.Add(image3);
                         table.AddCell(cellET1); table.AddCell(cellET2); table.AddCell(cellET3); table.AddCell(cellET4); table.AddCell(cellET5); table.AddCell(cellET6); table.AddCell(cellET7); table.AddCell(cellET8);
                         dimTab = 0;
                         décrement = (i - 1);
@@ -526,8 +536,16 @@ namespace EssaiJobImp
                 //-----------------Ajout Pattern bas de page---------------------------------------------------------
                 Image image4 = Image.GetInstance(ConfigurationManager.AppSettings["CheminPatternTotBl"]);
                 image4.Alignment = Image.UNDERLYING;
-                image4.SetAbsolutePosition(385, 105);
+
+
+                float x7 = float.Parse(ConfigurationManager.AppSettings["rectangleTotalARX"]);
+                float y7 = float.Parse(ConfigurationManager.AppSettings["rectangleTotalARY"]);
+               // image4.SetAbsolutePosition(385, 105);
+                image4.SetAbsolutePosition(x7, y7);
+                
+
                 nouveauDocument.Add(image4);
+
                 nouveauDocument.Add(table);
                 //-----------------------------------------------------------------------------------------------------
                 //                          PIED DE PAGE
