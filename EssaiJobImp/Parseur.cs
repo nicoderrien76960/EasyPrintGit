@@ -46,11 +46,20 @@ namespace EssaiJobImp
             nouveauDocument.Open();
             Image image4 = Image.GetInstance(ConfigurationManager.AppSettings["CheminPatternTot"]);
             image4.Alignment = Image.UNDERLYING;
-            image4.SetAbsolutePosition(385, 70);
+            float x4 = float.Parse(ConfigurationManager.AppSettings["rectangleTotalX"]);
+            float y4 = float.Parse(ConfigurationManager.AppSettings["rectangleTotalY"]);
+            image4.SetAbsolutePosition(x4, y4);
+
+
+
             //----------------------------------------------------------------------------------------------------Filligrane-----------------------------------------------
             Image image5 = Image.GetInstance(ConfigurationManager.AppSettings["CheminFilligraneDevis"]);
             image5.Alignment = Image.UNDERLYING;
-            image5.SetAbsolutePosition(200, 250);
+            float x5 = float.Parse(ConfigurationManager.AppSettings["filigraneDevisX"]);
+            float y5 = float.Parse(ConfigurationManager.AppSettings["filigraneDevisY"]);
+
+
+            image5.SetAbsolutePosition(x5, y5);
             nouveauDocument.Add(image5);
             //----------------------------------------
             //Constitution document PDF
@@ -68,6 +77,7 @@ namespace EssaiJobImp
 
 
             /*test*/
+
             Image image6 = Image.GetInstance(ConfigurationManager.AppSettings["CheminLogoABCR_DEVIS"]);
             image6.ScaleAbsolute(PageSize.A4);
             float x = float.Parse(ConfigurationManager.AppSettings["LargeurLogoABCR_DEVIS"]);
@@ -75,6 +85,7 @@ namespace EssaiJobImp
             image6.ScaleAbsolute(x, y);
             image6.SetAbsolutePosition(13, 755);
             nouveauDocument.Add(image6);
+           
             /*---fin test */
 
             // Paragraph pLogo = new Paragraph();
@@ -85,7 +96,8 @@ namespace EssaiJobImp
 
             //PdfPCell celulleHauteGauche = new PdfPCell(pLogo);
             //    celulleHauteGauche.Border = PdfPCell.NO_BORDER;
-            //tableau.AddCell(celulleHauteGauche);             //Encadré info devis
+            //tableau.AddCell(celulleHauteGauche);            
+            //Encadré info devis
 
 
             PdfPCell celulleHauteGauche = new PdfPCell();
@@ -97,7 +109,12 @@ namespace EssaiJobImp
             Paragraph pDoc = new Paragraph();
             Image image2 = Image.GetInstance(ConfigurationManager.AppSettings["CheminPatternHautDroiteDevis"]);
             image2.Alignment = Image.UNDERLYING;
-            image2.SetAbsolutePosition(335, 740);
+            float x3 = float.Parse(ConfigurationManager.AppSettings["rectangleReferenceX"]);
+            float y3 = float.Parse(ConfigurationManager.AppSettings["rectangleReferenceY"]);
+
+
+           // image2.SetAbsolutePosition(335, 743);
+            image2.SetAbsolutePosition(x3, y3);
             nouveauDocument.Add(image2);
             pDoc.Alignment = Element.ALIGN_RIGHT;
             pDoc.Add(new Phrase("Devis n° "+donneeBody["Bon_numero1"] + "\n",FontFactory.GetFont(FontFactory.HELVETICA,10,Font.BOLD)));
@@ -110,18 +127,25 @@ namespace EssaiJobImp
             PdfPCell celulleHauteDroite = new PdfPCell(pDoc);          
             celulleHauteDroite.Border = PdfPCell.NO_BORDER;
             celulleHauteDroite.HorizontalAlignment = Element.ALIGN_CENTER;
-            tableau.AddCell(celulleHauteDroite);                                                                                        //Encadré "ABCR"
+            tableau.AddCell(celulleHauteDroite);                                                                                       
+            //Encadré "ABCR"
             Paragraph p = new Paragraph();
             p.Add(new Phrase(donneEntete["Adresse_interne_2"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD)));
             p.Add(new Phrase(donneEntete["Adresse_interne_3"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD)));
-            p.Add(new Phrase(donneEntete["Adresse_interne_4"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 7, Font.BOLD)));
+            
+          /*  p.Add(new Phrase(donneEntete["Adresse_interne_4"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 7, Font.BOLD)));
             p.Add(new Phrase(donneEntete["Adresse_interne_5"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 7, Font.BOLD)));
-            p.Add(new Phrase(donneEntete["Adresse_interne_6"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 7, Font.BOLD)));
-            p.Add(new Phrase(donneEntete["Adresse_interne_7"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.BOLD)));
-            p.Add(new Phrase(donneEntete["Adresse_interne_8"] + "\n" + "\n" + "\n"+"\n"+"\n ", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.BOLD)));
+            p.Add(new Phrase(donneEntete["Adresse_interne_6"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 7, Font.BOLD)));*/
+
+
+            p.Add(new Phrase(donneEntete["Adresse_interne_7"] + "  -  " + donneEntete["Adresse_interne_8"] + "\n" + "\n" + "\n" + "\n" + "\n" +"\n" + "\n" + "\n ", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.BOLD)));
+            
+            //p.Add(new Phrase(donneEntete["Adresse_interne_8"] + "\n" + "\n" + "\n"+"\n"+"\n ", FontFactory.GetFont(FontFactory.HELVETICA, 9, Font.BOLD)));
+            
             PdfPCell celluleBasGauche = new PdfPCell(p);
             celluleBasGauche.Border = PdfPCell.NO_BORDER;
-            tableau.AddCell(celluleBasGauche);                                                                                        //Encadré client
+            tableau.AddCell(celluleBasGauche);                                                                                       
+            //Encadré client
             Paragraph pClient = new Paragraph();
             if (donneEntete["Tiers_adl1"] == "")
             {
@@ -147,10 +171,11 @@ namespace EssaiJobImp
             Chunk contact = null; 
             contact = new Chunk("Votre contact : " + donneEntete["Bon_vendeur_lib"] + "\n     "+donneEntete["Duplicata"], FontFactory.GetFont(FontFactory.HELVETICA, 7, Font.ITALIC));//FontFactory pour changer la police
             Chunk delai = new Chunk("Livraison : " + donneEntete["Tiers_adf1"] + " - " + donneEntete["Tiers_adf2"] + " - " + donneEntete["Tiers_adfcp"] + "  " + donneEntete["Tiers_adf6"]+"\n"+"\n" , FontFactory.GetFont(FontFactory.HELVETICA,7, Font.ITALIC)).SetUnderline(2,2);
-            Chunk ligneEspace = new Chunk("\n", FontFactory.GetFont(FontFactory.HELVETICA, 1, Font.ITALIC));
+           // Chunk ligneEspace = new Chunk("\n", FontFactory.GetFont(FontFactory.HELVETICA, 1, Font.ITALIC));
+            
             pRécap.Add(contact);
             pRécap.Add(delai);
-            pRécap.Add(ligneEspace);
+            //pRécap.Add(ligneEspace);
             nouveauDocument.Add(pRécap);
             CurseurTemplate ct = new CurseurTemplate();
             valeurTemplate = ct.chercher("Devis");
@@ -189,8 +214,14 @@ namespace EssaiJobImp
             table.AddCell(cellET9);
             Image image3 = Image.GetInstance(ConfigurationManager.AppSettings["CheminPatternTableau"]);
             image3.Alignment = Image.UNDERLYING;
-            image3.SetAbsolutePosition(20, 567);
+
+            //image haut de tableau
+            float x2 = float.Parse(ConfigurationManager.AppSettings["bandeauTableauX"]);
+            float y2 = float.Parse(ConfigurationManager.AppSettings["bandeauTableauY"]);
+            image3.SetAbsolutePosition(x2 ,y2);
+            //image3.SetAbsolutePosition(20, 588);
             nouveauDocument.Add(image3);
+
             int i; int nbLigne = 0; float resultat = 0; float dimTab = 0; int décrement = 0; int numPage = 0;         //Constitution du tableau d'article
             bool okDési = false; bool okStart = false;
             for (i = 1; i <= iBody; i++)
@@ -324,6 +355,9 @@ namespace EssaiJobImp
                 cellEcartDroite.Border += PdfPCell.LEFT_BORDER;
                 table.AddCell(cellEcartDroite); table.AddCell(cellEcart); table.AddCell(cellEcart); table.AddCell(cellEcart); table.AddCell(cellEcart); table.AddCell(cellEcart); table.AddCell(cellEcart); table.AddCell(cellEcart); table.AddCell(cellEcart);
                 //--------------------------------------------GESTION DU SAUT DE PAGE-------------------------------------------------------------------------------------------
+               
+                
+                
                 //float temp = table.GetRowHeight(i-1-décrement);
                 float temp=table.TotalHeight;
                 dimTab = temp;
@@ -354,6 +388,10 @@ namespace EssaiJobImp
                     nouveauDocument.Add(Chunk.NEXTPAGE);
                     nouveauDocument.Add(tableau); 
                     nouveauDocument.Add(pRécap);
+                    
+                    //LOGO
+                    nouveauDocument.Add(image6);
+                    
                     nouveauDocument.Add(image2); nouveauDocument.Add(image3); nouveauDocument.Add(image5);
                     table.AddCell(cellET1); table.AddCell(cellET2); table.AddCell(cellET3); table.AddCell(cellET4); table.AddCell(cellET5); table.AddCell(cellET6); table.AddCell(cellET7); table.AddCell(cellET8); table.AddCell(cellET9);
                     dimTab = 0;
@@ -408,6 +446,7 @@ namespace EssaiJobImp
             cellulePied.Border = PdfPCell.NO_BORDER;
             tableauPied.AddCell(cellulePied);
             nouveauDocument.Add(image4);
+
             PdfPTable tableauTot = new PdfPTable(1);
             PdfPCell cellTTot = new PdfPCell(new Phrase("Total HT : " + donneeFoot["Base_tva_mht"] + " €", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cellTTot.Border = PdfPCell.NO_BORDER; cellTTot.Border = PdfPCell.BOTTOM_BORDER;
             tableauTot.AddCell(cellTTot);
