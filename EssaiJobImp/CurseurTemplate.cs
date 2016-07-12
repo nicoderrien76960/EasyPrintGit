@@ -7,7 +7,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.XPath;
 
-namespace EssaiJobImp
+namespace Ireport_Rubis
 {
     class CurseurTemplate
     {

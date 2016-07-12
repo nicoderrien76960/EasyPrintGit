@@ -1,4 +1,4 @@
-﻿namespace EssaiJobImp
+﻿namespace Ireport_Rubis
 {
     partial class Form_reglage
     {
@@ -67,19 +67,20 @@
             // 
             this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(224, 57);
+            this.splitContainer1.Location = new System.Drawing.Point(219, 58);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.Color.Silver;
+            this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.Silver;
             this.splitContainer1.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint);
-            this.splitContainer1.Size = new System.Drawing.Size(840, 387);
-            this.splitContainer1.SplitterDistance = 365;
+            this.splitContainer1.Size = new System.Drawing.Size(1033, 691);
+            this.splitContainer1.SplitterDistance = 447;
             this.splitContainer1.TabIndex = 2;
             // 
             // splitContainer2
@@ -102,7 +103,7 @@
             this.splitContainer2.Panel1.Controls.Add(this.btnBL);
             this.splitContainer2.Panel1.Controls.Add(this.btnDevis);
             this.splitContainer2.Panel1.Controls.Add(this.btnImprimante);
-            this.splitContainer2.Size = new System.Drawing.Size(192, 387);
+            this.splitContainer2.Size = new System.Drawing.Size(192, 687);
             this.splitContainer2.SplitterDistance = 163;
             this.splitContainer2.TabIndex = 4;
             // 
@@ -211,11 +212,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.ClientSize = new System.Drawing.Size(1092, 461);
-            this.Controls.Add(this.splitContainer2);
+            this.ClientSize = new System.Drawing.Size(1264, 761);
             this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.splitContainer2);
             this.Controls.Add(this.label1);
-            this.MaximumSize = new System.Drawing.Size(1500, 500);
+            this.MaximumSize = new System.Drawing.Size(1500, 800);
             this.MinimumSize = new System.Drawing.Size(863, 500);
             this.Name = "Form_reglage";
             this.Text = "Réglages";

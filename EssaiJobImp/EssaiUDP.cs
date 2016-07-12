@@ -7,7 +7,7 @@ using System.Net.Sockets;
 //using System.Text;
 using System.Threading;
 
-namespace EssaiJobImp
+namespace Ireport_Rubis
 {
     class EssaiUDP
     {

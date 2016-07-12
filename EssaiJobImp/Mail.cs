@@ -7,7 +7,7 @@ using IBM.Data.DB2.iSeries;
 using System.Data.Odbc;
 using System.Net.Mail;
 
-namespace EssaiJobImp
+namespace Ireport_Rubis
 {
     /// <summary>
     /// Anciennement le module d'envoi de facture par mail, version obsolète remplacé par un module à part

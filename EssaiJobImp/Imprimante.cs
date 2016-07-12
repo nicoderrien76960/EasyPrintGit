@@ -8,7 +8,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Configuration;
 
-namespace EssaiJobImp
+namespace Ireport_Rubis
 {
     public struct Spool   //Création d'un object Spool (plan structure)
     {

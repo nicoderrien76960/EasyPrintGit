@@ -1,62 +1,62 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="EssaiJobImp.AccuseReception">
+  <Class Name="Ireport_Rubis.AccuseReception">
     <Position X="3.5" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ABEQAAAAAAAAABAAAAAAAAAgAAAAAAAAEIAAIAAAAAA=</HashCode>
       <FileName>AccuseReception.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EssaiJobImp.BonLivraison">
+  <Class Name="Ireport_Rubis.BonLivraison">
     <Position X="9.75" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ABEQAAAAAAAAABAAAAAAAAAgIAAAAAAAAIAAIAAAAAA=</HashCode>
       <FileName>BonLivraison.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EssaiJobImp.BonPréparation">
+  <Class Name="Ireport_Rubis.BonPréparation">
     <Position X="0.75" Y="8.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ABEQAAAAAAAAABAAAAAAAAAgIAAAAAAAAIAAIAAAAAA=</HashCode>
       <FileName>BonPréparation.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EssaiJobImp.CommandeFournisseur">
+  <Class Name="Ireport_Rubis.CommandeFournisseur">
     <Position X="6.75" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QBEQAAAAAAAAABAAAAAAAAAgAAAAAAAAAIAAIAAAAAA=</HashCode>
       <FileName>CommandeFournisseur.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EssaiJobImp.CurseurTemplate">
+  <Class Name="Ireport_Rubis.CurseurTemplate">
     <Position X="3.5" Y="13.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAQ=</HashCode>
       <FileName>CurseurTemplate.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EssaiJobImp.Devis">
+  <Class Name="Ireport_Rubis.Devis">
     <Position X="6.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ABEQAAAAAAAAEBAAAAAAAAAgAAAAAAAAAIAIIEABAAA=</HashCode>
       <FileName>Devis.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EssaiJobImp.EssaiUDP" Collapsed="true">
+  <Class Name="Ireport_Rubis.EssaiUDP" Collapsed="true">
     <Position X="0.5" Y="20" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAIAAAAABAAAAAAAAAgAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>EssaiUDP.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EssaiJobImp.Facturation">
+  <Class Name="Ireport_Rubis.Facturation">
     <Position X="3.75" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ABEQAAAAAAAAABAAAAAAAAAgAAAAAAAAAICAIAAAAAA=</HashCode>
       <FileName>Facturation.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EssaiJobImp.Form_reglage">
+  <Class Name="Ireport_Rubis.Form_reglage">
     <Position X="17.75" Y="11.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AABAIAiBIKAAIBAAAADAAAAGQAAAAUgAgSAAgMACAAA=</HashCode>
@@ -66,7 +66,7 @@
       <Property Name="UserControlImprimante" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="EssaiJobImp.Form1">
+  <Class Name="Ireport_Rubis.Form1">
     <Position X="15.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ADwIIAAACWAQABCYgGmAIABGIAAIAAlDkUYIGQREAAg=</HashCode>
@@ -77,14 +77,14 @@
       <Property Name="Form_reglage" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="EssaiJobImp.GestionListeDoc">
+  <Class Name="Ireport_Rubis.GestionListeDoc">
     <Position X="10.75" Y="20" Width="1.5" />
     <TypeIdentifier>
       <HashCode>BBAADABAAAAAAEAABAAAAAAAAAAAAAgAAAAAAAAAAAA=</HashCode>
       <FileName>GestionListeDoc.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EssaiJobImp.Imprimante" BaseTypeListCollapsed="true">
+  <Class Name="Ireport_Rubis.Imprimante" BaseTypeListCollapsed="true">
     <Position X="9.25" Y="8.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAYgAAAAAAEAAAQBABAAAAAAAAAAAAAAABA=</HashCode>
@@ -92,35 +92,35 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="EssaiJobImp.LogHelper">
+  <Class Name="Ireport_Rubis.LogHelper">
     <Position X="0.75" Y="16" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
       <FileName>LogHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EssaiJobImp.Mail" Collapsed="true">
+  <Class Name="Ireport_Rubis.Mail" Collapsed="true">
     <Position X="0.5" Y="19" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAACAAAAAAQAAAAAAAAAAABAAAAEAAAAAAAAAA=</HashCode>
       <FileName>Mail.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EssaiJobImp.Parseur">
+  <Class Name="Ireport_Rubis.Parseur">
     <Position X="0.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAQAAEAAAAABAQAAAAAAAIAAAAAAABAACIIAAAAAA=</HashCode>
       <FileName>Parseur.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EssaiJobImp.ParseurAR">
+  <Class Name="Ireport_Rubis.ParseurAR">
     <Position X="0.5" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAQAAEAAAAABAQAAAAAAAIAAAAAAABAACIIAAAAAA=</HashCode>
       <FileName>ParseurAR.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EssaiJobImp.ParseurBL">
+  <Class Name="Ireport_Rubis.ParseurBL">
     <Position X="9.75" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAABQAAEAAAAABAQAAAAAAAIAAAAAAABAACIIAAAAAA=</HashCode>
@@ -130,14 +130,14 @@
       <Property Name="ProfilImprimante" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="EssaiJobImp.myPrinters" Collapsed="true">
+  <Class Name="Ireport_Rubis.myPrinters" Collapsed="true">
     <Position X="0.5" Y="21" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ParseurBL.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EssaiJobImp.ParseurBP">
+  <Class Name="Ireport_Rubis.ParseurBP">
     <Position X="0.75" Y="12" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAABQAAEAAAAABAQAAAAAAAIAAAAAAABAACIIAAAAAA=</HashCode>
@@ -147,7 +147,7 @@
       <Property Name="ProfilImprimante" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="EssaiJobImp.ParseurCF">
+  <Class Name="Ireport_Rubis.ParseurCF">
     <Position X="6.75" Y="8" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAABQAAEAAAAABAQAAAAAAAIAAAAAAABAACIIAAAAAA=</HashCode>
@@ -157,42 +157,42 @@
       <Property Name="ProfilImprimante" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="EssaiJobImp.ParseurFacturation">
+  <Class Name="Ireport_Rubis.ParseurFacturation">
     <Position X="3.75" Y="9" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAQAAEAAAAABAQAAAAAAAIAAAAAAABAACIIAAAAAA=</HashCode>
       <FileName>ParseurFacturation.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EssaiJobImp.ProfilImprimante">
+  <Class Name="Ireport_Rubis.ProfilImprimante">
     <Position X="6.25" Y="12" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ABAACAAAAAAAAAAAAAAAIAAAAAAAAAgAAAAAAAAAAAA=</HashCode>
       <FileName>ProfilImprimante.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EssaiJobImp.Program" Collapsed="true">
+  <Class Name="Ireport_Rubis.Program" Collapsed="true">
     <Position X="0.5" Y="23" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EssaiJobImp.UserControlAR" Collapsed="true">
+  <Class Name="Ireport_Rubis.UserControlAR" Collapsed="true">
     <Position X="8.25" Y="23.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>8yDQLwAAASAAAhAAAACAQABCIEQ4AAUAMHAIAAAAAAA=</HashCode>
       <FileName>UserControlAR.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EssaiJobImp.UserControlBL" Collapsed="true">
+  <Class Name="Ireport_Rubis.UserControlBL" Collapsed="true">
     <Position X="6.25" Y="15.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>8yDQLwAAASAAAhAAAACAQABCIEQ4AAUAMHAIAAAAAAA=</HashCode>
       <FileName>UserControlBL.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EssaiJobImp.UserControlBP" Collapsed="true">
+  <Class Name="Ireport_Rubis.UserControlBP" Collapsed="true">
     <Position X="6.25" Y="17.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>8yAALwAAASgAAhAQAACAQABCIEQ4AAUAMHAIAAAAAAA=</HashCode>
@@ -202,14 +202,14 @@
       <Property Name="CurseurTemplate" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="EssaiJobImp.UserControlCF" Collapsed="true">
+  <Class Name="Ireport_Rubis.UserControlCF" Collapsed="true">
     <Position X="13.25" Y="20.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>8yDQLwAAASAAAhCAAACAQABCIEQ4AAUAMHAIAAAAAAA=</HashCode>
       <FileName>UserControlCF.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EssaiJobImp.UserControlChemin" Collapsed="true">
+  <Class Name="Ireport_Rubis.UserControlChemin" Collapsed="true">
     <Position X="12.25" Y="11.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ACAAAAQAASAAAhAQAACAAABCIAAAAAQAEAAAAAAAAAA=</HashCode>
@@ -219,21 +219,21 @@
       <Property Name="CurseurTemplate" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="EssaiJobImp.UserControlDevis" Collapsed="true">
+  <Class Name="Ireport_Rubis.UserControlDevis" Collapsed="true">
     <Position X="5.25" Y="21.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>8yDwLwAACSAAAhAAAACAQABCIEQ4AAUAMHAIAAAAAAA=</HashCode>
       <FileName>UserControlDevis.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EssaiJobImp.UserControlFacturation" Collapsed="true">
+  <Class Name="Ireport_Rubis.UserControlFacturation" Collapsed="true">
     <Position X="13.25" Y="22.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>cCDQLwAAACAAAhAAAACAQAACAAQIAAUAMEACAAAAAAA=</HashCode>
       <FileName>UserControlFacturation.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EssaiJobImp.UserControlImprimante">
+  <Class Name="Ireport_Rubis.UserControlImprimante">
     <Position X="12.25" Y="13.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAAAAggAAiAAgBBQAACAgEACAgAEAGAAAAAAAEAAAAA=</HashCode>
@@ -244,7 +244,7 @@
       <Property Name="GestionListeDoc" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="EssaiJobImp.UserControlImprimanteProfil">
+  <Class Name="Ireport_Rubis.UserControlImprimanteProfil">
     <Position X="9.25" Y="12.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IQCREgACCigAIBABAACCRAACAwQBUAkEEABAABgAQAA=</HashCode>
@@ -264,7 +264,7 @@
       <Property Name="GestionListeDoc" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="EssaiJobImp.UserControlMail" Collapsed="true">
+  <Class Name="Ireport_Rubis.UserControlMail" Collapsed="true">
     <Position X="6.25" Y="19.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ACAAAAQAASAAABAQAACACABSIAAIAAAAEEAAAAAAAAA=</HashCode>
@@ -274,7 +274,7 @@
       <Property Name="CurseurTemplate" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="EssaiJobImp.UserControlVariable" Collapsed="true">
+  <Class Name="Ireport_Rubis.UserControlVariable" Collapsed="true">
     <Position X="8.25" Y="21.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ACAAAAAAACAAAhAQAACAAABCAAAAAAQAEAAAAAAAAAA=</HashCode>
@@ -284,26 +284,26 @@
       <Property Name="CurseurTemplate" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="EssaiJobImp.Properties.Resources" Collapsed="true">
+  <Class Name="Ireport_Rubis.Properties.Resources" Collapsed="true">
     <Position X="0.5" Y="18" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAABEAAAEQAAAAAAAAAAAAAAAIA=</HashCode>
     </TypeIdentifier>
   </Class>
-  <Class Name="EssaiJobImp.Properties.Settings" Collapsed="true">
+  <Class Name="Ireport_Rubis.Properties.Settings" Collapsed="true">
     <Position X="0.5" Y="22" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAABAAAA=</HashCode>
     </TypeIdentifier>
   </Class>
-  <Struct Name="EssaiJobImp.Imp" Collapsed="true">
+  <Struct Name="Ireport_Rubis.Imp" Collapsed="true">
     <Position X="18.25" Y="9.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAEAAAAAAAAABAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GestionListeDoc.cs</FileName>
     </TypeIdentifier>
   </Struct>
-  <Struct Name="EssaiJobImp.Spool" Collapsed="true">
+  <Struct Name="Ireport_Rubis.Spool" Collapsed="true">
     <Position X="12.25" Y="9.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAABAAAAAAAAA=</HashCode>

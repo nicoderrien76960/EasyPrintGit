@@ -8,8 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
+using System.Xml;
 
-namespace EssaiJobImp
+namespace Ireport_Rubis
 {
     public partial class UserControlDevis : UserControl
     {
@@ -27,11 +28,23 @@ namespace EssaiJobImp
             tBD7.Text = dicodevis["Dimension7"];
             tBD8.Text = dicodevis["Dimension8"];
             tBD9.Text = dicodevis["Dimension9"];
-            textBox1.Text = ConfigurationManager.AppSettings["CheminLogoABCR"];
+            textBox1.Text = ConfigurationManager.AppSettings["CheminLogoABCR_DEVIS"];
             textBox2.Text = ConfigurationManager.AppSettings["CheminPatternHautDroiteDevis"];
             textBox3.Text = ConfigurationManager.AppSettings["CheminPatternTableau"];
             textBox4.Text = ConfigurationManager.AppSettings["CheminFilligraneDevis"];
             textBox5.Text = ConfigurationManager.AppSettings["CheminPatternTot"];
+
+            /*-------------------------------------------------AJOUT V3------------------------------*/
+            
+            LargeurLogoDevis.Text = ConfigurationManager.AppSettings["LargeurLogoABCR_DEVIS"];
+            HauteurLogoDevis.Text = ConfigurationManager.AppSettings["HauteurLogoABCR_DEVIS"];
+
+            RectangleReferenceDevisX.Text = ConfigurationManager.AppSettings["rectangleReferenceDevisX"];
+            RectangleReferenceDevisY.Text = ConfigurationManager.AppSettings["rectangleReferenceDevisY"];
+
+            /*-------------------------------------------Fin AJOUT V3 ---------------------------------*/
+
+
         }
 
         private void btnValider_Click(object sender, EventArgs e)
@@ -47,6 +60,62 @@ namespace EssaiJobImp
                 curseur.modifier("Devis", "Dimension7", tBD7.Text);
                 curseur.modifier("Devis", "Dimension8", tBD8.Text);
                 curseur.modifier("Devis", "Dimension9", tBD9.Text);
+
+            /*-------------------------------Ajout V3-----------------------------------*/
+
+
+                /*------------------modif fichier app.config---------------------*/
+
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.Load(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile);
+                foreach (XmlElement element in xmlDoc.DocumentElement)
+                {
+                    if (element.Name.Equals("appSettings"))
+                    {
+                        foreach (XmlNode node in element.ChildNodes)
+                        {
+                            try
+                            {
+                                if (node.Attributes[0].Value.Equals("LargeurLogoABCR_DEVIS"))
+                                {
+                                    node.Attributes[1].Value = LargeurLogoDevis.Text;
+                                }
+
+
+                                if (node.Attributes[0].Value.Equals("HauteurLogoABCR_DEVIS"))
+                                {
+                                    node.Attributes[1].Value = HauteurLogoDevis.Text;
+                                }
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            }
+                            catch { 
+                            
+                            }
+                        }
+                    }
+                }
+                xmlDoc.Save(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile);
+                ConfigurationManager.RefreshSection("appSettings");
+                /*------------------------------------------------------------------Fin Ajout V3*/
+
+                /*--------------------------------------------*/
+
+
+
+
+
+
+
+
+
+
                 MessageBox.Show("Modification effectuée");
             }
             else { MessageBox.Show("Les valeurs entrée dépasse la somme total de 110ppp"); }
@@ -173,6 +242,36 @@ namespace EssaiJobImp
         }
 
         private void UserControlDevis_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LargeurLogoDevis_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label17_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label18_Click(object sender, EventArgs e)
         {
 
         }

@@ -17,7 +17,7 @@ using IBM.Data.DB2.iSeries;
 using System.Data.Odbc;
 using System.Text.RegularExpressions; /*regex le 100316*/
 
-namespace EssaiJobImp
+namespace Ireport_Rubis
 {
     class ParseurCF : CommandeFournisseur
     {

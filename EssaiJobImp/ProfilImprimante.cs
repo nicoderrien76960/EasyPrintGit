@@ -6,7 +6,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.IO;
 
-namespace EssaiJobImp
+namespace Ireport_Rubis
 {
     class ProfilImprimante
     {

@@ -14,7 +14,7 @@ using Ghostscript.NET.Processor;
 using IBM.Data.DB2.iSeries;
 using System.Data.Odbc;
 
-namespace EssaiJobImp
+namespace Ireport_Rubis
 {
     class ParseurBL : BonLivraison
     {

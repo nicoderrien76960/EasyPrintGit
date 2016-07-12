@@ -7,7 +7,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.IO;
 
-namespace EssaiJobImp
+namespace Ireport_Rubis
 {
     /// <summary>
     /// Classe récupérant les informations d'un document Bon de Préparation selon les choix fait dans la selection des balises (chargementXML)

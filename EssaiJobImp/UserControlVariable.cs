@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
 
-namespace EssaiJobImp
+namespace Ireport_Rubis
 {
     public partial class UserControlVariable : UserControl
     {

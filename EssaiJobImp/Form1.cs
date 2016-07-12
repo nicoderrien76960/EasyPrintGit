@@ -13,7 +13,7 @@ using System.Xml;
 using System.Configuration;
 using System.Threading;
 
-namespace EssaiJobImp
+namespace Ireport_Rubis
 {
     public partial class Form1 : Form
     {

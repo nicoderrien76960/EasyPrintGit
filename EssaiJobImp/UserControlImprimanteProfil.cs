@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace EssaiJobImp
+namespace Ireport_Rubis
 {
     public partial class UserControlImprimanteProfil : UserControl
     {

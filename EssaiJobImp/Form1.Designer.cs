@@ -1,4 +1,4 @@
-﻿namespace EssaiJobImp
+﻿namespace Ireport_Rubis
 {
     partial class Form1
     {
@@ -208,7 +208,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.pictureBox1.Image = global::EssaiJobImp.Properties.Resources.logoDEVIS;
+            this.pictureBox1.Image = global::Ireport_Rubis.Properties.Resources.logoDEVIS;
             this.pictureBox1.Location = new System.Drawing.Point(12, 9);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(284, 87);

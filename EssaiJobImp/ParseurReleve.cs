@@ -14,7 +14,7 @@ using System.Data.Odbc;
 using System.Configuration;
 using System.IO;
 
-namespace EssaiJobImp
+namespace Ireport_Rubis
 {
     class ParseurReleve
     {

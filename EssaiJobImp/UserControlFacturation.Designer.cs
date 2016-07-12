@@ -1,4 +1,4 @@
-﻿namespace EssaiJobImp
+﻿namespace Ireport_Rubis
 {
     partial class UserControlFacturation
     {

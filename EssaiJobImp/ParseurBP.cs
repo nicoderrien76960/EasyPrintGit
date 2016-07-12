@@ -12,12 +12,12 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using PrinterForce;
 using System.Threading;
-using Amyuni.PDFCreator;
+//using Amyuni.PDFCreator;
 using Ghostscript.NET.Processor;
 using IBM.Data.DB2.iSeries;
 using System.Data.Odbc;
 
-namespace EssaiJobImp
+namespace Ireport_Rubis
 {
     class ParseurBP : BonPréparation
     {

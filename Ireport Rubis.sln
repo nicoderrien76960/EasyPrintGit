@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2013 for Windows Desktop
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EssaiJobImp", "EssaiJobImp\EssaiJobImp.csproj", "{090E05D9-9278-429D-B5A6-5935D3CC1C46}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ireport Rubis", "EssaiJobImp\Ireport Rubis.csproj", "{090E05D9-9278-429D-B5A6-5935D3CC1C46}"
 EndProject
 Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "ModelingProject1", "ModelingProject1\ModelingProject1.modelproj", "{3A4AFCD7-BAC4-498B-B418-5EB0EC87415B}"
 EndProject

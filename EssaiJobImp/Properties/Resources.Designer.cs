@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EssaiJobImp.Properties {
+namespace Ireport_Rubis.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace EssaiJobImp.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EssaiJobImp.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Ireport_Rubis.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -86,16 +86,6 @@ namespace EssaiJobImp.Properties {
         internal static System.Drawing.Bitmap logoDEVIS {
             get {
                 object obj = ResourceManager.GetObject("logoDEVIS", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Sans_titre {
-            get {
-                object obj = ResourceManager.GetObject("Sans titre", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
