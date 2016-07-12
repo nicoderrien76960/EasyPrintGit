@@ -73,7 +73,21 @@
             this.RectangleReferenceDevisY = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
+            this.BandeauTableauDevisX = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.BandeauTableauDevisY = new System.Windows.Forms.TextBox();
+            this.RectangleTotalDevisX = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.RectangleTotalDevisY = new System.Windows.Forms.TextBox();
+            this.FiligraneDevisX = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.FiligraneDevisY = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnValider
@@ -94,7 +108,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(347, 54);
+            this.label11.Location = new System.Drawing.Point(333, 52);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(101, 13);
             this.label11.TabIndex = 20;
@@ -103,7 +117,7 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(440, 51);
+            this.textBox1.Location = new System.Drawing.Point(440, 52);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(192, 20);
             this.textBox1.TabIndex = 21;
@@ -111,7 +125,7 @@
             // btnCheminLogo
             // 
             this.btnCheminLogo.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCheminLogo.Location = new System.Drawing.Point(638, 51);
+            this.btnCheminLogo.Location = new System.Drawing.Point(638, 52);
             this.btnCheminLogo.Name = "btnCheminLogo";
             this.btnCheminLogo.Size = new System.Drawing.Size(77, 20);
             this.btnCheminLogo.TabIndex = 22;
@@ -439,7 +453,7 @@
             // 
             // LargeurLogoDevis
             // 
-            this.LargeurLogoDevis.Location = new System.Drawing.Point(601, 291);
+            this.LargeurLogoDevis.Location = new System.Drawing.Point(103, 23);
             this.LargeurLogoDevis.Name = "LargeurLogoDevis";
             this.LargeurLogoDevis.Size = new System.Drawing.Size(100, 20);
             this.LargeurLogoDevis.TabIndex = 37;
@@ -448,7 +462,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(516, 298);
+            this.label16.Location = new System.Drawing.Point(19, 26);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(79, 13);
             this.label16.TabIndex = 38;
@@ -456,7 +470,7 @@
             // 
             // HauteurLogoDevis
             // 
-            this.HauteurLogoDevis.Location = new System.Drawing.Point(601, 317);
+            this.HauteurLogoDevis.Location = new System.Drawing.Point(103, 49);
             this.HauteurLogoDevis.Name = "HauteurLogoDevis";
             this.HauteurLogoDevis.Size = new System.Drawing.Size(100, 20);
             this.HauteurLogoDevis.TabIndex = 39;
@@ -464,7 +478,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(516, 324);
+            this.label17.Location = new System.Drawing.Point(19, 52);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(81, 13);
             this.label17.TabIndex = 40;
@@ -473,14 +487,14 @@
             // 
             // RectangleReferenceDevisX
             // 
-            this.RectangleReferenceDevisX.Location = new System.Drawing.Point(601, 359);
+            this.RectangleReferenceDevisX.Location = new System.Drawing.Point(172, 91);
             this.RectangleReferenceDevisX.Name = "RectangleReferenceDevisX";
             this.RectangleReferenceDevisX.Size = new System.Drawing.Size(100, 20);
             this.RectangleReferenceDevisX.TabIndex = 41;
             // 
             // RectangleReferenceDevisY
             // 
-            this.RectangleReferenceDevisY.Location = new System.Drawing.Point(601, 385);
+            this.RectangleReferenceDevisY.Location = new System.Drawing.Point(172, 117);
             this.RectangleReferenceDevisY.Name = "RectangleReferenceDevisY";
             this.RectangleReferenceDevisY.Size = new System.Drawing.Size(100, 20);
             this.RectangleReferenceDevisY.TabIndex = 42;
@@ -488,7 +502,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(446, 362);
+            this.label18.Location = new System.Drawing.Point(17, 94);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(149, 13);
             this.label18.TabIndex = 43;
@@ -498,25 +512,143 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(446, 388);
+            this.label19.Location = new System.Drawing.Point(17, 120);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(149, 13);
             this.label19.TabIndex = 44;
             this.label19.Text = "Rectangle Référence Devis Y";
+            // 
+            // BandeauTableauDevisX
+            // 
+            this.BandeauTableauDevisX.Location = new System.Drawing.Point(172, 143);
+            this.BandeauTableauDevisX.Name = "BandeauTableauDevisX";
+            this.BandeauTableauDevisX.Size = new System.Drawing.Size(100, 20);
+            this.BandeauTableauDevisX.TabIndex = 45;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(17, 146);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(105, 13);
+            this.label20.TabIndex = 46;
+            this.label20.Text = "Bandeau Tableau X ";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(17, 172);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(102, 13);
+            this.label21.TabIndex = 47;
+            this.label21.Text = "Bandeau Tableau Y";
+            // 
+            // BandeauTableauDevisY
+            // 
+            this.BandeauTableauDevisY.Location = new System.Drawing.Point(172, 169);
+            this.BandeauTableauDevisY.Name = "BandeauTableauDevisY";
+            this.BandeauTableauDevisY.Size = new System.Drawing.Size(100, 20);
+            this.BandeauTableauDevisY.TabIndex = 48;
+            // 
+            // RectangleTotalDevisX
+            // 
+            this.RectangleTotalDevisX.Location = new System.Drawing.Point(487, 91);
+            this.RectangleTotalDevisX.Name = "RectangleTotalDevisX";
+            this.RectangleTotalDevisX.Size = new System.Drawing.Size(100, 20);
+            this.RectangleTotalDevisX.TabIndex = 49;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(346, 94);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(123, 13);
+            this.label22.TabIndex = 50;
+            this.label22.Text = "Rectangle Total Devis X";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(346, 120);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(123, 13);
+            this.label23.TabIndex = 51;
+            this.label23.Text = "Rectangle Total Devis Y";
+            // 
+            // RectangleTotalDevisY
+            // 
+            this.RectangleTotalDevisY.Location = new System.Drawing.Point(487, 117);
+            this.RectangleTotalDevisY.Name = "RectangleTotalDevisY";
+            this.RectangleTotalDevisY.Size = new System.Drawing.Size(100, 20);
+            this.RectangleTotalDevisY.TabIndex = 52;
+            // 
+            // FiligraneDevisX
+            // 
+            this.FiligraneDevisX.Location = new System.Drawing.Point(487, 23);
+            this.FiligraneDevisX.Name = "FiligraneDevisX";
+            this.FiligraneDevisX.Size = new System.Drawing.Size(100, 20);
+            this.FiligraneDevisX.TabIndex = 53;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(347, 26);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(86, 13);
+            this.label24.TabIndex = 54;
+            this.label24.Text = "Filigrane Devis X";
+            // 
+            // FiligraneDevisY
+            // 
+            this.FiligraneDevisY.Location = new System.Drawing.Point(487, 49);
+            this.FiligraneDevisY.Name = "FiligraneDevisY";
+            this.FiligraneDevisY.Size = new System.Drawing.Size(100, 20);
+            this.FiligraneDevisY.TabIndex = 55;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(347, 56);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(86, 13);
+            this.label25.TabIndex = 56;
+            this.label25.Text = "Filigrane Devis Y";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label25);
+            this.groupBox2.Controls.Add(this.FiligraneDevisY);
+            this.groupBox2.Controls.Add(this.label24);
+            this.groupBox2.Controls.Add(this.FiligraneDevisX);
+            this.groupBox2.Controls.Add(this.RectangleTotalDevisY);
+            this.groupBox2.Controls.Add(this.label23);
+            this.groupBox2.Controls.Add(this.label22);
+            this.groupBox2.Controls.Add(this.RectangleTotalDevisX);
+            this.groupBox2.Controls.Add(this.BandeauTableauDevisY);
+            this.groupBox2.Controls.Add(this.label21);
+            this.groupBox2.Controls.Add(this.label20);
+            this.groupBox2.Controls.Add(this.BandeauTableauDevisX);
+            this.groupBox2.Controls.Add(this.label19);
+            this.groupBox2.Controls.Add(this.label18);
+            this.groupBox2.Controls.Add(this.RectangleReferenceDevisY);
+            this.groupBox2.Controls.Add(this.RectangleReferenceDevisX);
+            this.groupBox2.Controls.Add(this.label17);
+            this.groupBox2.Controls.Add(this.HauteurLogoDevis);
+            this.groupBox2.Controls.Add(this.label16);
+            this.groupBox2.Controls.Add(this.LargeurLogoDevis);
+            this.groupBox2.Location = new System.Drawing.Point(14, 345);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(617, 205);
+            this.groupBox2.TabIndex = 57;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Position des Images";
             // 
             // UserControlDevis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
-            this.Controls.Add(this.label19);
-            this.Controls.Add(this.label18);
-            this.Controls.Add(this.RectangleReferenceDevisY);
-            this.Controls.Add(this.RectangleReferenceDevisX);
-            this.Controls.Add(this.label17);
-            this.Controls.Add(this.HauteurLogoDevis);
-            this.Controls.Add(this.label16);
-            this.Controls.Add(this.LargeurLogoDevis);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button4);
@@ -540,6 +672,8 @@
             this.Load += new System.EventHandler(this.UserControlDevis_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -592,5 +726,18 @@
         private System.Windows.Forms.TextBox RectangleReferenceDevisY;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox BandeauTableauDevisX;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox BandeauTableauDevisY;
+        private System.Windows.Forms.TextBox RectangleTotalDevisX;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.TextBox RectangleTotalDevisY;
+        private System.Windows.Forms.TextBox FiligraneDevisX;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.TextBox FiligraneDevisY;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }

@@ -42,6 +42,15 @@ namespace Ireport_Rubis
             RectangleReferenceDevisX.Text = ConfigurationManager.AppSettings["rectangleReferenceDevisX"];
             RectangleReferenceDevisY.Text = ConfigurationManager.AppSettings["rectangleReferenceDevisY"];
 
+            BandeauTableauDevisX.Text = ConfigurationManager.AppSettings["bandeauTableauDevisX"];
+            BandeauTableauDevisY.Text = ConfigurationManager.AppSettings["bandeauTableauDevisY"];
+
+            RectangleTotalDevisX.Text = ConfigurationManager.AppSettings["rectangleTotalDevisX"];
+            RectangleTotalDevisY.Text = ConfigurationManager.AppSettings["rectangleTotalDevisY"];
+
+            FiligraneDevisX.Text = ConfigurationManager.AppSettings["filigraneDevisX"];
+            FiligraneDevisY.Text = ConfigurationManager.AppSettings["filigraneDevisY"];
+
             /*-------------------------------------------Fin AJOUT V3 ---------------------------------*/
 
 
@@ -80,18 +89,42 @@ namespace Ireport_Rubis
                                 {
                                     node.Attributes[1].Value = LargeurLogoDevis.Text;
                                 }
-
-
                                 if (node.Attributes[0].Value.Equals("HauteurLogoABCR_DEVIS"))
                                 {
                                     node.Attributes[1].Value = HauteurLogoDevis.Text;
                                 }
-                            
-                            
-                            
-                            
-                            
-                            
+                                if (node.Attributes[0].Value.Equals("rectangleReferenceDevisX"))
+                                {
+                                    node.Attributes[1].Value = RectangleReferenceDevisX.Text;
+                                }
+                                if (node.Attributes[0].Value.Equals("rectangleReferenceDevisY"))
+                                {
+                                    node.Attributes[1].Value = RectangleReferenceDevisY.Text;
+                                }
+                                if (node.Attributes[0].Value.Equals("bandeauTableauDevisX"))
+                                {
+                                    node.Attributes[1].Value = BandeauTableauDevisX.Text;
+                                }
+                                if (node.Attributes[0].Value.Equals("bandeauTableauDevisY"))
+                                {
+                                    node.Attributes[1].Value = BandeauTableauDevisY.Text;
+                                }
+                                if (node.Attributes[0].Value.Equals("rectangleTotalDevisX"))
+                                {
+                                    node.Attributes[1].Value = RectangleTotalDevisX.Text;
+                                }
+                                if (node.Attributes[0].Value.Equals("rectangleTotalDevisY"))
+                                {
+                                    node.Attributes[1].Value = RectangleTotalDevisY.Text;
+                                }
+                                if (node.Attributes[0].Value.Equals("filigraneDevisX"))
+                                {
+                                    node.Attributes[1].Value = FiligraneDevisX.Text;
+                                }
+                                if (node.Attributes[0].Value.Equals("filigraneDevisY"))
+                                {
+                                    node.Attributes[1].Value = FiligraneDevisY.Text;
+                                }
                             
                             
                             }
