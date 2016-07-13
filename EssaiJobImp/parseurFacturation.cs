@@ -83,7 +83,7 @@ namespace Ireport_Rubis
                 float y = float.Parse(ConfigurationManager.AppSettings["HauteurLogoABCRFacture"]);
             
                 image6.ScaleAbsolute(x, y);
-                image6.SetAbsolutePosition(13, 715);
+                image6.SetAbsolutePosition(15, 760);
                 nouveauDocument.Add(image6);
 
              /* Image image7 = Image.GetInstance(ConfigurationManager.AppSettings["CheminCGV"]);
@@ -93,12 +93,12 @@ namespace Ireport_Rubis
                 nouveauDocument.Add(image7); */
        
                 
-                /*Image image5 = Image.GetInstance(ConfigurationManager.AppSettings["CheminPatternFondPageFacturation"]);
+                Image image5 = Image.GetInstance(ConfigurationManager.AppSettings["CheminPatternFondPageFacturation"]);
                 image5.Alignment = Image.UNDERLYING;
                 image5.ScaleAbsolute(PageSize.A4);
                 image5.ScalePercent(35, 36);
-                image5.SetAbsolutePosition(-8, -9);
-                nouveauDocument.Add(image5);*/
+                image5.SetAbsolutePosition(180,250);
+                nouveauDocument.Add(image5);
                 //-------------------------------------------------------------------------------------------------
                 //Encadré photo
                 PdfPCell celulleHauteGauche = new PdfPCell(new Phrase("\n\n\n"));
@@ -164,8 +164,9 @@ namespace Ireport_Rubis
                 //Tableau dans celulle bas gauche du tableau d'entete
                 PdfPCell celulleBasGauche = new PdfPCell();
                 Paragraph ptest = new Paragraph();
-                ptest.Add(new Phrase("\n\n"));
-                celulleBasGauche.AddElement(ptest);
+               ptest.Add(new Phrase("\n\n"));
+                //ptest.Add(new Phrase("\n"));
+               // celulleBasGauche.AddElement(ptest);
                 PdfPTable tabCell = new PdfPTable(3);
                 tabCell.TotalWidth = 230;
                 tabCell.LockedWidth = true;
@@ -182,6 +183,9 @@ namespace Ireport_Rubis
                 celulleBasGauche.AddElement(tabCell);
                 celulleBasGauche.Border = PdfPCell.NO_BORDER;
                 celulleBasGauche.Bottom = PdfPCell.ALIGN_BOTTOM;
+
+                
+
                 Paragraph pCell2Entete = new Paragraph();
               
                 int iEntete = 0;
@@ -198,6 +202,10 @@ namespace Ireport_Rubis
                 }
                 pCell2Entete.FirstLineIndent = 0;
                 celulleBasGauche.AddElement(pCell2Entete);
+
+                /*ici modif agencement 130716*/
+                celulleBasGauche.AddElement(ptest);
+
                 tableau.AddCell(celulleBasGauche);
 
                 //Adresse facturation
@@ -274,7 +282,7 @@ namespace Ireport_Rubis
                 table.AddCell(cellET8);
                 Image image3 = Image.GetInstance(ConfigurationManager.AppSettings["CheminPatternEnteteTableauFacture"]);
                 image3.Alignment = Image.UNDERLYING;
-                image3.SetAbsolutePosition(12.5f, 595);
+                image3.SetAbsolutePosition(12.5f, 598);
                 nouveauDocument.Add(image3);
 
 
@@ -992,10 +1000,10 @@ namespace Ireport_Rubis
 
              
 
-                //PAPILLON
-              // float[] largeursPapillon = { 55, 55 };
+               //PAPILLON
+               //float[] largeursPapillon = { 55, 55 };
                 
-              // PdfPTable tabPapillon = new PdfPTable(largeursPapillon);
+               //PdfPTable tabPapillon = new PdfPTable(largeursPapillon);
                PdfPTable tabPapillon = new PdfPTable(2);
                tabPapillon.TotalWidth = 570;
                tabPapillon.LockedWidth = true;
