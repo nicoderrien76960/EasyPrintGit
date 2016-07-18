@@ -115,13 +115,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccuseReception.cs" />
-    <Compile Include="BonLivraison.cs" />
-    <Compile Include="BonPréparation.cs" />
-    <Compile Include="CommandeFournisseur.cs" />
     <Compile Include="CurseurTemplate.cs" />
-    <Compile Include="Devis.cs" />
-    <Compile Include="EssaiUDP.cs" />
     <Compile Include="Facturation.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -138,53 +132,17 @@
     <Compile Include="GestionListeDoc.cs" />
     <Compile Include="Imprimante.cs" />
     <Compile Include="LogHelper.cs" />
-    <Compile Include="Mail.cs" />
-    <Compile Include="Parseur.cs" />
-    <Compile Include="ParseurAR.cs" />
-    <Compile Include="ParseurBL.cs" />
-    <Compile Include="ParseurBP.cs" />
-    <Compile Include="ParseurCF.cs" />
     <Compile Include="ParseurFacturation.cs" />
     <Compile Include="ParseurReleve.cs" />
     <Compile Include="ProfilImprimante.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Releve.cs" />
-    <Compile Include="UserControlAR.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControlAR.Designer.cs">
-      <DependentUpon>UserControlAR.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserControlBL.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControlBL.Designer.cs">
-      <DependentUpon>UserControlBL.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserControlBP.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControlBP.Designer.cs">
-      <DependentUpon>UserControlBP.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserControlCF.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControlCF.Designer.cs">
-      <DependentUpon>UserControlCF.cs</DependentUpon>
-    </Compile>
     <Compile Include="UserControlChemin.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControlChemin.Designer.cs">
       <DependentUpon>UserControlChemin.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserControlDevis.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControlDevis.Designer.cs">
-      <DependentUpon>UserControlDevis.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControlFacturation.cs">
       <SubType>UserControl</SubType>
@@ -204,12 +162,6 @@
     <Compile Include="UserControlImprimanteProfil.Designer.cs">
       <DependentUpon>UserControlImprimanteProfil.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControlMail.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControlMail.Designer.cs">
-      <DependentUpon>UserControlMail.cs</DependentUpon>
-    </Compile>
     <Compile Include="UserControlVariable.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -217,9 +169,10 @@
       <DependentUpon>UserControlVariable.cs</DependentUpon>
     </Compile>
     <None Include="Resources\logoDEVIS.png" />
-    <None Include="App.config">
+    <Content Include="App.config">
       <SubType>Designer</SubType>
-    </None>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\Sans titre.png" />
     <None Include="Resources\ABCR_LOGO_NON_ORCABISE.jpg" />
     <EmbeddedResource Include="Form1.resx">
@@ -238,42 +191,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Content Include="baliseConf.config">
+    <Content Include="ImprimanteConf.config">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="baliseConfBL.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="baliseConfBP.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="ImprimanteConf.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="baliseConfAR.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="baliseConfCF.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <EmbeddedResource Include="UserControlAR.resx">
-      <DependentUpon>UserControlAR.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControlBL.resx">
-      <DependentUpon>UserControlBL.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControlBP.resx">
-      <DependentUpon>UserControlBP.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControlCF.resx">
-      <DependentUpon>UserControlCF.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UserControlChemin.resx">
       <DependentUpon>UserControlChemin.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControlDevis.resx">
-      <DependentUpon>UserControlDevis.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControlFacturation.resx">
       <DependentUpon>UserControlFacturation.cs</DependentUpon>
@@ -284,37 +207,25 @@
     <EmbeddedResource Include="UserControlImprimanteProfil.resx">
       <DependentUpon>UserControlImprimanteProfil.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControlMail.resx">
-      <DependentUpon>UserControlMail.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UserControlVariable.resx">
       <DependentUpon>UserControlVariable.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="baliseConfFacturation.config">
+    <Content Include="baliseConfFacturation.config">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="baliseConfR.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="baliseConfR.config">
       <SubType>Designer</SubType>
-    </None>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="ClassDiagram1.cd">
       <SubType>Designer</SubType>
     </None>
     <None Include="EssaiJobImp_CléTemporaire.pfx" />
-    <Content Include="profilImpAR.config" />
-    <Content Include="profilImpBL.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="profilImpBP.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="profilImpCF.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="profilImpDev.config">
-      <SubType>Designer</SubType>
-    </Content>
     <None Include="EssaiJobImp_TemporaryKey.pfx" />
-    <None Include="ListeDocument.config" />
+    <Content Include="ListeDocument.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -324,7 +235,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="profilImpFacture.config" />
+    <Content Include="profilImpFacture.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="TemplateSetting.config">
       <SubType>Designer</SubType>
     </None>

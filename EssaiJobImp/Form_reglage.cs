@@ -38,50 +38,50 @@ namespace Ireport_Rubis
             UCI.dicoProfil = UCI.remplirLB();
         }
 
-        private void btnDevis_Click(object sender, EventArgs e)
+     /*   private void btnDevis_Click(object sender, EventArgs e)
         {
-            UserControlDevis UCD = new UserControlDevis();
+           // UserControlDevis UCD = new UserControlDevis();
             splitContainer1.Panel1.Controls.Clear();
             splitContainer1.Panel2.Controls.Clear();
             splitContainer1.Panel2Collapsed = true;
             splitContainer1.Panel1.Controls.Add(UCD);
-        }
+        }*/
 
-        private void btnAR_Click(object sender, EventArgs e)
+      /*  private void btnAR_Click(object sender, EventArgs e)
         {
             UserControlAR UCAR = new UserControlAR();
             splitContainer1.Panel1.Controls.Clear();
             splitContainer1.Panel2.Controls.Clear();
             splitContainer1.Panel2Collapsed = true;
             splitContainer1.Panel1.Controls.Add(UCAR);
-        }
+        }*/
 
-        private void btnBP_Click(object sender, EventArgs e)
+    /*    private void btnBP_Click(object sender, EventArgs e)
         {
-            UserControlBP UCBP = new UserControlBP();
+            //UserControlBP UCBP = new UserControlBP();
             splitContainer1.Panel1.Controls.Clear();
             splitContainer1.Panel2.Controls.Clear();
             splitContainer1.Panel2Collapsed = true;
             splitContainer1.Panel1.Controls.Add(UCBP);
-        }
+        }*/
 
-        private void btnCF_Click(object sender, EventArgs e)
+      /*  private void btnCF_Click(object sender, EventArgs e)
         {
-            UserControlCF UCCF = new UserControlCF();
+           // UserControlCF UCCF = new UserControlCF();
             splitContainer1.Panel1.Controls.Clear();
             splitContainer1.Panel2.Controls.Clear();
             splitContainer1.Panel2Collapsed = true;
             splitContainer1.Panel1.Controls.Add(UCCF);
-        }
+        }*/
 
-        private void btnBL_Click(object sender, EventArgs e)
+       /* private void btnBL_Click(object sender, EventArgs e)
         {
             UserControlBL UCBL = new UserControlBL();
             splitContainer1.Panel1.Controls.Clear();
             splitContainer1.Panel2.Controls.Clear();
             splitContainer1.Panel2Collapsed = true;
             splitContainer1.Panel1.Controls.Add(UCBL);
-        }
+        }*/
 
         private void btnFacturation_Click(object sender, EventArgs e)
         {
@@ -101,14 +101,14 @@ namespace Ireport_Rubis
             splitContainer1.Panel1.Controls.Add(UCC);
         }
 
-        private void btnMail_Click(object sender, EventArgs e)
+        /*private void btnMail_Click(object sender, EventArgs e)
         {
             UserControlMail UCM = new UserControlMail();
             splitContainer1.Panel1.Controls.Clear();
             splitContainer1.Panel2.Controls.Clear();
             splitContainer1.Panel2Collapsed = true;
             splitContainer1.Panel1.Controls.Add(UCM);
-        }
+        }*/
 
         private void btnVariable_Click(object sender, EventArgs e)
         {

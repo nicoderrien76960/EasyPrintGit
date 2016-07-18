@@ -19,16 +19,20 @@ namespace Ireport_Rubis
     {
         static System.Windows.Forms.Timer s_myTimer = new System.Windows.Forms.Timer();
         static System.Windows.Forms.Timer s_myTimer2 = new System.Windows.Forms.Timer();
-        static System.Windows.Forms.Timer s_myTimer3 = new System.Windows.Forms.Timer();
+       /* static System.Windows.Forms.Timer s_myTimer3 = new System.Windows.Forms.Timer();
         static System.Windows.Forms.Timer s_myTimer4 = new System.Windows.Forms.Timer();
         static System.Windows.Forms.Timer s_myTimer5 = new System.Windows.Forms.Timer();
-        static System.Windows.Forms.Timer s_myTimer6 = new System.Windows.Forms.Timer();
+        static System.Windows.Forms.Timer s_myTimer6 = new System.Windows.Forms.Timer();*/
+       
         static int s_myCounter = 0;
         static int s_myCounter2 = 0;
-        static int s_myCounter3 = 0;
+       
+    /*    static int s_myCounter3 = 0;
         static int s_myCounter4 = 0;
         static int s_myCounter5 = 0;
-        static int s_myCounter6 = 0;
+        static int s_myCounter6 = 0;*/
+
+
         int timer = 250; DateTime dureeF;
         Imprimante imprimante = new Imprimante();
         /*ND DEBUT 19 10 2015*/
@@ -51,6 +55,7 @@ namespace Ireport_Rubis
                 Timer1_Click(sender, e);
             }
         }
+        
         List<string> listeImp = new List<string>();                 //Liste d'imprimante
         /// <summary>
         /// Récupère une liste d'imprimante grace au fichier de configuration correspondant
@@ -78,13 +83,14 @@ namespace Ireport_Rubis
         /// Boucle infini qui permet la lecture des spools Windows toute les 250ms (paramètre modifiable)
         /// </summary>
         /// <param name="sender"></param>
+        /// 
         /// <param name="e"></param>
         public void s_myTimer_Tick(object sender, EventArgs e)
         {
             TimeSpan diffTemps = DateTime.Now - dureeF;
             s_myCounter++;
             textBox1.Clear();
-            textBox1.Text += ("Timer vaut " + s_myCounter + "   Imprimante: " + listeImp[0]) + Environment.NewLine;
+            textBox1.Text += ("Timer vaut " + s_myCounter + "   Imprimante1: " + listeImp[0]) + Environment.NewLine;
             tBdureeTimer.Clear();
             tBdureeTimer.Text += ("Le Timer fonctionne depuis :" + diffTemps.ToString());
             Imprimante imp1 = (Imprimante)imprimante.Clone();
@@ -102,13 +108,13 @@ namespace Ireport_Rubis
             }
             imprimante.setNbDoc(0);
         }
-        public void s_myTimer_Tick2(object sender, EventArgs e)
+      public void s_myTimer_Tick2(object sender, EventArgs e)
         {
             s_myCounter2++;
             textBox2.Clear();
             textBox2.Text += ("Timer vaut " + s_myCounter2 + "   Imprimante: " + listeImp[1]) + Environment.NewLine;
             Imprimante imp2 = (Imprimante)imprimante.Clone();
-            imprimante.lectureSpooler(listeImp[1]);
+            imprimante.lectureSpooler(listeImp[0]);
             if (s_myCounter2 == 10000)
             {
                 s_myCounter2 = 0;
@@ -122,7 +128,7 @@ namespace Ireport_Rubis
             }
             imprimante.setNbDoc(0);
         }
-        public void s_myTimer_Tick3(object sender, EventArgs e)
+       /* public void s_myTimer_Tick3(object sender, EventArgs e)
         {
             s_myCounter3++;
             textBox3.Clear();
@@ -141,8 +147,8 @@ namespace Ireport_Rubis
                 tbNbfichier.Text = tempo.ToString();
             }
             imprimante.setNbDoc(0);
-        }
-        public void s_myTimer_Tick4(object sender, EventArgs e)
+        }*/
+    /*    public void s_myTimer_Tick4(object sender, EventArgs e)
         {
             s_myCounter4++;
             textBox4.Clear();
@@ -161,8 +167,8 @@ namespace Ireport_Rubis
                 tbNbfichier.Text = tempo.ToString();
             }
             imprimante.setNbDoc(0);
-        }
-        public void s_myTimer_Tick5(object sender, EventArgs e)
+        }*/
+   /*     public void s_myTimer_Tick5(object sender, EventArgs e)
         {
             s_myCounter5++;
             textBox5.Clear();
@@ -180,8 +186,8 @@ namespace Ireport_Rubis
                 tbNbfichier.Text = tempo.ToString();
             }
             imprimante.setNbDoc(0);
-        }
-        public void s_myTimer_Tick6(object sender, EventArgs e)
+        }*/
+      /*  public void s_myTimer_Tick6(object sender, EventArgs e)
         {
             s_myCounter6++;
             textBox6.Clear();
@@ -200,30 +206,38 @@ namespace Ireport_Rubis
             }
             imprimante.setNbDoc(0);
         }
+        */
         private void Form1_Load(object sender, EventArgs e)
         {
         }
+
+
         private void boutonLectureJobs_Click(object sender, EventArgs e)
         {
             textBox1.Clear();
         }
-        private void boutonLectureSpooler_Click(object sender, EventArgs e)
+     
+        /*private void boutonLectureSpooler_Click(object sender, EventArgs e)
         {
             //lectureSpooler(nomIMP);
         }
         private void boutonSupJob_Click(object sender, EventArgs e)
         {
         }
+        */
         private void Timer1_Click(object sender, EventArgs e)
+       
         {
             dureeF = DateTime.Now;
             s_myTimer.Tick += new EventHandler(s_myTimer_Tick);
             s_myTimer.Interval = timer;
             s_myTimer.Start();
+
             s_myTimer2.Interval = timer;
             timer2(sender, e);
             s_myTimer2.Start();
-            s_myTimer3.Interval = timer;
+
+           /* s_myTimer3.Interval = timer;
             timer3(sender, e);
             s_myTimer3.Start();
             s_myTimer4.Interval = timer;
@@ -234,29 +248,35 @@ namespace Ireport_Rubis
             s_myTimer5.Start();
             s_myTimer6.Interval = timer;
             timer6(sender, e);
-            s_myTimer6.Start();
+            s_myTimer6.Start();*/
+
             //MessageBox.Show("Timer lancé.");
         }
+
+     
+
         private void timer2(object sender, EventArgs e)
         {
             s_myTimer2.Tick += new EventHandler(s_myTimer_Tick2);
         }
-        private void timer3(object sender, EventArgs e)
+     
+        /*private void timer3(object sender, EventArgs e)
         {
-            s_myTimer3.Tick += new EventHandler(s_myTimer_Tick3);
+          //  s_myTimer3.Tick += new EventHandler(s_myTimer_Tick3);
         }
         private void timer4(object sender, EventArgs e)
         {
-            s_myTimer4.Tick += new EventHandler(s_myTimer_Tick4);
+         //   s_myTimer4.Tick += new EventHandler(s_myTimer_Tick4);
         }
         private void timer5(object sender, EventArgs e)
         {
-            s_myTimer5.Tick += new EventHandler(s_myTimer_Tick5);
+          //  s_myTimer5.Tick += new EventHandler(s_myTimer_Tick5);
         }
         private void timer6(object sender, EventArgs e)
         {
-            s_myTimer6.Tick += new EventHandler(s_myTimer_Tick6);
+         //   s_myTimer6.Tick += new EventHandler(s_myTimer_Tick6);
         }
+         */
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             DialogResult réponse = MessageBox.Show("Voulez-vous vraiment quitter l'application ?", "Fermeture", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -282,7 +302,7 @@ namespace Ireport_Rubis
 
         }
 
-        private void btnPause_Click(object sender, EventArgs e)
+      /*  private void btnPause_Click(object sender, EventArgs e)
         {
             s_myTimer.Stop();
             s_myTimer2.Stop();
@@ -290,10 +310,10 @@ namespace Ireport_Rubis
             s_myTimer4.Stop();
             s_myTimer5.Stop();
             s_myTimer6.Stop();
-            btnReprise.Visible = true;
-        }
+           // btnReprise.Visible = true;
+        }*/
 
-        private void btnReprise_Click(object sender, EventArgs e)
+       /* private void btnReprise_Click(object sender, EventArgs e)
         {
             s_myTimer.Start();
             s_myTimer2.Start();
@@ -301,8 +321,8 @@ namespace Ireport_Rubis
             s_myTimer4.Start();
             s_myTimer5.Start();
             s_myTimer6.Start();
-            btnReprise.Visible = false;
-        }
+           // btnReprise.Visible = false;
+        }*/
       /*  private void btnStop_Click(object sender, EventArgs e)
         {
           
@@ -336,9 +356,7 @@ namespace Ireport_Rubis
             }
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
+      
 
-        }
     }
 }

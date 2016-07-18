@@ -731,7 +731,11 @@ namespace Ireport_Rubis
                         //Image image5 = Image.GetInstance("E:\\FiligraneAR.png");//Changer lien pattern
                       //  nouveauDocument.Add(image5);
                         nouveauDocument.Add(image6); 
-                        image3.SetAbsolutePosition(12.5f, 595);
+                        //image3.SetAbsolutePosition(12.5f, 595);
+
+                        image3.SetAbsolutePosition(12.5f, 601);
+                        
+                        
                         nouveauDocument.Add(image3);
                         //nouveauDocument.Add(image7); 
                         table.AddCell(cellET1); table.AddCell(cellET2); table.AddCell(cellET3); table.AddCell(cellET4); table.AddCell(cellET5); table.AddCell(cellET6); table.AddCell(cellET7); table.AddCell(cellET8);

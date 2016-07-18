@@ -28,7 +28,7 @@ namespace Ireport_Rubis
             }
         }
 
-        public UserControlBL UserControlBL
+     /*   public UserControlBL UserControlBL
         {
             get
             {
@@ -37,9 +37,9 @@ namespace Ireport_Rubis
             set
             {
             }
-        }
+        }*/
 
-        public UserControlAR UserControlAR
+       /* public UserControlAR UserControlAR
         {
             get
             {
@@ -48,7 +48,7 @@ namespace Ireport_Rubis
             set
             {
             }
-        }
+        }*/
 
         public UserControlFacturation UserControlFacturation
         {
@@ -61,7 +61,7 @@ namespace Ireport_Rubis
             }
         }
 
-        public UserControlDevis UserControlDevis
+        /*public UserControlDevis UserControlDevis
         {
             get
             {
@@ -70,9 +70,9 @@ namespace Ireport_Rubis
             set
             {
             }
-        }
+        }*/
 
-        public UserControlCF UserControlCF
+        /*public UserControlCF UserControlCF
         {
             get
             {
@@ -81,7 +81,7 @@ namespace Ireport_Rubis
             set
             {
             }
-        }
+        }*/
 
         public UserControlVariable UserControlVariable
         {
@@ -105,7 +105,7 @@ namespace Ireport_Rubis
             }
         }
 
-        public UserControlMail UserControlMail
+       /* public UserControlMail UserControlMail
         {
             get
             {
@@ -114,9 +114,9 @@ namespace Ireport_Rubis
             set
             {
             }
-        }
+        }*/
 
-        public UserControlBP UserControlBP
+      /*  public UserControlBP UserControlBP
         {
             get
             {
@@ -125,7 +125,7 @@ namespace Ireport_Rubis
             set
             {
             }
-        }
+        }*/
 
         internal GestionListeDoc GestionListeDoc
         {

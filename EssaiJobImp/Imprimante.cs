@@ -35,7 +35,7 @@ namespace Ireport_Rubis
                 listFichierSpool.Clear();// Je vide ma liste avant de débuter une nouvelle lecture
                 string[] files;
                 // pour avoir les noms des fichiers et sous-répertoires 
-                files = Directory.GetFiles("C:\\Windows\\System32\\spool\\PRINTERS", "*.SPL");//Repertoire du spool Windows
+                files = Directory.GetFiles("C:\\Windows\\System32\\spool\\PRINTERS\\IRAMLOW", "*.SPL");//Repertoire du spool Windows
                 PrintServer myPrintServer = new PrintServer();
                 PrintQueueCollection myPrintQueues = myPrintServer.GetPrintQueues();
                 bool supOk = false; string nomDoc = ""; string profil="";
@@ -53,7 +53,7 @@ namespace Ireport_Rubis
                                 actuelle = DateTime.Now.AddMilliseconds(-actuelle.Millisecond);
                                 string nom_spool = "";
                                 string nomFichier = System.IO.Path.GetFileName(files[i]);//Récuperation du nom du fichier lu
-                                string sourceFile = System.IO.Path.Combine(@"C:\Windows\System32\spool\PRINTERS", nomFichier);//C:\Windows\System32\spool\PRINTERS
+                                string sourceFile = System.IO.Path.Combine(@"C:\Windows\System32\spool\PRINTERS\IRAMLOW", nomFichier);//C:\Windows\System32\spool\PRINTERS
                                 string destFile = System.IO.Path.Combine(cheminDocFinaux+@"\Copie spool", nomFichier);
                                 string[] files2 = Directory.GetFiles(cheminDocFinaux+@"\Copie spool", "*SPL");//Tableau contenant les fichier SPL
                                 int file2count = files2.GetUpperBound(0) + 1;
@@ -81,9 +81,9 @@ namespace Ireport_Rubis
 
                                 //string patternLectFalse = "(%-12345X@PJL|\\210-SERVIMP|&l26A)";//Premier caractère qui apparait sur les documents en cours d'impression
                                 //PERMET DE SUPPRIMER LES DOCS NOM IMPRIMABLES RESTER DANS LE SPOOL
-                                string patternLectFalse = ConfigurationManager.AppSettings["RegexDocumentBloquer"].ToString(); //Premier caractère qui apparait sur les documents en cours d'impression
+                                    string patternLectFalse = ConfigurationManager.AppSettings["RegexDocumentBloquer"].ToString(); //Premier caractère qui apparait sur les documents en cours d'impression
 
-                                string sPattern = "<Spool>";
+                                    string sPattern = "<Spool>";
                                     string sPatternTypeDoc = "<Document_type>"; bool patternOK = true; bool patternOK2 = false; bool découpageOK = true; int controle = 0; int test = 0;
                                     string sPatternTypeDoc2 ="<Document type=\"DOC_CLIENT\" doc=\"FACTURE ";
                                     string sPatternTypeDoc3 = "<Document type=\"DOC_CLIENT\" doc=\"RELEVE\"";
@@ -188,30 +188,7 @@ namespace Ireport_Rubis
                                                 destFile = cheminDocFinaux + @"\Copie spool\tempo" + compteur + ".SPL";
                                                 switch (typeDoc.TrimStart())
                                                 {
-                                                    case "DEVIS":
-                                                        Devis dev = new Devis(); dev.lectureDevis(cheminDoc, profil);
-                                                        break;
-                                                    case "BORDEREAU DE LIVRAISON":
-                                                        BonLivraison BL = new BonLivraison(); BL.lectureBL(cheminDoc, profil);
-                                                        break;
-                                                    case "BON D'ENLEVEMENT":
-                                                        BonLivraison BL2 = new BonLivraison(); BL2.lectureBL(cheminDoc, profil);
-                                                        break;
-                                                    case "BON DE PREPARATION":
-                                                        BonPréparation BP = new BonPréparation(); BP.lectureBP(cheminDoc, profil);
-                                                        break;
-                                                    case "COMMANDE ADHERENT":
-                                                        AccuseReception AR = new AccuseReception(); AR.lectureAR(cheminDoc, profil);
-                                                        break;
-                                                    case "BON DE COMMANDE FOURNISSEUR":
-                                                        CommandeFournisseur CF = new CommandeFournisseur(); CF.lectureCF(cheminDoc, profil);
-                                                        break;
-                                                    case "RETOUR FOURNISSEUR":
-                                                        CommandeFournisseur rCF = new CommandeFournisseur(); rCF.lectureCF(cheminDoc, profil);
-                                                        break;
-                                                    case "AVOIR":
-                                                        BonLivraison BL3 = new BonLivraison(); BL3.lectureBL(cheminDoc, profil);
-                                                        break;
+                                                 
                                                     case "FACTURE":
                                                         Facturation FA = new Facturation(); FA.lectureFA(cheminDoc, profil);
                                                         break;
@@ -229,30 +206,7 @@ namespace Ireport_Rubis
                                         {
                                             switch (typeDoc.TrimStart())
                                             {
-                                                case "DEVIS":
-                                                    Devis dev = new Devis(); dev.lectureDevis(cheminDoc, profil);
-                                                    break;
-                                                case "BORDEREAU DE LIVRAISON":
-                                                    BonLivraison BL = new BonLivraison(); BL.lectureBL(cheminDoc, profil);
-                                                    break;
-                                                case "BON D'ENLEVEMENT":
-                                                    BonLivraison BL2 = new BonLivraison(); BL2.lectureBL(cheminDoc, profil);
-                                                    break;
-                                                case "BON DE PREPARATION":
-                                                    BonPréparation BP = new BonPréparation(); BP.lectureBP(cheminDoc, profil);
-                                                    break;
-                                                case "COMMANDE ADHERENT":
-                                                    AccuseReception AR = new AccuseReception(); AR.lectureAR(cheminDoc, profil);
-                                                    break;
-                                                case "BON DE COMMANDE FOURNISSEUR":
-                                                    CommandeFournisseur CF = new CommandeFournisseur(); CF.lectureCF(cheminDoc, profil);
-                                                    break;
-                                                case "RETOUR FOURNISSEUR":
-                                                    CommandeFournisseur rCF = new CommandeFournisseur(); rCF.lectureCF(cheminDoc, profil);
-                                                    break;
-                                                case "AVOIR":
-                                                    BonLivraison BL3 = new BonLivraison(); BL3.lectureBL(cheminDoc, profil);
-                                                    break;
+                                               
                                                 case "FACTURE":
                                                     Facturation FA = new Facturation(); FA.lectureFA(cheminDoc, profil);
                                                     break;
@@ -278,7 +232,7 @@ namespace Ireport_Rubis
                         //catch (KeyNotFoundException e)
                         {
                             //Inscrit dans un fichier les differente erreur
-                            if (System.Text.RegularExpressions.Regex.IsMatch(e.Message,"PRINTERS", System.Text.RegularExpressions.RegexOptions.IgnoreCase))
+                            if (System.Text.RegularExpressions.Regex.IsMatch(e.Message, "IRAMLOW", System.Text.RegularExpressions.RegexOptions.IgnoreCase))
                             { 
                                 // si accès refusé à printer on ne fait rien sinon
                                      //   LogHelper.WriteToFile(e.Message, "Imprimante " + nomDoc); à activer pour débug 
