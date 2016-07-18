@@ -52,7 +52,7 @@
             this.textBox1.Location = new System.Drawing.Point(240, 41);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(383, 51);
+            this.textBox1.Size = new System.Drawing.Size(492, 51);
             this.textBox1.TabIndex = 1;
             // 
             // label2
@@ -79,7 +79,7 @@
             // 
             this.textBox2.Location = new System.Drawing.Point(240, 111);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(383, 20);
+            this.textBox2.Size = new System.Drawing.Size(38, 20);
             this.textBox2.TabIndex = 4;
             // 
             // textBox3
@@ -104,7 +104,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Brown;
+            this.BackColor = System.Drawing.Color.LightGray;
             this.Controls.Add(this.btnValider);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);

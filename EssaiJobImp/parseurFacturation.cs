@@ -97,7 +97,12 @@ namespace Ireport_Rubis
                 image5.Alignment = Image.UNDERLYING;
                 image5.ScaleAbsolute(PageSize.A4);
                 image5.ScalePercent(35, 36);
-                image5.SetAbsolutePosition(180,250);
+                //image5.SetAbsolutePosition(180,250);
+
+                float x5 = float.Parse(ConfigurationManager.AppSettings["filigraneFactureX"]);
+                float y5 = float.Parse(ConfigurationManager.AppSettings["filigraneFactureY"]);
+                image5.SetAbsolutePosition(x5, y5);
+
                 nouveauDocument.Add(image5);
                 //-------------------------------------------------------------------------------------------------
                 //Encadré photo
@@ -729,13 +734,12 @@ namespace Ireport_Rubis
                         else { c = new Phrase(" ", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.ITALIC)); nouveauDocument.Add(c); }
                         nouveauDocument.Add(pPage);
                         //Image image5 = Image.GetInstance("E:\\FiligraneAR.png");//Changer lien pattern
-                      //  nouveauDocument.Add(image5);
+                        nouveauDocument.Add(image5);
                         nouveauDocument.Add(image6); 
                         //image3.SetAbsolutePosition(12.5f, 595);
 
                         image3.SetAbsolutePosition(12.5f, 601);
-                        
-                        
+                                              
                         nouveauDocument.Add(image3);
                         //nouveauDocument.Add(image7); 
                         table.AddCell(cellET1); table.AddCell(cellET2); table.AddCell(cellET3); table.AddCell(cellET4); table.AddCell(cellET5); table.AddCell(cellET6); table.AddCell(cellET7); table.AddCell(cellET8);
