@@ -17,9 +17,15 @@ namespace Ireport_Rubis
         private List<string> baliseEntete = new List<string>();                         //Liste correspondant aux balise lu dans le fichier de conf
         private List<string> baliseBody = new List<string>();
         private List<string> baliseFoot = new List<string>();
+        private List<string> baliseDEEE = new List<string>();
+
+
         private Dictionary<string, string> donneeEntete = new Dictionary<string, string>();         //Dictionnaire qui contienne les données du document
         private Dictionary<string, string> donneeBody = new Dictionary<string, string>();           //Chaque dictionnaire correspond à une parti du document (Ente, Corps, Pied)
-        private Dictionary<string, string> donneeFoot = new Dictionary<string, string>();
+                private Dictionary<string, string> donneeFoot = new Dictionary<string, string>();
+        private Dictionary<string, string> donneeDEEE = new Dictionary<string, string>();
+        
+        
         /// <summary>
         /// Méthode de chargement du fichier de config XML
         /// </summary>
@@ -29,11 +35,16 @@ namespace Ireport_Rubis
             XmlDocument unxml = new XmlDocument();                  //Un XmlDocument par parti (entete, corps, pied)
             XmlDocument unxmlBody = new XmlDocument();
             XmlDocument unxmlFoot = new XmlDocument();
+            
+
+            XmlDocument unxmlDEEE = new XmlDocument();
             try
             {
                 unxml.Load("baliseConf.config");                    //Le document de configuration des balises lu doit être découper en trois corps (Entete, Corps, Pied)
                 unxmlBody.Load("baliseConf.config");
                 unxmlFoot.Load("baliseConf.config");
+
+                unxmlDEEE.Load("baliseConf.config");
             }
             catch
             { 
@@ -41,6 +52,10 @@ namespace Ireport_Rubis
             XmlNode node = unxml.SelectSingleNode("//configuration/BaliseEntete");                  //On lit les noeuds contenu dans le document de conf
             XmlNode nodeBody = unxmlBody.SelectSingleNode("//configuration/BaliseBody");
             XmlNode nodeFoot = unxmlFoot.SelectSingleNode("//configuration/BaliseFoot");
+
+            XmlNode nodeDEEE = unxmlFoot.SelectSingleNode("//configuration/BaliseDEEE");
+
+
             foreach (XmlNode unNode in node)
             {
                 bal = (string)unNode.InnerXml;
@@ -56,6 +71,16 @@ namespace Ireport_Rubis
                 bal = (string)unNode.InnerXml;
                 baliseFoot.Add(bal);
             }
+
+
+
+            foreach (XmlNode unNode in nodeDEEE)
+            {
+                bal = (string)unNode.InnerXml;
+                baliseDEEE.Add(bal);
+            }
+
+
         }
         /// <summary>
         /// Lit le devis selon et compare les balises selon les demandes inscrite dans le fichier XML
@@ -81,6 +106,10 @@ namespace Ireport_Rubis
             XmlNode entete = root.SelectSingleNode("descendant::Document_entete");
             XmlNode lignes = root.SelectSingleNode("descendant::Lignes");
             XmlNode pied = root.SelectSingleNode("descendant::Document_pied");
+
+            XmlNode DEEE = root.SelectSingleNode("descendant::Recap_DEEE");
+
+
             foreach (XmlNode noeud in doc)
             {
                 foreach (string s in baliseEntete)                                              //--------------------------------
@@ -112,7 +141,7 @@ namespace Ireport_Rubis
                     }                                                                      //
                 }                                                                               //
             }                                                                                   //
-            int iBody = 0; int iFoot; int compt = 0;//                                          //-------------------------------------------------------------------------------------------
+            int iBody = 0; int iFoot; int compt = 0; int iDEEE;//                                          //-------------------------------------------------------------------------------------------
             foreach (XmlNode noeud in lignes)                                                   //
             {                                                                                   //
                 XmlNode nligne = noeud;                                                         //
@@ -169,7 +198,8 @@ namespace Ireport_Rubis
                         }
                     }                                                                           //
                 }                                                                               //
-            }                                                                                   //
+            }   
+            //
             iFoot = 0;                                                                          //-----------------------------------
             foreach (XmlNode noeud in pied)                                                     //-----------------------------------
             {                                                                                   //
@@ -182,6 +212,7 @@ namespace Ireport_Rubis
                         donneeFoot.Add(s, noeud.InnerText);                                     //
                     }                                                                           //
                 }                                                                               //              Parseur Pied
+              
                 if (npiedBase.Name == "Pied_base_tva")                                          //
                 {                                                                               //
                     foreach (XmlNode node in npiedBase)                                         //
@@ -203,8 +234,48 @@ namespace Ireport_Rubis
                     }                                                                           //
                 }                                                                               //------------------------------------
             }
+
+
+
+
+
+
+            if (DEEE != null)
+            {
+                iDEEE = 0;                                                                          //-----------------------------------
+                foreach (XmlNode noeud in DEEE)                                                     //-----------------------------------
+                {                                                                                   //
+                    XmlNode nDEEE = noeud;                                                      //
+                    iDEEE++;
+
+                    //
+
+                    foreach (string s in baliseDEEE)                                                //
+                    {                                                                               //
+                        if (noeud.Name == s)                                                        //
+                        {                                                                           //
+                            donneeDEEE.Add(s, noeud.InnerText);                                     //
+                        }                                                                           //
+                    }                                                                               //              Parseur ecomob
+
+                    //------------------------------------
+                }
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+
             string nomDoc = donneeEntete["Document_numero"];
-            Parseur p = new Parseur(donneeEntete, donneeBody, donneeFoot, iBody, iFoot, nomDoc, profil);
+            Parseur p = new Parseur(donneeDEEE,donneeEntete, donneeBody, donneeFoot, iBody, iFoot, nomDoc, profil);
             //------------------------------------------------------------------------------------------------
             p.miseEnForm("Devis");                               //Mise en forme pdf des données reçu
             //------------------------------------------------------------------------------------------------

@@ -26,11 +26,31 @@ namespace Ireport_Rubis
             tBD6.Text = dicoAR["Dimension6"];
             tBD7.Text = dicoAR["Dimension7"];
             tBD8.Text = dicoAR["Dimension8"];
+
+
             textBox1.Text = ConfigurationManager.AppSettings["CheminLogoABCR"];
             textBox2.Text = ConfigurationManager.AppSettings["CheminPatternHautDroiteBp"];
             textBox3.Text = ConfigurationManager.AppSettings["CheminPatternTableau"];
             textBox4.Text = ConfigurationManager.AppSettings["CheminFilligraneAr"];
             textBox5.Text = ConfigurationManager.AppSettings["CheminPatternTotBl"];
+
+
+
+            /*    <add key="CheminLogoABCR_AR" value="C:\ServeurImp\logoAR.png" />
+    <add key="CheminPatternHautDroiteAR" value="C:\ServeurImp\EssaiePatternHautDroiteBP.jpg" />
+    <add key="LargeurLogoABCR_AR" value="200" />
+    <add key="HauteurLogoABCR_AR" value="60" />
+    <add key="bandeauTableauARX" value="20"/>
+    <add key="bandeauTableauARY" value="588"/>
+    <add key="rectangleReferenceARX" value="325"/>
+    <add key="rectangleReferenceARY" value="755"/>
+    <add key="rectangleTotalARX" value="385"/>
+    <add key="rectangleTotalARY" value="105"/>
+    <add key="filigraneARX" value="185"/>
+    <add key="filigraneARY" value="250"/>*/
+
+
+
         }
         private void btnValider_Click(object sender, EventArgs e)
         {
@@ -44,6 +64,11 @@ namespace Ireport_Rubis
                 curseur.modifier("AR", "Dimension6", tBD6.Text);
                 curseur.modifier("AR", "Dimension7", tBD7.Text);
                 curseur.modifier("AR", "Dimension8", tBD8.Text);
+
+
+
+
+
                 MessageBox.Show("Modification effectuée");
             }
             else { MessageBox.Show("Les valeurs entrée dépasse la somme total de 110ppp"); }

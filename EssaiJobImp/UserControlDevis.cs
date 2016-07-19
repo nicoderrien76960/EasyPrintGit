@@ -28,6 +28,7 @@ namespace Ireport_Rubis
             tBD7.Text = dicodevis["Dimension7"];
             tBD8.Text = dicodevis["Dimension8"];
             tBD9.Text = dicodevis["Dimension9"];
+
             textBox1.Text = ConfigurationManager.AppSettings["CheminLogoABCR_DEVIS"];
             textBox2.Text = ConfigurationManager.AppSettings["CheminPatternHautDroiteDevis"];
             textBox3.Text = ConfigurationManager.AppSettings["CheminPatternTableau"];

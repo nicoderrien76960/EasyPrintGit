@@ -24,13 +24,18 @@ namespace Ireport_Rubis
         private Dictionary<string, string> donneEntete;
         private Dictionary<string, string> donneeBody;
         private Dictionary<string, string> donneeFoot;
+        private Dictionary<string, string> donneeDEEE;
         private Dictionary<string, string> valeurTemplate;
         int iBody; int iFoot; string nomDoc; string unProfil;
-        public Parseur(Dictionary<string, string>donneeEntete, Dictionary<string, string>donneeBody, Dictionary<string,string>donneeFoot, int iBody, int iFoot, string nomDoc, string profil)
+        string recapD3E = "vide";
+        public Parseur(Dictionary<string, string>donneeDEEE,Dictionary<string, string>donneeEntete, Dictionary<string, string>donneeBody, Dictionary<string,string>donneeFoot, int iBody, int iFoot, string nomDoc, string profil)
         {
             this.donneEntete = donneeEntete;
             this.donneeBody = donneeBody;           //Constructeur qui récupère les données de l'objet qui l'appel
             this.donneeFoot = donneeFoot;
+
+            this.donneeDEEE = donneeDEEE;
+
             this.iBody = iBody;
             this.iFoot = iFoot;
             this.nomDoc = nomDoc;
@@ -38,6 +43,8 @@ namespace Ireport_Rubis
         }
         public void miseEnForm(string typeDoc)
         {
+           
+            
             string cheminDocFinaux = ConfigurationManager.AppSettings["CheminDocFinaux"].ToString();
             string cheminRessources= ConfigurationManager.AppSettings["CheminRessources"].ToString();
             string chemin = cheminDocFinaux+"\\DocFinaux\\DEVIS\\DEVIS_" + nomDoc + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf";
@@ -273,16 +280,49 @@ namespace Ireport_Rubis
                     table.AddCell(cell6);
                     PdfPCell cell7 = new PdfPCell(new Phrase(donneeBody["Art_remise1" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell7.Border = PdfPCell.NO_BORDER; cell7.Border += PdfPCell.RIGHT_BORDER; cell7.Border += PdfPCell.LEFT_BORDER;
                     table.AddCell(cell7);
+                   
                     if (donneeBody["Art_prinet"+i]!="")
                     {
-                        PdfPCell cell8 = new PdfPCell(new Phrase(double.Parse(donneeBody["Art_prinet" + i]).ToString("N2") + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell8.Border = PdfPCell.NO_BORDER; cell8.Border += PdfPCell.RIGHT_BORDER; cell8.Border += PdfPCell.LEFT_BORDER;
-                        table.AddCell(cell8);
+
+                        try {
+
+
+                            if( donneeBody["Info_type" + i + "bis"] == "D3E") //ecotaxe
+                            {
+                                recapD3E ="D3E";
+                            
+                            }
+                        }
+                        catch {
+
+                            recapD3E = "vise";
+                        }
+
+
+
+
+
+                        if (recapD3E == "D3E") //ecotaxe
+                        {
+                            PdfPCell cell8 = new PdfPCell(new Phrase(double.Parse(donneeBody["Art_prinet" + i]).ToString("N2") + " +eco\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell8.Border = PdfPCell.NO_BORDER; cell8.Border += PdfPCell.RIGHT_BORDER; cell8.Border += PdfPCell.LEFT_BORDER;
+                            table.AddCell(cell8);
+                        }
+                        else {
+                            PdfPCell cell8 = new PdfPCell(new Phrase(double.Parse(donneeBody["Art_prinet" + i]).ToString("N2") + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell8.Border = PdfPCell.NO_BORDER; cell8.Border += PdfPCell.RIGHT_BORDER; cell8.Border += PdfPCell.LEFT_BORDER;
+
+                            table.AddCell(cell8);
+                        }
+                        
+                        
+                        
                     }
                     else
                     {
                         PdfPCell cell8 = new PdfPCell(new Phrase(donneeBody["Art_prinet" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell8.Border = PdfPCell.NO_BORDER; cell8.Border += PdfPCell.RIGHT_BORDER; cell8.Border += PdfPCell.LEFT_BORDER;
                         table.AddCell(cell8);
                     }
+
+
                     PdfPCell cell9 = new PdfPCell(new Phrase(donneeBody["Art_monht" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell9.Border = PdfPCell.NO_BORDER; cell9.Border += PdfPCell.RIGHT_BORDER; cell9.Border += PdfPCell.LEFT_BORDER;
                     table.AddCell(cell9);
                     PdfPCell cell10 = new PdfPCell(new Phrase("0"+donneeBody["Art_tva_code" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell10.Border = PdfPCell.NO_BORDER; cell10.Border += PdfPCell.RIGHT_BORDER; cell10.Border += PdfPCell.LEFT_BORDER;
@@ -412,6 +452,8 @@ namespace Ireport_Rubis
             }                                               //-------------------------------------------------------------------
             if (i > iBody)
             {
+               
+                
                 PdfPCell cellFin = new PdfPCell(new Phrase(" "));
                 PdfPCell cellBlanche = new PdfPCell(new Phrase(" "));
                 PdfPCell cellBlancheD = new PdfPCell(new Phrase(" "));
@@ -431,7 +473,20 @@ namespace Ireport_Rubis
                 table.AddCell(cellBlanche); table.AddCell(cellBlanche); table.AddCell(cellBlanche); table.AddCell(cellBlanche); table.AddCell(cellBlanche); table.AddCell(cellBlanche); table.AddCell(cellBlanche); table.AddCell(cellBlanche); table.AddCell(cellBlancheD);
                 table.AddCell(cellFin);
             }
-            nouveauDocument.Add(table);	                                                                                       // Constitution tableau pied de page
+
+           
+
+            nouveauDocument.Add(table);
+
+
+
+
+           
+         // Constitution tableau pied de page
+         
+            
+            
+            
             PdfPTable tableauPied = new PdfPTable(3);
             tableauPied.TotalWidth = 555;
             tableauPied.LockedWidth = true;
@@ -442,15 +497,34 @@ namespace Ireport_Rubis
             {
                 if (System.Text.RegularExpressions.Regex.IsMatch(entry.Value, "TVA", System.Text.RegularExpressions.RegexOptions.IgnoreCase))
                 {
-                    pTVA.Add(new Phrase("\nTVA "+donneeFoot.ElementAt(iF-1).Value+" = "+ entry.Value,FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD)));
+                    pTVA.Add(new Phrase("\n\nTVA "+donneeFoot.ElementAt(iF-1).Value+" = "+ entry.Value,FontFactory.GetFont(FontFactory.HELVETICA, 6, Font.ITALIC)));
                 }
                 iF++;
             }
+
+            /*------------------Ecotaxe----------------------*/
+            if (recapD3E == "D3E")
+            {
+                pTVA.Add(new Phrase("\n+eco Article soumis à écotaxe : " + donneeDEEE["DEEE_qte"] + " x " + donneeDEEE["DEEE_prix"] + " = " + donneeDEEE["DEEE_montant"] + "", FontFactory.GetFont(FontFactory.HELVETICA, 6, Font.ITALIC)));
+            }
+            /*-------------------------------------------*/
+
+
+        
+
+
+
             PdfPCell cellulePied = new PdfPCell(pTVA);
             cellulePied.Colspan = 2;
             cellulePied.Border = PdfPCell.NO_BORDER;
             tableauPied.AddCell(cellulePied);
+
+          
+
+
+
             nouveauDocument.Add(image4);
+          
 
             PdfPTable tableauTot = new PdfPTable(1);
             PdfPCell cellTTot = new PdfPCell(new Phrase("Total HT : " + donneeFoot["Base_tva_mht"] + " €", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cellTTot.Border = PdfPCell.NO_BORDER; cellTTot.Border = PdfPCell.BOTTOM_BORDER;
@@ -462,8 +536,20 @@ namespace Ireport_Rubis
             PdfPCell cellTot = new PdfPCell(tableauTot);
             cellTot.Border = PdfPCell.NO_BORDER;
             tableauPied.AddCell(cellTot);
+
+
+
+
             nouveauDocument.Add(tableauPied);
+
+          
+
             Phrase maPhrase = new Phrase();
+
+
+           
+
+
             maPhrase.Add(new Chunk("\nBon pour accord ", FontFactory.GetFont(FontFactory.HELVETICA,9,Font.BOLD)));
             maPhrase.Add(new Chunk("\n                 Fait à:                                le:                              Signature", FontFactory.GetFont(FontFactory.HELVETICA, 8)));
             nouveauDocument.Add(maPhrase);
@@ -473,7 +559,8 @@ namespace Ireport_Rubis
                 nouveauDocument.Add(PageFinal);
             }
             nouveauDocument.Close();
-            //Copie Doc dans GED
+
+            //----------------------------------------------------------------Copie Doc dans GED
             try
             {
                 String connectionString = ConfigurationManager.AppSettings["ChaineDeConnexionBase"];
@@ -498,7 +585,9 @@ namespace Ireport_Rubis
                     System.IO.File.Copy(chemin, ConfigurationManager.AppSettings["cheminGED"] + "\\" + donneEntete["Client_code"] + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\Devis\\" + "\\DEVIS_" + nomDoc + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf");
                 }
             }
-            catch { }
+            catch { 
+            
+            }
            //--------------------------------------------------------FIN COPIE----------------------------------------------------------------------------------------------------------
            int nbImp = 0; int nbImpOK = 0;  
                 string[] printer = new string[20]; // tableau qui contient les imprimantes du profil d'impression

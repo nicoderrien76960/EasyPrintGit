@@ -182,7 +182,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(282, 33);
             this.label2.TabIndex = 20;
-            this.label2.Text = "Ireport Rubis V 2.1";
+            this.label2.Text = "Ireport Rubis V 3.0";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // btnPause
