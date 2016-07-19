@@ -299,9 +299,6 @@ namespace Ireport_Rubis
                         }
 
 
-
-
-
                         if (recapD3E == "D3E") //ecotaxe
                         {
                             PdfPCell cell8 = new PdfPCell(new Phrase(double.Parse(donneeBody["Art_prinet" + i]).ToString("N2") + " +eco\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell8.Border = PdfPCell.NO_BORDER; cell8.Border += PdfPCell.RIGHT_BORDER; cell8.Border += PdfPCell.LEFT_BORDER;
