@@ -89,8 +89,11 @@ namespace Ireport_Rubis
         {
             TimeSpan diffTemps = DateTime.Now - dureeF;
             s_myCounter++;
-            textBox1.Clear();
-            textBox1.Text += ("Timer vaut " + s_myCounter + "   Imprimante1: " + listeImp[0]) + Environment.NewLine;
+          /*  textBox1.Clear();
+            textBox1.Text += ("Timer vaut " + s_myCounter + "   Imprimante1: " + listeImp[0]) + Environment.NewLine;*/
+
+            LABELimprimante0.Text = ("   Imprimante LPD0: " + listeImp[0] + " - Cycles :" + s_myCounter  ) + Environment.NewLine;
+            
             tBdureeTimer.Clear();
             tBdureeTimer.Text += ("Le Timer fonctionne depuis :" + diffTemps.ToString());
             Imprimante imp1 = (Imprimante)imprimante.Clone();
@@ -111,8 +114,11 @@ namespace Ireport_Rubis
       public void s_myTimer_Tick2(object sender, EventArgs e)
         {
             s_myCounter2++;
-            textBox2.Clear();
-            textBox2.Text += ("Timer vaut " + s_myCounter2 + "   Imprimante: " + listeImp[1]) + Environment.NewLine;
+          /*  textBox2.Clear();
+            textBox2.Text += ("Timer vaut " + s_myCounter2 + "   Imprimante: " + listeImp[1]) + Environment.NewLine;*/
+
+            LABELimprimante1.Text = ("   Imprimante LPD1: " + listeImp[1] + " - Cycles :" + s_myCounter2) + Environment.NewLine;
+
             Imprimante imp2 = (Imprimante)imprimante.Clone();
             imprimante.lectureSpooler(listeImp[0]);
             if (s_myCounter2 == 10000)
@@ -214,7 +220,7 @@ namespace Ireport_Rubis
 
         private void boutonLectureJobs_Click(object sender, EventArgs e)
         {
-            textBox1.Clear();
+           // textBox1.Clear();
         }
      
         /*private void boutonLectureSpooler_Click(object sender, EventArgs e)
