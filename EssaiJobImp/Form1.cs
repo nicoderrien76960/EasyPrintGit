@@ -31,6 +31,7 @@ namespace Ireport_Rubis
         static int s_myCounter6 = 0;
         int timer = 250; DateTime dureeF;
         Imprimante imprimante = new Imprimante();
+      
         /*ND DEBUT 19 10 2015*/
         object sender ; 
         EventArgs e  ;
@@ -49,15 +50,24 @@ namespace Ireport_Rubis
             if ("true"== ConfigurationManager.AppSettings["AutoLoad"])
             {
                 Timer1_Click(sender, e);
+                dossierSpool.Text = "Dossier Spool : "+ConfigurationManager.AppSettings["DossierSpoolIRAM0105"];
+                HELP.Text += "Aide au Pramètrage :";
+                HELP.Text += "\r\n\r\nLes imprimantes IRAM01, IRAM0101, IRAM0102, IRAM0103, IRAM0104 et IRAM0105, doivent avoir le dossier Spool ci-dessus avec les droits en écriture.";
+                HELP.Text += "\r\n\r\nIl faut renseigner le chemin des imprimante LPD dans la base de registre sous :";
+                HELP.Text += "\r\n[HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Print\\Printers\\IRAM0xxx]";
+                HELP.Text += "\r\n\r\nConfig Imprimante windows : LPT1 -> Généric/Text only -> nom de l'imprimante IRAM0xxxx ";
+                HELP.Text += "\r\n\r\n! Ne pas oublier d'installer le service d'impression LPD dans ajout/suppression de programme-> activer des fonctionnalités !";
             }
         }
         List<string> listeImp = new List<string>();                 //Liste d'imprimante
+
         /// <summary>
         /// Récupère une liste d'imprimante grace au fichier de configuration correspondant
         /// </summary>
         public void chargementXML()
         {
             string imp;
+
             XmlDocument unxml = new XmlDocument();
             try
             {
@@ -79,12 +89,14 @@ namespace Ireport_Rubis
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        
         public void s_myTimer_Tick(object sender, EventArgs e)
         {
             TimeSpan diffTemps = DateTime.Now - dureeF;
             s_myCounter++;
-            textBox1.Clear();
-            textBox1.Text += ("Timer vaut " + s_myCounter + "   Imprimante: " + listeImp[0]) + Environment.NewLine;
+
+            LABELimprimante1.Text = ("Imprimante LPD1: " + listeImp[0] + " - Cycles : " + s_myCounter) + Environment.NewLine;
+
             tBdureeTimer.Clear();
             tBdureeTimer.Text += ("Le Timer fonctionne depuis :" + diffTemps.ToString());
             Imprimante imp1 = (Imprimante)imprimante.Clone();
@@ -102,11 +114,13 @@ namespace Ireport_Rubis
             }
             imprimante.setNbDoc(0);
         }
+
+
         public void s_myTimer_Tick2(object sender, EventArgs e)
         {
             s_myCounter2++;
-            textBox2.Clear();
-            textBox2.Text += ("Timer vaut " + s_myCounter2 + "   Imprimante: " + listeImp[1]) + Environment.NewLine;
+            LABELimprimante2.Text = ("Imprimante LPD2: " + listeImp[1] + " - Cycles : " + s_myCounter2) + Environment.NewLine;
+
             Imprimante imp2 = (Imprimante)imprimante.Clone();
             imprimante.lectureSpooler(listeImp[1]);
             if (s_myCounter2 == 10000)
@@ -122,11 +136,16 @@ namespace Ireport_Rubis
             }
             imprimante.setNbDoc(0);
         }
+
+
+
+
         public void s_myTimer_Tick3(object sender, EventArgs e)
         {
             s_myCounter3++;
-            textBox3.Clear();
-            textBox3.Text += ("Timer vaut " + s_myCounter3 + "   Imprimante: " + listeImp[2]) + Environment.NewLine;
+
+            LABELimprimante3.Text = ("Imprimante LPD3: " + listeImp[2] + " - Cycles : " + s_myCounter3) + Environment.NewLine;
+
             Imprimante imp3 = (Imprimante)imprimante.Clone();
             imprimante.lectureSpooler(listeImp[2]);
             if (s_myCounter3 == 10000)
@@ -142,11 +161,11 @@ namespace Ireport_Rubis
             }
             imprimante.setNbDoc(0);
         }
+
         public void s_myTimer_Tick4(object sender, EventArgs e)
         {
             s_myCounter4++;
-            textBox4.Clear();
-            textBox4.Text += ("Timer vaut " + s_myCounter4 + "    Imprimante: " + listeImp[3]) + Environment.NewLine;
+            LABELimprimante4.Text = ("Imprimante LPD4: " + listeImp[3] + " - Cycles : " + s_myCounter4) + Environment.NewLine;
             Imprimante imp4 = (Imprimante)imprimante.Clone();
             imprimante.lectureSpooler(listeImp[3]);
             if (s_myCounter4 == 10000)
@@ -162,11 +181,11 @@ namespace Ireport_Rubis
             }
             imprimante.setNbDoc(0);
         }
+
         public void s_myTimer_Tick5(object sender, EventArgs e)
         {
             s_myCounter5++;
-            textBox5.Clear();
-            textBox5.Text += ("Timer vaut " + s_myCounter5 + "    Imprimante: " + listeImp[4]) + Environment.NewLine;
+            LABELimprimante5.Text = ("Imprimante LPD5: " + listeImp[4] + " - Cycles : " + s_myCounter5) + Environment.NewLine;
             imprimante.lectureSpooler(listeImp[4]);
             if (s_myCounter5 == 10000)
             {
@@ -181,11 +200,11 @@ namespace Ireport_Rubis
             }
             imprimante.setNbDoc(0);
         }
+
         public void s_myTimer_Tick6(object sender, EventArgs e)
         {
             s_myCounter6++;
-            textBox6.Clear();
-            textBox6.Text += ("Timer vaut " + s_myCounter6 + "    Imprimante: " + listeImp[5]) + Environment.NewLine;
+            LABELimprimante6.Text = ("Imprimante LPD6: " + listeImp[5] + " - Cycles : " + s_myCounter6) + Environment.NewLine;
             imprimante.lectureSpooler(listeImp[5]);
             if (s_myCounter6 == 10000)
             {
@@ -200,12 +219,14 @@ namespace Ireport_Rubis
             }
             imprimante.setNbDoc(0);
         }
+
         private void Form1_Load(object sender, EventArgs e)
         {
+
         }
         private void boutonLectureJobs_Click(object sender, EventArgs e)
         {
-            textBox1.Clear();
+           // textBox1.Clear();
         }
         private void boutonLectureSpooler_Click(object sender, EventArgs e)
         {
@@ -308,11 +329,7 @@ namespace Ireport_Rubis
           
         }*/
 
-      /*  private void button1_Click(object sender, EventArgs e)
-        {
-           EssaiUDP UDP = new EssaiUDP();
-            UDP.Lancer();
-        }*/
+     
 
         internal Imprimante Imprimante
         {
@@ -337,6 +354,16 @@ namespace Ireport_Rubis
         }
 
         private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }

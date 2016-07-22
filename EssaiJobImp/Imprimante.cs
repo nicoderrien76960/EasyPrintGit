@@ -35,8 +35,10 @@ namespace Ireport_Rubis
                 listFichierSpool.Clear();// Je vide ma liste avant de débuter une nouvelle lecture
                 string[] files;
                 // pour avoir les noms des fichiers et sous-répertoires 
-                files = Directory.GetFiles("C:\\Windows\\System32\\spool\\PRINTERS", "*.SPL");//Repertoire du spool Windows
-                PrintServer myPrintServer = new PrintServer();
+              //  files = Directory.GetFiles("C:\\Windows\\System32\\spool\\PRINTERS", "*.SPL");//Repertoire du spool Windows
+                files = Directory.GetFiles(ConfigurationManager.AppSettings["DossierSpoolIRAM0105"].ToString(), "*.SPL");//Repertoire du spool Windows
+    
+            PrintServer myPrintServer = new PrintServer();
                 PrintQueueCollection myPrintQueues = myPrintServer.GetPrintQueues();
                 bool supOk = false; string nomDoc = ""; string profil="";
                 foreach (PrintQueue pq in myPrintQueues)//Analyse du spool du pc (Dossier Windows\System32\spool\PRINTERS)
@@ -53,7 +55,7 @@ namespace Ireport_Rubis
                                 actuelle = DateTime.Now.AddMilliseconds(-actuelle.Millisecond);
                                 string nom_spool = "";
                                 string nomFichier = System.IO.Path.GetFileName(files[i]);//Récuperation du nom du fichier lu
-                                string sourceFile = System.IO.Path.Combine(@"C:\Windows\System32\spool\PRINTERS", nomFichier);//C:\Windows\System32\spool\PRINTERS
+                                string sourceFile = System.IO.Path.Combine(@ConfigurationManager.AppSettings["DossierSpoolIRAM0105"].ToString(), nomFichier);//C:\Windows\System32\spool\PRINTERS
                                 string destFile = System.IO.Path.Combine(cheminDocFinaux+@"\Copie spool", nomFichier);
                                 string[] files2 = Directory.GetFiles(cheminDocFinaux+@"\Copie spool", "*SPL");//Tableau contenant les fichier SPL
                                 int file2count = files2.GetUpperBound(0) + 1;

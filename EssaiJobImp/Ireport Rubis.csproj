@@ -121,7 +121,6 @@
     <Compile Include="CommandeFournisseur.cs" />
     <Compile Include="CurseurTemplate.cs" />
     <Compile Include="Devis.cs" />
-    <Compile Include="EssaiUDP.cs" />
     <Compile Include="Facturation.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -217,9 +216,10 @@
       <DependentUpon>UserControlVariable.cs</DependentUpon>
     </Compile>
     <None Include="Resources\logoDEVIS.png" />
-    <None Include="App.config">
+    <Content Include="App.config">
       <SubType>Designer</SubType>
-    </None>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\Sans titre.png" />
     <None Include="Resources\ABCR_LOGO_NON_ORCABISE.jpg" />
     <EmbeddedResource Include="Form1.resx">
@@ -244,18 +244,23 @@
     </Content>
     <Content Include="baliseConfBL.config">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="baliseConfBP.config">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ImprimanteConf.config">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="baliseConfAR.config">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="baliseConfCF.config">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="UserControlAR.resx">
       <DependentUpon>UserControlAR.cs</DependentUpon>
@@ -292,29 +297,39 @@
     </EmbeddedResource>
     <None Include="baliseConfFacturation.config">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="baliseConfR.config">
+    <Content Include="baliseConfR.config">
       <SubType>Designer</SubType>
-    </None>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="ClassDiagram1.cd">
       <SubType>Designer</SubType>
     </None>
     <None Include="EssaiJobImp_CléTemporaire.pfx" />
-    <Content Include="profilImpAR.config" />
+    <Content Include="profilImpAR.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="profilImpBL.config">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="profilImpBP.config">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="profilImpCF.config">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="profilImpDev.config">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="EssaiJobImp_TemporaryKey.pfx" />
-    <None Include="ListeDocument.config" />
+    <Content Include="ListeDocument.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -324,7 +339,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="profilImpFacture.config" />
+    <Content Include="profilImpFacture.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="TemplateSetting.config">
       <SubType>Designer</SubType>
     </None>
