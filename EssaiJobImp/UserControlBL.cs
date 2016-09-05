@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
 
-namespace EssaiJobImp
+namespace Ireport_Rubis
 {
     public partial class UserControlBL : UserControl
     {
@@ -167,6 +167,11 @@ namespace EssaiJobImp
                     return;
                 }
             }
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
