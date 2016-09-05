@@ -7,14 +7,14 @@
     <ProjectGuid>{090E05D9-9278-429D-B5A6-5935D3CC1C46}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EssaiJobImp</RootNamespace>
-    <AssemblyName>EssaiJobImp</AssemblyName>
+    <RootNamespace>Ireport_Rubis</RootNamespace>
+    <AssemblyName>Ireport_Rubis</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
-    <PublishUrl>E:\CompilationAppli\EasyPrint\</PublishUrl>
+    <PublishUrl>D:\CompilationAppli\EasyPrint\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -24,8 +24,13 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>33</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <TargetCulture>fr</TargetCulture>
+    <ProductName>Ireport Rubis</ProductName>
+    <PublisherName>ABCR</PublisherName>
+    <SuiteName>Ireport Rubis</SuiteName>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>36</ApplicationRevision>
+    <ApplicationVersion>2.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -80,7 +85,7 @@
       <HintPath>..\..\AxInterop.AcroPDFLib.dll</HintPath>
     </Reference>
     <Reference Include="Ghostscript.NET">
-      <HintPath>..\..\..\Sources Dev\Librairie\Ghostscript.NET.dll</HintPath>
+      <HintPath>bin\Debug\Ghostscript.NET.dll</HintPath>
     </Reference>
     <Reference Include="IBM.Data.DB2.iSeries, Version=12.0.0.0, Culture=neutral, PublicKeyToken=9cdb2ebfb1f93a26, processorArchitecture=MSIL" />
     <Reference Include="itextsharp">
@@ -91,7 +96,7 @@
       <HintPath>..\..\..\Sources Dev\Librairie\PdfSharp.Xps.dll</HintPath>
     </Reference>
     <Reference Include="PrinterForce">
-      <HintPath>..\..\PrinterForce.dll</HintPath>
+      <HintPath>bin\Debug\PrinterForce.dll</HintPath>
     </Reference>
     <Reference Include="ReachFramework" />
     <Reference Include="System" />
@@ -116,7 +121,6 @@
     <Compile Include="CommandeFournisseur.cs" />
     <Compile Include="CurseurTemplate.cs" />
     <Compile Include="Devis.cs" />
-    <Compile Include="EssaiUDP.cs" />
     <Compile Include="Facturation.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -211,7 +215,11 @@
     <Compile Include="UserControlVariable.Designer.cs">
       <DependentUpon>UserControlVariable.cs</DependentUpon>
     </Compile>
-    <None Include="App.config" />
+    <None Include="Resources\logoDEVIS.png" />
+    <Content Include="App.config">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\Sans titre.png" />
     <None Include="Resources\ABCR_LOGO_NON_ORCABISE.jpg" />
     <EmbeddedResource Include="Form1.resx">
@@ -232,21 +240,27 @@
     </Compile>
     <Content Include="baliseConf.config">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="baliseConfBL.config">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="baliseConfBP.config">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ImprimanteConf.config">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="baliseConfAR.config">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="baliseConfCF.config">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="UserControlAR.resx">
       <DependentUpon>UserControlAR.cs</DependentUpon>
@@ -283,29 +297,39 @@
     </EmbeddedResource>
     <None Include="baliseConfFacturation.config">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="baliseConfR.config">
+    <Content Include="baliseConfR.config">
       <SubType>Designer</SubType>
-    </None>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="ClassDiagram1.cd">
       <SubType>Designer</SubType>
     </None>
     <None Include="EssaiJobImp_CléTemporaire.pfx" />
-    <Content Include="profilImpAR.config" />
+    <Content Include="profilImpAR.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="profilImpBL.config">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="profilImpBP.config">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="profilImpCF.config">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="profilImpDev.config">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="EssaiJobImp_TemporaryKey.pfx" />
-    <None Include="ListeDocument.config" />
+    <Content Include="ListeDocument.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -315,8 +339,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="profilImpFacture.config" />
-    <None Include="TemplateSetting.config" />
+    <Content Include="profilImpFacture.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="TemplateSetting.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
