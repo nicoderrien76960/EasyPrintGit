@@ -14,9 +14,9 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
-    <PublishUrl>D:\CompilationAppli\EasyPrint\</PublishUrl>
+    <PublishUrl>\\10.211.28.4\tempo\</PublishUrl>
     <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
+    <InstallFrom>Unc</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
@@ -28,9 +28,11 @@
     <ProductName>Ireport Rubis</ProductName>
     <PublisherName>ABCR</PublisherName>
     <SuiteName>Ireport Rubis</SuiteName>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>publish.htm</WebPage>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>36</ApplicationRevision>
-    <ApplicationVersion>2.1.0.%2a</ApplicationVersion>
+    <ApplicationRevision>45</ApplicationRevision>
+    <ApplicationVersion>3.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -40,27 +42,29 @@
     <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\..\..\..\Ireport Rubis DEBUG\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>bin\Debug\Ireport_Rubis.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\..\..\..\..\..\Program Files %28x86%29\Ireport Rubis\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>..\..\..\..\..\..\Program Files %28x86%29\Ireport Rubis\Ireport_Rubis.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
@@ -74,6 +78,12 @@
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Ireport_Rubis.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>harwen-pleasant-printers-faxes.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="acPDFCreator.Net">
       <HintPath>..\..\pdfcreanet500\PDF Creator .NET\SDK\Net\Win32\acPDFCreator.Net.dll</HintPath>
@@ -84,12 +94,12 @@
     <Reference Include="AxInterop.AcroPDFLib">
       <HintPath>..\..\AxInterop.AcroPDFLib.dll</HintPath>
     </Reference>
-    <Reference Include="Ghostscript.NET">
-      <HintPath>bin\Debug\Ghostscript.NET.dll</HintPath>
+    <Reference Include="Ghostscript.NET, Version=1.2.0.0, Culture=neutral, PublicKeyToken=f85051de34525b59, processorArchitecture=MSIL">
+      <HintPath>.\Ghostscript.NET.dll</HintPath>
     </Reference>
     <Reference Include="IBM.Data.DB2.iSeries, Version=12.0.0.0, Culture=neutral, PublicKeyToken=9cdb2ebfb1f93a26, processorArchitecture=MSIL" />
     <Reference Include="itextsharp">
-      <HintPath>..\..\..\Logiciels\itextsharp.dll</HintPath>
+      <HintPath>.\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="PdfSharp.Xps">
@@ -215,8 +225,12 @@
     <Compile Include="UserControlVariable.Designer.cs">
       <DependentUpon>UserControlVariable.cs</DependentUpon>
     </Compile>
+    <Content Include="app.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\logoDEVIS.png" />
-    <Content Include="App.config">
+    <Content Include="harwen-pleasant-printers-faxes.ico" />
+    <Content Include="Ireport_Rubis.exe.config">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -342,9 +356,10 @@
     <Content Include="profilImpFacture.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="TemplateSetting.config">
+    <Content Include="TemplateSetting.config">
       <SubType>Designer</SubType>
-    </None>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

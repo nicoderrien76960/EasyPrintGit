@@ -6,6 +6,7 @@ using System.IO;
 using System.Configuration;
 using System.Threading.Tasks;
 using System.Collections;
+//using System.Configuration;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.Diagnostics;
@@ -197,7 +198,6 @@ namespace Ireport_Rubis
                 table.TotalWidth = 555;                                                        //Chaque colonne crée ci dessus doit être rempli
                 table.LockedWidth = true;
                 PdfPCell cellET1 = new PdfPCell(new Phrase(donneEntete["Colonne_art"], FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cellET1.Border = PdfPCell.NO_BORDER; //cellET1.Border += PdfPCell.BOTTOM_BORDER;
-               
                 table.AddCell(cellET1);
                 PdfPCell cellET2 = new PdfPCell(new Phrase(donneEntete["Colonne_des"], FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cellET2.Border = PdfPCell.NO_BORDER; //cellET2.Border += PdfPCell.BOTTOM_BORDER;
                 table.AddCell(cellET2);

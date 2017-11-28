@@ -1,0 +1,38 @@
+E:\Sources Dev\EssaiJobImp\EssaiJobImp\bin\Release\EssaiJobImp.exe.config
+E:\Sources Dev\EssaiJobImp\EssaiJobImp\bin\Release\EssaiJobImp.exe
+E:\Sources Dev\EssaiJobImp\EssaiJobImp\bin\Release\EssaiJobImp.pdb
+E:\Sources Dev\EssaiJobImp\EssaiJobImp\bin\Release\itextsharp.dll
+E:\Sources Dev\EssaiJobImp\EssaiJobImp\obj\Release\EssaiJobImp.csprojResolveAssemblyReference.cache
+E:\Sources Dev\EssaiJobImp\EssaiJobImp\obj\Release\EssaiJobImp.Form1.resources
+E:\Sources Dev\EssaiJobImp\EssaiJobImp\obj\Release\EssaiJobImp.Properties.Resources.resources
+E:\Sources Dev\EssaiJobImp\EssaiJobImp\obj\Release\EssaiJobImp.csproj.GenerateResource.Cache
+E:\Sources Dev\EssaiJobImp\EssaiJobImp\obj\Release\EssaiJobImp.exe
+E:\Sources Dev\EssaiJobImp\EssaiJobImp\obj\Release\EssaiJobImp.pdb
+C:\Users\nicolas.ABCRORCAB\OneDrive\ProjetServeurImpression\EasyPrintGit\EssaiJobImp\bin\Release\EssaiJobImp.exe.config
+C:\Users\nicolas.ABCRORCAB\OneDrive\ProjetServeurImpression\EasyPrintGit\EssaiJobImp\obj\Release\EssaiJobImp.exe
+C:\Users\nicolas.ABCRORCAB\OneDrive\ProjetServeurImpression\EasyPrintGit\EssaiJobImp\obj\Release\EssaiJobImp.pdb
+C:\Users\nicolas.ABCRORCAB\OneDrive\ProjetServeurImpression\EasyPrintGit\EssaiJobImp\obj\Release\EssaiJobImp.csprojResolveAssemblyReference.cache
+C:\Users\nicolas.ABCRORCAB\OneDrive\ProjetServeurImpression\EasyPrintGit\EssaiJobImp\obj\Release\EssaiJobImp.Form1.resources
+C:\Users\nicolas.ABCRORCAB\OneDrive\ProjetServeurImpression\EasyPrintGit\EssaiJobImp\obj\Release\EssaiJobImp.Form_reglage.resources
+C:\Users\nicolas.ABCRORCAB\OneDrive\ProjetServeurImpression\EasyPrintGit\EssaiJobImp\obj\Release\EssaiJobImp.Properties.Resources.resources
+C:\Users\nicolas.ABCRORCAB\OneDrive\ProjetServeurImpression\EasyPrintGit\EssaiJobImp\obj\Release\EssaiJobImp.UserControlAR.resources
+C:\Users\nicolas.ABCRORCAB\OneDrive\ProjetServeurImpression\EasyPrintGit\EssaiJobImp\obj\Release\EssaiJobImp.UserControlBL.resources
+C:\Users\nicolas.ABCRORCAB\OneDrive\ProjetServeurImpression\EasyPrintGit\EssaiJobImp\obj\Release\EssaiJobImp.UserControlBP.resources
+C:\Users\nicolas.ABCRORCAB\OneDrive\ProjetServeurImpression\EasyPrintGit\EssaiJobImp\obj\Release\EssaiJobImp.UserControlCF.resources
+C:\Users\nicolas.ABCRORCAB\OneDrive\ProjetServeurImpression\EasyPrintGit\EssaiJobImp\obj\Release\EssaiJobImp.UserControlChemin.resources
+C:\Users\nicolas.ABCRORCAB\OneDrive\ProjetServeurImpression\EasyPrintGit\EssaiJobImp\obj\Release\EssaiJobImp.UserControlDevis.resources
+C:\Users\nicolas.ABCRORCAB\OneDrive\ProjetServeurImpression\EasyPrintGit\EssaiJobImp\obj\Release\EssaiJobImp.UserControlFacturation.resources
+C:\Users\nicolas.ABCRORCAB\OneDrive\ProjetServeurImpression\EasyPrintGit\EssaiJobImp\obj\Release\EssaiJobImp.UserControlImprimante.resources
+C:\Users\nicolas.ABCRORCAB\OneDrive\ProjetServeurImpression\EasyPrintGit\EssaiJobImp\obj\Release\EssaiJobImp.UserControlImprimanteProfil.resources
+C:\Users\nicolas.ABCRORCAB\OneDrive\ProjetServeurImpression\EasyPrintGit\EssaiJobImp\obj\Release\EssaiJobImp.UserControlMail.resources
+C:\Users\nicolas.ABCRORCAB\OneDrive\ProjetServeurImpression\EasyPrintGit\EssaiJobImp\obj\Release\EssaiJobImp.UserControlVariable.resources
+C:\Users\nicolas.ABCRORCAB\OneDrive\ProjetServeurImpression\EasyPrintGit\EssaiJobImp\obj\Release\EssaiJobImp.csproj.GenerateResource.Cache
+C:\Users\nicolas.ABCRORCAB\OneDrive\ProjetServeurImpression\EasyPrintGit\EssaiJobImp\bin\Release\baliseConf.config
+C:\Users\nicolas.ABCRORCAB\OneDrive\ProjetServeurImpression\EasyPrintGit\EssaiJobImp\bin\Release\EssaiJobImp.exe.manifest
+C:\Users\nicolas.ABCRORCAB\OneDrive\ProjetServeurImpression\EasyPrintGit\EssaiJobImp\bin\Release\EssaiJobImp.application
+C:\Users\nicolas.ABCRORCAB\OneDrive\ProjetServeurImpression\EasyPrintGit\EssaiJobImp\bin\Release\EssaiJobImp.exe
+C:\Users\nicolas.ABCRORCAB\OneDrive\ProjetServeurImpression\EasyPrintGit\EssaiJobImp\bin\Release\EssaiJobImp.pdb
+C:\Users\nicolas.ABCRORCAB\OneDrive\ProjetServeurImpression\EasyPrintGit\EssaiJobImp\bin\Release\Ghostscript.NET.dll
+C:\Users\nicolas.ABCRORCAB\OneDrive\ProjetServeurImpression\EasyPrintGit\EssaiJobImp\bin\Release\PrinterForce.dll
+C:\Users\nicolas.ABCRORCAB\OneDrive\ProjetServeurImpression\EasyPrintGit\EssaiJobImp\obj\Release\EssaiJobImp.exe.manifest
+C:\Users\nicolas.ABCRORCAB\OneDrive\ProjetServeurImpression\EasyPrintGit\EssaiJobImp\obj\Release\EssaiJobImp.application

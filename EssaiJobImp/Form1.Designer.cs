@@ -69,7 +69,7 @@
             this.label1.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(12, 480);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(156, 14);
+            this.label1.Size = new System.Drawing.Size(152, 12);
             this.label1.TabIndex = 17;
             this.label1.Text = "Nombre de fichier travaillé :";
             // 
@@ -104,9 +104,9 @@
             this.label2.Font = new System.Drawing.Font("Lucida Sans", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(294, 63);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(282, 33);
+            this.label2.Size = new System.Drawing.Size(314, 34);
             this.label2.TabIndex = 20;
-            this.label2.Text = "Ireport Rubis V 3.1";
+            this.label2.Text = "Ireport Rubis V 3.1b1";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // btnPause
