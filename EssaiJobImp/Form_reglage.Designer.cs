@@ -52,7 +52,7 @@
             this.label1.Font = new System.Drawing.Font("Lucida Sans", 21.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(383, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(402, 33);
+            this.label1.Size = new System.Drawing.Size(387, 34);
             this.label1.TabIndex = 0;
             this.label1.Text = "Paramètre de l\'application ";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -61,7 +61,7 @@
             // 
             this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(219, 58);
+            this.splitContainer1.Location = new System.Drawing.Point(198, 58);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -73,15 +73,15 @@
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.Silver;
             this.splitContainer1.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint);
-            this.splitContainer1.Size = new System.Drawing.Size(1033, 691);
-            this.splitContainer1.SplitterDistance = 447;
+            this.splitContainer1.Size = new System.Drawing.Size(900, 698);
+            this.splitContainer1.SplitterDistance = 389;
             this.splitContainer1.TabIndex = 2;
             // 
             // splitContainer2
             // 
             this.splitContainer2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.splitContainer2.Location = new System.Drawing.Point(12, 58);
+            this.splitContainer2.Location = new System.Drawing.Point(0, 58);
             this.splitContainer2.Name = "splitContainer2";
             // 
             // splitContainer2.Panel1
@@ -91,7 +91,7 @@
             this.splitContainer2.Panel1.Controls.Add(this.btnChemin);
             this.splitContainer2.Panel1.Controls.Add(this.btnFacturation);
             this.splitContainer2.Panel1.Controls.Add(this.btnImprimante);
-            this.splitContainer2.Size = new System.Drawing.Size(192, 687);
+            this.splitContainer2.Size = new System.Drawing.Size(192, 694);
             this.splitContainer2.SplitterDistance = 163;
             this.splitContainer2.TabIndex = 4;
             // 
@@ -140,7 +140,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.ClientSize = new System.Drawing.Size(1264, 761);
+            this.ClientSize = new System.Drawing.Size(1079, 768);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.splitContainer2);
             this.Controls.Add(this.label1);

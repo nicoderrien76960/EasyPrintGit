@@ -189,22 +189,32 @@ namespace Ireport_Rubis
                 celulleBasGauche.Border = PdfPCell.NO_BORDER;
                 celulleBasGauche.Bottom = PdfPCell.ALIGN_BOTTOM;
 
-                
-
+   /*----------------------------  --bug 061217  ----------------------------------------------------------------------------------------*/             
+                //commentaire sous code client "en cas de retard ...... 061217"
                 Paragraph pCell2Entete = new Paragraph();
               
-                int iEntete = 0;
-                if (donneEntete.ContainsKey("Commentaire_texte0"))
-                {
+                //int iEntete = 0;
+                //if (donneEntete.ContainsKey("Commentaire_texte0"))
+                //{
                     Phrase maPhrase = new Phrase();
                     pCell2Entete.Leading = 10;
-                    while (donneEntete.ContainsKey("Commentaire_texte" + iEntete))
-                    {
-                        maPhrase = new Phrase(donneEntete["Commentaire_texte" + iEntete] + "\n", FontFactory.GetFont(FontFactory.COURIER, 7, Font.NORMAL)); 
-                        pCell2Entete.Add(maPhrase);
-                        iEntete++;
-                    }
-                }
+                //  while (donneEntete.ContainsKey("Commentaire_texte" + iEntete))
+                // {
+
+                //maPhrase = new Phrase(donneEntete["Commentaire_texte" + iEntete] + "\n", FontFactory.GetFont(FontFactory.COURIER, 7, Font.NORMAL));
+                string commentaireCGV = "";
+                commentaireCGV = "EN CAS DE RETARD DE PAIEMENT, PENALITES APPLIQUEES";
+                commentaireCGV += "\nAU TAUX LEGAL ET INDEMNITE FORFAITAIRE";
+                commentaireCGV += "\nDE 40 EUROS POUR FRAIS DE RECOUVREMENT (DECRET DU 02/10/2012)";
+                maPhrase = new Phrase(commentaireCGV + "\n", FontFactory.GetFont(FontFactory.COURIER, 7, Font.NORMAL));
+                pCell2Entete.Add(maPhrase);
+                
+                
+                //   iEntete++;
+                //}
+                //}
+
+                /*--------------------------------fin correction bug affichage cgv*/
                 pCell2Entete.FirstLineIndent = 0;
                 celulleBasGauche.AddElement(pCell2Entete);
 
@@ -246,7 +256,11 @@ namespace Ireport_Rubis
                 if (donneEntete["Document_type"] == "FACTURE") { typeDeDocument = "FACTURE"; }
                 if (donneEntete["Document_type"] == "AVOIR") { typeDeDocument = " AVOIR "; }
 
-                Phrase pPage1 = new Phrase("\n                                                   " + typeDeDocument + "                 " + donneEntete["Duplicata"] + "                                                                         Page n° 1           \n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD));
+                //Phrase pPage1 = new Phrase("\n                                                   " + typeDeDocument + "                 " + donneEntete["Duplicata"] + "                                                                         Page n° 1           \n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD));
+                /*---------------------------BUG DUPLICATA 061217 suite maj loi de finance------------------------------------------*/
+                Phrase pPage1 = new Phrase("\n                                                   " + typeDeDocument + "                   " + "                      " + "                                                                         Page n° 1           \n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD));
+
+
                 //Phrase pPage1 = new Phrase("\n                                                   " + donneEntete["Document_type"] + "                 " + donneEntete["Duplicata"] + "                                                                         Page n° 1           \n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD));
                 pPage1.Leading = 10;
                 nouveauDocument.Add(pPage1);
@@ -715,10 +729,15 @@ namespace Ireport_Rubis
                         //correction décalage avoir facture
                         if (donneEntete["Document_type"] == "FACTURE") { typeDeDocument = "FACTURE"; }
                         if (donneEntete["Document_type"] == "AVOIR") { typeDeDocument = " AVOIR "; }
-                        
-                        Phrase pPage = new Phrase("\n                                                   " + typeDeDocument + "                 " + donneEntete["Duplicata"] + "                                                                         Page n° " + (numPage + 1) + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD));
+
+
+                        /*-------------------------bug duplicata----------------------------------061217---------------*/
+                        //Phrase pPage = new Phrase("\n                                                   " + typeDeDocument + "                 " + donneEntete["Duplicata"] + "                                                                         Page n° " + (numPage + 1) + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD));
+                          Phrase pPage = new Phrase("\n                                                   " + typeDeDocument + "                 " + "                        " + "                                                                         Page n° " + (numPage + 1) + " \n", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD));
+                        /*                   ---------------------------------------------------------------                 */
+
                         //Phrase pPage = new Phrase("\n                                                   " + donneEntete["Document_type"] + "                 " + donneEntete["Duplicata"] + "                                                                         Page n° " + (numPage + 1) + "            ", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD));
-                        
+
                         pPage.Leading = 15;
                         nouveauDocument.Add(pReport);
                         table.DeleteBodyRows();
@@ -870,22 +889,28 @@ namespace Ireport_Rubis
 
 
 
-                while (dimactuDocPied < dimDocPied)
+                while (dimactuDocPied < dimDocPied) //on met vide les titres de colonnes du pied de page
                 {
                     tableauPied.AddCell(new Phrase(" ", FontFactory.GetFont(FontFactory.HELVETICA, 8)));
                     dimactuDocPied++;
                 }
 
-                if (donneeFoot.ContainsValue("TOT")) {
+                if (donneeFoot.ContainsValue("TOT")) { //titre total dernière colonne
                     tableauPied.AddCell(new Phrase("Total", FontFactory.GetFont(FontFactory.HELVETICA, 8))); 
                 }
 
                 PdfPCell cellP = new PdfPCell();
                 cellP.VerticalAlignment = PdfPCell.ALIGN_BOTTOM;
                 cellP.AddElement(new Phrase("BASE\nTAUX\nMONTANT\n", FontFactory.GetFont(FontFactory.HELVETICA, 8)));
+                //les 3 ligne base taux montant
                 tableauPied.AddCell(cellP);
-                int iTempo = 3; int iTotal = 0;
-                while (iTempo <= (dimDocPied + 2))
+                /*------------------------------------------------------------------------------------------*/
+                //bug loi de finance itempo est décalé 061217
+                /*------------------------------------------------------------------------------------------*/
+                       // int iTempo = 3; int iTotal = 0;
+                int iTempo = 2; int iTotal = 0;
+                        //while (iTempo <= (dimDocPied + 2))
+                while (iTempo <= (dimDocPied + 1))
                 {
                     if (donneeFoot.ContainsKey("Base_tva_mht" + iTempo))
                     {
@@ -914,18 +939,22 @@ namespace Ireport_Rubis
                 cellTotal.VerticalAlignment = PdfPCell.ALIGN_BOTTOM;
 
                 /*------------------------------------------------debug je suis la com-----------------------------------------*/
-             //   LogHelper.WriteToFile("*********************************", "Je suis la 2 ici !!!**************************************** ");
+                //LogHelper.WriteToFile("*********************************", "Je suis la 2 ici !!!**************************************** ");
                 //------------------------------------------à commenter ---------------------------------------
 
                 cellTotal.AddElement(new Phrase(donneeFoot["Base_tva_mht" + iTotal] + "\n" + donneeFoot["Base_tva_taux" + iTotal] + "\n" + donneeFoot["Base_tva_mtva" + iTotal], FontFactory.GetFont(FontFactory.HELVETICA, 8)));
                
                 tableauPied.AddCell(cellTotal);
                 tableauPied.AddCell(new PdfPCell(new Phrase("")));
-                iTempo = 3; iTotal = 0;
-             
 
-                
-                while (iTempo <= (dimDocPied + 2))
+
+                /*------------------------------------------------------------------------------------------*/
+                //bug loi de finance itempo est décalé 061217
+                /*------------------------------------------------------------------------------------------*/
+                    //iTempo = 3; iTotal = 0;
+           iTempo = 2; iTotal = 0;
+                //while (iTempo <= (dimDocPied + 2))
+           while (iTempo <= (dimDocPied + 1))
                 {
                     if (donneeFoot.ContainsKey("Base_tva_mht" + iTempo))
                     {
@@ -963,6 +992,8 @@ namespace Ireport_Rubis
                 if (donneeFoot.ContainsKey("Echeance_date" + (iTotal + 1)))
                 {
                     /*ligne echeance  + net à payer sous tableau*/
+
+                    
                     echeance.Add(new Phrase("Echéance   : " + donneeFoot["Echeance_date" + (iTotal + 1)], FontFactory.GetFont(FontFactory.COURIER, 8, Font.NORMAL)));
                     echeance.Add(new Phrase("\t \t \t                                                                                          Net à payer : " + donneeFoot["Base_tva_mttc" + iTotal] + "€\n", FontFactory.GetFont(FontFactory.HELVETICA, 12, Font.BOLD)));
                    
@@ -990,8 +1021,8 @@ namespace Ireport_Rubis
                             echeance.Add(new Phrase("\nRéglement par   " + donneeFoot["Traite"] + "        " + donneeFoot["Acceptation"] + "        " + donneeFoot["Domiciliation"], FontFactory.GetFont(FontFactory.COURIER, 8, Font.NORMAL)));
                         }
                     }
-                
 
+                  //  echeance.Add(new Phrase("Condensat   : " + donneeFoot["Condensat"], FontFactory.GetFont(FontFactory.COURIER, 8, Font.NORMAL)));
                     nouveauDocument.Add(tableauPied);
                     nouveauDocument.Add(echeance);
                     
@@ -1029,8 +1060,11 @@ namespace Ireport_Rubis
 
                 string cgv = "";
                 cgv = "La marchandise reste notre propriété jusqu'à paiement du prix. Clause de réserve de propriété et pénalités en cas de non paiement à l'échéance mentionnée sur la facture.";
-                cgv += "\nToute déduction d'escompte pour paiement comptant entraine la diminution proportionnelle de la TVA déductible.";
-                cgv += "\nEn qualité d'adhérent, vous devez vous référer aux dispositions de l'article 6-2 du réglement intérieur concernant les conditions d'achat et de facturation.";
+                cgv += "Toute déduction d'escompte pour\npaiement comptant entraine la diminution proportionnelle de la TVA déductible.";
+                cgv += "En qualité d'adhérent, vous devez vous référer aux dispositions de l'article 6-2 du réglement intérieur concernant les conditions\nd'achat et de facturation.";
+                cgv += " Numéro Unique Loi de Finance : " + donneeFoot["Condensat"];
+
+                
 
                 Chunk c1 = new Chunk(cgv, couleur1);
                 Phrase p1 = new Phrase(c1);

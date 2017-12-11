@@ -38,6 +38,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.LABELimprimante0 = new System.Windows.Forms.Label();
             this.LABELimprimante1 = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,7 +61,7 @@
             this.label1.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(12, 268);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(156, 14);
+            this.label1.Size = new System.Drawing.Size(152, 12);
             this.label1.TabIndex = 17;
             this.label1.Text = "Nombre de fichier travaillé :";
             // 
@@ -82,7 +83,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnReglage.BackColor = System.Drawing.SystemColors.HighlightText;
             this.btnReglage.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReglage.Location = new System.Drawing.Point(12, 145);
+            this.btnReglage.Location = new System.Drawing.Point(12, 179);
             this.btnReglage.Name = "btnReglage";
             this.btnReglage.Size = new System.Drawing.Size(120, 51);
             this.btnReglage.TabIndex = 19;
@@ -96,9 +97,10 @@
             this.label2.Font = new System.Drawing.Font("Lucida Sans", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(6, 99);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(416, 33);
+            this.label2.Size = new System.Drawing.Size(410, 34);
             this.label2.TabIndex = 20;
-            this.label2.Text = "Ireport Rubis Facturation V1";
+            this.label2.Text = "Ireport Rubis Facturation V2";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // pictureBox1
             // 
@@ -125,7 +127,7 @@
             // 
             this.LABELimprimante0.AutoSize = true;
             this.LABELimprimante0.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.LABELimprimante0.Location = new System.Drawing.Point(177, 147);
+            this.LABELimprimante0.Location = new System.Drawing.Point(177, 188);
             this.LABELimprimante0.Name = "LABELimprimante0";
             this.LABELimprimante0.Size = new System.Drawing.Size(97, 13);
             this.LABELimprimante0.TabIndex = 23;
@@ -135,11 +137,21 @@
             // 
             this.LABELimprimante1.AutoSize = true;
             this.LABELimprimante1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.LABELimprimante1.Location = new System.Drawing.Point(177, 183);
+            this.LABELimprimante1.Location = new System.Drawing.Point(177, 217);
             this.LABELimprimante1.Name = "LABELimprimante1";
             this.LABELimprimante1.Size = new System.Drawing.Size(97, 13);
             this.LABELimprimante1.TabIndex = 24;
             this.LABELimprimante1.Text = "Imprimante LDP1 : ";
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(9, 146);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(152, 13);
+            this.linkLabel1.TabIndex = 25;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Conforme Loi de Finance 2017";
             // 
             // Form1
             // 
@@ -147,6 +159,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(576, 338);
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.LABELimprimante1);
             this.Controls.Add(this.LABELimprimante0);
             this.Controls.Add(this.label3);
@@ -178,6 +191,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label LABELimprimante0;
         private System.Windows.Forms.Label LABELimprimante1;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }
 
