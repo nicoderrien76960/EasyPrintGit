@@ -165,6 +165,9 @@ namespace Ireport_Rubis
         {
             remplirLBImprimante(cBProfil.SelectedItem.ToString());
         }
+
+        
+
         public void remplirLBImprimante(string value)
         {
             lBImprimante.Items.Clear();

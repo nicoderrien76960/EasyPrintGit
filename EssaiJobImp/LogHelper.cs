@@ -40,7 +40,7 @@ namespace Ireport_Rubis
                 writer.WriteLine(string.Format(
                                        "[{0} ON {1}] : {2}",
                                        DateTime.Now,
-                                       className,
+                                       "class : "+className + " - Message d'erreur : ",
                                        errorMessage));
             }
         }

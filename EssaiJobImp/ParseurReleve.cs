@@ -45,27 +45,43 @@ namespace Ireport_Rubis
                 /*ND 23 10 2015*/
                 string chemin = "";
                 /*
-                if (!System.IO.Directory.Exists(cheminDocFinaux + "\\DocFinaux\\Releve\\" + donneEntete["Tiers_nocpt"].Substring(3,6)))
+                if(!System.IO.Directory.Exists(cheminDocFinaux + "\\DocFinaux\\Releve\\" + donneEntete["Tiers_nocpt"].Substring(3,6)))
                 {
                     System.IO.Directory.CreateDirectory(cheminDocFinaux + "\\DocFinaux\\Releve\\" + donneEntete["Tiers_nocpt"].Substring(3, 6));
                     
                     chemin = cheminDocFinaux + "\\DocFinaux\\Releve\\" + donneEntete["Tiers_nocpt"].Substring(3, 6) + "\\" + nomDoc + "_" + donneEntete["Tiers_nocpt"].Substring(3, 6) + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf";
                  }*/
+
+                //----------------------------------------modif 160118
                 if (!System.IO.Directory.Exists(cheminDocFinaux + "\\DocFinaux\\Facturation\\" + donneEntete["Tiers_nocpt"].Substring(3, 6)))
                 {
                     System.IO.Directory.CreateDirectory(cheminDocFinaux + "\\DocFinaux\\Facturation\\" + donneEntete["Tiers_nocpt"].Substring(3, 6));
-
                     chemin = cheminDocFinaux + "\\DocFinaux\\Facturation\\" + donneEntete["Tiers_nocpt"].Substring(3, 6) + "\\RELEVE" + nomDoc + "_" + donneEntete["Tiers_nocpt"].Substring(3, 6) + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf";
                 }
 
                 else
                 {
-                    
-                    /*ND 23 10 2015*/
-                    //chemin = cheminDocFinaux + "\\DocFinaux\\Releve\\" + donneEntete["Tiers_nocpt"].Substring(3, 6) + "\\" + nomDoc + "_" + donneEntete["Tiers_nocpt"].Substring(3, 6) + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf";
-                    chemin = cheminDocFinaux + "\\DocFinaux\\Facturation\\" + donneEntete["Tiers_nocpt"].Substring(3, 6) + "\\RELEVE" + nomDoc + "_" + donneEntete["Tiers_nocpt"].Substring(3, 6) + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf";
+                     chemin = cheminDocFinaux + "\\DocFinaux\\Facturation\\" + donneEntete["Tiers_nocpt"].Substring(3, 6) + "\\RELEVE" + nomDoc + "_" + donneEntete["Tiers_nocpt"].Substring(3, 6) + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf";
                 }
-                Document nouveauDocument = new Document(PageSize.A4, 20, 20, 12, 2);
+                //---------------------------------------fin modif 160118
+
+
+
+
+                /*if (!System.IO.Directory.Exists(ConfigurationManager.AppSettings["cheminGED"] + "\\" + numcli + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM") + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\Facturation\\"))
+                {
+                    System.IO.Directory.CreateDirectory(ConfigurationManager.AppSettings["cheminGED"] + "\\" + numcli + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\Facturation\\");
+                    System.IO.File.Copy(chemin, ConfigurationManager.AppSettings["cheminGED"] + "\\" + numcli + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\Facturation\\RELEVE" + "\\" + nomDoc + "_" + donneeFoot["Tra_nocli"] + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf");
+                }
+                else
+                {
+                    System.IO.File.Copy(chemin, ConfigurationManager.AppSettings["cheminGED"] + "\\" + numcli + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\Facturation\\RELEVE" + nomDoc + "_" + donneeFoot["Tra_nocli"] + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf");
+                }*/
+                
+
+
+
+            Document nouveauDocument = new Document(PageSize.A4, 20, 20, 12, 2);
                 PdfWriter writer = PdfWriter.GetInstance(nouveauDocument, new FileStream(chemin, FileMode.Create));     //Stockage du document
                 //---------------------------------------------------------------------------------------------------------------------------
                 //Constitution document PDF
@@ -414,7 +430,7 @@ namespace Ireport_Rubis
                        // LogHelper.WriteToFile("requete : ", requete + "-" + numcli);
 
                     }
-                    conn.Close();                 
+                    conn.Close();
                     /*if (!System.IO.Directory.Exists(ConfigurationManager.AppSettings["cheminGED"] + "\\" + donneeFoot["Tra_nocli"] + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM") + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\Facturation\\"))
                     {
                         System.IO.Directory.CreateDirectory(ConfigurationManager.AppSettings["cheminGED"] + "\\" + donneeFoot["Tra_nocli"] + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\Facturation\\");
@@ -425,21 +441,27 @@ namespace Ireport_Rubis
                         System.IO.File.Copy(chemin, ConfigurationManager.AppSettings["cheminGED"] + "\\" + donneeFoot["Tra_nocli"] + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\Facturation\\RELEVE" + nomDoc + "_" + donneeFoot["Tra_nocli"] + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf");
                     }*/
 
+
+                    //---------------------------------------------------------------//
+                    //160118
+                    //suspend copie ged
+                    
+
                     if (!System.IO.Directory.Exists(ConfigurationManager.AppSettings["cheminGED"] + "\\" + numcli + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM") + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\Facturation\\"))
                     {
                         System.IO.Directory.CreateDirectory(ConfigurationManager.AppSettings["cheminGED"] + "\\" + numcli + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\Facturation\\");
-                        System.IO.File.Copy(chemin, ConfigurationManager.AppSettings["cheminGED"] + "\\" + numcli + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\Facturation\\RELEVE" + "\\" + nomDoc + "_" + donneeFoot["Tra_nocli"] + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf");
+                        System.IO.File.Copy(chemin, ConfigurationManager.AppSettings["cheminGED"] + "\\" + numcli + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\Facturation\\RELEVE" + nomDoc + "_" + donneeFoot["Tra_nocli"] + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf");
                     }
                     else
                     {
                         System.IO.File.Copy(chemin, ConfigurationManager.AppSettings["cheminGED"] + "\\" + numcli + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\Facturation\\RELEVE" + nomDoc + "_" + donneeFoot["Tra_nocli"] + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf");
                     }
-
+                    
 
                 }
                 catch (Exception e)
                 {
-                    LogHelper.WriteToFile(e.Message, "nomAdh : " + nomADH + "-"+ numcli + "ENVOI GED Releve");
+                    LogHelper.WriteToFile(e.Message, "ADH : " + numcli + " - "+ nomADH + " ENVOI GED Releve");
                 }
                 //----------------------------------------------FIN COPIE----------------------------------------------------------
                 //Requette qui retourne le champ "OUI/NON" envoi mail facture

@@ -41,9 +41,9 @@
             // 
             // btnValidAjout
             // 
-            this.btnValidAjout.Location = new System.Drawing.Point(269, 311);
+            this.btnValidAjout.Location = new System.Drawing.Point(78, 362);
             this.btnValidAjout.Name = "btnValidAjout";
-            this.btnValidAjout.Size = new System.Drawing.Size(88, 40);
+            this.btnValidAjout.Size = new System.Drawing.Size(68, 40);
             this.btnValidAjout.TabIndex = 18;
             this.btnValidAjout.Text = "Ok Ajouter";
             this.btnValidAjout.UseVisualStyleBackColor = true;
@@ -62,9 +62,9 @@
             // 
             // btn_Valider
             // 
-            this.btn_Valider.Location = new System.Drawing.Point(269, 311);
+            this.btn_Valider.Location = new System.Drawing.Point(152, 362);
             this.btn_Valider.Name = "btn_Valider";
-            this.btn_Valider.Size = new System.Drawing.Size(88, 40);
+            this.btn_Valider.Size = new System.Drawing.Size(68, 40);
             this.btn_Valider.TabIndex = 16;
             this.btn_Valider.Text = "Ok Modifier";
             this.btn_Valider.UseVisualStyleBackColor = true;
@@ -76,15 +76,15 @@
             this.tBModifImp.Location = new System.Drawing.Point(126, 311);
             this.tBModifImp.Multiline = true;
             this.tBModifImp.Name = "tBModifImp";
-            this.tBModifImp.Size = new System.Drawing.Size(137, 40);
+            this.tBModifImp.Size = new System.Drawing.Size(94, 40);
             this.tBModifImp.TabIndex = 15;
             this.tBModifImp.Visible = false;
             // 
             // btn_SupImp
             // 
-            this.btn_SupImp.Location = new System.Drawing.Point(323, 193);
+            this.btn_SupImp.Location = new System.Drawing.Point(226, 193);
             this.btn_SupImp.Name = "btn_SupImp";
-            this.btn_SupImp.Size = new System.Drawing.Size(137, 40);
+            this.btn_SupImp.Size = new System.Drawing.Size(65, 40);
             this.btn_SupImp.TabIndex = 14;
             this.btn_SupImp.Text = "Supprimer";
             this.btn_SupImp.UseVisualStyleBackColor = true;
@@ -92,9 +92,9 @@
             // 
             // btn_ModifImp
             // 
-            this.btn_ModifImp.Location = new System.Drawing.Point(167, 193);
+            this.btn_ModifImp.Location = new System.Drawing.Point(126, 193);
             this.btn_ModifImp.Name = "btn_ModifImp";
-            this.btn_ModifImp.Size = new System.Drawing.Size(137, 40);
+            this.btn_ModifImp.Size = new System.Drawing.Size(65, 40);
             this.btn_ModifImp.TabIndex = 13;
             this.btn_ModifImp.Text = "Modifier";
             this.btn_ModifImp.UseVisualStyleBackColor = true;
@@ -104,7 +104,7 @@
             // 
             this.btn_AjoutImp.Location = new System.Drawing.Point(15, 193);
             this.btn_AjoutImp.Name = "btn_AjoutImp";
-            this.btn_AjoutImp.Size = new System.Drawing.Size(137, 40);
+            this.btn_AjoutImp.Size = new System.Drawing.Size(65, 40);
             this.btn_AjoutImp.TabIndex = 12;
             this.btn_AjoutImp.Text = "Ajouter";
             this.btn_AjoutImp.UseVisualStyleBackColor = true;
@@ -117,10 +117,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lBImprimante.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lBImprimante.FormattingEnabled = true;
-            this.lBImprimante.ItemHeight = 14;
+            this.lBImprimante.ItemHeight = 12;
             this.lBImprimante.Location = new System.Drawing.Point(15, 39);
             this.lBImprimante.Name = "lBImprimante";
-            this.lBImprimante.Size = new System.Drawing.Size(445, 144);
+            this.lBImprimante.Size = new System.Drawing.Size(279, 136);
             this.lBImprimante.TabIndex = 11;
             // 
             // cBProfil
@@ -132,7 +132,7 @@
             this.cBProfil.FormattingEnabled = true;
             this.cBProfil.Location = new System.Drawing.Point(15, 10);
             this.cBProfil.Name = "cBProfil";
-            this.cBProfil.Size = new System.Drawing.Size(445, 22);
+            this.cBProfil.Size = new System.Drawing.Size(279, 20);
             this.cBProfil.TabIndex = 10;
             this.cBProfil.SelectedIndexChanged += new System.EventHandler(this.cBProfil_SelectedIndexChanged);
             this.cBProfil.SelectedValueChanged += new System.EventHandler(this.cBProfil_SelectedIndexChanged);
@@ -141,7 +141,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightGray;
+            this.BackColor = System.Drawing.Color.Silver;
             this.Controls.Add(this.btnValidAjout);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btn_Valider);
@@ -152,7 +152,7 @@
             this.Controls.Add(this.lBImprimante);
             this.Controls.Add(this.cBProfil);
             this.Name = "UserControlImprimanteProfil";
-            this.Size = new System.Drawing.Size(529, 405);
+            this.Size = new System.Drawing.Size(378, 405);
             this.Load += new System.EventHandler(this.UserControlImprimanteProfil_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -95,6 +95,7 @@ namespace Ireport_Rubis
         {
             SplitContainer S1 = (this.ParentForm as Form_reglage).Controls["splitContainer1"] as SplitContainer;
             S1.Panel2.Controls.Clear();
+            S1.Panel2.Controls.Clear();
             S1.Panel2.Controls.Add(UCIP);
             UCIP.getParentObject(lBProfil);
             UCIP.dicoProfil = dicoProfil;

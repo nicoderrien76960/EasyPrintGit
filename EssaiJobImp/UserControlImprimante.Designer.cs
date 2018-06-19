@@ -43,7 +43,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(139, 241);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(99, 14);
+            this.label4.Size = new System.Drawing.Size(100, 12);
             this.label4.TabIndex = 20;
             this.label4.Text = "Nom Imprimante :";
             this.label4.Visible = false;
@@ -73,7 +73,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(10, 241);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(123, 14);
+            this.label3.Size = new System.Drawing.Size(124, 12);
             this.label3.TabIndex = 18;
             this.label3.Text = "Nom du profil (Code) :";
             this.label3.Visible = false;
@@ -90,9 +90,9 @@
             // btnSupProfil
             // 
             this.btnSupProfil.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSupProfil.Location = new System.Drawing.Point(175, 162);
+            this.btnSupProfil.Location = new System.Drawing.Point(141, 162);
             this.btnSupProfil.Name = "btnSupProfil";
-            this.btnSupProfil.Size = new System.Drawing.Size(183, 39);
+            this.btnSupProfil.Size = new System.Drawing.Size(129, 39);
             this.btnSupProfil.TabIndex = 15;
             this.btnSupProfil.Text = "Supprimer";
             this.btnSupProfil.UseVisualStyleBackColor = true;
@@ -103,7 +103,7 @@
             this.btnAjoutProfil.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAjoutProfil.Location = new System.Drawing.Point(13, 162);
             this.btnAjoutProfil.Name = "btnAjoutProfil";
-            this.btnAjoutProfil.Size = new System.Drawing.Size(156, 39);
+            this.btnAjoutProfil.Size = new System.Drawing.Size(106, 39);
             this.btnAjoutProfil.TabIndex = 14;
             this.btnAjoutProfil.Text = "Ajouter Profil";
             this.btnAjoutProfil.UseVisualStyleBackColor = true;
@@ -115,17 +115,17 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lBProfil.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lBProfil.FormattingEnabled = true;
-            this.lBProfil.ItemHeight = 14;
+            this.lBProfil.ItemHeight = 12;
             this.lBProfil.Location = new System.Drawing.Point(13, 11);
             this.lBProfil.MultiColumn = true;
             this.lBProfil.Name = "lBProfil";
-            this.lBProfil.Size = new System.Drawing.Size(345, 144);
+            this.lBProfil.Size = new System.Drawing.Size(257, 136);
             this.lBProfil.TabIndex = 13;
             this.lBProfil.SelectedIndexChanged += new System.EventHandler(this.lBProfil_SelectedIndexChanged);
             // 
             // UserControlImprimante
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
             this.Controls.Add(this.label4);

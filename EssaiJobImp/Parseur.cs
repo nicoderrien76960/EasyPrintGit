@@ -47,7 +47,13 @@ namespace Ireport_Rubis
             
             string cheminDocFinaux = ConfigurationManager.AppSettings["CheminDocFinaux"].ToString();
             string cheminRessources= ConfigurationManager.AppSettings["CheminRessources"].ToString();
+
+//
             string chemin = cheminDocFinaux+"\\DocFinaux\\DEVIS\\DEVIS_" + nomDoc + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf";
+
+
+
+
             Document nouveauDocument = new Document(PageSize.A4,20,20,12,20);
             PdfWriter.GetInstance(nouveauDocument, new FileStream(chemin, FileMode.Create));     //Stockage du document
             nouveauDocument.Open();
@@ -349,29 +355,41 @@ namespace Ireport_Rubis
                     }
                     */
 
+                /*-------------------correction bug affichage ligne gratuite ND le 19-06-2018--------------------*/
                 if (donneeBody["Ligne_type" + i] == "GRA")
-                {
-                    nbLigne++;
-                    string sPattern = "libelle" + i + "bis";
-                    PdfPCell cell1 = new PdfPCell(new Phrase(donneeBody["Art_code" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell1.Border = PdfPCell.NO_BORDER; cell1.Border += PdfPCell.RIGHT_BORDER; cell1.Border += PdfPCell.LEFT_BORDER;
-                    table.AddCell(cell1);
-                    Paragraph pCell2 = new Paragraph();
+                  {
+                      nbLigne++;
+                      string sPattern = "libelle" + i + "bis";
+                      PdfPCell cell1 = new PdfPCell(new Phrase(donneeBody["Art_code" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell1.Border = PdfPCell.NO_BORDER; cell1.Border += PdfPCell.RIGHT_BORDER; cell1.Border += PdfPCell.LEFT_BORDER;
+                      table.AddCell(cell1);
+                      Paragraph pCell2 = new Paragraph();
+                       PdfPCell cell2 = new PdfPCell(pCell2); cell2.Border = PdfPCell.NO_BORDER; cell2.Border += PdfPCell.RIGHT_BORDER; cell2.Border += PdfPCell.LEFT_BORDER;
+
                     foreach (KeyValuePair<string, string> entry in donneeBody)
-                    {
-                        if (System.Text.RegularExpressions.Regex.IsMatch(entry.Key, sPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase))
-                        {
-                            PdfPCell cell2 = new PdfPCell(new Phrase(donneeBody["Libelle" + i] + "\n" + donneeBody["Libelle" + i + "bis"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell2.Border = PdfPCell.NO_BORDER; cell2.Border += PdfPCell.RIGHT_BORDER; cell2.Border += PdfPCell.LEFT_BORDER;
-                          //PdfPCell cell2 = new PdfPCell(new Phrase(donneeBody["Libelle" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell2.Border = PdfPCell.NO_BORDER; cell2.Border += PdfPCell.RIGHT_BORDER; cell2.Border += PdfPCell.LEFT_BORDER;
+                      {
+                          if (System.Text.RegularExpressions.Regex.IsMatch(entry.Key, sPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase))
+                          {
+
+                            if (okStart == false)
+                            {
+                                // PdfPCell cell2 = new PdfPCell(new Phrase(donneeBody["Libelle" + i] + "\n" + donneeBody["Libelle" + i + "bis"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell2.Border = PdfPCell.NO_BORDER; cell2.Border += PdfPCell.RIGHT_BORDER; cell2.Border += PdfPCell.LEFT_BORDER;
+                                pCell2.Add(new Phrase(donneeBody["Libelle" + i] + "\n" + donneeBody["Libelle" + i + "bis"] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell2.Border = PdfPCell.NO_BORDER; cell2.Border += PdfPCell.RIGHT_BORDER; cell2.Border += PdfPCell.LEFT_BORDER;
+                                table.AddCell(cell2);
+                                //okDési = true;
+                                okStart = true;
+                            }
+                            else
+                            {
+                                string clé = entry.Key;
+                                pCell2.Add(new Phrase(donneeBody[clé] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD)));
+                            }
                             okDési = true;
-                            table.AddCell(cell2);
+                            
                         }
-                    }
 
+                      }
 
-
-
-
-                    //Fin modif
+                                  //Fin modif
 
 
 

@@ -236,6 +236,9 @@
     </Content>
     <None Include="Resources\Sans titre.png" />
     <None Include="Resources\ABCR_LOGO_NON_ORCABISE.jpg" />
+    <EmbeddedResource Include="Form1.fr.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

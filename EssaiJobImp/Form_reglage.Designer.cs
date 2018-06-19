@@ -67,7 +67,7 @@
             // 
             this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(-17, 58);
+            this.splitContainer1.Location = new System.Drawing.Point(210, 58);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -79,8 +79,8 @@
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.Silver;
             this.splitContainer1.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint);
-            this.splitContainer1.Size = new System.Drawing.Size(1033, 683);
-            this.splitContainer1.SplitterDistance = 447;
+            this.splitContainer1.Size = new System.Drawing.Size(800, 600);
+            this.splitContainer1.SplitterDistance = 400;
             this.splitContainer1.TabIndex = 2;
             // 
             // splitContainer2
@@ -103,8 +103,8 @@
             this.splitContainer2.Panel1.Controls.Add(this.btnBL);
             this.splitContainer2.Panel1.Controls.Add(this.btnDevis);
             this.splitContainer2.Panel1.Controls.Add(this.btnImprimante);
-            this.splitContainer2.Size = new System.Drawing.Size(192, 679);
-            this.splitContainer2.SplitterDistance = 163;
+            this.splitContainer2.Size = new System.Drawing.Size(227, 600);
+            this.splitContainer2.SplitterDistance = 194;
             this.splitContainer2.TabIndex = 4;
             // 
             // btnVariable
@@ -212,7 +212,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.ClientSize = new System.Drawing.Size(1028, 753);
+            this.ClientSize = new System.Drawing.Size(1127, 744);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.splitContainer2);
             this.Controls.Add(this.label1);

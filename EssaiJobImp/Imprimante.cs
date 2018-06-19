@@ -90,9 +90,14 @@ namespace Ireport_Rubis
                                     string sPatternTypeDoc2 ="<Document type=\"DOC_CLIENT\" doc=\"FACTURE ";
                                     string sPatternTypeDoc3 = "<Document type=\"DOC_CLIENT\" doc=\"RELEVE\"";
                                     StreamWriter sr = null;
+                                int debug = 0;
                                     foreach (string s in text)//Analyse ligne du document actuel
                                     {
-                                        controle++;
+
+                                  // LogHelper.WriteToFile(s+" "+debug, "--281117 debug plot ");
+                                  //  debug++;
+
+                                    controle++;
                                         //Premier tri si le document lu est en fait l'impression final d'un doc déjà traité, ne pas le lire et passer au suivant
                                         if ((System.Text.RegularExpressions.Regex.IsMatch(s, patternLectFalse, System.Text.RegularExpressions.RegexOptions.IgnoreCase) == false) && patternOK == true)
                                         {
@@ -120,6 +125,8 @@ namespace Ireport_Rubis
                                             {
                                                 sr.Close(); test++;
                                             }
+
+
                                             //Regex type de document
                                             if (System.Text.RegularExpressions.Regex.IsMatch(s, sPatternTypeDoc2, System.Text.RegularExpressions.RegexOptions.IgnoreCase))
                                             {
@@ -287,7 +294,7 @@ namespace Ireport_Rubis
                             }
                             else { 
 
-                            LogHelper.WriteToFile(e.Message, "Imprimante " + nomDoc);
+                            LogHelper.WriteToFile(e.Message, "Imprimante.cs " + nomDoc);
                             }
                             
                         }
