@@ -57,6 +57,10 @@ namespace Ireport_Rubis
                 HELP.Text += "\r\n[HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Print\\Printers\\IRAM0xxx]";
                 HELP.Text += "\r\n\r\nConfig Imprimante windows : LPT1 -> Généric/Text only -> nom de l'imprimante IRAM0xxxx ";
                 HELP.Text += "\r\n\r\n! Ne pas oublier d'installer le service d'impression LPD dans ajout/suppression de programme-> activer des fonctionnalités !";
+
+
+                HELP.Text += "\r\n\r\nNOTE DE VERSION : ";
+                HELP.Text += "\r\n\r\nR190618 : Correction Bug affichage Gratuit dans Devis --> désignation était dans Unité ";
             }
         }
         List<string> listeImp = new List<string>();                 //Liste d'imprimante
@@ -353,10 +357,7 @@ namespace Ireport_Rubis
             }
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
+       
 
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
@@ -366,6 +367,11 @@ namespace Ireport_Rubis
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void label2_Click_1(object sender, EventArgs e)
+        {
+            MessageBox.Show("Mise à Jour le 23/03/20\nNote de version : \nAjout du stock théorique dans la colonne localisation \nDev : ND ");
         }
     }
 }

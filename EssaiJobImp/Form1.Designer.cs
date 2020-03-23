@@ -33,7 +33,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tbNbfichier = new System.Windows.Forms.TextBox();
             this.btnReglage = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
             this.btnPause = new System.Windows.Forms.Button();
             this.btnReprise = new System.Windows.Forms.Button();
             this.LABELimprimante1 = new System.Windows.Forms.Label();
@@ -46,6 +45,7 @@
             this.dossierSpool = new System.Windows.Forms.Label();
             this.HELP = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -75,12 +75,6 @@
             this.btnReglage.Name = "btnReglage";
             this.btnReglage.UseVisualStyleBackColor = true;
             this.btnReglage.Click += new System.EventHandler(this.btnReglage_Click);
-            // 
-            // label2
-            // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.Name = "label2";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // btnPause
             // 
@@ -134,13 +128,13 @@
             // 
             // groupBox1
             // 
-            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Controls.Add(this.LABELimprimante6);
             this.groupBox1.Controls.Add(this.LABELimprimante5);
             this.groupBox1.Controls.Add(this.LABELimprimante4);
             this.groupBox1.Controls.Add(this.LABELimprimante3);
             this.groupBox1.Controls.Add(this.LABELimprimante2);
             this.groupBox1.Controls.Add(this.LABELimprimante1);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
@@ -158,25 +152,32 @@
             // 
             // pictureBox1
             // 
-            resources.ApplyResources(this.pictureBox1, "pictureBox1");
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.WaitCursor;
             this.pictureBox1.Image = global::Ireport_Rubis.Properties.Resources.logoDEVIS;
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.label2.Name = "label2";
+            this.label2.Click += new System.EventHandler(this.label2_Click_1);
             // 
             // Form1
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.HELP);
             this.Controls.Add(this.dossierSpool);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnReprise);
             this.Controls.Add(this.btnPause);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.btnReglage);
             this.Controls.Add(this.tbNbfichier);
             this.Controls.Add(this.label1);
@@ -199,7 +200,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbNbfichier;
         private System.Windows.Forms.Button btnReglage;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnPause;
         private System.Windows.Forms.Button btnReprise;
@@ -212,6 +212,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label dossierSpool;
         private System.Windows.Forms.TextBox HELP;
+        private System.Windows.Forms.Label label2;
     }
 }
 

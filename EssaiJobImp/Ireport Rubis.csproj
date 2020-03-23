@@ -108,6 +108,9 @@
     <Reference Include="PrinterForce">
       <HintPath>bin\Debug\PrinterForce.dll</HintPath>
     </Reference>
+    <Reference Include="RawPrint">
+      <HintPath>..\packages\RawPrint.0.2.0.0\lib\net40\RawPrint.dll</HintPath>
+    </Reference>
     <Reference Include="ReachFramework" />
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -228,6 +231,7 @@
     <Content Include="app.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="packages.config" />
     <None Include="Resources\logoDEVIS.png" />
     <Content Include="harwen-pleasant-printers-faxes.ico" />
     <Content Include="Ireport_Rubis.exe.config">

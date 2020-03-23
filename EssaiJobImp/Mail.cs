@@ -22,7 +22,7 @@ namespace Ireport_Rubis
             String connectionString = "Driver={iSeries Access ODBC Driver};System=10.211.200.1;Uid=AMAD;Pwd=AMAD5678;";
             OdbcConnection conn = new OdbcConnection(connectionString);
             conn.Open();
-            string requete = "select T1.NOCLI c1 , T1.CLID5 c2 , T1.RENDI c3 from B00C0ACR.AMAGESTCOM.ACLIENL1 T1 where T1.CLID5 = 'OUI'";
+            string requete = "select T1.NOCLI c1 , T1.CLID5 c2 , T1.RENDI c3 from S7857e10.AMAGESTCOM.ACLIENL1 T1 where T1.CLID5 = 'OUI'";
             OdbcCommand act = new OdbcCommand(requete, conn);
             OdbcDataReader act0 = act.ExecuteReader();
             while (act0.Read())

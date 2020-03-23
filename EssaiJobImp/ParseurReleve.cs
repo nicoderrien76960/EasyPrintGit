@@ -414,9 +414,9 @@ namespace Ireport_Rubis
                     String connectionString = ConfigurationManager.AppSettings["ChaineDeConnexionBase"];
                     OdbcConnection conn = new OdbcConnection(connectionString);
                     conn.Open();
-                    //string requete = "select T1.NOCLI c1 , T1.NOMCL c2 from B00C0ACR.AMAGESTCOM.ACLIENL1 T1 where T1.NOCLI = '" + donneeFoot["Tra_nocli"] + "'";
-                    numcli = donneEntete["Tiers_nocpt"].Substring(3, 6); 
-                    string requete = "select T1.NOCLI c1 , T1.NOMCL c2 from B00C0ACR.AMAGESTCOM.ACLIENL1 T1 where T1.NOCLI = '" + numcli + "'";
+                    //string requete = "select T1.NOCLI c1 , T1.NOMCL c2 from S7857E10.AMAGESTCOM.ACLIENL1 T1 where T1.NOCLI = '" + donneeFoot["Tra_nocli"] + "'";
+                    numcli = donneEntete["Tiers_nocpt"].Substring(3, 6);
+                    string requete = "select T1.NOCLI c1 , T1.NOMCL c2 from S7857E10.AMAGESTCOM.ACLIENL1 T1 where T1.NOCLI = '" + numcli + "'";
                     OdbcCommand act = new OdbcCommand(requete, conn);
                     OdbcDataReader act0 = act.ExecuteReader();
                     //string nomADH = "";
@@ -469,7 +469,7 @@ namespace Ireport_Rubis
                 OdbcConnection conn2 = new OdbcConnection(connectionString2);
                 conn2.Open();
                 //Requete de séléction sur le champ "envoi facture par mail"
-                string requete2 = "select T1.NOCLI c1 , T1.CLID5 c2 , T1.RENDI c3 , T1.PROFE c4 from B00C0ACR.AMAGESTCOM.ACLIENL1 T1 where T1.CLID5 = 'OUI'";
+                string requete2 = "select T1.NOCLI c1 , T1.CLID5 c2 , T1.RENDI c3 , T1.PROFE c4 from S7857E10.AMAGESTCOM.ACLIENL1 T1 where T1.CLID5 = 'OUI'";
                 OdbcCommand act2 = new OdbcCommand(requete2, conn2);
                 OdbcDataReader act20 = null;
                 bool effectuerImpression = true;

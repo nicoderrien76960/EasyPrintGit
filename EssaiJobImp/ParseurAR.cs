@@ -14,6 +14,8 @@ using PrinterForce;
 using Ghostscript.NET.Processor;
 using IBM.Data.DB2.iSeries;
 using System.Data.Odbc;
+using RawPrint;
+
 
 namespace Ireport_Rubis
 {
@@ -597,7 +599,7 @@ namespace Ireport_Rubis
                     String connectionString = ConfigurationManager.AppSettings["ChaineDeConnexionBase"];
                     OdbcConnection conn = new OdbcConnection(connectionString);
                     conn.Open();
-                    string requete = "select T1.NOCLI c1 , T1.NOMCL c2 from B00C0ACR.AMAGESTCOM.ACLIENL1 T1 where T1.NOCLI = '" + donneEntete["Client_code"] + "'";
+                    string requete = "select T1.NOCLI c1 , T1.NOMCL c2 from S7857E10.AMAGESTCOM.ACLIENL1 T1 where T1.NOCLI = '" + donneEntete["Client_code"] + "'";
                     OdbcCommand act = new OdbcCommand(requete, conn);
                     OdbcDataReader act0 = act.ExecuteReader();
                     string nomADH = "";
@@ -657,6 +659,7 @@ namespace Ireport_Rubis
                             switches.Add("-dNOPAUSE");
                             switches.Add("-dNOSAFER");
                             switches.Add("-dNumCopies="+ConfigurationManager.AppSettings["NbCopieGC"]);
+                            //switches.Add("-sDEVICE=pdfwrite");
                             switches.Add("-sDEVICE=" + ConfigurationManager.AppSettings["PiloteImpressionGC"]);
                             switches.Add("-sOutputFile=%printer%" + printerName);
                             switches.Add("-f");
@@ -664,7 +667,34 @@ namespace Ireport_Rubis
 
                             processor.StartProcessing(switches.ToArray(), null);
                         }
+
+
+/*
+                        // Absolute path to your PDF to print (with filename)    
+                        string Filepath = @"C:\ServeurImp\DocFinaux\AR\AR_116515_20193261659.pdf";    
+                        // The name of the PDF that will be printed (just to be shown in the print queue)    
+                        string Filename = "AR_116515_20193261659.pdf";    
+                        // The name of the printer that you want to use   
+                        // Note: Check step 1 from the B alternative to see how to list    
+                        // the names of all the available printers with C#    
+                        string PrinterName = "Imp136";    
+                        // Create an instance of the Printer    
+                        IPrinter printer2 = new Printer();        
+                        // Print the file    
+                        printer2.PrintRawFile(PrinterName, Filepath, Filename);
+*/
+
+
                         nbImpOK++;
+
+
+
+                       
+
+
+
+
+
                     }
                     catch (Exception e)
                     { LogHelper.WriteToFile(e.Message, "ParseurBP" + donneEntete["Document_numero"].Trim()); }
