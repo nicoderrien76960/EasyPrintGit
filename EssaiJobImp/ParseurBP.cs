@@ -249,6 +249,9 @@ namespace Ireport_Rubis
                         table.AddCell(cell1);
                         Paragraph pCell2 = new Paragraph();
                         PdfPCell cell2 = new PdfPCell(pCell2); cell2.Border = PdfPCell.NO_BORDER; cell2.Border += PdfPCell.RIGHT_BORDER; cell2.Border += PdfPCell.LEFT_BORDER;
+      
+                       // bug plot
+                        
                         foreach (KeyValuePair<string, string> entry in donneeBody)
                         {
                             if (System.Text.RegularExpressions.Regex.IsMatch(entry.Key, sPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase))
@@ -257,9 +260,9 @@ namespace Ireport_Rubis
                                 { 
                                 
                                 }//Empeche de faire apparaitre la localisation secondaire dans la désignation
-
-                                    /*-----------------------modif stock théorique-------------------------*/
-                                if (System.Text.RegularExpressions.Regex.IsMatch(entry.Value, "Stock théorique", System.Text.RegularExpressions.RegexOptions.IgnoreCase))
+                        
+                               /*-----------------------modif stock théorique-------------------------*/
+                               if (System.Text.RegularExpressions.Regex.IsMatch(entry.Value, "Stock théorique", System.Text.RegularExpressions.RegexOptions.IgnoreCase))
                                 {
                                     
                                     //Ajout Stock Théo dans la colonne localisation ND16032020
@@ -270,9 +273,9 @@ namespace Ireport_Rubis
                                 }
                               
                                //Empeche de faire apparaitre le stock théorique
-                                    /*---------------------------------------------------------------------*/
+                               /*---------------------------------------------------------------------*/
 
-                                else
+                               else
                                 {
                                     if (okStart == false)
                                     {
@@ -281,6 +284,14 @@ namespace Ireport_Rubis
                                         if (donneeBody.ContainsKey("Art_lot" + i)) { pCell2.Add(new Phrase("Numéro de lot : " + donneeBody["Art_lot" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); }
                                         pCell2.Add(new Phrase(donneeBody[clé] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 7.5F, Font.BOLDITALIC)));                             
                                         okStart = true;
+                                    }
+
+                                  
+                                    else if (donneeBody.ContainsKey("Art_lot" + i + "bis"))
+                                    {
+                                        string clé = entry.Key;
+                                        pCell2.Add(new Phrase(donneeBody[clé] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 7.5F, Font.BOLDITALIC)));
+                                        pCell2.Add(new Phrase("Numéro de lot : " + donneeBody["Art_lot" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD)));
                                     }
                                     else
                                     {
@@ -291,6 +302,51 @@ namespace Ireport_Rubis
                                 }
                             }
                         }
+                
+                        
+                        
+                        // int u = i; //modif lot variable
+            /*            foreach (KeyValuePair<string, string> entry in donneeBody)
+                        {
+                            if (System.Text.RegularExpressions.Regex.IsMatch(entry.Key, sPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase))
+                            {
+                                if (okStart == false)
+                                {
+                                    pCell2.Add(new Phrase(donneeBody["Libelle" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD)));
+                                    string clé = entry.Key;
+
+
+                                    if (donneeBody.ContainsKey("Art_lot" + i))
+                                    {
+                                        pCell2.Add(new Phrase("Numéro de lot : " + donneeBody["Art_lot" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD)));
+                                    }
+                                    pCell2.Add(new Phrase(donneeBody[clé] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 7.5F, Font.BOLDITALIC)));
+                                    okStart = true;
+
+
+                                }
+
+
+                               
+                                else if (donneeBody.ContainsKey("Art_lot" + i + "bis"))
+                                {
+                                    string clé = entry.Key;
+                                    pCell2.Add(new Phrase(donneeBody[clé] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 7.5F, Font.BOLDITALIC)));
+                                    pCell2.Add(new Phrase("Numéro de lot : " + donneeBody["Art_lot" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD)));
+                                }
+                        
+
+                                else
+                                {
+                                    string clé = entry.Key;
+                                    pCell2.Add(new Phrase(donneeBody[clé] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 7.5F, Font.BOLDITALIC)));
+                                    // okStart = false; //modif lot variable
+                                }
+                                okDési = true;
+                            }
+                        }*/
+
+                        /*------------------------------------------------------------------------------------------*/
                         if (okDési == false)
                         {
                             PdfPCell cell3 = new PdfPCell(new Phrase(donneeBody["Libelle" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell3.Border = PdfPCell.NO_BORDER; cell3.Border += PdfPCell.RIGHT_BORDER; cell3.Border += PdfPCell.LEFT_BORDER;
