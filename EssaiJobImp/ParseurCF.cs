@@ -40,6 +40,8 @@ namespace Ireport_Rubis
         public void miseEnForm(string typeDoc)
         {
             int incCopie = 0;
+            string NomFournisseur = donneEntete["Tiers_adl1"];
+
             int nbCopie = int.Parse(donneEntete["Nombre_copies"]);
             string cheminDocFinaux = ConfigurationManager.AppSettings["CheminDocFinaux"].ToString();
             string cheminRessources = ConfigurationManager.AppSettings["CheminRessources"].ToString();
@@ -608,8 +610,26 @@ namespace Ireport_Rubis
                             System.IO.File.Copy(chemin, ConfigurationManager.AppSettings["cheminGEDCF"] + "\\" + codeClient + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\CF\\" + "\\CF_" + nomDoc + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf");
                         }
                     }
-                
-                    //sinon enregistrer dans code four +  nom four 
+
+                    else//sinon enregistrer dans code four +  nom four 
+                    /*nd LE 08072020*/
+                    {
+
+                        //nomADH = NomFournisseur;
+                        if (!System.IO.Directory.Exists(ConfigurationManager.AppSettings["cheminGEDCFSTO"] + "\\" + NomFournisseur + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM") + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) ))
+                        {
+                            System.IO.Directory.CreateDirectory(ConfigurationManager.AppSettings["cheminGEDCFSTO"] + "\\" + NomFournisseur + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) );
+                            System.IO.File.Copy(chemin, ConfigurationManager.AppSettings["cheminGEDCFSTO"] + "\\" + NomFournisseur + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) +  "\\CF_" + nomDoc + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf");
+                        }
+                        else
+                        {
+                            System.IO.File.Copy(chemin, ConfigurationManager.AppSettings["cheminGEDCFSTO"] + "\\" + NomFournisseur + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) +  "\\CF_" + nomDoc + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf");
+                        }
+
+
+                    }
+                /*-----*/
+                     
                 
                 
                 

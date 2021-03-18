@@ -36,7 +36,9 @@ namespace Ireport_Rubis
                 unxmlFoot.Load("baliseConfBP.config");
             }
             catch
-            { }
+            {
+
+            }
             XmlNode node = unxml.SelectSingleNode("//configuration/BaliseEntete");                  //On lis les noeuds contenu dans le document de conf
             XmlNode nodeBody = unxmlBody.SelectSingleNode("//configuration/BaliseBody");
             XmlNode nodeFoot = unxmlFoot.SelectSingleNode("//configuration/BaliseFoot");
@@ -159,8 +161,10 @@ namespace Ireport_Rubis
                     foreach (string s in baliseBody)                                            //
                     {                                                                           //
                         if (node.Name == s)                                                     //
-                        {                                                                       //
-                            donneeBody.Add(s + iBody, node.InnerText);                          //
+                        {
+                           
+                                donneeBody.Add(s + iBody, node.InnerText);
+                           
                         }                                                                       //
                     }                                                                           //
                 }                                                                               //
@@ -168,7 +172,9 @@ namespace Ireport_Rubis
                 foreach (XmlNode node in nligneinfo)                                            //
                 {                                                                               //
                                                                                                 //
-                    XmlNode nligneinfo2 = node;                                                 //
+                    XmlNode nligneinfo2 = node;  
+                    
+                    //
                     foreach (string s in baliseBody)                                            //                Parseur Body
                     {                                                                           //
                         if (node.Name == s)                                                     //
@@ -187,8 +193,12 @@ namespace Ireport_Rubis
                                 {                                                               //
                                     if (donneeBody.ContainsKey(s + iBody + "bis"))              //
                                     {                                                           //
-                                        donneeBody.Add(s + iBody + "bis" +compt, n.InnerText);  //
-                                        compt++;                                                //
+
+                                        if (n.InnerText != "DIM")//correction Bug Plot dimensions en double 280720
+                                        {
+                                            donneeBody.Add(s + iBody + "bis" + compt, n.InnerText);  //
+                                            compt++;
+                                        }//
                                     }                                                           //
                                     else                                                        //
                                     {                                                           //
@@ -198,6 +208,7 @@ namespace Ireport_Rubis
                                 }                                                               //<--- Permet de crée un incrémentation des clés (libelle1, libelle2, libelle3, ect)     
                                 else                                                            //
                                 {                                                               //
+                                    
                                     donneeBody.Add(s + iBody, n.InnerText);                     //
                                 }                                                               //                                                                   
                             }                                                                   //
@@ -205,6 +216,13 @@ namespace Ireport_Rubis
                     }                                                                           //
                 }                                                                               //
             }                                                                                   //
+
+
+
+
+
+
+
             iFoot = 0;                                                                          //-----------------------------------
             foreach (XmlNode noeud in pied)                                                     //-----------------------------------
             {                                                                                   //

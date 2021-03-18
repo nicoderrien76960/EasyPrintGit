@@ -219,7 +219,7 @@ namespace Ireport_Rubis
                 table.AddCell(cellET3);
                 PdfPCell cellET4 = new PdfPCell(new Phrase("Quantité", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cellET4.Border = PdfPCell.NO_BORDER; //cellET4.Border += PdfPCell.BOTTOM_BORDER;
                 table.AddCell(cellET4);
-                PdfPCell cellET5 = new PdfPCell(new Phrase("Localisation / Stock DISPO", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cellET5.Border = PdfPCell.NO_BORDER; //cellET5.Border += PdfPCell.BOTTOM_BORDER;
+                PdfPCell cellET5 = new PdfPCell(new Phrase("Localisation / Stock Théorique", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cellET5.Border = PdfPCell.NO_BORDER; //cellET5.Border += PdfPCell.BOTTOM_BORDER;
                 table.AddCell(cellET5);
                 PdfPCell cellvideDebut = new PdfPCell(new Phrase(" ", FontFactory.GetFont(FontFactory.HELVETICA, 6, Font.BOLD)));
                 cellvideDebut.Colspan = 5;
@@ -260,16 +260,15 @@ namespace Ireport_Rubis
                                 { 
                                 
                                 }//Empeche de faire apparaitre la localisation secondaire dans la désignation
-
-                                /*-----------------------modif stock théorique-------------------------*/
-                                if (System.Text.RegularExpressions.Regex.IsMatch(entry.Value, "Stock disponible", System.Text.RegularExpressions.RegexOptions.IgnoreCase))
-                               // if (System.Text.RegularExpressions.Regex.IsMatch(entry.Value, "Stock théoriquee", System.Text.RegularExpressions.RegexOptions.IgnoreCase))
-                                    
+                        
+                               /*-----------------------modif stock théorique-------------------------*/
+                               if (System.Text.RegularExpressions.Regex.IsMatch(entry.Value, "Stock théorique", System.Text.RegularExpressions.RegexOptions.IgnoreCase))
                                 {
                                     
                                     //Ajout Stock Théo dans la colonne localisation ND16032020
                                     string SupprimeDebut = entry.Value;
                                     SupprimeDebut = SupprimeDebut.Remove(0, 18);
+
                                     stockTHEO = SupprimeDebut;
                                 }
                               

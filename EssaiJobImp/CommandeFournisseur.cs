@@ -26,6 +26,7 @@ namespace Ireport_Rubis
         public void chargementXML()
         {
             string bal;
+           // string attr;
             XmlDocument unxml = new XmlDocument();                  //Un XmlDocument par parti (entete, corps, pied)
             XmlDocument unxmlBody = new XmlDocument();
             XmlDocument unxmlFoot = new XmlDocument();
@@ -36,10 +37,14 @@ namespace Ireport_Rubis
                 unxmlFoot.Load("baliseConfCF.config");
             }
             catch 
-            { }
+            {
+
+            }
             XmlNode node = unxml.SelectSingleNode("//configuration/BaliseEntete");                  //On lis les noeuds contenu dans le document de conf
             XmlNode nodeBody = unxmlBody.SelectSingleNode("//configuration/BaliseBody");
             XmlNode nodeFoot = unxmlFoot.SelectSingleNode("//configuration/BaliseFoot");
+
+
             foreach (XmlNode unNode in node)
             {
                 bal = (string)unNode.InnerXml;
@@ -71,6 +76,7 @@ namespace Ireport_Rubis
             {
                 fileText = fileText.Replace(Convert.ToString(c), string.Empty); 
             }
+
             XmlDocument unxml = new XmlDocument();                                              //Ouverture du document 
             unxml.LoadXml(fileText);
             XmlNode root = unxml.DocumentElement;
@@ -147,19 +153,35 @@ namespace Ireport_Rubis
                         }                                                                       //
                     }                                                                           //
                 }                                                                               //
-            }                                                                                   //
+            }  
+ /*------------------------------------------------------------------------------------------------------------------*/           
+            //
             int iBody = 0; int iFoot; int compt = 0;                                            //-------------------------------
             foreach (XmlNode noeud in lignes)                                                   //----------------------------------
             {                                                                                   //
+
                 XmlNode nligne = noeud;                                                         //
                 XmlNodeList nligneinfo = noeud.SelectNodes("descendant::Ligne_info");           //
+
+
                 iBody++;                                                                        //                                                         
                 foreach (XmlNode node in nligne)                                                //      La double boucle permet d'atteindre le noeud suivant "Ligne_info"
                 {                                                                               //
+
                     foreach (string s in baliseBody)                                            //
-                    {                                                                           //
-                        if (node.Name == s)                                                     //
+                    {
+/*---------------------------------test --------------------------------------------------*/
+                      //  if (s == "Art_pubrut") {//test debug edt false
+                      //      string test = node.Attributes["Edt"].Value;
+                           
+                            // test = "ok";
+                      //  }
+/*---------------------------------test --------------------------------------------------*/
+
+                        if (node.Name == s)                                                      //
                         {                                                                       //
+                            string test = node.InnerXml;
+
                             donneeBody.Add(s + iBody, node.InnerText);                          //
                         }                                                                       //
                     }                                                                           //
@@ -175,7 +197,8 @@ namespace Ireport_Rubis
                         {                                                                       //
                             donneeBody.Add(s + iBody, node.InnerText);                          //
                         }                                                                       //
-                    }                                                                           //
+                    }         
+                                                                                                //
                     foreach (XmlNode n in nligneinfo2)                                          //
                     {                                                                           //
                         foreach (string s in baliseBody)                                        //
@@ -205,7 +228,10 @@ namespace Ireport_Rubis
                         }                                                                       //
                     }                                                                           //
                 }                                                                               //
-            }                                                                                   //
+            }         
+/*------------------------------------------------------------------------------------------*/            
+            
+            //
             iFoot = 0;                                                                          //-----------------------------------
             foreach (XmlNode noeud in pied)                                                     //-----------------------------------
             {                                                                                   //

@@ -229,7 +229,7 @@ namespace Ireport_Rubis
                 for (i = 1; i <= iBody; i++)
                 {
                     //Condition ARTICLE----------------------------------------------------------------------------------------------------------------------
-                    if (donneeBody["Ligne_type" + i] == "ART")
+                    if (donneeBody["Ligne_type" + i] == "ART" )
                     {
                         nbLigne++;
                         string sPattern = "libelle" + i + "bis";
@@ -404,6 +404,7 @@ namespace Ireport_Rubis
                         okDési = false; okStart = false;
                     }
                     //Condition COMMENTAIRE--------------------------------------------------------------------------------------------------------------------------------
+                    //if (donneeBody["Ligne_type" + i] == "COM" || donneeBody["Ligne_type" + i] == "PRE")
                     if (donneeBody["Ligne_type" + i] == "COM")
                     {
                         nbLigne++;
@@ -428,6 +429,39 @@ namespace Ireport_Rubis
                         table.AddCell(cellVide);
                         table.AddCell(cellFin);
                     }
+
+                    
+                    if (donneeBody["Ligne_type" + i] == "PRE")
+                    {
+                        nbLigne++;
+                        PdfPCell cellVide = new PdfPCell(new Phrase("" + "\n"));
+                        PdfPCell cell = new PdfPCell(new Phrase(donneeBody["Libelle" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD)));
+                        PdfPCell cellFin = new PdfPCell();
+                        cellVide.Border = PdfPCell.NO_BORDER;
+                        cellVide.Border += PdfPCell.RIGHT_BORDER;
+                        cellVide.Border += PdfPCell.LEFT_BORDER;
+                        cell.Border = PdfPCell.NO_BORDER;
+                        cell.Border += PdfPCell.RIGHT_BORDER;
+                        cell.Border += PdfPCell.LEFT_BORDER;
+                        cellFin.Border = PdfPCell.NO_BORDER;
+                        cellFin.Border += PdfPCell.LEFT_BORDER;
+                        cellFin.Border += PdfPCell.RIGHT_BORDER;
+                        table.AddCell(cellVide);
+                        table.AddCell(cell);
+                        table.AddCell(cellVide);
+                        //table.AddCell(cellVide);
+                        PdfPCell cell5 = new PdfPCell(new Phrase(donneeBody["Art_qte" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell5.Border = PdfPCell.NO_BORDER; cell5.Border += PdfPCell.RIGHT_BORDER; cell5.Border += PdfPCell.LEFT_BORDER;
+                        table.AddCell(cell5);
+                        table.AddCell(cellVide);
+                        table.AddCell(cellVide);
+                        table.AddCell(cellVide);
+                        PdfPCell cell9 = new PdfPCell(new Phrase(donneeBody["Art_monht" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell9.Border = PdfPCell.NO_BORDER; cell9.Border += PdfPCell.RIGHT_BORDER; cell9.Border += PdfPCell.LEFT_BORDER;
+                        table.AddCell(cell9);
+                        //table.AddCell(cellFin);
+                    }
+
+
+
                     PdfPCell cellEcartDroite = new PdfPCell(new Phrase(" " + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 2, Font.BOLD)));
                     PdfPCell cellEcart = new PdfPCell(new Phrase(" " + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 2, Font.BOLD)));
                     cellEcart.Border = PdfPCell.NO_BORDER;

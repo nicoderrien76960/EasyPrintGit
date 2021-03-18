@@ -90,12 +90,13 @@ namespace Ireport_Rubis
                                     string sPatternTypeDoc2 ="<Document type=\"DOC_CLIENT\" doc=\"FACTURE ";
                                     string sPatternTypeDoc3 = "<Document type=\"DOC_CLIENT\" doc=\"RELEVE\"";
                                     StreamWriter sr = null;
+
                                 int debug = 0;
                                     foreach (string s in text)//Analyse ligne du document actuel
                                     {
 
-                                  // LogHelper.WriteToFile(s+" "+debug, "--281117 debug plot ");
-                                  //  debug++;
+                                   //LogHelper.WriteToFile(s+" "+debug, "--281117 debug plot ");
+                                    //debug++;
 
                                     controle++;
                                         //Premier tri si le document lu est en fait l'impression final d'un doc déjà traité, ne pas le lire et passer au suivant
@@ -290,11 +291,11 @@ namespace Ireport_Rubis
                             if (System.Text.RegularExpressions.Regex.IsMatch(e.Message,"PRINTERS", System.Text.RegularExpressions.RegexOptions.IgnoreCase))
                             { 
                                 // si accès refusé à printer on ne fait rien sinon
-                                     //   LogHelper.WriteToFile(e.Message, "Imprimante " + nomDoc); à activer pour débug 
+                                    // LogHelper.WriteToFile(e.Message, "Imprimante " + nomDoc); //à activer pour débug 
                             }
                             else { 
 
-                            LogHelper.WriteToFile(e.Message, "Imprimante.cs " + nomDoc);
+                            LogHelper.WriteToFile(e.Message, "erreur dans le fichier Imprimante.cs " + nomDoc);
                             }
                             
                         }

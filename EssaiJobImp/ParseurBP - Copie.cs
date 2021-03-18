@@ -219,7 +219,7 @@ namespace Ireport_Rubis
                 table.AddCell(cellET3);
                 PdfPCell cellET4 = new PdfPCell(new Phrase("Quantité", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cellET4.Border = PdfPCell.NO_BORDER; //cellET4.Border += PdfPCell.BOTTOM_BORDER;
                 table.AddCell(cellET4);
-                PdfPCell cellET5 = new PdfPCell(new Phrase("Localisation / Stock DISPO", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cellET5.Border = PdfPCell.NO_BORDER; //cellET5.Border += PdfPCell.BOTTOM_BORDER;
+                PdfPCell cellET5 = new PdfPCell(new Phrase("Localisation / Stock Théorique", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cellET5.Border = PdfPCell.NO_BORDER; //cellET5.Border += PdfPCell.BOTTOM_BORDER;
                 table.AddCell(cellET5);
                 PdfPCell cellvideDebut = new PdfPCell(new Phrase(" ", FontFactory.GetFont(FontFactory.HELVETICA, 6, Font.BOLD)));
                 cellvideDebut.Colspan = 5;
@@ -260,23 +260,22 @@ namespace Ireport_Rubis
                                 { 
                                 
                                 }//Empeche de faire apparaitre la localisation secondaire dans la désignation
-
-                                /*-----------------------modif stock théorique-------------------------*/
-                                if (System.Text.RegularExpressions.Regex.IsMatch(entry.Value, "Stock disponible", System.Text.RegularExpressions.RegexOptions.IgnoreCase))
-                               // if (System.Text.RegularExpressions.Regex.IsMatch(entry.Value, "Stock théoriquee", System.Text.RegularExpressions.RegexOptions.IgnoreCase))
-                                    
+                        
+                               /*-----------------------modif stock théorique-------------------------*/
+                               if (System.Text.RegularExpressions.Regex.IsMatch(entry.Value, "Stock théorique", System.Text.RegularExpressions.RegexOptions.IgnoreCase))
                                 {
                                     
                                     //Ajout Stock Théo dans la colonne localisation ND16032020
                                     string SupprimeDebut = entry.Value;
                                     SupprimeDebut = SupprimeDebut.Remove(0, 18);
+
                                     stockTHEO = SupprimeDebut;
                                 }
                               
                                //Empeche de faire apparaitre le stock théorique
                                /*---------------------------------------------------------------------*/
 
-                               else
+                           /*     else
                                 {
                                     if (okStart == false)
                                     {
@@ -300,14 +299,14 @@ namespace Ireport_Rubis
                                         pCell2.Add(new Phrase(donneeBody[clé] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 7.5F, Font.BOLDITALIC)));
                                     }
                                     okDési = true;
-                                }
+                                }*/
                             }
                         }
                 
                         
                         
                         // int u = i; //modif lot variable
-            /*            foreach (KeyValuePair<string, string> entry in donneeBody)
+                        foreach (KeyValuePair<string, string> entry in donneeBody)
                         {
                             if (System.Text.RegularExpressions.Regex.IsMatch(entry.Key, sPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase))
                             {
@@ -324,18 +323,19 @@ namespace Ireport_Rubis
                                     pCell2.Add(new Phrase(donneeBody[clé] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 7.5F, Font.BOLDITALIC)));
                                     okStart = true;
 
+                                    // u++;//modif lot variable
 
                                 }
 
 
-                               
+                                /*----------------rajout num lot-------------*/
                                 else if (donneeBody.ContainsKey("Art_lot" + i + "bis"))
                                 {
                                     string clé = entry.Key;
                                     pCell2.Add(new Phrase(donneeBody[clé] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 7.5F, Font.BOLDITALIC)));
                                     pCell2.Add(new Phrase("Numéro de lot : " + donneeBody["Art_lot" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD)));
                                 }
-                        
+                                /*----------------------------------*/
 
                                 else
                                 {
@@ -345,9 +345,27 @@ namespace Ireport_Rubis
                                 }
                                 okDési = true;
                             }
-                        }*/
+                        }
 
                         /*------------------------------------------------------------------------------------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         if (okDési == false)
                         {
                             PdfPCell cell3 = new PdfPCell(new Phrase(donneeBody["Libelle" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cell3.Border = PdfPCell.NO_BORDER; cell3.Border += PdfPCell.RIGHT_BORDER; cell3.Border += PdfPCell.LEFT_BORDER;

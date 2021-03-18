@@ -60,7 +60,12 @@ namespace Ireport_Rubis
 
 
                 HELP.Text += "\r\n\r\nNOTE DE VERSION : ";
+                HELP.Text += "\r\n\r\nR180321 : Ajout Prestation Consigne/Déconsigne (remise en état palette) sur AR et BL (Ligne_type=PRE)";
+                HELP.Text += "\r\n\r\nR230320 : Ajout du stock théorique dans la colonne localisation ";
                 HELP.Text += "\r\n\r\nR190618 : Correction Bug affichage Gratuit dans Devis --> désignation était dans Unité ";
+                
+
+                 
             }
         }
         List<string> listeImp = new List<string>();                 //Liste d'imprimante
@@ -371,7 +376,9 @@ namespace Ireport_Rubis
 
         private void label2_Click_1(object sender, EventArgs e)
         {
-            MessageBox.Show("Mise à Jour le 23/03/20\nNote de version : \nAjout du stock théorique dans la colonne localisation \nDev : ND ");
+            //MessageBox.Show("Mise à Jour le 23/03/20\nNote de version : \nAjout du stock théorique dans la colonne localisation \nDev : ND ");
+            MessageBox.Show("Mise à Jour le 18/03/21\nNote de version : \nAjout Prestation Consigne/Déconsigne (remise en état palette) sur AR et BL (Ligne_type=PRE) \nDev : ND ");
+
         }
     }
 }
