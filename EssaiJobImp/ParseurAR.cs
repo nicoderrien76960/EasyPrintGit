@@ -597,7 +597,7 @@ namespace Ireport_Rubis
 
                 float x7 = float.Parse(ConfigurationManager.AppSettings["rectangleTotalARX"]);
                 float y7 = float.Parse(ConfigurationManager.AppSettings["rectangleTotalARY"]);
-               // image4.SetAbsolutePosition(385, 105);
+                //image4.SetAbsolutePosition(385, 105);
                 image4.SetAbsolutePosition(x7, y7);
                 
 
@@ -610,20 +610,49 @@ namespace Ireport_Rubis
                 PdfPTable tableauPied = new PdfPTable(3);
                 tableauPied.TotalWidth = 555;
                 tableauPied.LockedWidth = true;
-                PdfPCell cellulePied = new PdfPCell();
+
+
+                /*-------------Ajout de la phrase prix variables cause covid 21 06 21------------------------*/
+                Paragraph pTVA = new Paragraph();
+                pTVA.Add(new Phrase("Attention, dans la conjoncture actuelle, les prix et les quantités\n\r peuvent être différents selon les fournisseurs.", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD, BaseColor.RED)));
+                /*---------------------------------------*/
+
+
+
+                
+                PdfPCell cellulePied = new PdfPCell(pTVA); //<<-- ajout de la phrase attention prix covid 210621
                 cellulePied.Colspan = 2;
+               
                 cellulePied.Border = PdfPCell.NO_BORDER;
+                
                 tableauPied.AddCell(cellulePied);
                 string euro = "€";
                 if (donneeFoot["Pied_montant_ttc"] == "") { euro = " "; }
                 PdfPTable tableauTot = new PdfPTable(1);
+
+
+
+
                 PdfPCell cellTTot = new PdfPCell(new Phrase("Montant HT : " + donneeFoot["Pied_montant_ht"] + " " + euro, FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cellTTot.Border = PdfPCell.NO_BORDER; cellTTot.Border = PdfPCell.BOTTOM_BORDER;
                 tableauTot.AddCell(cellTTot);
+
                 PdfPCell cellTTC = new PdfPCell(new Phrase("Montant TTC : " + donneeFoot["Pied_montant_ttc"] + " " + euro + "\n\n\n", FontFactory.GetFont(FontFactory.HELVETICA, 8, Font.BOLD))); cellTTC.Border = PdfPCell.NO_BORDER;
                 tableauTot.AddCell(cellTTC);
+
                 PdfPCell cellTot = new PdfPCell(tableauTot);
+                
+                
                 cellTot.Border = PdfPCell.NO_BORDER;
+                //cellTot.Border = PdfPCell.BOTTOM_BORDER;
+
+
+
                 tableauPied.AddCell(cellTot);
+
+
+                
+
+
                 nouveauDocument.Add(tableauPied);
                 nouveauDocument.Close();
                 incCopie++;

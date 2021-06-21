@@ -545,7 +545,8 @@ namespace Ireport_Rubis
             tableauPied.TotalWidth = 555;
             tableauPied.LockedWidth = true;
             Paragraph pTVA = new Paragraph();
-            pTVA.Add(new Phrase("Offre de prix valable jusqu'au : " + donneEntete["Date_val"], FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD, BaseColor.RED)));
+            //pTVA.Add(new Phrase("Offre de prix valable jusqu'au : " + donneEntete["Date_val"], FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD, BaseColor.RED)));
+            pTVA.Add(new Phrase("Devis établi selon les prix valeur actuelle, révisables sans préavis et selon disponibilités marchandises", FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD, BaseColor.RED)));
             int iF=0;
             foreach (KeyValuePair<string, string> entry in donneeFoot)
             {
