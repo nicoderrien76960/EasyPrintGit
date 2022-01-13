@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
 using System.IO;
+using System.Net.Mail;
 
 namespace Ireport_Rubis
 {
@@ -231,7 +232,9 @@ namespace Ireport_Rubis
             ParseurFacturation p = new ParseurFacturation(donneeEntete, donneeBody, donneeFoot, iBody, iFoot, nomDoc, profil);
             //------------------------------------------------------------------------------------------------
             p.miseEnForm("Facture");                               //Mise en forme pdf des données reçu
-            //------------------------------------------------------------------------------------------------
+                                                                   
+            
+
         }
     }
 }

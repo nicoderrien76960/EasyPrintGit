@@ -6,7 +6,7 @@ using System.IO;
 using System.Configuration;
 using System.Threading.Tasks;
 using System.Collections;
-using System.Configuration;
+//using System.Configuration;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.Diagnostics;
@@ -15,6 +15,7 @@ using PrinterForce;
 using Ghostscript.NET.Processor;
 using IBM.Data.DB2.iSeries;
 using System.Data.Odbc;
+using System.Net.Mail;
 
 
 namespace Ireport_Rubis
@@ -43,6 +44,11 @@ namespace Ireport_Rubis
             int nbCopie = 1;
             string cheminDocFinaux = ConfigurationManager.AppSettings["CheminDocFinaux"].ToString();
             string cheminRessources = ConfigurationManager.AppSettings["CheminRessources"].ToString();
+
+            string dateFacture = "";
+            string dateAnnee = "";
+            string dateMois = "";
+            string dateJour = "";
 
            
 
@@ -184,6 +190,33 @@ namespace Ireport_Rubis
                 tabCell.AddCell(new Phrase(donneEntete["Client_code"], FontFactory.GetFont(FontFactory.HELVETICA, 9)));
                 tabCell.AddCell(new Phrase(donneEntete["Document_date"], FontFactory.GetFont(FontFactory.HELVETICA, 9)));
                 tabCell.AddCell(new Phrase(donneEntete["Document_numero"], FontFactory.GetFont(FontFactory.HELVETICA, 9)));
+
+                /*--------traitement de la date  ---*/
+
+                dateFacture = donneEntete["Document_date"].Replace("/", "");
+                dateAnnee = dateFacture.Substring(4,4);
+                dateMois = dateFacture.Substring(2,2);
+                dateJour = dateFacture.Substring(0, 2);
+
+
+                if (dateMois == "01") { dateMois = "01-Janvier"; }
+                if (dateMois == "02") { dateMois = "02-Février"; }
+                if (dateMois == "03") { dateMois = "03-Mars"; }
+                if (dateMois == "04") { dateMois = "04-Avril"; }
+                if (dateMois == "05") { dateMois = "05-Mai"; }
+                if (dateMois == "06") { dateMois = "06-Juin"; }
+                if (dateMois == "07") { dateMois = "07-Juillet"; }
+                if (dateMois == "08") { dateMois = "08-Aout"; }
+                if (dateMois == "09") { dateMois = "09-Septembre"; }
+                if (dateMois == "10") { dateMois = "10-Octobre"; }
+                if (dateMois == "11") { dateMois = "11-Novembre"; }
+                if (dateMois == "12") { dateMois = "12-Décembre"; }
+
+
+                /*--------traitement de la date  ---*/
+
+
+
                 tabCell.HorizontalAlignment = PdfPCell.ALIGN_LEFT;
                 celulleBasGauche.AddElement(tabCell);
                 celulleBasGauche.Border = PdfPCell.NO_BORDER;
@@ -580,10 +613,15 @@ namespace Ireport_Rubis
                             table.AddCell(cell7);
                             PdfPCell cell8 = new PdfPCell((new Phrase(donneeBody["Lib_rempl_mt" + i] + "\n", FontFactory.GetFont(FontFactory.HELVETICA, 8)))); cell8.Border = PdfPCell.NO_BORDER; cell8.Border += PdfPCell.LEFT_BORDER; cell8.Border += PdfPCell.RIGHT_BORDER;
                             table.AddCell(cell8);
-                        }
+                        /*------------ND 13 01 2022--------bug affichage car il manquait ces 2 booléens----------*/
+                         okDési = false; okStart = false;
+                        /*--------------------bug affichage ligne manquante en gratuit car il manquait ces 2 booléens----------*/
 
 
-                        if (donneeBody["Ligne_type" + i] == "COM")
+                    }
+
+
+                    if (donneeBody["Ligne_type" + i] == "COM")
                         {
                             nbLigne++;
                             PdfPCell cellVide = new PdfPCell(new Phrase("" + "\n"));
@@ -877,6 +915,17 @@ namespace Ireport_Rubis
                 if (donneeFoot.ContainsKey("Base_tva_nature3")) { 
                     tableauPied.AddCell(new Phrase("TVA 20%", FontFactory.GetFont(FontFactory.HELVETICA, 8))); dimactuDocPied++; 
                 }
+
+                if (donneeFoot.ContainsValue("CAPITAL AD")) //ancienne ligne TVA 0 capital AD
+                {
+                    tableauPied.AddCell(new Phrase("TVA à Zéro", FontFactory.GetFont(FontFactory.HELVETICA, 8))); dimactuDocPied++;
+                }
+
+                if (donneeFoot.ContainsValue("TVA 5,5%")) //ancienne ligne TVA 0 capital AD
+                {
+                    tableauPied.AddCell(new Phrase("TVA 5,5%", FontFactory.GetFont(FontFactory.HELVETICA, 8))); dimactuDocPied++;
+                }
+                
                 if (donneeFoot.ContainsValue("EXO")) { 
                     tableauPied.AddCell(new Phrase("EXO", FontFactory.GetFont(FontFactory.HELVETICA, 8 ))); dimactuDocPied++; 
                 }
@@ -1014,7 +1063,7 @@ namespace Ireport_Rubis
                        /* type de règlement sous loi sapin*/
                         if (donneeFoot["Reglement_mode"] != "Traite")
                         {
-                            echeance.Add(new Phrase("% à régler : " + donneeFoot["Echeance_pour" + (iTotal + 1)] + "\n ", FontFactory.GetFont(FontFactory.COURIER, 8, Font.NORMAL)));
+                            echeance.Add(new Phrase(" à régler : " + donneeFoot["Echeance_pour" + (iTotal + 1)] + "\n ", FontFactory.GetFont(FontFactory.COURIER, 8, Font.NORMAL)));
                         }
                         else
                         {
@@ -1061,7 +1110,7 @@ namespace Ireport_Rubis
                 string cgv = "";
                 cgv = "La marchandise reste notre propriété jusqu'à paiement du prix. Clause de réserve de propriété et pénalités en cas de non paiement à l'échéance mentionnée sur la facture.";
                 cgv += "Toute déduction d'escompte pour\npaiement comptant entraine la diminution proportionnelle de la TVA déductible.";
-                cgv += "En qualité d'adhérent, vous devez vous référer aux dispositions de l'article 6-2 du réglement intérieur concernant les conditions\nd'achat et de facturation.";
+                cgv += "En qualité d'adhérent, vous devez vous référer aux dispositions de l'article 7-2 du réglement intérieur concernant les conditions\nd'achat et de facturation.";
                 cgv += " Numéro Unique Loi de Finance : " + donneeFoot["Condensat"];
 
                 
@@ -1174,7 +1223,7 @@ namespace Ireport_Rubis
                     String connectionString = ConfigurationManager.AppSettings["ChaineDeConnexionBase"];
                     OdbcConnection conn = new OdbcConnection(connectionString);
                     conn.Open();
-                    string requete = "select T1.NOCLI c1 , T1.NOMCL c2 from B00C0ACR.AMAGESTCOM.ACLIENL1 T1 where T1.NOCLI = '" + donneEntete["Client_code"] + "'";
+                    string requete = "select T1.NOCLI c1 , T1.NOMCL c2 from S7857E10.AMAGESTCOM.ACLIENL1 T1 where T1.NOCLI = '" + donneEntete["Client_code"] + "'";
                     OdbcCommand act = new OdbcCommand(requete, conn);
                     OdbcDataReader act0 = act.ExecuteReader();
                     string nomADH = "";
@@ -1183,19 +1232,46 @@ namespace Ireport_Rubis
                         nomADH = (act0.GetString(1));
                     }
                     conn.Close();
-                    if (!System.IO.Directory.Exists(ConfigurationManager.AppSettings["cheminGED"] + "\\" + donneEntete["Client_code"] + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM") + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\Facturation\\"))
+                    // //  if (!System.IO.Directory.Exists(ConfigurationManager.AppSettings["cheminGED"] + "\\" + donneEntete["Client_code"] + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM") + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\Facturation\\"))
+                    string repertoireGED = "";
+                    repertoireGED = ConfigurationManager.AppSettings["cheminGED"] + "\\" + donneEntete["Client_code"] + " - " + nomADH.Trim() + "\\" + dateAnnee + "\\" + dateMois + "\\Facturation\\";
+
+                    if (!System.IO.Directory.Exists(repertoireGED))
                     {
-                        System.IO.Directory.CreateDirectory(ConfigurationManager.AppSettings["cheminGED"] + "\\" + donneEntete["Client_code"] + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\Facturation\\");
-                        System.IO.File.Copy(chemin, ConfigurationManager.AppSettings["cheminGED"] + "\\" + donneEntete["Client_code"] + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\Facturation\\" + "\\"+ nomDoc + "_" + donneEntete["Client_code"] + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf");
+                        //System.IO.Directory.CreateDirectory(ConfigurationManager.AppSettings["cheminGED"] + "\\" + donneEntete["Client_code"] + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\Facturation\\");
+                        System.IO.Directory.CreateDirectory(repertoireGED);
+
+
+                        //System.IO.File.Copy(chemin, ConfigurationManager.AppSettings["cheminGED"] + "\\" + donneEntete["Client_code"] + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\Facturation\\" + nomDoc + "_" + donneEntete["Client_code"] + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf");
+                        //System.IO.File.Copy(chemin, repertoireGED + nomDoc + "_" + donneEntete["Client_code"] + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf");
+                        System.IO.File.Copy(chemin, repertoireGED + nomDoc + ".pdf");
                     }
                     else
                     {
-                        System.IO.File.Copy(chemin, ConfigurationManager.AppSettings["cheminGED"] + "\\" + donneEntete["Client_code"] + " - " + nomADH + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\Facturation\\" + nomDoc + "_" + donneEntete["Client_code"] + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf");
+                        //System.IO.File.Copy(chemin, ConfigurationManager.AppSettings["cheminGED"] + "\\" + donneEntete["Client_code"] + " - " + nomADH.Trim() + "\\" + DateTime.Now.Year.ToString() + "\\" + DateTime.Now.ToString("MM").ToUpperInvariant() + "-" + DateTime.Now.ToString("MMMM").First().ToString().ToUpper() + String.Join("", DateTime.Now.ToString("MMMM").Skip(1)) + "\\Facturation\\" + nomDoc + "_" + donneEntete["Client_code"] + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf");
+                        //System.IO.File.Copy(chemin, repertoireGED + nomDoc + "_" + donneEntete["Client_code"] + "_" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + ".pdf");
+
+                        try {
+                            if (!System.IO.File.Exists(repertoireGED + nomDoc + ".pdf"))
+                            {
+                                System.IO.File.Copy(chemin, repertoireGED + nomDoc + ".pdf");
+                            }
+                            else {
+                                System.IO.File.Copy(chemin, repertoireGED + nomDoc + "_REEDITION.pdf");
+                            }
+
+                        }
+                        catch (Exception e)
+                        {
+                            //LogHelper.WriteToFile(e.Message, " la Facture "+ nomDoc+" est déjà éditée");
+                            LogHelper.WriteToFile("!--> Ignorée !", " la Facture " + nomDoc + " est déjà éditée");
+                        }
+
                     }
                 }
                 catch (Exception e)
                 {
-                    LogHelper.WriteToFile(e.Message, " ENVOI GED Facture");
+                    LogHelper.WriteToFile(e.Message, "ENVOI GED Facture");
                 }
                
              
@@ -1206,7 +1282,7 @@ namespace Ireport_Rubis
                 OdbcConnection conn2 = new OdbcConnection(connectionString2);
                 conn2.Open();
                 //Requete de séléction sur le champ "envoi facture par mail"
-                string requete2 = "select T1.NOCLI c1 , T1.CLID5 c2 , T1.RENDI c3 , T1.PROFE c4 from B00C0ACR.AMAGESTCOM.ACLIENL1 T1 where T1.CLID5 = 'OUI'";
+                string requete2 = "select T1.NOCLI c1 , T1.CLID5 c2 , T1.RENDI c3 , T1.PROFE c4 from S7857E10.AMAGESTCOM.ACLIENL1 T1 where T1.CLID5 = 'OUI'";
                 OdbcCommand act2 = new OdbcCommand(requete2, conn2);
                 OdbcDataReader act20 = null;
                 bool effectuerImpression=true;
@@ -1222,7 +1298,10 @@ namespace Ireport_Rubis
                         }
                     }
                 }
-                catch (Exception e) { LogHelper.WriteToFile(e.Message, "Erreur de connexion à la base, rupture d'impression"); }
+                catch (Exception e)
+                {
+                    LogHelper.WriteToFile(e.Message, "Erreur de connexion à la base, rupture d'impression");
+                }
                 if (effectuerImpression == true)
                 {
                     int nbImp = 0; int nbImpOK = 0;
@@ -1272,16 +1351,59 @@ namespace Ireport_Rubis
                                 processor.StartProcessing(switches.ToArray(), null);
                             }
                             nbImpOK++;
+
+                                                     
+
+
+
                         }
                         catch (Exception e)
                         { LogHelper.WriteToFile(e.Message, "ParseurFacturation" + donneEntete["Document_numero"].Trim()); }
                         // incrément à chaque impression terminée
+
+                       
+
+
+
+
                     }
+
+
+
+
                 }
+                
+              /*---------------envoi mail fin traitement facyuration-------------- */
+              /*  try
+                {
+                    MailMessage mail = new MailMessage();
+                    SmtpClient SmtpServer = new SmtpClient("10.211.28.152");
+                    mail.From = new MailAddress("informatique@abcr76.fr");
+                    mail.To.Add("nicolas.derrien@abcr76.fr");
+                    mail.Subject = "Facturation traitement terminé";
+                    mail.Body = "La facturation est terminée, vous pouvez lancer les relevés de traite";
+
+                    SmtpServer.Port = 25;
+                   // SmtpServer.Credentials = new System.Net.NetworkCredential("nicolas.derrien@abcr76.fr", "Snoopy76960");
+                    //SmtpServer.EnableSsl = true;
+
+                    SmtpServer.Send(mail);
+                }
+                catch (Exception e)
+                { LogHelper.WriteToFile(e.Message, "erreur email"); }*/
+
+                /*---------------envoi mail fin traitement facyuration-------------- */
+
+
                 /*Mail m = new Mail();
                 m.remplirDictionnaire();
                 m.comparerDocument(donneEntete["Client_code"]);*/
             }
+
         }
+
+         
     }
+
+
 }

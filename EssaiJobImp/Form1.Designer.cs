@@ -99,7 +99,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(410, 34);
             this.label2.TabIndex = 20;
-            this.label2.Text = "Ireport Rubis Facturation V2";
+            this.label2.Text = "Ireport Rubis Facturation V3";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // pictureBox1
@@ -148,10 +148,11 @@
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Location = new System.Drawing.Point(9, 146);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(152, 13);
+            this.linkLabel1.Size = new System.Drawing.Size(227, 13);
             this.linkLabel1.TabIndex = 25;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Conforme Loi de Finance 2017";
+            this.linkLabel1.Text = "V3R13.01.22 + Conforme Loi de Finance 2017";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // Form1
             // 

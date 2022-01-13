@@ -366,5 +366,13 @@ namespace Ireport_Rubis
         {
 
         }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            MessageBox.Show("7 février 2020 --> modif article 6.2 en 7.2 impayé 40€" +
+                "\n\r5 Octobre 2020 --> numérotation des factures uniques dans le bon mois"+
+                 "\n\r13 Janvier 2022 --> Bug d'affichage des lignes gratuites (après la 1ere la désignation suivante n'était plus affichée)"
+                );
+        }
     }
 }
